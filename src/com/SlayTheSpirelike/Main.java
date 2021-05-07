@@ -11,6 +11,6 @@ package com.SlayTheSpirelike;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Body body = new Body(800, 600);
     }
 }
