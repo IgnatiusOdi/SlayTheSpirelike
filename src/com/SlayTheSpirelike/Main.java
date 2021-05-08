@@ -12,5 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         Body body = new Body(800, 600);
+//        Kapal k = new Aircraft("nama");
+//        System.out.println(k.toString());
     }
 }
