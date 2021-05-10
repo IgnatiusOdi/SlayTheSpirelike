@@ -13,7 +13,7 @@ public class Body implements Runnable{
 
     private MouseManager mouse;
 
-//    private Login login;
+    private MainMenu mainMenu;
     
     public Body(int widht,int height) {
         display = new Display(widht, height);
@@ -36,9 +36,9 @@ public class Body implements Runnable{
         
         Assets.init();
         // TODO: 07/05/2021 state
-//        login = new Login(this);
-//
-//        State.setCurrent(login);
+        mainMenu = new MainMenu(this);
+
+        State.setCurrent(mainMenu);
     }
     
     @Override
@@ -106,9 +106,9 @@ public class Body implements Runnable{
         return mouse;
     }
 
-//    public Login getLogin() {
-//        return login;
-//    }
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
 
     public Display getDisplay() {
         return display;
