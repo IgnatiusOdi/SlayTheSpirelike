@@ -1,9 +1,11 @@
 package com.SlayTheSpirelike;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Assets {
-    public static BufferedImage backGround,board2;
+    public static BufferedImage mainMenuBackground,board2;
     public static BufferedImage returnBtn,screen;
     public static BufferedImage board,logNorm,logPress; 
     public static BufferedImage right,left;
@@ -11,7 +13,7 @@ public class Assets {
     public static BufferedImage logo;
     
     public static void init() {
-//        backGround = ImageLoader.LoadImage("/ftrWpp.jpg");
+        mainMenuBackground = ImageLoader.LoadImage("resources/mainMenu.png");
 //        right = ImageLoader.LoadImage("/right.png");
 //        left = ImageLoader.LoadImage("/left.png");
 //        returnBtn = ImageLoader.LoadImage("/return.png");

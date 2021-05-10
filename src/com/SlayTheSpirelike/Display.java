@@ -20,7 +20,7 @@ public class Display {
     private void init()
     {
         frame.setSize(widht, height);
-        frame.setTitle("Shop Logic Sinlui Hot 2019");
+        frame.setTitle("For the Torpedo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setFocusable(true);
