@@ -6,11 +6,14 @@ public abstract class Kapal {
     protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin;
     protected String nama;
 //    protected ArrayList<> card;
-//    protected ArrayList<> potion;
+    protected int potionLimit;
+    protected ArrayList<Potion> potion;
 //    protected ArrayList<> relic;
 
 
     public Kapal(String nama) {
+        this.potion = new ArrayList();
+        this.potionLimit = 5;
         this.nama = nama;
         this.block = 0;
         this.attack = 0;
