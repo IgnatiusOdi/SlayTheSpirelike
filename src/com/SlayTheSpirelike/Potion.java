@@ -2,13 +2,11 @@ package com.SlayTheSpirelike;
 
 public class Potion {
     protected String nama,type;
-    protected int duration;
     protected boolean active;
 
-    public Potion(String nama, String type, int duration) {
+    public Potion(String nama, String type) {
         this.nama = nama;
         this.type = type;
-        this.duration = duration;
         this.active = true;
     }
 
@@ -16,6 +14,7 @@ public class Potion {
 
     }
 
+    //hanya jalan saat active == false ketika turn di battle berakhir
     public void deactivate(Kapal kapal){
 
     }
@@ -36,11 +35,11 @@ public class Potion {
         this.type = type;
     }
 
-    public int getDuration() {
-        return duration;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
