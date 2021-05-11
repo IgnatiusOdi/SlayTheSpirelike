@@ -3,15 +3,20 @@ package com.SlayTheSpirelike;
 import java.util.ArrayList;
 
 public abstract class Kapal {
-    protected int health, maxhealth, fuel, maxfuel, energy, maxenergy, coin;
+    protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin;
     protected String nama;
 //    protected ArrayList<> card;
-//    protected ArrayList<> potion;
+    protected int potionLimit;
+    protected ArrayList<Potion> potion;
 //    protected ArrayList<> relic;
 
 
     public Kapal(String nama) {
+        this.potion = new ArrayList();
+        this.potionLimit = 5;
         this.nama = nama;
+        this.block = 0;
+        this.attack = 0;
         this.health = 20;
         this.maxhealth = 20;
         this.fuel = 20;
@@ -19,6 +24,22 @@ public abstract class Kapal {
         this.energy = 3;
         this.maxenergy = 3;
         this.coin = 0;
+    }
+
+    public int getBlock() {
+        return block;
+    }
+
+    public void setBlock(int block) {
+        this.block = block;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public int getHealth() {
