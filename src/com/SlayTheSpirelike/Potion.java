@@ -1,6 +1,6 @@
 package com.SlayTheSpirelike;
 
-public class Potion {
+public abstract class Potion {
     protected String nama,type;
     protected boolean active;
 
