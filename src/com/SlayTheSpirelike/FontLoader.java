@@ -16,11 +16,11 @@ import java.io.IOException;
  * @author CBEngineer
  */
 public class FontLoader {
-    public static Font LoadFont(String path,float size){
+    public static Font loadFont(String path,float size){
         Font customFont;
         try {
             //create the font to use. Specify the size!
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("LemonMilklight.otf")).deriveFont(size);
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new File(path)).deriveFont(size);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             //register the font
             ge.registerFont(customFont);
