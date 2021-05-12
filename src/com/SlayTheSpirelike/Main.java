@@ -1,7 +1,5 @@
 package com.SlayTheSpirelike;
 
-import com.SlayTheSpirelike.Kapal.*;
-import com.SlayTheSpirelike.Potions.*;
 
 /**
  * Slay the Spirelike <br>
@@ -14,6 +12,7 @@ import com.SlayTheSpirelike.Potions.*;
 public class Main {
 
     public static void main(String[] args) {
+        new Statics();//initialize static potions
         Body body = new Body(1060, 600);
 //        Kapal k = new Aircraft("nama");
 //        Potion p = new AttackPotion();

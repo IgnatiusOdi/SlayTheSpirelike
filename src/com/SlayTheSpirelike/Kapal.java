@@ -7,11 +7,12 @@ public abstract class Kapal {
     protected String nama;
 //    public static ArrayList<> card = new ArrayList();
     protected int potionLimit;
-    public static ArrayList<Potion> potion = new ArrayList();
+    protected ArrayList<Potion> potion;
 //    public static ArrayList<> artifact = new ArrayList();
 
 
     public Kapal(String nama) {
+        this.potion = new ArrayList();
         this.potionLimit = 5;
         this.nama = nama;
         this.block = 0;
