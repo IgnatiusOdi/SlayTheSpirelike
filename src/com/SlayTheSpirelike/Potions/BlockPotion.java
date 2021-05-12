@@ -1,6 +1,8 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.Potions;
 
-public class BlockPotion extends Potion{
+import com.SlayTheSpirelike.Kapal.Kapal;
+
+public class BlockPotion extends Potion {
     public BlockPotion() {
         super("Block Potion", "Self","Common");
     }

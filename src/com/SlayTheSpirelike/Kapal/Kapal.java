@@ -1,4 +1,6 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.Kapal;
+
+import com.SlayTheSpirelike.Potions.Potion;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,21 @@ public abstract class Kapal {
         this.energy = 3;
         this.maxenergy = 3;
         this.coin = 0;
+    }
+
+    public void getPotion(Potion p){
+        if (potion.size()<=5){
+            potion.add(p);
+        }
+        else{
+            //code untuk layar delete potion untuk tambah potion baru
+        }
+    }
+
+    public Potion usePotion(int i){
+        Potion use = potion.get(i);
+        potion.remove(i);
+        return use;
     }
 
     public int getBlock() {

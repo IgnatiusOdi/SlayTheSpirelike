@@ -1,6 +1,8 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.Potions;
 
-public class EnergyPotion extends Potion{
+import com.SlayTheSpirelike.Kapal.Kapal;
+
+public class EnergyPotion extends Potion {
     public EnergyPotion() {
         super("Energy Potion", "Self","Uncommon");
     }

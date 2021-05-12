@@ -1,6 +1,8 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.Potions;
 
-public class WrathPotion extends Potion{
+import com.SlayTheSpirelike.Kapal.Kapal;
+
+public class WrathPotion extends Potion {
     boolean used = true;
     public WrathPotion() {
         super("Wrath Potion", "Self","Uncommon");

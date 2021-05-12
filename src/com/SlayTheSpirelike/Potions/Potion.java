@@ -1,4 +1,6 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.Potions;
+
+import com.SlayTheSpirelike.Kapal.Kapal;
 
 public abstract class Potion {
     //type ada 3
