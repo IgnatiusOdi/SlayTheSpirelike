@@ -1,14 +1,18 @@
 package com.SlayTheSpirelike;
 
-public class AttackPotion extends Potion{
-    public AttackPotion() {
-        super("Attack Potion", "Self","Common");
+public class WrathPotion extends Potion{
+    boolean used = true;
+    public WrathPotion() {
+        super("Wrath Potion", "Self","Uncommon");
     }
 
     @Override
     public void activate(Kapal kapal) {
-        kapal.setAttack(kapal.getAttack()+10);
-        active=false;
+        if (used){
+            kapal.setAttack(kapal.getAttack()+10);
+            used = false;
+        }
+        used=false;
     }
 
     @Override

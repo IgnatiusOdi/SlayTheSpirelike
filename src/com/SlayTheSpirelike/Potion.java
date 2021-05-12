@@ -1,20 +1,27 @@
 package com.SlayTheSpirelike;
 
 public abstract class Potion {
-    protected String nama,type;
+    //type ada 3
+    //self: bekerja langsung kepada player
+    //enemy: bekerja langsung pada enemy
+    //battle: bekerja pada battle
+    //special: yang butuh kondisi sendiri
+    protected String nama,type,rarity;
     protected boolean active;
 
-    public Potion(String nama, String type) {
+    public Potion(String nama, String type, String rarity) {
         this.nama = nama;
         this.type = type;
         this.active = true;
+        this.rarity = rarity;
     }
 
     public void activate(Kapal kapal){
 
     }
 
-    //hanya jalan saat active == false ketika turn di battle berakhir
+    //hanya jalan saat active == false dan ketika turn di battle berakhir
+    //saat battle end, semua potion yang masih active langsung deactivate tanpa pengecekan active
     public void deactivate(Kapal kapal){
 
     }
