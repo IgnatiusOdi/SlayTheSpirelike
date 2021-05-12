@@ -1,5 +1,8 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Kapal.*;
+import com.SlayTheSpirelike.Potions.*;
+
 /**
  * Slay the Spirelike <br>
  * Alexander Kevin <br>
@@ -15,7 +18,7 @@ public class Main {
 //        Kapal k = new Aircraft("nama");
 //        Potion p = new AttackPotion();
 //        p.activate(k);
-//        System.out.println(k.toString());
+//        System.out.println(k);
 //        p.deactivate(k);
 //        System.out.println(k);
     }

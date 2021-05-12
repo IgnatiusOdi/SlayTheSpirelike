@@ -1,6 +1,5 @@
 package com.SlayTheSpirelike.Kapal;
 
-import com.SlayTheSpirelike.Kapal.Kapal;
 
 public class Tanker extends Kapal {
     public Tanker(String nama) {

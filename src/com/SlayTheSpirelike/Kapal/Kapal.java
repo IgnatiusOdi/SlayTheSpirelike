@@ -1,6 +1,6 @@
 package com.SlayTheSpirelike.Kapal;
 
-import com.SlayTheSpirelike.Potions.Potion;
+import com.SlayTheSpirelike.Potions.*;
 
 import java.util.ArrayList;
 

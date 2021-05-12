@@ -1,6 +1,6 @@
 package com.SlayTheSpirelike.Potions;
 
-import com.SlayTheSpirelike.Kapal.Kapal;
+import com.SlayTheSpirelike.Kapal.*;
 
 public class SteelPotion extends Potion {
     public SteelPotion() {
