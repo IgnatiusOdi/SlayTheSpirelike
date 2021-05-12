@@ -1,20 +1,17 @@
-package com.SlayTheSpirelike.Kapal;
-
-import com.SlayTheSpirelike.Potions.*;
+package com.SlayTheSpirelike;
 
 import java.util.ArrayList;
 
 public abstract class Kapal {
     protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin;
     protected String nama;
-//    protected ArrayList<> card;
+//    public static ArrayList<> card = new ArrayList();
     protected int potionLimit;
-    protected ArrayList<Potion> potion;
-//    protected ArrayList<> relic;
+    public static ArrayList<Potion> potion = new ArrayList();
+//    public static ArrayList<> artifact = new ArrayList();
 
 
     public Kapal(String nama) {
-        this.potion = new ArrayList();
         this.potionLimit = 5;
         this.nama = nama;
         this.block = 0;

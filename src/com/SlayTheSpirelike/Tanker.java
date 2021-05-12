@@ -1,4 +1,4 @@
-package com.SlayTheSpirelike.Kapal;
+package com.SlayTheSpirelike;
 
 
 public class Tanker extends Kapal {
