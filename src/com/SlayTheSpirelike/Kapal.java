@@ -111,12 +111,16 @@ public abstract class Kapal {
         return "Kapal{" +
                 "health=" + health +
                 ", maxhealth=" + maxhealth +
+                ", block=" + block +
+                ", attack=" + attack +
                 ", fuel=" + fuel +
                 ", maxfuel=" + maxfuel +
                 ", energy=" + energy +
                 ", maxenergy=" + maxenergy +
                 ", coin=" + coin +
                 ", nama='" + nama + '\'' +
+                ", potionLimit=" + potionLimit +
+                ", potion=" + potion +
                 '}';
     }
 }

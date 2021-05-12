@@ -14,5 +14,8 @@ public class AttackPotion extends Potion{
     @Override
     public void deactivate(Kapal kapal) {
         kapal.setAttack(kapal.getAttack()-10);
+        if (kapal.getAttack()<0){
+            kapal.setAttack(0);
+        }
     }
 }
