@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class EnergyPotion extends Potion {
     public EnergyPotion() {
-        super("Energy Potion", "Self","Uncommon");
+        super("Energy Potion", "Self","Uncommon","resources/EnergyPotion.png");
     }
 
     @Override

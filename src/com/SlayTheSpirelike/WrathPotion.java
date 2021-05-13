@@ -1,9 +1,10 @@
 package com.SlayTheSpirelike;
 
 public class WrathPotion extends Potion {
-    boolean used = true;
+    private boolean used;
     public WrathPotion() {
-        super("Wrath Potion", "Self","Uncommon");
+        super("Wrath Potion", "Self","Uncommon","resources/StrengthPotion.png");
+        used = true;
     }
 
     @Override

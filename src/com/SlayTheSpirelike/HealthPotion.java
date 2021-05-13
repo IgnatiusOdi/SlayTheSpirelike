@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class HealthPotion extends Potion {
     public HealthPotion() {
-        super("Health Potion", "Self","Common");
+        super("Health Potion", "Self","Common","resources/HealthPotion.png");
     }
 
     @Override

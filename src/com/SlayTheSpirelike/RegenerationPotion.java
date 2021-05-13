@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class RegenerationPotion extends Potion {
     public RegenerationPotion() {
-        super("Regeneration Potion", "Self","Uncommon");
+        super("Regeneration Potion", "Self","Uncommon","resources/RegenPotion.png");
     }
 
     @Override

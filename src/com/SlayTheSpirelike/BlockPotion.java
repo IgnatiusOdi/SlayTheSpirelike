@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class BlockPotion extends Potion {
     public BlockPotion() {
-        super("Block Potion", "Self","Common");
+        super("Block Potion", "Self","Common","resources/BlockPotion.png");
     }
 
     @Override

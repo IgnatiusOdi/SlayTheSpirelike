@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class SteelPotion extends Potion {
     public SteelPotion() {
-        super("Steel Potion", "Self","Uncommon");
+        super("Steel Potion", "Self","Uncommon","resources/SteelPotion.png");
     }
     @Override
     public void activate(Kapal kapal) {
