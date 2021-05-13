@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class PearRelic extends Relic{
     public PearRelic() {
-        super("Pear", "Uncommon","Passive");
+        super("Pear", "Uncommon","Passive","resources/pear.png");
     }
 
     @Override

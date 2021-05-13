@@ -1,14 +1,35 @@
 package com.SlayTheSpirelike;
 
+import javax.swing.*;
+
 public class Relic {
     protected String nama,rarity,condition;
     protected boolean active;
+    protected JLabel relic;
+    protected JPanel panel;
 
-    public Relic(String nama, String rarity, String condition) {
+    JFrame frame;
+
+    public Relic(String nama, String rarity, String condition, String image) {
         this.nama = nama;
         this.rarity = rarity;
         this.active = true;
         this.condition = condition;
+        this.relic = new JLabel();
+        this.relic.setText(nama);
+        this.relic.setIcon(new ImageIcon(image));
+        this.relic.setVerticalTextPosition(JLabel.BOTTOM);
+        this.relic.setHorizontalTextPosition(JLabel.CENTER);
+        this.panel = new JPanel();
+        this.panel.add(relic);
+        this.panel.setSize(50,50);
+        this.panel.setOpaque(false);
+        //uncomment to look
+//        frame = new JFrame();
+//        frame.setBackground(Color.BLUE);
+//        frame.add(panel);
+//        frame.pack();
+//        frame.setVisible(true);
     }
 
     //relic yang tidak memiliki override cara kerjanya adalah, ketika kondisi tercapai, kalau ada relic ini, activate kode yang tempat itu
