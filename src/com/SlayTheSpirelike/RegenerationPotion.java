@@ -7,9 +7,12 @@ public class RegenerationPotion extends Potion {
 
     @Override
     public void activate(Kapal kapal) {
-        kapal.setHealth(kapal.getHealth()+3);
-        if (kapal.getHealth()>kapal.getMaxhealth()){
-            kapal.setHealth(kapal.getMaxhealth());
+        if (kapal.isAlive()&&active){
+            kapal.setHealth(kapal.getHealth()+3);
+            if (kapal.getHealth()>kapal.getMaxhealth()){
+                kapal.setHealth(kapal.getMaxhealth());
+            }
         }
+
     }
 }

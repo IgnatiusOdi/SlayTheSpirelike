@@ -7,8 +7,10 @@ public class BlockPotion extends Potion {
 
     @Override
     public void activate(Kapal kapal) {
-        kapal.setBlock(kapal.getBlock()+10);
-        active=false;
+        if (kapal.isAlive()&&active){
+            kapal.setBlock(kapal.getBlock()+10);
+            active=false;
+        }
     }
 
     @Override

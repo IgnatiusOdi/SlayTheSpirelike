@@ -6,7 +6,9 @@ public class SteelPotion extends Potion {
     }
     @Override
     public void activate(Kapal kapal) {
-        kapal.setBlock(kapal.getBlock()+10);
+        if (kapal.isAlive()&&active){
+            kapal.setBlock(kapal.getBlock()+10);
+        }
     }
 
     @Override

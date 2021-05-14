@@ -7,10 +7,12 @@ public class EnergyPotion extends Potion {
 
     @Override
     public void activate(Kapal kapal) {
-        kapal.setEnergy(kapal.getEnergy()+2);
-        if (kapal.getEnergy()>kapal.getMaxenergy()){
-            kapal.setEnergy(kapal.getMaxenergy());
+        if (kapal.isAlive()&&active){
+            kapal.setEnergy(kapal.getEnergy()+2);
+            if (kapal.getEnergy()>kapal.getMaxenergy()){
+                kapal.setEnergy(kapal.getMaxenergy());
+            }
+            active=false;
         }
-        active=false;
     }
 }

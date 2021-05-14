@@ -40,9 +40,19 @@ public abstract class Kapal {
 //        frame.pack();
 //        frame.setVisible(true);
     }
+    //cek eksistensi potion
+    public boolean isPotion(String nama){
+        boolean exist = false;
+        for (Potion pot:potion) {
+            if (pot.getNama().equals(nama)){
+                exist = true;
+            }
+        }
+        return exist;
+    }
 
-    public void getPotion(Potion p){
-        if (potion.size()<=5){
+    public void obtainPotion(Potion p){
+        if (potion.size()<5){
             potion.add(p);
         }
         else{
@@ -50,10 +60,27 @@ public abstract class Kapal {
         }
     }
 
+    public int getPotionsize(){
+        return potion.size();
+    }
+
+    public boolean isAlive(){
+        if (health>0){
+            return true;
+        }
+        else return false;
+    }
+
     public Potion usePotion(int i){
         Potion use = potion.get(i);
         potion.remove(i);
         return use;
+    }
+
+    public void viewPotion(){
+        for (Potion p:potion) {
+            System.out.println(p.getNama());
+        }
     }
 
     public void getRelic(Relic r){

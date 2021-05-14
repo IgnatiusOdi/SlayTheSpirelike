@@ -8,7 +8,9 @@ public class AppleJuicePotion extends Potion {
 
     @Override
     public void activate(Kapal kapal) {
-        kapal.setMaxhealth(kapal.getMaxhealth()+5);
-        active=false;
+        if (kapal.isAlive()&&active) {
+            kapal.setMaxhealth(kapal.getMaxhealth() + 5);
+            active = false;
+        }
     }
 }
