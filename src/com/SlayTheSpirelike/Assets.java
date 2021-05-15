@@ -1,27 +1,28 @@
 package com.SlayTheSpirelike;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Assets {
-    public static BufferedImage mainMenuBackground,boardSet;
-    public static BufferedImage returnBtn,screen;
-    public static BufferedImage board,plank1,logPress;
-    public static BufferedImage right,left;
-    public static BufferedImage btn1press,btn1norm;
-    public static BufferedImage logo;
+    public static BufferedImage mainMenuBackground_old,boardSet;
+    public static BufferedImage tanker,warship,carrier;
+    public static BufferedImage board, plank1,logPress;
+
+    public static ImageIcon mainMenuBG;
     
     public static void init() {
-        mainMenuBackground = ImageLoader.LoadImage("resources/mainMenu.png");
-//        right = ImageLoader.LoadImage("/right.png");
-//        left = ImageLoader.LoadImage("/left.png");
-//        returnBtn = ImageLoader.LoadImage("/return.png");
-//        logo = ImageLoader.LoadImage("/logo.png");
-//
+        mainMenuBG = new ImageIcon("resources/mainMenu.png");
+        mainMenuBackground_old = ImageLoader.LoadImage("resources/mainMenu.png");
+        tanker = ImageLoader.LoadImage("resources/tanker.png");
+        warship = ImageLoader.LoadImage("resources/warship.png");
+        carrier = ImageLoader.LoadImage("resources/aircraft.png");
+
+
 //        board2 = ImageLoader.crop("/screen.jpg", 105, 70 ,  394-105,99 );
-//
+
         BufferedImage boardSet = ImageLoader.LoadImage("resources/wooden-planks-set.png");
         plank1 = ImageLoader.crop(boardSet, 111, 11, 214, 44);
 //        logPress = ImageLoader.crop(btnSheet, 40, 185, 170, 70);

@@ -1,4 +1,4 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.notused;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
