@@ -4,13 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 public class MainMenu extends JPanel {
-    private JButton button;
     private JLabel label;
-    private JLabel bg;
     private Body body;
 
     @Override
@@ -52,11 +48,6 @@ public class MainMenu extends JPanel {
             }
         };
         label.setBounds(body.getWidth()/2 -100, 100,200,50);
-//        label.setHorizontalTextPosition(JLabel.CENTER);
-//        label.setVerticalTextPosition(JLabel.CENTER);
-//        label.setForeground(Color.red);
-//        label.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
-//        label.setText("New Game");
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -68,7 +59,6 @@ public class MainMenu extends JPanel {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 label.setLocation(label.getX()+10, label.getY());
-                System.out.println("aaaaa");
             }
 
             @Override
@@ -76,14 +66,6 @@ public class MainMenu extends JPanel {
                 super.mouseExited(e);
                 label.setLocation(label.getX()-10, label.getY());
             }
-        });
-
-        label.addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mouseMoved(MouseEvent e) {
-                super.mouseMoved(e);
-            }
-
         });
         add(label);
 
