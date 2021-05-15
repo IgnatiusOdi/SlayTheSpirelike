@@ -16,7 +16,7 @@ public class Main {
 //        new SummonPotion();
 //        new InvinciblePotion();
 //        new RevivePotion();
-        Body body = new Body(1060, 600);
+        //Body body = new Body(1060, 600);
 //        Kapal k = new Aircraft("nama");
 //        Potion b = new BrewPotion();
 //        b.activate(k);
