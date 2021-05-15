@@ -9,6 +9,7 @@ public class StrawberryRelic extends Relic{
     public void activate(Kapal kapal) {
         if (active){
             kapal.setMaxhealth(kapal.getMaxhealth()+2);
+            kapal.setHealth(kapal.getHealth()+2);
             active=false;
         }
 
@@ -17,5 +18,9 @@ public class StrawberryRelic extends Relic{
     @Override
     public void deactivate(Kapal kapal) {
         kapal.setMaxhealth(kapal.getMaxhealth()-2);
+        if (kapal.getHealth()>kapal.getMaxhealth()){
+            kapal.setHealth(kapal.getMaxhealth());
+        }
+        active=true;
     }
 }

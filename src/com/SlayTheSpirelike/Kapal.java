@@ -71,6 +71,14 @@ public abstract class Kapal {
         else return false;
     }
 
+    public int getPotionLimit() {
+        return potionLimit;
+    }
+
+    public void setPotionLimit(int potionLimit) {
+        this.potionLimit = potionLimit;
+    }
+
     public Potion usePotion(int i){
         Potion use = potion.get(i);
         potion.remove(i);
