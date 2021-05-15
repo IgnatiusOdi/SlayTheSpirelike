@@ -1,5 +1,6 @@
 package com.SlayTheSpirelike;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public abstract class Kapal {
@@ -8,10 +9,13 @@ public abstract class Kapal {
 //    public static ArrayList<> card = new ArrayList();
     protected int potionLimit;
     protected ArrayList<Potion> potion;
-//    public static ArrayList<> artifact = new ArrayList();
+    protected ArrayList<Relic> relic;
+    protected JLabel kapal;
+    protected JPanel panel;
+    JFrame frame;
 
-
-    public Kapal(String nama) {
+    public Kapal(String nama,String image) {
+        this.relic = new ArrayList();
         this.potion = new ArrayList();
         this.potionLimit = 5;
         this.nama = nama;
@@ -24,10 +28,31 @@ public abstract class Kapal {
         this.energy = 3;
         this.maxenergy = 3;
         this.coin = 0;
+        this.kapal = new JLabel();
+        this.kapal.setIcon(new ImageIcon(image));
+        this.panel = new JPanel();
+        this.panel.add(kapal);
+        this.panel.setSize(50,50);
+        this.panel.setOpaque(false);
+
+//                frame = new JFrame();
+//        frame.add(panel);
+//        frame.pack();
+//        frame.setVisible(true);
+    }
+    //cek eksistensi potion
+    public boolean isPotion(String nama){
+        boolean exist = false;
+        for (Potion pot:potion) {
+            if (pot.getNama().equals(nama)){
+                exist = true;
+            }
+        }
+        return exist;
     }
 
-    public void getPotion(Potion p){
-        if (potion.size()<=5){
+    public void obtainPotion(Potion p){
+        if (potion.size()<5){
             potion.add(p);
         }
         else{
@@ -35,10 +60,35 @@ public abstract class Kapal {
         }
     }
 
+    public int getPotionsize(){
+        return potion.size();
+    }
+
+    public boolean isAlive(){
+        if (health>0){
+            return true;
+        }
+        else return false;
+    }
+
     public Potion usePotion(int i){
         Potion use = potion.get(i);
         potion.remove(i);
         return use;
+    }
+
+    public void viewPotion(){
+        for (Potion p:potion) {
+            System.out.println(p.getNama());
+        }
+    }
+
+    public void getRelic(Relic r){
+        relic.add(r);
+    }
+
+    public Relic useRelic(int i){
+        return relic.get(i);
     }
 
     public int getBlock() {

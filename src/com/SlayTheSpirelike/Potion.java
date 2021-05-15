@@ -1,6 +1,7 @@
 package com.SlayTheSpirelike;
 
-import com.SlayTheSpirelike.Kapal;
+import javax.swing.*;
+import java.awt.*;
 
 public abstract class Potion {
     //type ada 3
@@ -10,12 +11,36 @@ public abstract class Potion {
     //special: yang butuh kondisi sendiri
     protected String nama,type,rarity;
     protected boolean active;
+    protected JLabel potion;
+    protected JPanel panel;
 
-    public Potion(String nama, String type, String rarity) {
+    JFrame frame;
+
+    public Potion(String nama, String type, String rarity, String image) {
         this.nama = nama;
         this.type = type;
         this.active = true;
         this.rarity = rarity;
+        this.potion = new JLabel();
+        this.potion.setText(nama);
+        this.potion.setIcon(new ImageIcon(image));
+        this.potion.setVerticalTextPosition(JLabel.BOTTOM);
+        this.potion.setHorizontalTextPosition(JLabel.CENTER);
+        this.panel = new JPanel();
+        this.panel.add(potion);
+        this.panel.setSize(50,50);
+        this.panel.setOpaque(false);
+        //uncomment to look
+//        frame = new JFrame();
+//        frame.setBackground(Color.BLUE);
+//        frame.add(panel);
+//        frame.pack();
+//        frame.setVisible(true);
+    }
+
+    public JPanel getPanel(int x, int y) {
+        panel.setLocation(x,y);
+        return panel;
     }
 
     public void activate(Kapal kapal){

@@ -2,13 +2,15 @@ package com.SlayTheSpirelike;
 
 public class BlockPotion extends Potion {
     public BlockPotion() {
-        super("Block Potion", "Self","Common");
+        super("Block Potion", "Self","Common","resources/BlockPotion.png");
     }
 
     @Override
     public void activate(Kapal kapal) {
-        kapal.setBlock(kapal.getBlock()+10);
-        active=false;
+        if (kapal.isAlive()&&active){
+            kapal.setBlock(kapal.getBlock()+10);
+            active=false;
+        }
     }
 
     @Override
