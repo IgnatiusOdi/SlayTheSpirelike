@@ -7,6 +7,7 @@ public class Body extends JFrame {
     private JPanel panel;
     private int width, height;
     private MouseManager mouse;
+    private KeyboardManager keyboard;
 
     public Body(int width, int height) throws HeadlessException {
         this.width = width;
@@ -23,6 +24,9 @@ public class Body extends JFrame {
         addMouseListener(mouse);
         addMouseMotionListener(mouse);
         addMouseWheelListener(mouse);
+
+        keyboard = new KeyboardManager();
+        addKeyListener(keyboard);
     }
 
 

@@ -13,7 +13,6 @@ public class Main {
 
     public static void main(String[] args) {
         new Statics();//initialize static potions
-        Assets.init();
         Body body = new Body(1060,600);
 
 //        new SummonPotion();
