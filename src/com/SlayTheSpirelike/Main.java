@@ -13,7 +13,9 @@ public class Main {
 
     public static void main(String[] args) {
         new Statics();//initialize static potions
-        Body body = new Body(1060, 600);
+        Assets.init();
+        Body body2 = new Body(1060,600);
+//        Body body = new Body(1060, 600);
 //        Kapal k = new Aircraft("nama");
 //        Potion p = new AttackPotion();
 //        p.activate(k);

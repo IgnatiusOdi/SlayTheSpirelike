@@ -1,66 +1,99 @@
 package com.SlayTheSpirelike;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class MainMenu extends State{
-
+public class MainMenu extends JPanel {
+    private JButton button;
+    private JLabel label;
+    private JLabel bg;
     private Body body;
-    private Button newGame;
-
-    public MainMenu(Body body) {
-        this.body = body;
-        this.newGame = new Button(body.getWidht()/2 -100, 100,200,50,body,1) {
-            @Override
-            public void render(Graphics g) {
-                if (hovered) {
-                    g.drawImage(Assets.plank1,this.x+10,this.y,this.widht,this.height,null);
-                    g.setColor(Color.red);
-                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
-                    g.drawString("New Game",this.x+30+10,this.y+30);
-                } else {
-                    g.drawImage(Assets.plank1,this.x,this.y,this.widht,this.height,null);
-                    g.setColor(Color.red);
-                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
-                    g.drawString("New Game",this.x+30,this.y+30);
-                }
-            }
-
-            @Override
-            public void tick() {
-                if(body.getMouse().getX() >= x && body.getMouse().getX() <= (x + widht) && body.getMouse().getY() >= y && body.getMouse().getY() < (y + height))
-                {
-                    hovered = true;
-                    pressed = body.getMouse().isPressed();
-                    if(body.getMouse().isClicked())
-                    {
-                        //click event goes here
-
-
-                        body.getMouse().setClicked(false);
-                    }
-                }
-                else
-                    hovered = false;
-            }
-        };
-
-
-    }
 
     @Override
-    public void render(Graphics g) {
-        g.drawImage(Assets.mainMenuBackground,0,0,body.getWidht(),body.getHeight(),null);
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(Assets.mainMenuBackground_old,0,0,body.getWidth(),body.getHeight(),null);
 
         g.setColor(Color.red);
-//        g.setFont(new Font("Courier new", Font.BOLD, 30));
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",30));
-        g.drawString("Main Menu", body.getWidht() / 2 - 80, 35);
-
-        newGame.render(g);
+        g.drawString("Main Menu", body.getWidth() / 2 - 80, 35);
     }
 
-    @Override
-    public void tick() {
-        newGame.tick();
+    public MainMenu(Body body, LayoutManager layout) {
+        super(layout);
+        this.body = body;
+        setSize(body.getWidth(), body.getHeight());
+
+        this.label = new JLabel(){
+            boolean hovered = false;
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(Assets.plank1,0,0,200,50,null);
+                g.setColor(Color.red);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+//                g.setFont(new Font("Monospace", Font.BOLD, 30));
+                g.drawString("New Game",20,35);
+                /*if (hovered) {
+                    g.drawImage(Assets.plank1,10,0,null);
+                    g.setColor(Color.red);
+                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+                    g.drawString("New Game",0,0);
+                } else {
+                    g.drawImage(Assets.plank1,0,0,null);
+                    g.setColor(Color.red);
+                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+                    g.drawString("New Game",0,0);
+                }*/
+                super.paintComponent(g);
+            }
+        };
+        label.setBounds(body.getWidth()/2 -100, 100,200,50);
+//        label.setHorizontalTextPosition(JLabel.CENTER);
+//        label.setVerticalTextPosition(JLabel.CENTER);
+//        label.setForeground(Color.red);
+//        label.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+//        label.setText("New Game");
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                body.setPanel(new CharPanel(body, layout));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                label.setLocation(label.getX()+10, label.getY());
+                System.out.println("aaaaa");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                label.setLocation(label.getX()-10, label.getY());
+            }
+        });
+
+        label.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                super.mouseMoved(e);
+            }
+
+        });
+        add(label);
+
+//        this.button = new JButton();
+//        button.setBounds(body.getWidth()/2 -100, 100,200,50);
+//        button.setHorizontalTextPosition(JButton.CENTER);
+//        button.setVerticalTextPosition(JButton.CENTER);
+//        button.setIcon(new ImageIcon(Assets.plank1));
+//        button.setText("New Game");
+//        button.addActionListener((e) -> body.setPanel(new CharPanel(body, layout)));
+//        add(button);
     }
 }

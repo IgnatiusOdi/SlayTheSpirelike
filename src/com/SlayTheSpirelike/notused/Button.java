@@ -1,11 +1,11 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.notused;
 
 public abstract class Button implements Drawable {
     protected int x,y,widht,height,id;
     protected boolean hovered,pressed;
-    protected Body body;
+    protected Body_old body;
 
-    public Button(int x,int y,int widht,int height,Body body,int id) {
+    public Button(int x, int y, int widht, int height, Body_old body, int id) {
         this.x = x;
         this.y = y;
         this.height = height;

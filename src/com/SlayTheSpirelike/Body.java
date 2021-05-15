@@ -1,117 +1,43 @@
 package com.SlayTheSpirelike;
 
-import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
+import javax.swing.*;
+import java.awt.*;
 
-public class Body implements Runnable{
-
-    private Thread thread ;
-    private Display display;
-    private Graphics g;
-    private BufferStrategy bs;
-    private boolean running;
-
+public class Body extends JFrame {
+    private JPanel panel;
+    private int width, height;
     private MouseManager mouse;
 
-    private MainMenu mainMenu;
-    
-    public Body(int widht,int height) {
-        display = new Display(widht, height);
-        thread = new Thread(this);
-        running = true;
-        init();
-        thread.start();
-    }
-    
-    private void init()
-    {
-        mouse = new MouseManager();
-        display.getCanvas().addMouseListener(mouse);
-        display.getCanvas().addMouseMotionListener(mouse);
-        display.getCanvas().addMouseWheelListener(mouse);
-        
-        display.getFrame().addMouseListener(mouse);
-        display.getFrame().addMouseMotionListener(mouse);
-        display.getFrame().addMouseWheelListener(mouse);
-        
-        Assets.init();
-        // TODO: 07/05/2021 state
-        mainMenu = new MainMenu(this);
+    public Body(int width, int height) throws HeadlessException {
+        this.width = width;
+        this.height = height;
+        setSize(width,height);
+        setLayout(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        panel = new MainMenu(this,null);
+        add(panel);
+        setContentPane(panel);
+        setVisible(true);
 
-        State.setCurrent(mainMenu);
+        mouse = new MouseManager();
+        addMouseListener(mouse);
+        addMouseMotionListener(mouse);
+        addMouseWheelListener(mouse);
     }
-    
-    @Override
-    public void run() {
-        //int fps = 120;
-        //long now = 0;
-        //long delta = 0;
-        //long last = System.nanoTime();
-        
-        while (running) {            
-            tick();
-            render();
-        }
-        
-        /*while(running)
-        {
-            now = System.nanoTime();
-            delta += now - last;
-            last = now;
-            if(delta  >=  (1000000000 / fps))
-            {delta = 0;
-                tick();
-                render();
-            }
-        }*/
-       
+
+
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+        add(panel);
+        this.setContentPane(this.panel);
     }
-    private void render()
-    {
-        if(display.getCanvas().getBufferStrategy() == null)
-                display.getCanvas().createBufferStrategy(3);
-            bs = display.getCanvas().getBufferStrategy();
-            g = bs.getDrawGraphics();
-            
-            g.clearRect(0, 0, display.getWidht(), display.getHeight());
-            
-            State.getCurrent().render(g);
-            
-            bs.show();
-            g.dispose();
-    }
-    private void tick()
-    {
-        State.getCurrent().tick();
-        /*try {
-            Database.rs = Database.stmt.executeQuery("Select * from playerdata");
-            while(database.rs.next())
-            {
-                System.out.println("ID :" + Database.rs.getInt("id"));
-            }
-        }catch(Exception e)
-        {
-            
-        }
-        */
-    }
-    public int getWidht() {
-        return display.getWidht();
-    }
-    public int getHeight() {
-        return display.getHeight();
+
+    public JPanel getPanel() {
+        return panel;
     }
 
     public MouseManager getMouse() {
         return mouse;
     }
-
-    public MainMenu getMainMenu() {
-        return mainMenu;
-    }
-
-    public Display getDisplay() {
-        return display;
-    }
-
 }
