@@ -26,11 +26,11 @@ public class Relic {
         this.panel.setSize(50,50);
         this.panel.setOpaque(false);
         //uncomment to look
-        frame = new JFrame();
-        frame.setBackground(Color.BLUE);
-        frame.add(panel);
-        frame.pack();
-        frame.setVisible(true);
+//        frame = new JFrame();
+//        frame.setBackground(Color.BLUE);
+//        frame.add(panel);
+//        frame.pack();
+//        frame.setVisible(true);
     }
 
     //relic yang tidak memiliki override cara kerjanya adalah, ketika kondisi tercapai, kalau ada relic ini, activate kode yang tempat itu
