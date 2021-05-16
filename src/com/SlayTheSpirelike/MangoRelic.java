@@ -16,10 +16,6 @@ public class MangoRelic extends Relic{
 
     @Override
     public void deactivate(Kapal kapal) {
-        kapal.setMaxhealth(kapal.getMaxhealth()-6);
-        if (kapal.getHealth()>kapal.getMaxhealth()){
-            kapal.setHealth(kapal.getMaxhealth());
-        }
-        super.deactivate(kapal);
+
     }
 }

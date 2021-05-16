@@ -17,10 +17,6 @@ public class HeartChipRelic extends Relic{
 
     @Override
     public void deactivate(Kapal kapal) {
-        kapal.setMaxhealth(kapal.getMaxhealth()-8);
-        if (kapal.getHealth()>kapal.getMaxhealth()){
-            kapal.setHealth(kapal.getMaxhealth());
-        }
-        super.deactivate(kapal);
+
     }
 }
