@@ -7,6 +7,8 @@ public class PotionBeltsRelic extends Relic{
 
     @Override
     public void activate(Kapal kapal) {
-        kapal.setPotionLimit(kapal.getPotionLimit()+2);
+        if (kapal.isAlive()&&active) {
+            kapal.setPotionLimit(kapal.getPotionLimit() + 2);
+        }
     }
 }

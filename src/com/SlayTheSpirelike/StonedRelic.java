@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class StonedRelic extends Relic{
     public StonedRelic() {
-        super("Stoned Relic", "Common", "Combat Start", "resources/stoned.png");
+        super("Stoned Relic", "Common", "Start Turn", "resources/stoned.png");
     }
 
     @Override
@@ -15,6 +15,6 @@ public class StonedRelic extends Relic{
     @Override
     public void deactivate(Kapal kapal) {
         kapal.setBlock(0);
-        active=true;
+        super.deactivate(kapal);
     }
 }

@@ -11,4 +11,12 @@ public class PhilosophersStoneRelic extends Relic{
             kapal.setEnergy(kapal.getEnergy()+1);
         }
     }
+
+    @Override
+    public void activate(Enemy enemy) {
+        if (active){
+            enemy.setAtkhigh(1);
+            enemy.setAtklow(1);
+        }
+    }
 }

@@ -4,6 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Relic {
+    //condition
+    //- Passive
+//- Start Turn
+//- End Turn
+//- Start Battle
+//- End Battle
+//- Death
+//- Pick Up
+//- Damage
+//- Special
+    // - One Time
     protected String nama,rarity,condition;
     protected boolean active;
     protected JLabel relic;
@@ -40,6 +51,19 @@ public class Relic {
 
     //deactivate relic adalah untuk reset relic pada state sebelum dipakai untuk apa-apa
     public void deactivate(Kapal kapal){
+        active = true;
+    }
+
+    //untuk special, ketika ada sebuah event, dicari relicnya lalu jalan ini, atau bisa juga check ada instance class relic di inventori
+    public boolean activate(){
+        return false;
+    }
+
+    public void activate(Enemy enemy){
+
+    }
+
+    public void deactivate(Enemy enemy){
 
     }
 

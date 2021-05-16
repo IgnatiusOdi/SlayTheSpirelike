@@ -21,6 +21,6 @@ public class StrawberryRelic extends Relic{
         if (kapal.getHealth()>kapal.getMaxhealth()){
             kapal.setHealth(kapal.getMaxhealth());
         }
-        active=true;
+        super.deactivate(kapal);
     }
 }

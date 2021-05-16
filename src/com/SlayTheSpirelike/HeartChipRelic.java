@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class HeartChipRelic extends Relic{
     public HeartChipRelic() {
-        super("HeartChip", "Special","Passive","resources/tankerrelic.png");
+        super("HeartChip", "Passive","Passive","resources/tankerrelic.png");
     }
 
     @Override
@@ -21,6 +21,6 @@ public class HeartChipRelic extends Relic{
         if (kapal.getHealth()>kapal.getMaxhealth()){
             kapal.setHealth(kapal.getMaxhealth());
         }
-        active=false;
+        super.deactivate(kapal);
     }
 }

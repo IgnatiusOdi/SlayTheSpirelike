@@ -10,4 +10,9 @@ public class SozuRelic extends Relic{
             kapal.setEnergy(kapal.getEnergy()+1);
         }
     }
+
+    @Override
+    public boolean activate() {
+        return active;
+    }
 }

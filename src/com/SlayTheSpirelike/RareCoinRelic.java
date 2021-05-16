@@ -7,6 +7,8 @@ public class RareCoinRelic extends Relic{
 
     @Override
     public void activate(Kapal kapal) {
-        kapal.setCoin(kapal.getCoin()+5);
+        if (kapal.isAlive()&&active){
+            kapal.setCoin(kapal.getCoin()+5);
+        }
     }
 }

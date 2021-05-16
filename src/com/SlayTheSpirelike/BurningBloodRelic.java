@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class BurningBloodRelic extends Relic{
     public BurningBloodRelic() {
-        super("Burning Blood Relic", "Uncommon", "Combat End", "resources/BurningBlood.png");
+        super("Burning Blood Relic", "Uncommon", "End Battle", "resources/BurningBlood.png");
     }
 
     @Override

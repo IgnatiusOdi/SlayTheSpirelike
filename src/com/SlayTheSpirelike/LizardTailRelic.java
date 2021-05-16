@@ -12,9 +12,4 @@ public class LizardTailRelic extends Relic{
             active=false;
         }
     }
-
-    @Override
-    public void deactivate(Kapal kapal) {
-        active=true;
-    }
 }

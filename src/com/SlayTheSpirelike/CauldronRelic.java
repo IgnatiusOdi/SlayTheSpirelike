@@ -7,7 +7,7 @@ import static com.SlayTheSpirelike.Statics.*;
 public class CauldronRelic extends Relic{
     Random rnd;
     public CauldronRelic() {
-        super("Cauldron Relic", "Shop", "???", "resources/Cauldron.png");
+        super("Cauldron Relic", "Shop", "One Time", "resources/Cauldron.png");
         rnd = new Random();
     }
 
@@ -42,5 +42,10 @@ public class CauldronRelic extends Relic{
             }
             active = false;
         }
+    }
+
+    @Override
+    public void deactivate(Kapal kapal) {
+
     }
 }

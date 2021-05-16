@@ -21,6 +21,6 @@ public class PearRelic extends Relic{
         if (kapal.getHealth()>kapal.getMaxhealth()){
             kapal.setHealth(kapal.getMaxhealth());
         }
-        active=false;
+        super.deactivate(kapal);
     }
 }

@@ -45,4 +45,9 @@ public class StarterPackRelic extends Relic{
             kapal.setHealth(kapal.getHealth()+3);
         }
     }
+
+    @Override
+    public void deactivate(Kapal kapal) {
+
+    }
 }

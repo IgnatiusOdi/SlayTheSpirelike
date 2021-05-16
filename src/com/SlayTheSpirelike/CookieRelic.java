@@ -2,7 +2,7 @@ package com.SlayTheSpirelike;
 
 public class CookieRelic extends Relic{
     public CookieRelic() {
-        super("Cookie Relic", "Shop", "???", "resources/cookie.png");
+        super("Cookie Relic", "Shop", "One Time", "resources/cookie.png");
     }
 
     @Override
@@ -12,5 +12,10 @@ public class CookieRelic extends Relic{
             kapal.setHealth(kapal.getMaxhealth());
             active=false;
         }
+    }
+
+    @Override
+    public void deactivate(Kapal kapal) {
+
     }
 }
