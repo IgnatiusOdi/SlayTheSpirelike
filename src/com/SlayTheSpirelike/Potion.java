@@ -63,6 +63,10 @@ public abstract class Potion {
 
     }
 
+    public boolean activate(){
+        return false;
+    }
+
     public String getNama() {
         return nama;
     }
