@@ -10,6 +10,7 @@ public class AppleJuicePotion extends Potion {
     public void activate(Kapal kapal) {
         if (kapal.isAlive()&&active) {
             kapal.setMaxhealth(kapal.getMaxhealth() + 5);
+            kapal.setHealth(kapal.getHealth() + 5);
             active = false;
         }
     }

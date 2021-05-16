@@ -35,7 +35,7 @@ public abstract class Kapal {
         this.panel.setSize(50,50);
         this.panel.setOpaque(false);
 
-//                frame = new JFrame();
+//        frame = new JFrame();
 //        frame.add(panel);
 //        frame.pack();
 //        frame.setVisible(true);
