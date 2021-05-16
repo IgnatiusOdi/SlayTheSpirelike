@@ -53,6 +53,16 @@ public abstract class Potion {
 
     }
 
+    public void activate(Enemy enemy){
+
+    }
+
+    //hanya jalan saat active == false dan ketika turn di battle berakhir
+    //saat battle end, semua potion yang masih active langsung deactivate tanpa pengecekan active
+    public void deactivate(Enemy enemy){
+
+    }
+
     public String getNama() {
         return nama;
     }

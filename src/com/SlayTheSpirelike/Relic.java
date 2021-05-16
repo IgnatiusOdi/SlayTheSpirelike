@@ -38,6 +38,7 @@ public class Relic {
 
     }
 
+    //deactivate relic adalah untuk reset relic pada state sebelum dipakai untuk apa-apa
     public void deactivate(Kapal kapal){
 
     }
