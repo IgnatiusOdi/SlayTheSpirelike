@@ -2,7 +2,10 @@ package com.SlayTheSpirelike;
 
 public class SozuRelic extends Relic{
     public SozuRelic() {
-        super("Sozu Relic", "Boss Drop", "Start Turn", "resources/Sozu.png");
+        super("Sozu Relic", "Boss Drop", "Start Turn", "resources/Sozu.png","Gain 1 energy at the \n" +
+                "start of each turn. \n" +
+                "You can no longer \n" +
+                "obtain potions");
     }
     @Override
     public void activate(Kapal kapal) {

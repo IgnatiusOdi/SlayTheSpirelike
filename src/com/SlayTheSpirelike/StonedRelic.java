@@ -2,7 +2,8 @@ package com.SlayTheSpirelike;
 
 public class StonedRelic extends Relic{
     public StonedRelic() {
-        super("Stoned Relic", "Common", "Start Turn", "resources/stoned.png");
+        super("Stoned Relic", "Common", "Start Turn", "resources/stoned.png","At the start of each \n" +
+                "turn, gain 1 block");
     }
 
     @Override

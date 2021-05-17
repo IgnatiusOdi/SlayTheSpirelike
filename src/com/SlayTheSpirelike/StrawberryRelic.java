@@ -2,7 +2,8 @@ package com.SlayTheSpirelike;
 
 public class StrawberryRelic extends Relic{
     public StrawberryRelic() {
-        super("Strawberry Relic", "Common","Passive","resources/strawbewwy.png");
+        super("Strawberry Relic", "Common","Passive","resources/strawbewwy.png","Raise max health \n" +
+                "by 2 (Passive)");
     }
 
     @Override

@@ -2,7 +2,8 @@ package com.SlayTheSpirelike;
 
 public class PotionBeltsRelic extends Relic{
     public PotionBeltsRelic() {
-        super("Potion Belts Relic", "Uncommon", "Pick Up", "resources/PotionBelt.png");
+        super("Potion Belts Relic", "Uncommon", "Pick Up", "resources/PotionBelt.png","Upon pick up, \n" +
+                "gain 2 potion slots");
     }
 
     @Override

@@ -2,7 +2,8 @@ package com.SlayTheSpirelike;
 
 public class RareCoinRelic extends Relic{
     public RareCoinRelic() {
-        super("Rare Coin Relic", "Uncommon", "Pick Up", "resources/rare_coin.png");
+        super("Rare Coin Relic", "Uncommon", "Pick Up", "resources/rare_coin.png","Upon pick up, \n" +
+                "gain 5 coins");
     }
 
     @Override

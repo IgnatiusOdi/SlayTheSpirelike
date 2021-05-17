@@ -2,7 +2,8 @@ package com.SlayTheSpirelike;
 
 public class MangoRelic extends Relic{
     public MangoRelic() {
-        super("Mango Relic", "Rare","Passive","resources/Mango.png");
+        super("Mango Relic", "Rare","Passive","resources/Mango.png","Raise max health \n" +
+                "by 6 (Passive)");
     }
 
     @Override

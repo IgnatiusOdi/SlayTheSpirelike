@@ -2,7 +2,9 @@ package com.SlayTheSpirelike;
 
 public class HeartChipRelic extends Relic{
     public HeartChipRelic() {
-        super("HeartChip", "Passive","Passive","resources/tankerrelic.png");
+        super("HeartChip", "Passive","Passive","resources/tankerrelic.png","Raise your \n" +
+                "max health \n" +
+                "by 8 (Passive)");
     }
 
     @Override

@@ -2,7 +2,8 @@ package com.SlayTheSpirelike;
 
 public class PearRelic extends Relic{
     public PearRelic() {
-        super("Pear Relic", "Uncommon","Passive","resources/pear.png");
+        super("Pear Relic", "Uncommon","Passive","resources/pear.png","raise max health\n" +
+                "by 4 (Passive)");
     }
 
     @Override

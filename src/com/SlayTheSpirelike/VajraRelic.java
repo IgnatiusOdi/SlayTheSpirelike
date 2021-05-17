@@ -3,7 +3,9 @@ package com.SlayTheSpirelike;
 public class VajraRelic extends Relic{
     boolean on;
     public VajraRelic() {
-        super("Vajra Relic", "Special", "Start Turn", "resources/warshiprelic.png");
+        super("Vajra Relic", "Special", "Start Turn", "resources/warshiprelic.png","At start turn \n" +
+                "when health under 50%, \n" +
+                "increase attack by 2");
         on = true;
     }
 

@@ -7,7 +7,9 @@ import static com.SlayTheSpirelike.Statics.*;
 public class CauldronRelic extends Relic{
     Random rnd;
     public CauldronRelic() {
-        super("Cauldron Relic", "Shop", "One Time", "resources/Cauldron.png");
+        super("Cauldron Relic", "Shop", "One Time", "resources/Cauldron.png","Fill all your empty \n" +
+                "potion slots with \n" +
+                "random potions (One time)");
         rnd = new Random();
     }
 

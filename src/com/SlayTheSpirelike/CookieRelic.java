@@ -2,7 +2,9 @@ package com.SlayTheSpirelike;
 
 public class CookieRelic extends Relic{
     public CookieRelic() {
-        super("Cookie Relic", "Shop", "One Time", "resources/cookie.png");
+        super("Cookie Relic", "Shop", "One Time", "resources/cookie.png","Raise max health \n" +
+                "by 5 and heal all \n" +
+                "of your health (One time)");
     }
 
     @Override

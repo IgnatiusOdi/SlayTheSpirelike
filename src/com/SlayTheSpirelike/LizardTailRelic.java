@@ -2,7 +2,9 @@ package com.SlayTheSpirelike;
 
 public class LizardTailRelic extends Relic{
     public LizardTailRelic() {
-        super("Lizard Tail Relic", "Rare", "Death", "resources/LizardTail.png");
+        super("Lizard Tail Relic", "Rare", "Death", "resources/LizardTail.png","When you die, \n" +
+                "heal to 50% of your hp \n" +
+                "(1 time used per battle)");
     }
 
     @Override
