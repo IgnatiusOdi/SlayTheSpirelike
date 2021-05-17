@@ -7,7 +7,9 @@ import static com.SlayTheSpirelike.Statics.*;
 public class BrewPotion extends Potion{
     Random rnd;
     public BrewPotion() {
-        super("Brew Potion", "Kapal", "Rare", "resources/BrewPotion.png");
+        super("Brew Potion", "Kapal", "Rare", "resources/BrewPotion.png","Fill all your \n" +
+                "empty potion slots \n" +
+                "with random potions");
         rnd = new Random();
     }
 

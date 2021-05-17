@@ -2,7 +2,8 @@ package com.SlayTheSpirelike;
 
 public class BlockPotion extends Potion {
     public BlockPotion() {
-        super("Block Potion", "Self","Common","resources/BlockPotion.png");
+        super("Block Potion", "Self","Common","resources/BlockPotion.png","Gain 10 block \n" +
+                "(remove when next turn)");
     }
 
     @Override

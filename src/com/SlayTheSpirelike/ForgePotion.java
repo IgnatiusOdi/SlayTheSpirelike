@@ -3,7 +3,9 @@ package com.SlayTheSpirelike;
 public class ForgePotion extends Potion{
     private boolean used;
     public ForgePotion() {
-        super("Forge Potion", "Kapal", "Common", "resources/ForgePotion.png");
+        super("Forge Potion", "Kapal", "Common", "resources/ForgePotion.png","Upgrade all cards \n" +
+                "in your hand for \n" +
+                "the rest of battle");
         used=true;
     }
 

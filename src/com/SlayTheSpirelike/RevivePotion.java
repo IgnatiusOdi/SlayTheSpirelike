@@ -2,7 +2,10 @@ package com.SlayTheSpirelike;
 
 public class RevivePotion extends Potion{
     public RevivePotion() {
-        super("Revive Potion", "Special", "Special", "resources/RevivePotion.png");
+        super("Revive Potion", "Special", "Special", "resources/RevivePotion.png","When you die, \n" +
+                "heal to 30% of \n" +
+                "your max health\n" +
+                "(Warship only)");
     }
 
     @Override
