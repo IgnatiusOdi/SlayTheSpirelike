@@ -6,4 +6,13 @@ public class SummonPotion extends Potion{
                 "to assist you\n" +
                 "(Aircraft only)");
     }
+
+    @Override
+    public void activate(Kapal kapal) {
+        if (active&&kapal.isAlive()){
+            kapal.summon(new HeliSummon());
+            kapal.summon(new HeliSummon());
+            active=false;
+        }
+    }
 }
