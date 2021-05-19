@@ -1,6 +1,10 @@
 package com.SlayTheSpirelike;
 
 
+import com.sun.source.tree.BinaryTree;
+
+import javax.swing.*;
+
 /**
  * Slay the Spirelike <br>
  * Alexander Kevin <br>
@@ -13,8 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
         new Statics();//initialize static potions
-        Body body = new Body(1060,600);
-
+        Body body = new Body(1162,648);
 //        new SummonPotion();
 //        new InvinciblePotion();
 //        new RevivePotion();
