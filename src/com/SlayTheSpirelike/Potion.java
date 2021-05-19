@@ -9,18 +9,19 @@ public abstract class Potion {
     //enemy: bekerja langsung pada enemy
     //battle: bekerja pada battle
     //special: yang butuh kondisi sendiri
-    protected String nama,type,rarity;
+    protected String nama,type,rarity, desc;
     protected boolean active;
     protected JLabel potion;
     protected JPanel panel;
 
     JFrame frame;
 
-    public Potion(String nama, String type, String rarity, String image) {
+    public Potion(String nama, String type, String rarity, String image, String desc) {
         this.nama = nama;
         this.type = type;
         this.active = true;
         this.rarity = rarity;
+        this.desc = desc;
         this.potion = new JLabel();
         this.potion.setText(nama);
         this.potion.setIcon(new ImageIcon(image));
@@ -51,6 +52,20 @@ public abstract class Potion {
     //saat battle end, semua potion yang masih active langsung deactivate tanpa pengecekan active
     public void deactivate(Kapal kapal){
 
+    }
+
+    public void activate(Enemy enemy){
+
+    }
+
+    //hanya jalan saat active == false dan ketika turn di battle berakhir
+    //saat battle end, semua potion yang masih active langsung deactivate tanpa pengecekan active
+    public void deactivate(Enemy enemy){
+
+    }
+
+    public boolean activate(){
+        return false;
     }
 
     public String getNama() {

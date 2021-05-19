@@ -2,13 +2,15 @@ package com.SlayTheSpirelike;
 
 public class PearRelic extends Relic{
     public PearRelic() {
-        super("Pear", "Uncommon","Passive","resources/pear.png");
+        super("Pear Relic", "Uncommon","Passive","resources/pear.png","raise max health\n" +
+                "by 4 (Passive)");
     }
 
     @Override
     public void activate(Kapal kapal) {
         if (active){
             kapal.setMaxhealth(kapal.getMaxhealth()+4);
+            kapal.setHealth(kapal.getHealth()+4);
             active=false;
         }
 
@@ -16,6 +18,6 @@ public class PearRelic extends Relic{
 
     @Override
     public void deactivate(Kapal kapal) {
-        kapal.setMaxhealth(kapal.getMaxhealth()-4);
+
     }
 }

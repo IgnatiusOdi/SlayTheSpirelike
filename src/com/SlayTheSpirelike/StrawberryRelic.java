@@ -2,13 +2,15 @@ package com.SlayTheSpirelike;
 
 public class StrawberryRelic extends Relic{
     public StrawberryRelic() {
-        super("Strawberry", "Common","Passive","resources/strawbewwy.png");
+        super("Strawberry Relic", "Common","Passive","resources/strawbewwy.png","Raise max health \n" +
+                "by 2 (Passive)");
     }
 
     @Override
     public void activate(Kapal kapal) {
         if (active){
             kapal.setMaxhealth(kapal.getMaxhealth()+2);
+            kapal.setHealth(kapal.getHealth()+2);
             active=false;
         }
 
@@ -16,6 +18,6 @@ public class StrawberryRelic extends Relic{
 
     @Override
     public void deactivate(Kapal kapal) {
-        kapal.setMaxhealth(kapal.getMaxhealth()-2);
+
     }
 }

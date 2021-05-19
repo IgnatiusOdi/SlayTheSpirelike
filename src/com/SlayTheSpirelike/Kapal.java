@@ -10,6 +10,7 @@ public abstract class Kapal {
     protected int potionLimit;
     protected ArrayList<Potion> potion;
     protected ArrayList<Relic> relic;
+    protected ArrayList<Summon> summon;
     protected JLabel kapal;
     protected JPanel panel;
     JFrame frame;
@@ -17,6 +18,7 @@ public abstract class Kapal {
     public Kapal(String nama,String image) {
         this.relic = new ArrayList();
         this.potion = new ArrayList();
+        this.summon = new ArrayList();
         this.potionLimit = 5;
         this.nama = nama;
         this.block = 0;
@@ -37,11 +39,21 @@ public abstract class Kapal {
         this.panel.setSize(50,50);
         this.panel.setOpaque(false);
 
-//                frame = new JFrame();
+//        frame = new JFrame();
 //        frame.add(panel);
 //        frame.pack();
 //        frame.setVisible(true);
     }
+
+    public void summon(Summon summon){
+        this.summon.add(summon);
+    }
+
+    //setelah battle, jalan ini untuk desummon
+    public void desummon(){
+        summon.clear();
+    }
+
     //cek eksistensi potion
     public boolean isPotion(String nama){
         boolean exist = false;
@@ -71,6 +83,14 @@ public abstract class Kapal {
             return true;
         }
         else return false;
+    }
+
+    public int getPotionLimit() {
+        return potionLimit;
+    }
+
+    public void setPotionLimit(int potionLimit) {
+        this.potionLimit = potionLimit;
     }
 
     public Potion usePotion(int i){

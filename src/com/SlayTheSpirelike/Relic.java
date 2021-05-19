@@ -1,20 +1,34 @@
 package com.SlayTheSpirelike;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Relic {
-    protected String nama,rarity,condition;
+    //condition
+    //- Passive
+//- Start Turn
+//- End Turn
+//- Start Battle
+//- End Battle
+//- Death
+//- Pick Up
+//- Damage
+    //- Damaged
+//- Special
+    // - One Time
+    protected String nama,rarity,condition,desc;
     protected boolean active;
     protected JLabel relic;
     protected JPanel panel;
 
     JFrame frame;
 
-    public Relic(String nama, String rarity, String condition, String image) {
+    public Relic(String nama, String rarity, String condition, String image, String desc) {
         this.nama = nama;
         this.rarity = rarity;
         this.active = true;
         this.condition = condition;
+        this.desc = desc;
         this.relic = new JLabel();
         this.relic.setText(nama);
         this.relic.setIcon(new ImageIcon(image));
@@ -37,7 +51,21 @@ public class Relic {
 
     }
 
+    //deactivate relic adalah untuk reset relic pada state sebelum dipakai untuk apa-apa
     public void deactivate(Kapal kapal){
+        active = true;
+    }
+
+    //untuk special, ketika ada sebuah event, dicari relicnya lalu jalan ini untuk cek bila relic boleh dipakai
+    public boolean activate(){
+        return false;
+    }
+
+    public void activate(Enemy enemy){
+
+    }
+
+    public void deactivate(Enemy enemy){
 
     }
 

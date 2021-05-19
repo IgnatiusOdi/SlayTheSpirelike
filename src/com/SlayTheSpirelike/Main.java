@@ -1,10 +1,5 @@
 package com.SlayTheSpirelike;
 
-
-import com.sun.source.tree.BinaryTree;
-
-import javax.swing.*;
-
 /**
  * Slay the Spirelike <br>
  * Alexander Kevin <br>

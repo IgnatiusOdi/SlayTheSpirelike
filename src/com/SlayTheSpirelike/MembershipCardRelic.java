@@ -2,6 +2,12 @@ package com.SlayTheSpirelike;
 
 public class MembershipCardRelic extends Relic{
     public MembershipCardRelic() {
-        super("Membership Card", "Shop", "Shop","resources/MembershipCard.png");
+        super("Membership Card Relic", "Shop", "Special","resources/MembershipCard.png","Discount on all \n" +
+                "product by 50%");
+    }
+
+    @Override
+    public boolean activate() {
+        return active;
     }
 }

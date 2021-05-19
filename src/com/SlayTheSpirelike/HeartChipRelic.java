@@ -2,13 +2,16 @@ package com.SlayTheSpirelike;
 
 public class HeartChipRelic extends Relic{
     public HeartChipRelic() {
-        super("HeartChip", "Special","Passive","resources/tankerrelic.png");
+        super("HeartChip", "Passive","Passive","resources/tankerrelic.png","Raise your \n" +
+                "max health \n" +
+                "by 8 (Passive)");
     }
 
     @Override
     public void activate(Kapal kapal) {
         if (active){
             kapal.setMaxhealth(kapal.getMaxhealth()+8);
+            kapal.setHealth(kapal.getHealth()+8);
             active=false;
         }
 
@@ -16,6 +19,6 @@ public class HeartChipRelic extends Relic{
 
     @Override
     public void deactivate(Kapal kapal) {
-        kapal.setMaxhealth(kapal.getMaxhealth()-8);
+
     }
 }

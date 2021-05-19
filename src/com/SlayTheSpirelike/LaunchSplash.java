@@ -69,12 +69,12 @@ public class LaunchSplash extends JFrame {
         //LABEL
         label1.setBounds(35,55,340,135);
         label1.setForeground(new Color(255,255,0));
-        label1.setFont(loadFont("src/Splash/Signatria.ttf"));
+        label1.setFont(loadFont("resources/Signatria.ttf"));
         label1.setText("Loading");
         panel.add(label1);
 
         //IMAGE
-        label2.setIcon(new ImageIcon("src/Splash/sailingboat.gif"));
+        label2.setIcon(new ImageIcon("resources/sailingboat.gif"));
         label2.setBounds(0,100,50,50);
         panel.add(label2);
 
