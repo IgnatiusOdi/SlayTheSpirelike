@@ -223,7 +223,7 @@ public class Map extends JPanel {
 
     private void checkTile(){
         if (mapTiles[player.getMapPosY()][player.getMapPosX()] != null){
-            System.out.println(mapTiles[player.getMapPosY()][player.getMapPosX()].getClass());
+            mapTiles[player.getMapPosY()][player.getMapPosX()].enterTile();
         }
     }
 
@@ -264,7 +264,7 @@ public class Map extends JPanel {
                 x = r.nextInt(8);
                 y = r.nextInt(5);
             } while (mapTiles[y][x]!=null || (x==0 && y==0));
-            mapTiles[y][x] = new ShopTile();
+            mapTiles[y][x] = new ShopTile(body,this, player);
         }
         for (int i = 0; i < 2; i++) {
             do {

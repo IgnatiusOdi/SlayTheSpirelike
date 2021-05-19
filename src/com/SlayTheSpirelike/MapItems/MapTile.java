@@ -11,4 +11,6 @@ public abstract class MapTile {
     public void discover(){
         discovered = true;
     }
+
+    public abstract void enterTile();
 }

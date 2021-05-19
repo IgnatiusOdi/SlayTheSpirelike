@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 public class Shop extends JPanel {
 
     private Body body;
+    private JPanel returnPanel;
     private Kapal kapal;
 
     //BUTTON
@@ -37,10 +38,13 @@ public class Shop extends JPanel {
     private JButton mergeButton;
     private JLabel exitShop;
 
-    public Shop(Body body) {
+    public Shop(Body body, JPanel returnPanel, Kapal kapal) {
         setLayout(null);
         setSize(1162,648);
         setVisible(true);
+
+        this.returnPanel = returnPanel;
+        this.kapal = kapal;
 
         this.body = body;
         Buy b = new Buy(this.body, this, this.kapal);
@@ -73,12 +77,7 @@ public class Shop extends JPanel {
         buyButton.setFont(new Font("Calibri", Font.BOLD, fontsize));
         buyButton.setForeground(Color.white);
         buyButton.setIcon(new ImageIcon(wood));
-        buyButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                body.setPanel(b);
-            }
-        });
+        buyButton.addActionListener(e -> body.setPanel(b));
         buyButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -107,12 +106,7 @@ public class Shop extends JPanel {
         sellButton.setFont(new Font("Calibri", Font.BOLD, fontsize));
         sellButton.setForeground(Color.white);
         sellButton.setIcon(new ImageIcon(wood));
-        sellButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                body.setPanel(s);
-            }
-        });
+        sellButton.addActionListener(e -> body.setPanel(s));
         sellButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -141,12 +135,7 @@ public class Shop extends JPanel {
         drawButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         drawButton.setForeground(Color.white);
         drawButton.setIcon(new ImageIcon(wood));
-        drawButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                body.setPanel(d);
-            }
-        });
+        drawButton.addActionListener(e -> body.setPanel(d));
         drawButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -175,12 +164,7 @@ public class Shop extends JPanel {
         upgradeButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         upgradeButton.setForeground(Color.white);
         upgradeButton.setIcon(new ImageIcon(wood));
-        upgradeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                body.setPanel(u);
-            }
-        });
+        upgradeButton.addActionListener(e -> body.setPanel(u));
         upgradeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -209,12 +193,7 @@ public class Shop extends JPanel {
         mergeButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         mergeButton.setForeground(Color.white);
         mergeButton.setIcon(new ImageIcon(wood));
-        mergeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                body.setPanel(m);
-            }
-        });
+        mergeButton.addActionListener(e -> body.setPanel(m));
         mergeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -253,7 +232,7 @@ public class Shop extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "Are you sure?", "EXIT", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
-                    body.dispose();
+                    body.setPanel(returnPanel);
                 }
             }
             @Override
