@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public abstract class Kapal {
-    protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin;
+    protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin, mapPosX, mapPosY;
     protected String nama;
 //    public static ArrayList<> card = new ArrayList();
     protected int potionLimit;
@@ -30,6 +30,8 @@ public abstract class Kapal {
         this.energy = 3;
         this.maxenergy = 3;
         this.coin = 0;
+        this.mapPosX = 0;
+        this.mapPosY = 0;
         this.kapal = new JLabel();
         this.kapal.setIcon(new ImageIcon(image));
         this.panel = new JPanel();
@@ -103,6 +105,19 @@ public abstract class Kapal {
         }
     }
 
+    public void setMapPos(int mapPosX, int mapPosY) {
+        this.mapPosX = mapPosX;
+        this.mapPosY = mapPosY;
+    }
+
+    public int getMapPosX() {
+        return mapPosX;
+    }
+
+    public int getMapPosY() {
+        return mapPosY;
+    }
+
     public void getRelic(Relic r){
         relic.add(r);
     }
@@ -171,6 +186,10 @@ public abstract class Kapal {
 
     public void setMaxfuel(int maxfuel) {
         this.maxfuel = maxfuel;
+    }
+
+    public void consumeFuel(int fuelConsumed){
+        this.fuel -= fuelConsumed;
     }
 
     public int getEnergy() {

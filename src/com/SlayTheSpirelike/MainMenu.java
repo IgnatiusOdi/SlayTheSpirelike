@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MainMenu extends JPanel {
-    private JLabel label;
+    private JLabel newGame, loadGame, exit;
     private Body body;
 
     @Override
@@ -19,13 +19,12 @@ public class MainMenu extends JPanel {
         g.drawString("Main Menu", body.getWidth() / 2 - 80, 35);
     }
 
-    public MainMenu(Body body, LayoutManager layout) {
-        super(layout);
+    public MainMenu(Body body) {
         this.body = body;
         setSize(body.getWidth(), body.getHeight());
+        setLayout(null);
 
-        this.label = new JLabel(){
-            boolean hovered = false;
+        this.newGame = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(Assets.plank1,0,0,200,50,null);
@@ -33,49 +32,94 @@ public class MainMenu extends JPanel {
                 g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
 //                g.setFont(new Font("Monospace", Font.BOLD, 30));
                 g.drawString("New Game",20,35);
-                /*if (hovered) {
-                    g.drawImage(Assets.plank1,10,0,null);
-                    g.setColor(Color.red);
-                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
-                    g.drawString("New Game",0,0);
-                } else {
-                    g.drawImage(Assets.plank1,0,0,null);
-                    g.setColor(Color.red);
-                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
-                    g.drawString("New Game",0,0);
-                }*/
                 super.paintComponent(g);
             }
         };
-        label.setBounds(body.getWidth()/2 -100, 100,200,50);
-        label.addMouseListener(new MouseAdapter() {
+        newGame.setBounds(body.getWidth()/2 -100, 100,200,50);
+        newGame.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                body.setPanel(new CharPanel(body, layout));
+                body.setPanel(new CharSelect(body));
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                label.setLocation(label.getX()+10, label.getY());
+                newGame.setLocation(newGame.getX()+10, newGame.getY());
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                label.setLocation(label.getX()-10, label.getY());
+                newGame.setLocation(newGame.getX()-10, newGame.getY());
             }
         });
-        add(label);
+        add(newGame);
 
-//        this.button = new JButton();
-//        button.setBounds(body.getWidth()/2 -100, 100,200,50);
-//        button.setHorizontalTextPosition(JButton.CENTER);
-//        button.setVerticalTextPosition(JButton.CENTER);
-//        button.setIcon(new ImageIcon(Assets.plank1));
-//        button.setText("New Game");
-//        button.addActionListener((e) -> body.setPanel(new CharPanel(body, layout)));
-//        add(button);
+        this.loadGame = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(Assets.plank1,0,0,200,50,null);
+                g.setColor(Color.red);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+                g.drawString("Load Game",20,35);
+                super.paintComponent(g);
+            }
+        };
+        loadGame.setBounds(body.getWidth()/2 -100, 160,200,50);
+        loadGame.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                loadGame.setLocation(loadGame.getX()+10, loadGame.getY());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                loadGame.setLocation(loadGame.getX()-10, loadGame.getY());
+            }
+        });
+        add(loadGame);
+
+        this.exit = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(Assets.plank1,0,0,200,50,null);
+                g.setColor(Color.red);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+                g.drawString("Exit",20,35);
+                super.paintComponent(g);
+            }
+        };
+        exit.setBounds(body.getWidth()/2 -100, 220,200,50);
+        exit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                System.exit(0);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                exit.setLocation(exit.getX()+10, exit.getY());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                exit.setLocation(exit.getX()-10, exit.getY());
+            }
+        });
+        add(exit);
+
+
     }
 }
