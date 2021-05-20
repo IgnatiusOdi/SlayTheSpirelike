@@ -107,8 +107,22 @@ public abstract class Kapal {
         relic.add(r);
     }
 
-    public Relic useRelic(int i){
-        return relic.get(i);
+    public void activateRelic(String condition, Enemy enemy){
+        for (Relic r:relic) {
+            if (r.getCondition().equalsIgnoreCase(condition)){
+                r.activate(this);
+                r.activate(enemy);
+            }
+        }
+    }
+
+    public boolean activateRelicSpecial(String nama){
+        for (Relic r:relic) {
+            if (r.getNama().equalsIgnoreCase(nama)){
+                return r.activate();
+            }
+        }
+        return false;
     }
 
     public int getBlock() {
