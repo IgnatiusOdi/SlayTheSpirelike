@@ -12,6 +12,7 @@ public class Body extends JFrame {
         setSize(width,height);
         setLayout(null);
         setUndecorated(true);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panel = new MainMenu(this);
         add(panel);
