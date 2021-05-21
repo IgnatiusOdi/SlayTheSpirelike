@@ -22,7 +22,6 @@ public class Draw extends JPanel {
     private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
 
     //PROPERTIES
-    private JPanel panel;
     private JLabel bg;
     private JLabel title;
     private JLabel draw;
@@ -43,13 +42,12 @@ public class Draw extends JPanel {
 
     private void init() {
         setLayout(null);
-        setSize(new Dimension(1162,648));
+        setSize(1162,648);
         setVisible(true);
 
         //INIT
-        panel = new JPanel();
         bg = new JLabel();
-        title = new JLabel(){
+        title = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(hangingsign, 0, 0, this.getWidth(), this.getHeight(),null);
@@ -59,7 +57,7 @@ public class Draw extends JPanel {
             }
         };
         card = new JLabel("?");
-        draw = new JLabel(){
+        draw = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
@@ -73,7 +71,7 @@ public class Draw extends JPanel {
                 super.paintComponent(g);
             }
         };
-        percentagelist = new JLabel(){
+        percentagelist = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
@@ -81,37 +79,40 @@ public class Draw extends JPanel {
             }
         };
         coinsymbol = new JLabel();
-        coin = new JLabel("COIN : "){
+        coin = new JLabel("COIN : ") {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
-        playercoin = new JLabel("0"){
+        playercoin = new JLabel("0") {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
-        back = new JLabel("<< BACK"){
+        back = new JLabel("<< BACK") {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(wood,0,0, this.getWidth(),this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
-
-        //PANEL
-        panel.setLayout(null);
-        panel.setSize(1162,648);
+        bg = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(woodbg,0,0,1162,648,null);
+                super.paintComponent(g);
+            }
+        };
 
         //TITLE
         title.setBounds(this.getWidth()/2 - width/2,0, width, height);
         title.setFont(new Font("Monospace", Font.ITALIC + Font.BOLD, 55));
         title.setForeground(Color.blue);
-        panel.add(title);
+        add(title);
 
         //CARD
         card.setBounds(space*3, (int) (height*1.5), this.getWidth()/2 - space*5, this.getHeight()/2);
@@ -120,11 +121,11 @@ public class Draw extends JPanel {
         card.setForeground(Color.black);
         card.setBackground(Color.white);
         card.setOpaque(true);
-        panel.add(card);
+        add(card);
 
         //DRAW
         draw.setBounds(space, (int) (height*1.2), this.getWidth()/2 - space, (int) (this.getHeight()/1.5));
-        panel.add(draw);
+        add(draw);
 
         //DRAW BUTTON
         drawbutton.setBounds(this.getWidth()/2 + space, (int) (height*1.2), this.getWidth()/2 - space*2, 50);
@@ -163,29 +164,29 @@ public class Draw extends JPanel {
                 drawbutton.setLocation(drawbutton.getX() - 2, drawbutton.getY() + 2);
             }
         });
-        panel.add(drawbutton);
+        add(drawbutton);
 
         //PERCENTAGE LIST
         percentagelist.setBounds(this.getWidth()/2 + space, (int) (height*1.7),this.getWidth()/2 - space*2, this.getHeight()/2 + space);
-        panel.add(percentagelist);
+        add(percentagelist);
 
         //COIN SYMBOL
         coinsymbol.setBounds(830,80,50,50);
         coinsymbol.setBackground(Color.yellow);
         coinsymbol.setOpaque(true);
-        panel.add(coinsymbol);
+        add(coinsymbol);
 
         //COIN
         coin.setBounds(880, 80, 105,50);
         coin.setFont(new Font("Monospace", Font.BOLD,30));
         coin.setForeground(Color.white);
-        panel.add(coin);
+        add(coin);
 
         //PLAYER COIN
         playercoin.setBounds(983,80,100,50);
         playercoin.setFont(new Font("Monospace",Font.BOLD,30));
         playercoin.setForeground(Color.white);
-        panel.add(playercoin);
+        add(playercoin);
 
         //BACK
         back.setBounds(height-20,70,180,90);
@@ -216,19 +217,10 @@ public class Draw extends JPanel {
                 back.setForeground(Color.white);
             }
         });
-        panel.add(back);
+        add(back);
 
         //BACKGROUND
-        bg = new JLabel(){
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(woodbg,0,0,1162,648,null);
-                super.paintComponent(g);
-            }
-        };
         bg.setBounds(0, 0,1162,648);
-        panel.add(bg);
-
-        add(panel);
+        add(bg);
     }
 }

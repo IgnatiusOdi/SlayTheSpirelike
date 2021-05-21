@@ -117,6 +117,7 @@ public class Shop extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 body.setPanel(b);
+                mouseExited(e);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -149,6 +150,7 @@ public class Shop extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 body.setPanel(s);
+                mouseExited(e);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -181,6 +183,7 @@ public class Shop extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 body.setPanel(d);
+                mouseExited(e);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -213,6 +216,7 @@ public class Shop extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 body.setPanel(u);
+                mouseExited(e);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -245,12 +249,13 @@ public class Shop extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 body.setPanel(m);
+                mouseExited(e);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                mergeButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.gray, Color.gray, Color.orange));
+                mergeButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.lightGray, Color.lightGray, Color.orange));
                 mergeButton.setLocation(mergeButton.getX() + 3, mergeButton.getY() - 3);
-                mergeButton.setForeground(Color.gray);
+                mergeButton.setForeground(Color.lightGray);
                 mergeButton.setBackground(Color.black);
                 mergeButton.setOpaque(true);
                 mergeButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

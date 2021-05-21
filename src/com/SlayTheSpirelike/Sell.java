@@ -32,7 +32,6 @@ public class Sell extends JPanel {
 
     private JPanel scrollpane;
 
-
     private JLabel coinsymbol;
     private JLabel coin;
     private JLabel coinplayer;
@@ -63,7 +62,6 @@ public class Sell extends JPanel {
             protected void paintComponent(Graphics g) {
                 g.drawImage(hangingsign,0,0, this.getWidth(), this.getHeight(), null);
                 g.drawString("SELL", 60, 135);
-                g.setColor(Color.red);
                 super.paintComponent(g);
             }
         };
@@ -213,7 +211,7 @@ public class Sell extends JPanel {
         add(cardtitle);
 
         //CARD PLACE
-        cardplace.setBounds(space, 300, this.getWidth() - space*2, this.getHeight()/2);
+        cardplace.setBounds(0, 250, this.getWidth(), this.getHeight()/2);
         cardplace.setLayout(null);
         cardplace.setBackground(Color.yellow);
         cardplace.setOpaque(true);
@@ -248,7 +246,7 @@ public class Sell extends JPanel {
         add(relictitle);
 
         //RELIC PLACE
-        relicplace.setBounds(space, 300, this.getWidth() - space*2, this.getHeight()/2);
+        relicplace.setBounds(0, 250, this.getWidth(), this.getHeight()/2);
         relicplace.setLayout(null);
         relicplace.setBackground(Color.red);
         relicplace.setOpaque(true);
