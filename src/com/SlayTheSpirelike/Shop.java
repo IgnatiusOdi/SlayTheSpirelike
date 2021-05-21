@@ -20,29 +20,34 @@ public class Shop extends JPanel {
     private final int spacing = 50;
 
     //FONT
-    private final int fontsize = 32;
+    private final int fontsize = 35;
 
     //IMAGE
+    private final Image desainshop = new ImageIcon("resources/desainshop.png").getImage();
     private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
     private final Image black = new ImageIcon("resources/black.png").getImage();
-    private final Image desainshop = new ImageIcon("resources/desainshop.png").getImage();
 
     //LAYOUT
-    private JPanel panel;
     private JLabel bg;
-    private JButton buyButton;
-    private JButton sellButton;
-    private JButton drawButton;
-    private JButton upgradeButton;
-    private JButton mergeButton;
+    private JLabel buyButton;
+    private JLabel sellButton;
+    private JLabel drawButton;
+    private JLabel upgradeButton;
+    private JLabel mergeButton;
     private JLabel exitShop;
 
     public Shop(Body body) {
+        this.body = body;
+        init();
+    }
+
+    private void init() {
         setLayout(null);
         setSize(1162,648);
+        setBackground(new Color(135, 206, 235));
+        setOpaque(true);
         setVisible(true);
 
-        this.body = body;
         Buy b = new Buy(this.body, this, this.kapal);
         Sell s = new Sell(this.body, this, this.kapal);
         Draw d = new Draw(this.body, this, this.kapal);
@@ -50,198 +55,217 @@ public class Shop extends JPanel {
         Merge m = new Merge(this.body, this, this.kapal);
 
         //INIT
-        panel = new JPanel();
-        bg = new JLabel();
-        buyButton = new JButton();
-        sellButton = new JButton();
-        drawButton = new JButton();
-        upgradeButton = new JButton();
-        mergeButton = new JButton();
-
-        //PANEL
-        panel.setLayout(null);
-        panel.setSize(1162,648);
-        panel.setBackground(new Color(135, 206, 235));
-        panel.setOpaque(true);
+        bg = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(desainshop,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
+        buyButton = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
+        sellButton = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
+        drawButton = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
+        upgradeButton = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
+        mergeButton = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
+        exitShop = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
 
         //BUY
         buyButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         buyButton.setBounds(button_x, button_y, button_width, button_height);
         buyButton.setText("BUY");
-        buyButton.setHorizontalTextPosition(JButton.CENTER);
-        buyButton.setVerticalTextPosition(JButton.CENTER);
+        buyButton.setHorizontalAlignment(SwingConstants.CENTER);
+        buyButton.setVerticalAlignment(SwingConstants.CENTER);
         buyButton.setFont(new Font("Calibri", Font.BOLD, fontsize));
         buyButton.setForeground(Color.white);
-        buyButton.setIcon(new ImageIcon(wood));
-        buyButton.addActionListener(new ActionListener() {
+        buyButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 body.setPanel(b);
             }
-        });
-        buyButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 buyButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.green, Color.green, Color.orange));
                 buyButton.setLocation(buyButton.getX() + 3, buyButton.getY() - 3);
-                buyButton.setIcon(new ImageIcon(black));
-                buyButton.setForeground(Color.orange);
+                buyButton.setForeground(Color.green);
+                buyButton.setBackground(Color.black);
+                buyButton.setOpaque(true);
                 buyButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 buyButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
                 buyButton.setLocation(buyButton.getX() - 3, buyButton.getY() + 3);
-                buyButton.setIcon(new ImageIcon(wood));
                 buyButton.setForeground(Color.white);
+                buyButton.setOpaque(false);
             }
         });
-        panel.add(buyButton);
+        add(buyButton);
 
         //SELL
         sellButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         sellButton.setBounds(button_x, button_y + button_height + spacing, button_width, button_height);
         sellButton.setText("SELL");
-        sellButton.setHorizontalTextPosition(JButton.CENTER);
-        sellButton.setVerticalTextPosition(JButton.CENTER);
+        sellButton.setHorizontalAlignment(SwingConstants.CENTER);
+        sellButton.setVerticalAlignment(SwingConstants.CENTER);
         sellButton.setFont(new Font("Calibri", Font.BOLD, fontsize));
         sellButton.setForeground(Color.white);
-        sellButton.setIcon(new ImageIcon(wood));
-        sellButton.addActionListener(new ActionListener() {
+        sellButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 body.setPanel(s);
             }
-        });
-        sellButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 sellButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.red, Color.red, Color.orange));
                 sellButton.setLocation(sellButton.getX() + 3, sellButton.getY() - 3);
-                sellButton.setIcon(new ImageIcon(black));
-                sellButton.setForeground(Color.orange);
+                sellButton.setForeground(Color.red);
+                sellButton.setBackground(Color.black);
+                sellButton.setOpaque(true);
                 sellButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 sellButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
                 sellButton.setLocation(sellButton.getX() - 3, sellButton.getY() + 3);
-                sellButton.setIcon(new ImageIcon(wood));
                 sellButton.setForeground(Color.white);
+                sellButton.setOpaque(false);
             }
         });
-        panel.add(sellButton);
+        add(sellButton);
 
         //DRAW
         drawButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         drawButton.setBounds(button_x, button_y + (button_height + spacing)*2, button_width, button_height);
         drawButton.setText("DRAW");
-        drawButton.setHorizontalTextPosition(JButton.CENTER);
-        drawButton.setVerticalTextPosition(JButton.CENTER);
+        drawButton.setHorizontalAlignment(SwingConstants.CENTER);
+        drawButton.setVerticalAlignment(SwingConstants.CENTER);
         drawButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         drawButton.setForeground(Color.white);
-        drawButton.setIcon(new ImageIcon(wood));
-        drawButton.addActionListener(new ActionListener() {
+        drawButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 body.setPanel(d);
             }
-        });
-        drawButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 drawButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.blue, Color.blue, Color.orange));
                 drawButton.setLocation(drawButton.getX() + 3, drawButton.getY() - 3);
-                drawButton.setIcon(new ImageIcon(black));
-                drawButton.setForeground(Color.orange);
+                drawButton.setForeground(Color.blue);
+                drawButton.setBackground(Color.black);
+                drawButton.setOpaque(true);
                 drawButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 drawButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
                 drawButton.setLocation(drawButton.getX() - 3, drawButton.getY() + 3);
-                drawButton.setIcon(new ImageIcon(wood));
                 drawButton.setForeground(Color.white);
+                drawButton.setOpaque(false);
             }
         });
-        panel.add(drawButton);
+        add(drawButton);
 
         //UPGRADE
         upgradeButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         upgradeButton.setBounds(button_x + button_width + spacing, button_y + (int) (spacing * 1.5), button_width, button_height);
         upgradeButton.setText("UPGRADE");
-        upgradeButton.setHorizontalTextPosition(JButton.CENTER);
-        upgradeButton.setVerticalTextPosition(JButton.CENTER);
+        upgradeButton.setHorizontalAlignment(SwingConstants.CENTER);
+        upgradeButton.setVerticalAlignment(SwingConstants.CENTER);
         upgradeButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         upgradeButton.setForeground(Color.white);
-        upgradeButton.setIcon(new ImageIcon(wood));
-        upgradeButton.addActionListener(new ActionListener() {
+        upgradeButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 body.setPanel(u);
             }
-        });
-        upgradeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 upgradeButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.magenta, Color.magenta, Color.orange));
                 upgradeButton.setLocation(upgradeButton.getX() + 3, upgradeButton.getY() - 3);
-                upgradeButton.setIcon(new ImageIcon(black));
-                upgradeButton.setForeground(Color.orange);
+                upgradeButton.setForeground(Color.magenta);
+                upgradeButton.setBackground(Color.black);
+                upgradeButton.setOpaque(true);
                 upgradeButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 upgradeButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
                 upgradeButton.setLocation(upgradeButton.getX() - 3, upgradeButton.getY() + 3);
-                upgradeButton.setIcon(new ImageIcon(wood));
                 upgradeButton.setForeground(Color.white);
+                upgradeButton.setOpaque(false);
             }
         });
-        panel.add(upgradeButton);
+        add(upgradeButton);
 
         //MERGE
         mergeButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         mergeButton.setBounds(button_x + button_width + spacing,button_y + (int) ((button_height + spacing) * 1.5), button_width, button_height);
         mergeButton.setText("MERGE");
-        mergeButton.setHorizontalTextPosition(JButton.CENTER);
-        mergeButton.setVerticalTextPosition(JButton.CENTER);
+        mergeButton.setHorizontalAlignment(SwingConstants.CENTER);
+        mergeButton.setVerticalAlignment(SwingConstants.CENTER);
         mergeButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         mergeButton.setForeground(Color.white);
-        mergeButton.setIcon(new ImageIcon(wood));
-        mergeButton.addActionListener(new ActionListener() {
+        mergeButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 body.setPanel(m);
             }
-        });
-        mergeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 mergeButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.gray, Color.gray, Color.orange));
                 mergeButton.setLocation(mergeButton.getX() + 3, mergeButton.getY() - 3);
-                mergeButton.setIcon(new ImageIcon(black));
-                mergeButton.setForeground(Color.orange);
+                mergeButton.setForeground(Color.gray);
+                mergeButton.setBackground(Color.black);
+                mergeButton.setOpaque(true);
                 mergeButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 mergeButton.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
                 mergeButton.setLocation(mergeButton.getX() - 3, mergeButton.getY() + 3);
-                mergeButton.setIcon(new ImageIcon(wood));
                 mergeButton.setForeground(Color.white);
+                mergeButton.setOpaque(false);
             }
         });
-        panel.add(mergeButton);
+        add(mergeButton);
 
         //EXIT
-        exitShop = new JLabel(){
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0,110,40,null);
-                super.paintComponent(g);
-            }
-        };
         exitShop.setBounds(460,560,110,40);
         exitShop.setText("<< EXIT");
         exitShop.setFont(new Font("Monospace",Font.BOLD,25));
@@ -261,6 +285,8 @@ public class Shop extends JPanel {
                 exitShop.setBorder(BorderFactory.createLineBorder(Color.red,1));
                 exitShop.setLocation(exitShop.getX() + 3, exitShop.getY() - 3);
                 exitShop.setForeground(Color.red);
+                exitShop.setBackground(Color.black);
+                exitShop.setOpaque(true);
                 exitShop.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
             @Override
@@ -268,15 +294,13 @@ public class Shop extends JPanel {
                 exitShop.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
                 exitShop.setLocation(exitShop.getX() - 3, exitShop.getY() + 3);
                 exitShop.setForeground(Color.white);
+                exitShop.setOpaque(false);
             }
         });
-        panel.add(exitShop);
+        add(exitShop);
 
         //BACKGROUND
-        bg.setIcon(new ImageIcon(desainshop));
         bg.setBounds(0, 0,1162,648);
-        panel.add(bg);
-
-        add(panel);
+        add(bg);
     }
 }
