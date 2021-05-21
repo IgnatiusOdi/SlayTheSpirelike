@@ -134,7 +134,7 @@ public class Draw extends JPanel {
         drawbutton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int n = JOptionPane.showConfirmDialog(null, "Are you lucky today?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                int n = JOptionPane.showConfirmDialog(null, "Feeling lucky today?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
 

@@ -88,6 +88,13 @@ public class Sell extends JPanel {
                 super.paintComponent(g);
             }
         };
+        relicplace = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
         coinsymbol = new JLabel("C") {
             @Override
             protected void paintComponent(Graphics g) {
@@ -188,6 +195,9 @@ public class Sell extends JPanel {
                 cardtitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
                 relictitle.setBorder(BorderFactory.createEmptyBorder());
                 relictitle.setFont(new Font("Monospace", Font.PLAIN, 25));
+
+                cardplace.setVisible(true);
+                relicplace.setVisible(false);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -203,12 +213,11 @@ public class Sell extends JPanel {
         add(cardtitle);
 
         //CARD PLACE
-        cardplace.setBounds(space, 400, this.getWidth() - space, this.getHeight()/2);
+        cardplace.setBounds(space, 300, this.getWidth() - space*2, this.getHeight()/2);
         cardplace.setLayout(null);
         cardplace.setBackground(Color.yellow);
         cardplace.setOpaque(true);
         add(cardplace);
-
 
         //RELIC TITLE
         relictitle.setBounds(this.getWidth()/2, 200, this.getWidth()/2, 50);
@@ -222,6 +231,9 @@ public class Sell extends JPanel {
                 cardtitle.setFont(new Font("Monospace", Font.PLAIN, 25));
                 relictitle.setBorder(BorderFactory.createLineBorder(Color.red,2));
                 relictitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
+
+                cardplace.setVisible(false);
+                relicplace.setVisible(true);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -235,7 +247,12 @@ public class Sell extends JPanel {
         });
         add(relictitle);
 
-        //RELIC
+        //RELIC PLACE
+        relicplace.setBounds(space, 300, this.getWidth() - space*2, this.getHeight()/2);
+        relicplace.setLayout(null);
+        relicplace.setBackground(Color.red);
+        relicplace.setOpaque(true);
+        add(relicplace);
 
         //BACKGROUND
         bg.setBounds(0, 0,1162,648);
