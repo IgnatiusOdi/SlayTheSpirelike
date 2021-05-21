@@ -30,7 +30,7 @@ public class Buy extends JPanel {
     private JLabel title;
     private JLabel coinsymbol;
     private JLabel coin;
-    private JLabel playercoin;
+    private JLabel coinplayer;
     private JLabel back;
 
     private JLabel card1;
@@ -112,7 +112,7 @@ public class Buy extends JPanel {
                 super.paintComponent(g);
             }
         };
-        playercoin = new JLabel(String.valueOf(pcoin)){
+        coinplayer = new JLabel(String.valueOf(pcoin)){
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(wood,0,0,100,50,null);
@@ -209,9 +209,9 @@ public class Buy extends JPanel {
 
         //COIN SYMBOL
         coinsymbol.setBounds(830,80,50,50);
+        coinsymbol.setForeground(Color.white);
         coinsymbol.setHorizontalAlignment(SwingConstants.CENTER);
         coinsymbol.setVerticalAlignment(SwingConstants.CENTER);
-        coinsymbol.setForeground(Color.white);
         add(coinsymbol);
 
         //COIN
@@ -221,10 +221,10 @@ public class Buy extends JPanel {
         add(coin);
 
         //PLAYER COIN
-        playercoin.setBounds(983,80,100,50);
-        playercoin.setFont(new Font("Monospace",Font.BOLD,30));
-        playercoin.setForeground(Color.white);
-        add(playercoin);
+        coinplayer.setBounds(983,80,100,50);
+        coinplayer.setFont(new Font("Monospace",Font.BOLD,30));
+        coinplayer.setForeground(Color.white);
+        add(coinplayer);
 
         //BACK
         back.setBounds(height-20,70,180,90);
@@ -258,42 +258,42 @@ public class Buy extends JPanel {
         add(back);
 
         //CARD 1 LAYER
-        card1layer.setBounds(space, (int) (height*1.4), height, width);
+        card1layer.setBounds(space, (int) (height*1.6), height, width);
         card1layer.setBackground(new Color(211,211,211,100));
         card1layer.setOpaque(true);
         card1layer.setVisible(false);
         add(card1layer);
 
         //CARD 2 LAYER
-        card2layer.setBounds((height + space) + space, (int) (height*1.4), height, width);
+        card2layer.setBounds((height + space) + space, (int) (height*1.6), height, width);
         card2layer.setBackground(new Color(211,211,211,100));
         card2layer.setOpaque(true);
         card2layer.setVisible(false);
         add(card2layer);
 
         //CARD 3 LAYER
-        card3layer.setBounds((height + space)*2 + space, (int) (height*1.4), height, width);
+        card3layer.setBounds((height + space)*2 + space, (int) (height*1.6), height, width);
         card3layer.setBackground(new Color(211,211,211,100));
         card3layer.setOpaque(true);
         card3layer.setVisible(false);
         add(card3layer);
 
         //RELIC 1 LAYER
-        relic1layer.setBounds((height + space)*3 + space, (int) (height*1.4), height, width);
+        relic1layer.setBounds((height + space)*3 + space, (int) (height*1.6), height, width);
         relic1layer.setBackground(new Color(211,211,211,100));
         relic1layer.setOpaque(true);
         relic1layer.setVisible(false);
         add(relic1layer);
 
         //RELIC 2 LAYER
-        relic2layer.setBounds((height + space)*4 + space, (int) (height*1.4), height, width);
+        relic2layer.setBounds((height + space)*4 + space, (int) (height*1.6), height, width);
         relic2layer.setBackground(new Color(211,211,211,100));
         relic2layer.setOpaque(true);
         relic2layer.setVisible(false);
         add(relic2layer);
 
         //RELIC 3 LAYER
-        relic3layer.setBounds((height + space)*5 + space, (int) (height*1.4), height, width);
+        relic3layer.setBounds((height + space)*5 + space, (int) (height*1.6), height, width);
         relic3layer.setBackground(new Color(211,211,211,100));
         relic3layer.setOpaque(true);
         relic3layer.setVisible(false);
@@ -301,7 +301,7 @@ public class Buy extends JPanel {
 
         //CARD 1 BUTTON
         card1button.setBorderPainted(false);
-        card1button.setBounds(space,(int) (height*1.4) + width - 50, height, 50);
+        card1button.setBounds(space,(int) (height*1.6) + width - 50, height, 50);
         card1button.setText(String.valueOf(card1price));
         card1button.setHorizontalTextPosition(JButton.CENTER);
         card1button.setVerticalTextPosition(JButton.CENTER);
@@ -322,7 +322,7 @@ public class Buy extends JPanel {
                         card1bought = true;
                         card1layer.setVisible(true);
                         pcoin -= card1price;
-                        playercoin.setText(String.valueOf(pcoin));
+                        coinplayer.setText(String.valueOf(pcoin));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -342,7 +342,7 @@ public class Buy extends JPanel {
 
         //CARD 2 BUTTON
         card2button.setBorderPainted(false);
-        card2button.setBounds((height + space) + space,(int) (height*1.4) + width - 50, height, 50);
+        card2button.setBounds((height + space) + space,(int) (height*1.6) + width - 50, height, 50);
         card2button.setText(String.valueOf(card2price));
         card2button.setHorizontalTextPosition(JButton.CENTER);
         card2button.setVerticalTextPosition(JButton.CENTER);
@@ -363,7 +363,7 @@ public class Buy extends JPanel {
                         card2bought = true;
                         card2layer.setVisible(true);
                         pcoin -= card2price;
-                        playercoin.setText(String.valueOf(pcoin));
+                        coinplayer.setText(String.valueOf(pcoin));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -384,7 +384,7 @@ public class Buy extends JPanel {
 
         //CARD 3 BUTTON
         card3button.setBorderPainted(false);
-        card3button.setBounds((height + space)*2 + space,(int) (height*1.4) + width - 50, height, 50);
+        card3button.setBounds((height + space)*2 + space,(int) (height*1.6) + width - 50, height, 50);
         card3button.setText(String.valueOf(card3price));
         card3button.setHorizontalTextPosition(JButton.CENTER);
         card3button.setVerticalTextPosition(JButton.CENTER);
@@ -405,7 +405,7 @@ public class Buy extends JPanel {
                         card3bought = true;
                         card3layer.setVisible(true);
                         pcoin -= card3price;
-                        playercoin.setText(String.valueOf(pcoin));
+                        coinplayer.setText(String.valueOf(pcoin));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -424,8 +424,134 @@ public class Buy extends JPanel {
         });
         add(card3button);
 
+        //RELIC 1 BUTTON
+        relic1button.setBorderPainted(false);
+        relic1button.setBounds((height + space)*3 + space,(int) (height*1.6) + width - 50, height, 50);
+        relic1button.setText(String.valueOf(relic1price));
+        relic1button.setHorizontalTextPosition(JButton.CENTER);
+        relic1button.setVerticalTextPosition(JButton.CENTER);
+        relic1button.setFont(new Font("Monospace",Font.ITALIC,20));
+        relic1button.setForeground(Color.black);
+        relic1button.setBackground(new Color(211,211,211));
+        relic1button.setVisible(false);
+        relic1button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHECK MONEY
+                    if (pcoin >= relic1price) {
+                        //SUCCESS
+                        JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        relic1.setEnabled(false);
+                        relic1bought = true;
+                        relic1layer.setVisible(true);
+                        pcoin -= relic1price;
+                        coinplayer.setText(String.valueOf(pcoin));
+                    } else {
+                        //FAILED
+                        JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                relic1button.setVisible(true);
+                relic1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                relic1button.setVisible(false);
+            }
+        });
+        add(relic1button);
+
+        //RELIC 2 BUTTON
+        relic2button.setBorderPainted(false);
+        relic2button.setBounds((height + space)*4 + space,(int) (height*1.6) + width - 50, height, 50);
+        relic2button.setText(String.valueOf(relic2price));
+        relic2button.setHorizontalTextPosition(JButton.CENTER);
+        relic2button.setVerticalTextPosition(JButton.CENTER);
+        relic2button.setFont(new Font("Monospace",Font.ITALIC,20));
+        relic2button.setForeground(Color.black);
+        relic2button.setBackground(new Color(211,211,211));
+        relic2button.setVisible(false);
+        relic2button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHECK MONEY
+                    if (pcoin >= relic2price) {
+                        //SUCCESS
+                        JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        relic2.setEnabled(false);
+                        relic2bought = true;
+                        relic2layer.setVisible(true);
+                        pcoin -= relic2price;
+                        coinplayer.setText(String.valueOf(pcoin));
+                    } else {
+                        //FAILED
+                        JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                relic2button.setVisible(true);
+                relic2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                relic2button.setVisible(false);
+            }
+        });
+        add(relic2button);
+
+        //RELIC 3 BUTTON
+        relic3button.setBorderPainted(false);
+        relic3button.setBounds((height + space)*5 + space,(int) (height*1.6) + width - 50, height, 50);
+        relic3button.setText(String.valueOf(relic3price));
+        relic3button.setHorizontalTextPosition(JButton.CENTER);
+        relic3button.setVerticalTextPosition(JButton.CENTER);
+        relic3button.setFont(new Font("Monospace",Font.ITALIC,20));
+        relic3button.setForeground(Color.black);
+        relic3button.setBackground(new Color(211,211,211));
+        relic3button.setVisible(false);
+        relic3button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHECK MONEY
+                    if (pcoin >= relic3price) {
+                        //SUCCESS
+                        JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        relic3.setEnabled(false);
+                        relic3bought = true;
+                        relic3layer.setVisible(true);
+                        pcoin -= relic3price;
+                        coinplayer.setText(String.valueOf(pcoin));
+                    } else {
+                        //FAILED
+                        JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                relic3button.setVisible(true);
+                relic3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                relic3button.setVisible(false);
+            }
+        });
+        add(relic3button);
+
         //CARD 1
-        card1.setBounds(space, (int) (height*1.4), height, width);
+        card1.setBounds(space, (int) (height*1.6), height, width);
         card1.setForeground(Color.white);
         card1.setHorizontalAlignment(SwingConstants.CENTER);
         card1.setVerticalAlignment(SwingConstants.CENTER);
@@ -445,14 +571,17 @@ public class Buy extends JPanel {
         add(card1);
 
         //CARD 2
-        card2.setBounds((height + space) + space, (int) (height*1.4), height, width);
+        card2.setBounds((height + space) + space, (int) (height*1.6), height, width);
         card2.setForeground(Color.white);
         card2.setHorizontalAlignment(SwingConstants.CENTER);
         card2.setVerticalAlignment(SwingConstants.CENTER);
         card2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                card2button.setVisible(true);
+                if (!card2bought) {
+                    card2button.setVisible(true);
+                    card2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
             }
             @Override
             public void mouseExited(MouseEvent e) {
@@ -462,14 +591,17 @@ public class Buy extends JPanel {
         add(card2);
 
         //CARD 3
-        card3.setBounds((height + space)*2 + space, (int) (height*1.4), height, width);
+        card3.setBounds((height + space)*2 + space, (int) (height*1.6), height, width);
         card3.setForeground(Color.white);
         card3.setHorizontalAlignment(SwingConstants.CENTER);
         card3.setVerticalAlignment(SwingConstants.CENTER);
         card3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                card3button.setVisible(true);
+                if (!card3bought) {
+                    card3button.setVisible(true);
+                    card3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
             }
             @Override
             public void mouseExited(MouseEvent e) {
@@ -478,46 +610,18 @@ public class Buy extends JPanel {
         });
         add(card3);
 
-        //RELIC 1 BUTTON
-        relic1button.setBorderPainted(false);
-        relic1button.setBounds((height + space)*3 + space,(int) (height*1.4) + width - 50, height, 50);
-        relic1button.setText("100");
-        relic1button.setHorizontalTextPosition(JButton.CENTER);
-        relic1button.setVerticalTextPosition(JButton.CENTER);
-        relic1button.setFont(new Font("Monospace",Font.ITALIC,20));
-        relic1button.setForeground(Color.green);
-        relic1button.setBackground(new Color(216,252,168));
-        relic1button.setVisible(false);
-        relic1button.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                if (n == JOptionPane.YES_OPTION) {
-                    JOptionPane.showMessageDialog(null,"You don't have enough coin", "", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                relic1button.setVisible(true);
-                relic1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                relic1button.setVisible(false);
-            }
-        });
-        add(relic1button);
-
         //RELIC 1
-        relic1.setBounds((height + space)*3 + space, (int) (height*1.4), height, width);
-        relic1.setBackground(Color.yellow);
+        relic1.setBounds((height + space)*3 + space, (int) (height*1.6), height, width);
+        relic1.setForeground(Color.white);
         relic1.setHorizontalAlignment(SwingConstants.CENTER);
         relic1.setVerticalAlignment(SwingConstants.CENTER);
-        relic1.setOpaque(true);
         relic1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                relic1button.setVisible(true);
+                if (!relic1bought) {
+                    relic1button.setVisible(true);
+                    relic1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
             }
             @Override
             public void mouseExited(MouseEvent e) {
@@ -526,46 +630,18 @@ public class Buy extends JPanel {
         });
         add(relic1);
 
-        //RELIC 2 BUTTON
-        relic2button.setBorderPainted(false);
-        relic2button.setBounds((height + space)*4 + space,(int) (height*1.4) + width - 50, height, 50);
-        relic2button.setText("200");
-        relic2button.setHorizontalTextPosition(JButton.CENTER);
-        relic2button.setVerticalTextPosition(JButton.CENTER);
-        relic2button.setFont(new Font("Monospace",Font.ITALIC,20));
-        relic2button.setForeground(Color.green);
-        relic2button.setBackground(new Color(216,252,168));
-        relic2button.setVisible(false);
-        relic2button.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                if (n == JOptionPane.YES_OPTION) {
-                    JOptionPane.showMessageDialog(null,"You don't have enough coin", "", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                relic2button.setVisible(true);
-                relic2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                relic2button.setVisible(false);
-            }
-        });
-        add(relic2button);
-
         //RELIC 2
-        relic2.setBounds((height + space)*4 + space, (int) (height*1.4), height, width);
-        relic2.setBackground(Color.yellow);
+        relic2.setBounds((height + space)*4 + space, (int) (height*1.6), height, width);
+        relic2.setForeground(Color.white);
         relic2.setHorizontalAlignment(SwingConstants.CENTER);
         relic2.setVerticalAlignment(SwingConstants.CENTER);
-        relic2.setOpaque(true);
         relic2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                relic2button.setVisible(true);
+                if (!relic2bought) {
+                    relic2button.setVisible(true);
+                    relic2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
             }
             @Override
             public void mouseExited(MouseEvent e) {
@@ -574,46 +650,18 @@ public class Buy extends JPanel {
         });
         add(relic2);
 
-        //RELIC 3 BUTTON
-        relic3button.setBorderPainted(false);
-        relic3button.setBounds((height + space)*5 + space,(int) (height*1.4) + width - 50, height, 50);
-        relic3button.setText("300");
-        relic3button.setHorizontalTextPosition(JButton.CENTER);
-        relic3button.setVerticalTextPosition(JButton.CENTER);
-        relic3button.setFont(new Font("Monospace",Font.ITALIC,20));
-        relic3button.setForeground(Color.green);
-        relic3button.setBackground(new Color(216,252,168));
-        relic3button.setVisible(false);
-        relic3button.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                if (n == JOptionPane.YES_OPTION) {
-                    JOptionPane.showMessageDialog(null,"You don't have enough coin", "", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                relic3button.setVisible(true);
-                relic3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                relic3button.setVisible(false);
-            }
-        });
-        add(relic3button);
-
         //RELIC 3
-        relic3.setBounds((height + space)*5 + space, (int) (height*1.4), height, width);
-        relic3.setBackground(Color.yellow);
+        relic3.setBounds((height + space)*5 + space, (int) (height*1.6), height, width);
+        relic3.setForeground(Color.white);
         relic3.setHorizontalAlignment(SwingConstants.CENTER);
         relic3.setVerticalAlignment(SwingConstants.CENTER);
-        relic3.setOpaque(true);
         relic3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                relic3button.setVisible(true);
+                if (!relic3bought) {
+                    relic3button.setVisible(true);
+                    relic3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
             }
             @Override
             public void mouseExited(MouseEvent e) {
