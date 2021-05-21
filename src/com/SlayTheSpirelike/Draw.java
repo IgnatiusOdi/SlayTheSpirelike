@@ -17,9 +17,9 @@ public class Draw extends JPanel {
     private final int space = 25;
 
     //IMAGE
-    private final Image hangingsign = new ImageIcon("src/Shop/hangingsign.png").getImage();
-    private final Image wood = new ImageIcon("src/Shop/woodtextures.jpg").getImage();
-    private final Image woodbg = new ImageIcon("src/Shop/woodbg.jpg").getImage();
+    private final Image hangingsign = new ImageIcon("resources/hangingsign.png").getImage();
+    private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
+    private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
 
     //PROPERTIES
     private JPanel panel;
@@ -196,6 +196,10 @@ public class Draw extends JPanel {
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                back.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+                back.setLocation(back.getX() - 3, back.getY() + 3);
+                back.setForeground(Color.white);
+
                 body.setPanel(shop);
             }
             @Override

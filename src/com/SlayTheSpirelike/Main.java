@@ -11,8 +11,11 @@ package com.SlayTheSpirelike;
 public class Main {
 
     public static void main(String[] args) {
-        new Statics();//initialize static potions
+//        new Statics();//initialize static potions
         Body body = new Body(1162,648);
+        body.setLocationRelativeTo(null);
+        body.setPanel(new Shop(body));
+
 //        new SummonPotion();
 //        new InvinciblePotion();
 //        new RevivePotion();
@@ -32,5 +35,6 @@ public class Main {
 //        k.obtainPotion(new AttackPotion());
 //        System.out.println(k.isPotion("Attack Potion"));
 //        System.out.println(k.isAlive());
+
     }
 }

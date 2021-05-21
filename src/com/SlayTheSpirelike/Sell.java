@@ -136,6 +136,7 @@ public class Sell extends JPanel {
 
         //CARD
 
+
         //RELIC TITLE
         relictitle.setBounds(this.getWidth()/2, 200, this.getWidth()/2, 50);
         relictitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -190,6 +191,10 @@ public class Sell extends JPanel {
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                back.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+                back.setLocation(back.getX() - 3, back.getY() + 3);
+                back.setForeground(Color.white);
+
                 body.setPanel(shop);
             }
             @Override

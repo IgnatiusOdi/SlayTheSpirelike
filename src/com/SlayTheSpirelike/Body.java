@@ -11,6 +11,7 @@ public class Body extends JFrame {
     public Body(int width, int height) throws HeadlessException {
         setSize(width,height);
         setLayout(null);
+        setUndecorated(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panel = new MainMenu(this);
         add(panel);
