@@ -3,7 +3,7 @@ package com.SlayTheSpirelike;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public abstract class Kapal {
+public abstract class Kapal extends Sprite{
     protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin, mapPosX, mapPosY;
     protected String nama;
 //    public static ArrayList<> card = new ArrayList();
@@ -16,6 +16,7 @@ public abstract class Kapal {
     JFrame frame;
 
     public Kapal(String nama,String image) {
+        super(image);
         this.relic = new ArrayList();
         this.potion = new ArrayList();
         this.summon = new ArrayList();
@@ -32,17 +33,31 @@ public abstract class Kapal {
         this.coin = 0;
         this.mapPosX = 0;
         this.mapPosY = 0;
-        this.kapal = new JLabel();
-        this.kapal.setIcon(new ImageIcon(image));
-        this.panel = new JPanel();
-        this.panel.add(kapal);
-        this.panel.setSize(50,50);
-        this.panel.setOpaque(false);
 
 //        frame = new JFrame();
 //        frame.add(panel);
 //        frame.pack();
 //        frame.setVisible(true);
+    }
+
+    @Override
+    public JLabel getItem() {
+        return super.getItem();
+    }
+
+    @Override
+    public void setItem(JLabel item) {
+        super.setItem(item);
+    }
+
+    @Override
+    public JPanel getPanel(int x, int y, int w, int h) {
+        return super.getPanel(x, y, w, h);
+    }
+
+    @Override
+    public void setPanel(JPanel panel) {
+        super.setPanel(panel);
     }
 
     public void summon(Summon summon){

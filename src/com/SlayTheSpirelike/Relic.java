@@ -3,7 +3,7 @@ package com.SlayTheSpirelike;
 import javax.swing.*;
 import java.awt.*;
 
-public class Relic {
+public abstract class Relic extends Sprite{
     //condition
     //- Passive
 //- Start Turn
@@ -18,26 +18,19 @@ public class Relic {
     // - One Time
     protected String nama,rarity,condition,desc;
     protected boolean active;
-    protected JLabel relic;
-    protected JPanel panel;
 
     JFrame frame;
 
     public Relic(String nama, String rarity, String condition, String image, String desc) {
+        super(image);
+        this.item.setText(nama);
+        this.item.setVerticalTextPosition(JLabel.BOTTOM);
+        this.item.setHorizontalTextPosition(JLabel.CENTER);
         this.nama = nama;
         this.rarity = rarity;
         this.active = true;
         this.condition = condition;
         this.desc = desc;
-        this.relic = new JLabel();
-        this.relic.setText(nama);
-        this.relic.setIcon(new ImageIcon(image));
-        this.relic.setVerticalTextPosition(JLabel.BOTTOM);
-        this.relic.setHorizontalTextPosition(JLabel.CENTER);
-        this.panel = new JPanel();
-        this.panel.add(relic);
-        this.panel.setSize(50,50);
-        this.panel.setOpaque(false);
         //uncomment to look
 //        frame = new JFrame();
 //        frame.setBackground(Color.BLUE);
@@ -67,6 +60,26 @@ public class Relic {
 
     public void deactivate(Enemy enemy){
 
+    }
+
+    @Override
+    public JLabel getItem() {
+        return super.getItem();
+    }
+
+    @Override
+    public void setItem(JLabel item) {
+        super.setItem(item);
+    }
+
+    @Override
+    public JPanel getPanel(int x, int y, int w, int h) {
+        return super.getPanel(x, y, w, h);
+    }
+
+    @Override
+    public void setPanel(JPanel panel) {
+        super.setPanel(panel);
     }
 
     public String getCondition() {

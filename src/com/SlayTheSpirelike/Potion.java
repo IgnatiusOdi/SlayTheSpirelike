@@ -3,7 +3,7 @@ package com.SlayTheSpirelike;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class Potion {
+public abstract class Potion extends Sprite {
     //type ada 3
     //self: bekerja langsung kepada player
     //enemy: bekerja langsung pada enemy
@@ -11,37 +11,46 @@ public abstract class Potion {
     //special: yang butuh kondisi sendiri
     protected String nama,type,rarity, desc;
     protected boolean active;
-    protected JLabel potion;
-    protected JPanel panel;
 
     JFrame frame;
 
     public Potion(String nama, String type, String rarity, String image, String desc) {
+        super(image);
+        this.item.setText(nama);
+        this.item.setVerticalTextPosition(JLabel.BOTTOM);
+        this.item.setHorizontalTextPosition(JLabel.CENTER);
         this.nama = nama;
         this.type = type;
         this.active = true;
         this.rarity = rarity;
         this.desc = desc;
-        this.potion = new JLabel();
-        this.potion.setText(nama);
-        this.potion.setIcon(new ImageIcon(image));
-        this.potion.setVerticalTextPosition(JLabel.BOTTOM);
-        this.potion.setHorizontalTextPosition(JLabel.CENTER);
-        this.panel = new JPanel();
-        this.panel.add(potion);
-        this.panel.setSize(50,50);
-        this.panel.setOpaque(false);
+
         //uncomment to look
-//        frame = new JFrame();
-//        frame.setBackground(Color.BLUE);
-//        frame.add(panel);
-//        frame.pack();
-//        frame.setVisible(true);
+        frame = new JFrame();
+        frame.setBackground(Color.BLUE);
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
     }
 
-    public JPanel getPanel(int x, int y) {
-        panel.setLocation(x,y);
-        return panel;
+    @Override
+    public JLabel getItem() {
+        return super.getItem();
+    }
+
+    @Override
+    public void setItem(JLabel item) {
+        super.setItem(item);
+    }
+
+    @Override
+    public JPanel getPanel(int x, int y, int w, int h) {
+        return super.getPanel(x, y, w, h);
+    }
+
+    @Override
+    public void setPanel(JPanel panel) {
+        super.setPanel(panel);
     }
 
     public void activate(Kapal kapal){

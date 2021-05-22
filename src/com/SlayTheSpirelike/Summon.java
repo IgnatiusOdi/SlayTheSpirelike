@@ -2,33 +2,47 @@ package com.SlayTheSpirelike;
 
 import javax.swing.*;
 
-public abstract class Summon {
+public abstract class Summon extends Sprite{
     //jika ada summon, enemy akan attack summon yang terbaru
     //summon attack setelah player selesai attack, attack random/musuh terdepan
 
     protected String nama;
     protected int health, maxhealth, attack;
-    protected JLabel summon;
-    protected JPanel panel;
 
     JFrame frame;
 
     public Summon(String nama, int health, int maxhealth, int attack,String image) {
+        super(image);
         this.nama = nama;
         this.health = health;
         this.maxhealth = maxhealth;
         this.attack = attack;
-        this.summon.setIcon(new ImageIcon(image));
-        this.panel = new JPanel();
-        this.panel.add(summon);
-        this.panel.setSize(50,50);
-        this.panel.setOpaque(false);
         //uncomment to look
 //        frame = new JFrame();
 //        frame.setBackground(Color.BLUE);
 //        frame.add(panel);
 //        frame.pack();
 //        frame.setVisible(true);
+    }
+
+    @Override
+    public JLabel getItem() {
+        return super.getItem();
+    }
+
+    @Override
+    public void setItem(JLabel item) {
+        super.setItem(item);
+    }
+
+    @Override
+    public JPanel getPanel(int x, int y, int w, int h) {
+        return super.getPanel(x, y, w, h);
+    }
+
+    @Override
+    public void setPanel(JPanel panel) {
+        super.setPanel(panel);
     }
 
     public String getNama() {

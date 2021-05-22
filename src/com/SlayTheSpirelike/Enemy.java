@@ -1,10 +1,13 @@
 package com.SlayTheSpirelike;
 
-public class Enemy {
+import javax.swing.*;
+
+public abstract class Enemy extends Sprite {
     protected String nama;
     protected int health,maxhealth, skill, skillchance, atklow, atkhigh;
 
-    public Enemy(String nama, int health, int skill, int skillchance, int atklow, int atkhigh) {
+    public Enemy(String nama, int health, int skill, int skillchance, int atklow, int atkhigh, String image) {
+        super(image);
         this.nama = nama;
         this.health = health;
         this.maxhealth = health;
@@ -12,6 +15,26 @@ public class Enemy {
         this.skillchance = skillchance;
         this.atklow = atklow;
         this.atkhigh = atkhigh;
+    }
+
+    @Override
+    public JLabel getItem() {
+        return super.getItem();
+    }
+
+    @Override
+    public void setItem(JLabel item) {
+        super.setItem(item);
+    }
+
+    @Override
+    public JPanel getPanel(int x, int y, int w, int h) {
+        return super.getPanel(x, y, w, h);
+    }
+
+    @Override
+    public void setPanel(JPanel panel) {
+        super.setPanel(panel);
     }
 
     public int getMaxhealth() {
