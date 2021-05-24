@@ -21,7 +21,11 @@ public class Main {
 //        new RevivePotion();
 
 //        Kapal k = new Aircraft("nama");
-
+//        k.addRelic(new PearRelic());
+//        k.activateRelic("Passive");
+//        k.deactivateRelic();
+//        k.activateRelic("Passive");
+//        System.out.println(k);
 //        Potion b = new BrewPotion();
 //        b.activate(k);
 //        k.viewPotion();

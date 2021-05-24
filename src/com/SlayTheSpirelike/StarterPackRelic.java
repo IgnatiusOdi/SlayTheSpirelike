@@ -8,7 +8,7 @@ import static com.SlayTheSpirelike.Statics.rarePotion;
 public class StarterPackRelic extends Relic{
     Random rnd;
     public StarterPackRelic() {
-        super("Starter Pack Relic", "Boss Drop", "???", "resources/staterpack.png","Obtain 1 random potion, \n" +
+        super("Starter Pack Relic", "Boss Drop", "One Time", "resources/staterpack.png","Obtain 1 random potion, \n" +
                 "gain 10 coins, \n" +
                 "raise max health by 3, \n" +
                 "obtain 1 random card (One time)");
@@ -21,25 +21,25 @@ public class StarterPackRelic extends Relic{
             int p = rnd.nextInt(40)+1;
             if (p<=20){
                 int potion = rnd.nextInt(commonPotion.size());
-                kapal.obtainPotion(commonPotion.get(potion));
+                kapal.addPotion(commonPotion.get(potion));
             }
             else if(p<=30){
                 int potion = rnd.nextInt(uncommonPotion.size());
-                kapal.obtainPotion(uncommonPotion.get(potion));
+                kapal.addPotion(uncommonPotion.get(potion));
             }
             else if(p<=35){
                 int potion = rnd.nextInt(rarePotion.size());
-                kapal.obtainPotion(rarePotion.get(potion));
+                kapal.addPotion(rarePotion.get(potion));
             }
             else{
                 if (kapal instanceof Aircraft){
-                    kapal.obtainPotion(new SummonPotion());
+                    kapal.addPotion(new SummonPotion());
                 }
                 else if (kapal instanceof Tanker){
-                    kapal.obtainPotion(new InvinciblePotion());
+                    kapal.addPotion(new InvinciblePotion());
                 }
                 if (kapal instanceof Warship){
-                    kapal.obtainPotion(new RevivePotion());
+                    kapal.addPotion(new RevivePotion());
                 }
             }
 
