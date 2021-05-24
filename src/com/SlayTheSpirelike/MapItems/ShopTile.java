@@ -11,7 +11,7 @@ public class ShopTile extends MapTile{
     private Shop shop;
 
     public ShopTile(Body body, JPanel returnPanel, Kapal player) {
-//        shop = new Shop(body,returnPanel,player);
+        shop = new Shop(body,returnPanel,player);
         this.body = body;
     }
 

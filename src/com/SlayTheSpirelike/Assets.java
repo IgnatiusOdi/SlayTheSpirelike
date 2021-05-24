@@ -1,16 +1,13 @@
 package com.SlayTheSpirelike;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Assets {
-    public static BufferedImage     mainMenuBackground_old,boardSet,
+    public static BufferedImage     mainMenuBackground_old,
                                     tanker,warship,carrier,
                                     board, plank1,plank2,plank3,
-                                    map,
+                                    map, enemyTile, treasureTile, fuelTile, arrowRight, arrowDown, arrowLeft, arrowUp,
                                     fuelTank,coin,heart;
 
     public static ImageIcon mainMenuBG;
@@ -21,12 +18,22 @@ public class Assets {
         tanker = ImageLoader.LoadImage("resources/tanker.png");
         warship = ImageLoader.LoadImage("resources/warship.png");
         carrier = ImageLoader.LoadImage("resources/aircraft.png");
-        map = ImageLoader.LoadImage("resources/map.png");
         fuelTank = ImageLoader.LoadImage("resources/tank.png");
         coin = ImageLoader.LoadImage("resources/coin.png");
         heart = ImageLoader.LoadImage("resources/health.png");
 
+        map = ImageLoader.LoadImage("resources/map.png");
+        enemyTile = ImageLoader.LoadImage("resources/enemy.png");
+        treasureTile = ImageLoader.LoadImage("resources/event.png");
+        fuelTile = ImageLoader.LoadImage("resources/fuel.png");
+
 //        board2 = ImageLoader.crop("/screen.jpg", 105, 70 ,  394-105,99 );
+
+        BufferedImage boardSet2 = ImageLoader.LoadImage("resources/wood_set_2.png");
+        arrowRight = ImageLoader.crop(boardSet2,211,203,177,131);
+        arrowDown = ImageLoader.rotateImageByDegrees(arrowRight,90);
+        arrowLeft = ImageLoader.rotateImageByDegrees(arrowRight,180);
+        arrowUp = ImageLoader.rotateImageByDegrees(arrowRight,-90);
 
         BufferedImage boardSet = ImageLoader.LoadImage("resources/wooden-planks-set.png");
         plank1 = ImageLoader.crop(boardSet, 111, 11, 214, 44);

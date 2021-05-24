@@ -14,7 +14,7 @@ public class Main {
 //        new Statics();//initialize static potions
         Body body = new Body(1162,648);
 //        body.setPanel(new Shop(body));
-        body.setPanel(new Treasure(body));
+//        body.setPanel(new Treasure(body));
 
 //        new SummonPotion();
 //        new InvinciblePotion();

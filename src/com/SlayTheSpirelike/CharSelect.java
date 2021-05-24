@@ -12,11 +12,11 @@ public class CharSelect extends JPanel {
                     tanker_desc, warship_desc, airship_desc,
                     tanker_icon, warship_icon, airship_icon,
                     warning;
-    private final int   x=20,
+    private final int   ICON_X=80,
                         ICON_Y=100,
                         width=300,
                         height=100;
-
+    private boolean ship2unlocked, ship3unlocked;
     private int selected = -1;
     private Body body;
 
@@ -24,20 +24,24 @@ public class CharSelect extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(Assets.mainMenuBackground_old,0,0,body.getWidth(),body.getHeight(),null);
-
-
-//        g.setColor(new Color(255, 255,255, 127));
     }
 
     public CharSelect(Body body) {
         this.body = body;
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
+                                                                                                                        //unlock Ship Here
+        this.ship2unlocked = false;
+        this.ship3unlocked = false;
+
+        Color whiteBG = new Color(255, 255,255, 127);
+        Color redSelected = new Color(255, 150,150, 127);
+        Color grayDisabled = new Color(109, 109, 109, 127);
 
         saveNameLabel = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
-                g.setColor(new Color(255, 255,255, 127));
+                g.setColor(whiteBG);
                 g.fillRect(0,0,200,50);
                 super.paintComponent(g);
             }
@@ -67,16 +71,16 @@ public class CharSelect extends JPanel {
                 final int   ICON_WIDTH =300,
                             ICON_HEIGHT =100;
                 if (selected==0){
-                    g.setColor(new Color(255, 150,150, 127));
+                    g.setColor(redSelected);
                 } else {
-                    g.setColor(new Color(255, 255,255, 127));
+                    g.setColor(whiteBG);
                 }
                 g.fillRect(0,0, ICON_WIDTH, ICON_HEIGHT);
                 g.drawImage(Assets.tanker, 0,0, ICON_WIDTH, ICON_HEIGHT,null);
                 super.paintComponent(g);
             }
         };
-        tanker_icon.setBounds(20,130,300,100);
+        tanker_icon.setBounds(ICON_X,130,300,100);
         tanker_icon.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -107,7 +111,7 @@ public class CharSelect extends JPanel {
                 final int   X=10,
                             Y=20,
                             SPACE_Y = 20;
-                g.setColor(new Color(255, 255,255, 127));
+                g.setColor(whiteBG);
                 g.fillRect(0,0, 300,100);
                 g.setColor(Color.black);
                 g.setFont(new Font("SansSerif",Font.BOLD,20));
@@ -118,7 +122,7 @@ public class CharSelect extends JPanel {
                 super.paintComponent(g);
             }
         };
-        tanker_desc.setBounds(20,230,300,100);
+        tanker_desc.setBounds(ICON_X,230,300,100);
         tanker_desc.setVisible(false);
         add(tanker_desc);
 
@@ -128,36 +132,44 @@ public class CharSelect extends JPanel {
                 final int   ICON_WIDTH =300,
                             ICON_HEIGHT =100;
                 if (selected==1){
-                    g.setColor(new Color(255, 150,150, 127));
+                    g.setColor(redSelected);
                 } else {
-                    g.setColor(new Color(255, 255,255, 127));
+                    g.setColor(whiteBG);
                 }
                 g.fillRect(0,0, ICON_WIDTH,ICON_HEIGHT);
                 g.drawImage(Assets.warship, 0,0, ICON_WIDTH,ICON_HEIGHT,null);
+                if (!ship2unlocked){
+                    g.setColor(grayDisabled);
+                    g.fillRect(0,0, ICON_WIDTH,ICON_HEIGHT);
+                }
                 super.paintComponent(g);
             }
         };
-        warship_icon.setBounds(20+350,130,300,100);
+        warship_icon.setBounds(ICON_X+350,130,300,100);
         warship_icon.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                warship_desc.setVisible(true);
+                if (ship2unlocked)
+                    warship_desc.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                warship_desc.setVisible(false);
+                if (ship2unlocked)
+                    warship_desc.setVisible(false);
             }
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                selected = 1;
-                tanker_icon.repaint();
-                warship_icon.repaint();
-                airship_icon.repaint();
+                if (ship2unlocked){
+                    selected = 1;
+                    tanker_icon.repaint();
+                    warship_icon.repaint();
+                    airship_icon.repaint();
+                }
             }
         });
         add(warship_icon);
@@ -168,7 +180,7 @@ public class CharSelect extends JPanel {
                 final int   X=10,
                             Y=20,
                             SPACE_Y = 20;
-                g.setColor(new Color(255, 255,255, 127));
+                g.setColor(whiteBG);
                 g.fillRect(0,0, 300,100);
                 g.setColor(Color.black);
                 g.setFont(new Font("SansSerif",Font.BOLD,20));
@@ -179,7 +191,7 @@ public class CharSelect extends JPanel {
                 super.paintComponent(g);
             }
         };
-        warship_desc.setBounds(20+350,230,300,100);
+        warship_desc.setBounds(ICON_X+350,230,300,100);
         warship_desc.setVisible(false);
         add(warship_desc);
 
@@ -189,36 +201,44 @@ public class CharSelect extends JPanel {
                 final int   ICON_WIDTH =300,
                             ICON_HEIGHT =100;
                 if (selected==2) {
-                    g.setColor(new Color(255, 150,150, 127));
+                    g.setColor(redSelected);
                 }  else {
-                    g.setColor(new Color(255, 255,255, 127));
+                    g.setColor(whiteBG);
                 }
                 g.fillRect(0,0, ICON_WIDTH,ICON_HEIGHT);
                 g.drawImage(Assets.carrier, 0,0, ICON_WIDTH,ICON_HEIGHT,null);
+                if (!ship3unlocked) {
+                    g.setColor(grayDisabled);
+                    g.fillRect(0,0, ICON_WIDTH,ICON_HEIGHT);
+                }
                 super.paintComponent(g);
             }
         };
-        airship_icon.setBounds(20+2*350,130,300,100);
+        airship_icon.setBounds(ICON_X+2*350,130,300,100);
         airship_icon.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                airship_desc.setVisible(true);
+                if (ship3unlocked)
+                    airship_desc.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                airship_desc.setVisible(false);
+                if (ship3unlocked)
+                    airship_desc.setVisible(false);
             }
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                selected=2;
-                tanker_icon.repaint();
-                warship_icon.repaint();
-                airship_icon.repaint();
+                if (ship3unlocked){
+                    selected=2;
+                    tanker_icon.repaint();
+                    warship_icon.repaint();
+                    airship_icon.repaint();
+                }
             }
         });
         add(airship_icon);
@@ -229,7 +249,7 @@ public class CharSelect extends JPanel {
                 final int   X=10,
                             Y=20,
                             SPACE_Y = 20;
-                g.setColor(new Color(255, 255,255, 127));
+                g.setColor(whiteBG);
                 g.fillRect(0,0, 300,100);
                 g.setColor(Color.black);
                 g.setFont(new Font("SansSerif",Font.BOLD,20));
@@ -240,7 +260,7 @@ public class CharSelect extends JPanel {
                 super.paintComponent(g);
             }
         };
-        airship_desc.setBounds(20+2*350,230,300,100);
+        airship_desc.setBounds(ICON_X+2*350,230,300,100);
         airship_desc.setVisible(false);
         add(airship_desc);
 

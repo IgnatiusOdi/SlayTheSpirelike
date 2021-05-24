@@ -11,6 +11,7 @@ public class Shop extends JPanel {
 
     private Body body;
     private Kapal kapal;
+    private JPanel returnPanel;
 
     //BUTTON
     private final int button_width = 240;
@@ -36,8 +37,10 @@ public class Shop extends JPanel {
     private JLabel mergeButton;
     private JLabel exitShop;
 
-    public Shop(Body body) {
+    public Shop(Body body, JPanel returnPanel, Kapal player) {
         this.body = body;
+        this.returnPanel = returnPanel;
+        this.kapal = player;
         init();
     }
 
@@ -282,7 +285,7 @@ public class Shop extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "Are you sure?", "EXIT", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
-                    body.dispose();
+                    body.setPanel(returnPanel);
                 }
             }
             @Override
