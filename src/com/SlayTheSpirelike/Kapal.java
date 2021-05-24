@@ -137,11 +137,21 @@ public abstract class Kapal extends Sprite{
         relic.add(r);
     }
 
+    //waktu battle
     public void activateRelic(String condition, Enemy enemy){
         for (Relic r:relic) {
             if (r.getCondition().equalsIgnoreCase(condition)){
                 r.activate(this);
                 r.activate(enemy);
+            }
+        }
+    }
+
+    //selain itu
+    public void activateRelic(String condition){
+        for (Relic r:relic) {
+            if (r.getCondition().equalsIgnoreCase(condition)){
+                r.activate(this);
             }
         }
     }
