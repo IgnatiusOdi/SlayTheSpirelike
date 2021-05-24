@@ -80,7 +80,7 @@ public abstract class Kapal extends Sprite{
         return exist;
     }
 
-    public void obtainPotion(Potion p){
+    public void addPotion(Potion p){
         if (potion.size()<5){
             potion.add(p);
         }
@@ -133,7 +133,7 @@ public abstract class Kapal extends Sprite{
         return mapPosY;
     }
 
-    public void getRelic(Relic r){
+    public void addRelic(Relic r){
         relic.add(r);
     }
 
@@ -163,6 +163,12 @@ public abstract class Kapal extends Sprite{
             }
         }
         return false;
+    }
+
+    public void deactivateRelic(){
+        for (Relic r:relic) {
+            r.deactivate(this);
+        }
     }
 
     public int getBlock() {
@@ -263,7 +269,6 @@ public abstract class Kapal extends Sprite{
                 ", coin=" + coin +
                 ", nama='" + nama + '\'' +
                 ", potionLimit=" + potionLimit +
-                ", potion=" + potion +
                 '}';
     }
 }
