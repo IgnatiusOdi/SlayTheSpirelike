@@ -18,7 +18,7 @@ public class CharSelect extends JPanel {
                         height=100;
     private boolean ship2unlocked, ship3unlocked;
     private int selected = -1;
-    private Body body;
+    private final Body body;
 
     @Override
     protected void paintComponent(Graphics g) {

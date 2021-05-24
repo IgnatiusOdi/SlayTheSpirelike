@@ -62,8 +62,9 @@ public class Map extends JPanel {
 //                    g.fillRect(START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20);
                     g.drawImage(Assets.enemyTile,START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20,null);
                 } else if (mapTiles[i][j] instanceof ShopTile && mapTiles[i][j].isDiscovered()){
-                    g.setColor(Color.blue);
-                    g.fillRect(START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20);
+//                    g.setColor(Color.blue);
+//                    g.fillRect(START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20);
+                    g.drawImage(Assets.shopTile,START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20,null);
                 } else if (mapTiles[i][j] instanceof FuelTile && mapTiles[i][j].isDiscovered()){
 //                    g.setColor(Color.BLACK);
 //                    g.fillRect(START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20);

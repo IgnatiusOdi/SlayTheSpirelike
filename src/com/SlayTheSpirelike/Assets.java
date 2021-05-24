@@ -7,7 +7,8 @@ public class Assets {
     public static BufferedImage     mainMenuBackground_old,
                                     tanker,warship,carrier,
                                     board, plank1,plank2,plank3,
-                                    map, enemyTile, treasureTile, fuelTile, arrowRight, arrowDown, arrowLeft, arrowUp,
+                                    map, enemyTile, treasureTile, fuelTile, shopTile,
+                                    arrowRight, arrowDown, arrowLeft, arrowUp,
                                     fuelTank,coin,heart;
 
     public static ImageIcon mainMenuBG;
@@ -26,6 +27,7 @@ public class Assets {
         enemyTile = ImageLoader.LoadImage("resources/enemy.png");
         treasureTile = ImageLoader.LoadImage("resources/event.png");
         fuelTile = ImageLoader.LoadImage("resources/fuel.png");
+        shopTile = ImageLoader.LoadImage("resources/desainshop.png");
 
 //        board2 = ImageLoader.crop("/screen.jpg", 105, 70 ,  394-105,99 );
 
