@@ -9,6 +9,9 @@ public class Treasure extends JPanel {
 
     private Body body;
 
+    //OPENED CHEST COUNTER
+    int counteropened = 0;
+
     //BUTTON
     private final int width = 400;
     private final int height = 300;
@@ -18,18 +21,21 @@ public class Treasure extends JPanel {
     private final Image treasurepile = new ImageIcon("resources/treasurepile.png").getImage();
     private final Image closechest = new ImageIcon("resources/closechest.png").getImage();
     private final Image openchest = new ImageIcon("resources/openchest.png").getImage();
+    private final Image sallyangry = new ImageIcon("resources/sallyangry.png").getImage();
 
     //LAYOUT
+    private JPanel surprise;
+    private JLabel sally;
     private JLabel title;
     private JLabel warning;
     private JLabel bg;
-    private JLabel card1;
-    private JLabel card1layer;
-    private JLabel card2;
-    private JLabel card2layer;
-    private JLabel card3;
-    private JLabel card3layer;
     private JLabel skip;
+    private JLabel card1;
+    private JLabel card1opened;
+    private JLabel card2;
+    private JLabel card2opened;
+    private JLabel card3;
+    private JLabel card3opened;
 
     public Treasure(Body body) {
         this.body = body;
@@ -44,6 +50,14 @@ public class Treasure extends JPanel {
         setVisible(true);
 
         //INIT
+        surprise = new JPanel();
+        sally = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(sallyangry,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
         title = new JLabel("GZ!! You found treasures, what would you like to do with them?");
         bg = new JLabel() {
             @Override
@@ -55,7 +69,7 @@ public class Treasure extends JPanel {
         warning = new JLabel("WARNING!! YOU MIGHT GET SOMETHING YOU DON'T WANT!!");
         skip = new JLabel("SKIP");
 
-        card1layer = new JLabel() {
+        card1opened = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(openchest,0,0, this.getWidth(), this.getHeight(),null);
@@ -70,7 +84,7 @@ public class Treasure extends JPanel {
             }
         };
 
-        card2layer = new JLabel() {
+        card2opened = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(openchest,0,0, this.getWidth(), this.getHeight(),null);
@@ -85,7 +99,7 @@ public class Treasure extends JPanel {
             }
         };
 
-        card3layer = new JLabel() {
+        card3opened = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(openchest,0,0, this.getWidth(), this.getHeight(),null);
@@ -100,9 +114,19 @@ public class Treasure extends JPanel {
             }
         };
 
+        //SURPRISE
+        surprise.setLayout(null);
+        surprise.setSize(1162, 648);
+        surprise.setVisible(false);
+        add(surprise);
+
+        //SALLY
+        sally.setBounds(0, 0, 1162, 648);
+        surprise.add(sally);
+
         //TITLE
         title.setBounds(0, 0, this.getWidth(), 60);
-        title.setFont(new Font("Monospace", Font.BOLD, 40));
+        title.setFont(new Font("Monospace", Font.BOLD, 35));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
         title.setForeground(Color.yellow);
@@ -155,104 +179,176 @@ public class Treasure extends JPanel {
         });
         add(skip);
 
-        //CARD 1 LAYER
-        card1layer.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-        card1layer.setBounds(space, space*2, height, width);
-        card1layer.setVisible(false);
-        card1layer.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                card1layer.setVisible(false);
-                card1.setVisible(true);
-            }
-        });
-        add(card1layer);
+        //CARD 1 OPENED
+        card1opened.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+        card1opened.setBounds(space, space*2, height, width);
+        card1opened.setVisible(false);
+        add(card1opened);
 
         //CARD 1
-        card1.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+        card1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         card1.setBounds(space, space*2, height, width);
         card1.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "Are you sure want to open this chest?", "CHEST 1", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHANGE LABEL
+                    card1.setVisible(false);
+                    card1opened.setVisible(true);
+
+                    //RANDOM
+                    int random = (int) (Math.random() * 2);
+                    if (random == 0) {
+                        JOptionPane.showMessageDialog(null, "Oops you found nothing");
+                    } else {
+                        surprise.setVisible(true);
+                        for (int i = 0; i < 2; i++) {
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException interruptedException) {
+                                interruptedException.printStackTrace();
+                            }
+                        }
+                        surprise.setVisible(false);
+                        JOptionPane.showMessageDialog(null, "Sally Angry XD");
+                    }
+
+                    //ADD & CHECK COUNTER
+                    counteropened += 1;
+                    if (counteropened == 3) {
+                        body.dispose();
+                    }
+                }
+            }
+            @Override
             public void mouseEntered(MouseEvent e) {
-                card1layer.setVisible(true);
-                card1layer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                card1.setVisible(false);
+                card1.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                card1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                card1.setSize(card1.getWidth() + 10, card1.getHeight() + 10);
+                card1.setLocation(card1.getX() - 5, card1.getY() - 5);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                super.mouseEntered(e);
+                card1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+                card1.setSize(card1.getWidth() - 10, card1.getHeight() - 10);
+                card1.setLocation(card1.getX() + 5, card1.getY() + 5);
             }
         });
         add(card1);
 
         //CARD 2 LAYER
-        card2layer.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-        card2layer.setBounds((height + space) + space, space*2, height, width);
-        card2layer.setVisible(false);
-        card2layer.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                card2layer.setVisible(false);
-                card2.setVisible(true);
-            }
-        });
-        add(card2layer);
+        card2opened.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+        card2opened.setBounds((height + space) + space, space*2, height, width);
+        card2opened.setVisible(false);
+        add(card2opened);
 
         //CARD 2
-        card2.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+        card2.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         card2.setBounds((height + space) + space, space*2, height, width);
         card2.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "Are you sure want to open this chest?", "CHEST 2", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHANGE LABEL
+                    card2.setVisible(false);
+                    card2opened.setVisible(true);
+
+                    //RANDOM
+                    int random = (int) (Math.random() * 2);
+                    if (random == 0) {
+                        JOptionPane.showMessageDialog(null, "Oops you found nothing");
+                    } else {
+                        surprise.setVisible(true);
+                        for (int i = 0; i < 2; i++) {
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException interruptedException) {
+                                interruptedException.printStackTrace();
+                            }
+                        }
+                        surprise.setVisible(false);
+                        JOptionPane.showMessageDialog(null, "Sally Angry XD");
+                    }
+
+                    //ADD & CHECK COUNTER
+                    counteropened += 1;
+                    if (counteropened == 3) {
+                        body.dispose();
+                    }
+                }
+            }
+            @Override
             public void mouseEntered(MouseEvent e) {
-                card2layer.setVisible(true);
-                card2layer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                card2.setVisible(false);
+                card2.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                card2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                card2.setSize(card2.getWidth() + 10, card2.getHeight() + 10);
+                card2.setLocation(card2.getX() - 5, card2.getY() - 5);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                super.mouseEntered(e);
+                card2.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+                card2.setSize(card2.getWidth() - 10, card2.getHeight() - 10);
+                card2.setLocation(card2.getX() + 5, card2.getY() + 5);
             }
         });
         add(card2);
 
         //CARD 3 LAYER
-        card3layer.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-        card3layer.setBounds((height + space)*2 + space, space*2, height, width);
-        card3layer.setVisible(false);
-        card3layer.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                card3layer.setVisible(false);
-                card3.setVisible(true);
-            }
-        });
-        add(card3layer);
+        card3opened.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+        card3opened.setBounds((height + space)*2 + space, space*2, height, width);
+        card3opened.setVisible(false);
+        add(card3opened);
 
         //CARD 3
-        card3.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+        card3.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         card3.setBounds((height + space)*2 + space, space*2, height, width);
         card3.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "Are you sure want to open this chest?", "CHEST 3", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHANGE LABEL
+                    card3.setVisible(false);
+                    card3opened.setVisible(true);
+
+                    //RANDOM
+                    int random = (int) (Math.random() * 2);
+                    if (random == 0) {
+                        JOptionPane.showMessageDialog(null, "Oops you found nothing");
+                    } else {
+                        surprise.setVisible(true);
+                        for (int i = 0; i < 2; i++) {
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException interruptedException) {
+                                interruptedException.printStackTrace();
+                            }
+                        }
+                        surprise.setVisible(false);
+                        JOptionPane.showMessageDialog(null, "Sally Angry XD");
+                    }
+
+                    //ADD & CHECK COUNTER
+                    counteropened += 1;
+                    if (counteropened == 3) {
+                        body.dispose();
+                    }
+                }
+            }
+            @Override
             public void mouseEntered(MouseEvent e) {
-                card3layer.setVisible(true);
-                card3layer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                card3.setVisible(false);
+                card3.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                card3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                card3.setSize(card3.getWidth() + 10, card3.getHeight() + 10);
+                card3.setLocation(card3.getX() - 5, card3.getY() - 5);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                super.mouseEntered(e);
+                card3.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+                card3.setSize(card3.getWidth() - 10, card3.getHeight() - 10);
+                card3.setLocation(card3.getX() + 5, card3.getY() + 5);
             }
         });
         add(card3);
