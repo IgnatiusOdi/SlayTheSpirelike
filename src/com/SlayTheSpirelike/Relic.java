@@ -12,7 +12,6 @@ public abstract class Relic extends Sprite{
 //- End Battle
 //- Death
 //- Pick Up
-//- Damage
     //- Damaged
 //- Special
     // - One Time
@@ -49,7 +48,7 @@ public abstract class Relic extends Sprite{
         active = true;
     }
 
-    //untuk special, ketika ada sebuah event, dicari relicnya lalu jalan ini untuk cek bila relic boleh dipakai
+    //untuk special, ketika ada sebuah event, dicari relicnya lalu jalan ini untuk cek bila relic boleh dipakai //efek code manual di tempat
     public boolean activate(){
         return false;
     }
