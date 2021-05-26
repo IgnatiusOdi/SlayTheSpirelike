@@ -16,7 +16,7 @@ public class MainMenu extends JPanel {
 
         g.setColor(Color.red);
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",30));
-        g.drawString("Main Menu", body.getWidth() / 2 - 80, 35);
+        g.drawString("Slay D Ships", body.getWidth() / 2 - 100, 45);
     }
 
     public MainMenu(Body body) {
@@ -35,7 +35,7 @@ public class MainMenu extends JPanel {
                 super.paintComponent(g);
             }
         };
-        newGame.setBounds(body.getWidth()/2 -100, 100,200,50);
+        newGame.setBounds(body.getWidth()/2 -100, 200,200,50);
         newGame.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -67,7 +67,7 @@ public class MainMenu extends JPanel {
                 super.paintComponent(g);
             }
         };
-        loadGame.setBounds(body.getWidth()/2 -100, 160,200,50);
+        loadGame.setBounds(body.getWidth()/2 -100, 260,200,50);
         loadGame.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -98,7 +98,7 @@ public class MainMenu extends JPanel {
                 super.paintComponent(g);
             }
         };
-        exit.setBounds(body.getWidth()/2 -100, 220,200,50);
+        exit.setBounds(body.getWidth()/2 -100, 320,200,50);
         exit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
