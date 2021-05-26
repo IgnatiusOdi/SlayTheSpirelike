@@ -6,5 +6,15 @@ public class Warship extends Kapal {
         super(nama,"resources/warship.png");
         this.health -=5;
         this.maxhealth -=5;
+        card.add(new AttackCard());
+        card.add(new AttackCard());
+        card.add(new AttackCard());
+        card.add(new AttackCard());
+        card.add(new AttackCard());
+        card.add(new AttackCard());
+        card.add(new DefendCard());
+        card.add(new DefendCard());
+        card.add(new DefendCard());
+        //gatling gun
     }
 }

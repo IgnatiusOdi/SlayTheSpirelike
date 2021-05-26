@@ -12,12 +12,13 @@ public class ForgePotion extends Potion{
     @Override
     public void activate(Kapal kapal) {
         if (kapal.isAlive()&&active&&used){
-            //method card upgrade
+            kapal.upgradeCard();
+            used=false;
         }
     }
 
     @Override
     public void deactivate(Kapal kapal) {
-
+        kapal.downgradeCard();
     }
 }

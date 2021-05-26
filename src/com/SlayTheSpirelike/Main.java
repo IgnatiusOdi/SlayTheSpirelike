@@ -21,6 +21,8 @@ public class Main {
 //        new RevivePotion();
 
 //        Kapal k = new Aircraft("nama");
+//        k.card.get(6).activate(k);
+//        System.out.println(k);
 //        k.addRelic(new PearRelic());
 //        k.activateRelic("Passive");
 //        k.deactivateRelic();
