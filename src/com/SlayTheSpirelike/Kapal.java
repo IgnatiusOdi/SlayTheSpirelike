@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class Kapal extends Sprite{
     protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin, mapPosX, mapPosY;
     protected String nama;
-//    public static ArrayList<> card = new ArrayList();
+    protected ArrayList<Card> card;
     protected int potionLimit;
     protected ArrayList<Potion> potion;
     protected ArrayList<Relic> relic;
@@ -18,6 +18,7 @@ public abstract class Kapal extends Sprite{
     public Kapal(String nama,String image) {
         super(image);
         this.relic = new ArrayList();
+        this.card = new ArrayList();
         this.potion = new ArrayList();
         this.summon = new ArrayList();
         this.potionLimit = 5;
@@ -38,6 +39,22 @@ public abstract class Kapal extends Sprite{
 //        frame.add(panel);
 //        frame.pack();
 //        frame.setVisible(true);
+    }
+
+    public void addCard(Card c){
+        card.add(c);
+    }
+
+    public void upgradeCard(){
+        for (Card c:card) {
+            c.upgrade();
+        }
+    }
+
+    public void downgradeCard(){
+        for (Card c:card) {
+            c.downgrade();
+        }
     }
 
     @Override
