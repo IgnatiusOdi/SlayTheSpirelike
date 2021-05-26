@@ -8,7 +8,7 @@ public class HelicallCard extends Card{
 
     @Override
     public void activate(Kapal k) {
-        drainEnergy(k);
+        super.activate(k);
         k.summon(new HeliSummon());
     }
 

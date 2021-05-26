@@ -20,10 +20,12 @@ public abstract class Card {
     }
 
     public void activate(Kapal k, Enemy e){
+        drainEnergy(k);
 
     }
 
     public void activate(Kapal k){
+        drainEnergy(k);
 
     }
 
@@ -48,6 +50,19 @@ public abstract class Card {
 
     public void drainEnergy(Kapal k){
         k.setEnergy(k.getEnergy()-cost);
+    }
+
+    public void attack(Kapal k, Enemy e){
+        int attack = damage + k.getAttack();
+        if (attack>e.getBlock()){
+            attack -= e.getBlock();
+            e.setBlock(0);
+        }
+        else{
+            e.setBlock(e.getBlock()-attack);
+            attack=0;
+        }
+        e.setHealth(e.getHealth()-attack);
     }
 
     public String getNama() {

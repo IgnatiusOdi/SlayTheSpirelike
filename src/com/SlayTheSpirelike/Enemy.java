@@ -4,13 +4,14 @@ import javax.swing.*;
 
 public abstract class Enemy extends Sprite {
     protected String nama;
-    protected int health,maxhealth, skill, skillchance, atklow, atkhigh;
+    protected int health,maxhealth,block, skill, skillchance, atklow, atkhigh;
 
-    public Enemy(String nama, int health, int skill, int skillchance, int atklow, int atkhigh, String image) {
+    public Enemy(String nama, int health,int block, int skill, int skillchance, int atklow, int atkhigh, String image) {
         super(image);
         this.nama = nama;
         this.health = health;
         this.maxhealth = health;
+        this.block = block;
         this.skill = skill;
         this.skillchance = skillchance;
         this.atklow = atklow;
@@ -35,6 +36,14 @@ public abstract class Enemy extends Sprite {
     @Override
     public void setPanel(JPanel panel) {
         super.setPanel(panel);
+    }
+
+    public int getBlock() {
+        return block;
+    }
+
+    public void setBlock(int block) {
+        this.block = block;
     }
 
     public int getMaxhealth() {

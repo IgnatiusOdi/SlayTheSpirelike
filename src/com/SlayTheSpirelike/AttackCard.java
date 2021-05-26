@@ -8,9 +8,8 @@ public class AttackCard extends Card{
 
     @Override
     public void activate(Kapal k, Enemy e) {
-        drainEnergy(k);
-        int attack = damage + k.getAttack();
-        e.setHealth(e.getHealth()-attack);
+        super.activate(k, e);
+        attack(k,e);
     }
 
     @Override
