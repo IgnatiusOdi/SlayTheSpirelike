@@ -13,11 +13,14 @@ import java.awt.event.KeyListener;
  * @author CBEngineer
  */
 public class KeyboardManager implements KeyListener{
-    int key;
+    int keyCode;
+    char key;
     String input;
+    StringBuilder stringBuffer;
     boolean keyTyped, backSpace;
 
     public KeyboardManager() {
+        stringBuffer = new StringBuilder();
         input = "";
         keyTyped = false;
         backSpace = false;
@@ -25,36 +28,45 @@ public class KeyboardManager implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent ke) {
+//        keyCode = ke.getKeyChar();
         key = ke.getKeyChar();
-        if (key == KeyEvent.VK_0){
+        stringBuffer.append(ke.getKeyChar());
+//        System.out.println(stringBuffer);
+/*        if (keyCode == KeyEvent.VK_0){
             input = "0";
         }
-        if (key == KeyEvent.VK_1){
+        if (keyCode == KeyEvent.VK_1){
             input = "1";
         }
-        if (key == KeyEvent.VK_2){
+        if (keyCode == KeyEvent.VK_2){
             input = "2";
         }
-        if (key == KeyEvent.VK_3){
+        if (keyCode == KeyEvent.VK_3){
             input = "3";
         }
-        if (key == KeyEvent.VK_4){
+        if (keyCode == KeyEvent.VK_4){
             input = "4";
         }
-        if (key == KeyEvent.VK_5){
+        if (keyCode == KeyEvent.VK_5){
             input = "5";
         }
-        if (key == KeyEvent.VK_6){
+        if (keyCode == KeyEvent.VK_6){
             input = "6";
         }
-        if (key == KeyEvent.VK_7){
+        if (keyCode == KeyEvent.VK_7){
             input = "7";
         }
-        if (key == KeyEvent.VK_8){
+        if (keyCode == KeyEvent.VK_8){
             input = "8";
         }
-        if (key == KeyEvent.VK_9){
+        if (keyCode == KeyEvent.VK_9){
             input = "9";
+        }*/
+        if (stringBuffer.toString().equals("iddqd")) {
+            System.out.println("invincibility??");
+        }
+        if (key == KeyEvent.VK_ENTER) {
+            stringBuffer = new StringBuilder();
         }
         if (key == KeyEvent.VK_BACK_SPACE){
             backSpace = true;
