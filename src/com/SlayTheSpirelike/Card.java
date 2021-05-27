@@ -1,6 +1,8 @@
 package com.SlayTheSpirelike;
 
 public abstract class Card {
+    protected static int twice=1;
+    protected static int twicetime=1;
     protected String nama, type, desc;
     protected int level, cost;
     protected int damage, block, draw, energy, weak, strength;
@@ -21,12 +23,21 @@ public abstract class Card {
 
     public void activate(Kapal k, Enemy e){
         drainEnergy(k);
-
+        twice();
     }
 
     public void activate(Kapal k){
         drainEnergy(k);
+        twice();
+    }
 
+    public void twice(){
+        if(twicetime>1){
+            twicetime--;
+        }
+        if (twicetime==1){
+            twice=1;
+        }
     }
 
     public void upgrade(){
@@ -63,6 +74,22 @@ public abstract class Card {
             attack=0;
         }
         e.setHealth(e.getHealth()-attack);
+    }
+
+    public int getTwice() {
+        return twice;
+    }
+
+    public void setTwice(int twice) {
+        this.twice = twice;
+    }
+
+    public static int getTwicetime() {
+        return twicetime;
+    }
+
+    public void setTwicetime(int twicetime) {
+        this.twicetime = twicetime;
     }
 
     public String getNama() {

@@ -7,10 +7,12 @@ public class GatlingGunCard extends Card{
 
     @Override
     public void activate(Kapal k, Enemy e) {
+        for (int i = 0; i < twice; i++) {
+            e.setBlock(e.getBlock()-2);
+            attack(k,e);
+            e.setBlock(e.getBlock()+2);
+        }
         super.activate(k, e);
-        e.setBlock(e.getBlock()-2);
-        attack(k,e);
-        e.setBlock(e.getBlock()+2);
     }
 
     @Override

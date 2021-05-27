@@ -8,8 +8,10 @@ public class HelicallCard extends Card{
 
     @Override
     public void activate(Kapal k) {
+        for (int i = 0; i < twice; i++) {
+            k.summon(new HeliSummon());
+        }
         super.activate(k);
-        k.summon(new HeliSummon());
     }
 
     @Override

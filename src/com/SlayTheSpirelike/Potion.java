@@ -26,11 +26,11 @@ public abstract class Potion extends Sprite {
         this.desc = desc;
 
         //uncomment to look
-        frame = new JFrame();
-        frame.setBackground(Color.BLUE);
-        frame.add(panel);
-        frame.pack();
-        frame.setVisible(true);
+//        frame = new JFrame();
+//        frame.setBackground(Color.BLUE);
+//        frame.add(panel);
+//        frame.pack();
+//        frame.setVisible(true);
     }
 
     @Override
