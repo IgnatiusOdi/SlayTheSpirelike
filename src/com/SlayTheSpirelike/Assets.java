@@ -4,24 +4,26 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
-    public static BufferedImage     mainMenuBackground_old,
+    public static BufferedImage     mainMenuBackground_old, battle1BG,
                                     tanker,warship,carrier,
                                     board, plank1,plank2,plank3,
                                     map, enemyTile, treasureTile, fuelTile, shopTile,
                                     arrowRight, arrowDown, arrowLeft, arrowUp,
-                                    fuelTank,coin,heart;
+                                    fuelTank,coin,heart,energy;
 
     public static ImageIcon mainMenuBG;
     
     static {
         mainMenuBG = new ImageIcon("resources/mainMenu.png");
         mainMenuBackground_old = ImageLoader.LoadImage("resources/mainMenu.png");
+        battle1BG = ImageLoader.LoadImage("resources/battle1.png");
         tanker = ImageLoader.LoadImage("resources/tanker.png");
         warship = ImageLoader.LoadImage("resources/warship.png");
         carrier = ImageLoader.LoadImage("resources/aircraft.png");
         fuelTank = ImageLoader.LoadImage("resources/tank.png");
         coin = ImageLoader.LoadImage("resources/coin.png");
         heart = ImageLoader.LoadImage("resources/health.png");
+        energy = ImageLoader.LoadImage("resources/energy.png");
 
         map = ImageLoader.LoadImage("resources/map.png");
         enemyTile = ImageLoader.LoadImage("resources/enemy.png");
