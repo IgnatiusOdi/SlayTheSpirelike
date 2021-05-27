@@ -15,6 +15,6 @@ public class Warship extends Kapal {
         card.add(new DefendCard());
         card.add(new DefendCard());
         card.add(new DefendCard());
-        //gatling gun
+        card.add(new GatlingGunCard());
     }
 }

@@ -21,6 +21,9 @@ public class Main {
 //        new RevivePotion();
 
 //        Kapal k = new Aircraft("nama");
+//        Potion p2 = new DuplicationPotion();
+//        p2.activate(k);
+//        k.card.get(6).activate(k);
 //        k.card.get(6).activate(k);
 //        System.out.println(k);
 //        k.addRelic(new PearRelic());

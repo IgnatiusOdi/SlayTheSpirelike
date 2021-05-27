@@ -8,8 +8,10 @@ public class DefendCard extends Card{
 
     @Override
     public void activate(Kapal k) {
-        drainEnergy(k);
-        k.setBlock(k.getBlock()+block);
+        for (int i = 0; i < twice; i++) {
+            k.setBlock(k.getBlock()+block);
+        }
+        super.activate(k);
     }
 
     @Override
