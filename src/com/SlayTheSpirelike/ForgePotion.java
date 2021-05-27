@@ -4,7 +4,7 @@ public class ForgePotion extends Potion{
     private boolean used;
     public ForgePotion() {
         super("Forge Potion", "Kapal", "Common", "resources/ForgePotion.png","Upgrade all cards \n" +
-                "in your hand for \n" +
+                "in your deck for \n" +
                 "the rest of battle");
         used=true;
     }

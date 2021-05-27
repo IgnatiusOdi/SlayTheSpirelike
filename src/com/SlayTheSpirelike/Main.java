@@ -20,6 +20,11 @@ public class Main {
 //        new InvinciblePotion();
 //        new RevivePotion();
 
+
+//        Card c = new OneforAllCard();
+//        c.upgrade();
+//        c.upgrade();
+//        System.out.println(c.desc);
 //        Kapal k = new Aircraft("nama");
 //        Potion p2 = new DuplicationPotion();
 //        p2.activate(k);

@@ -6,6 +6,7 @@ public abstract class Card {
     protected String nama, type, desc;
     protected int level, cost;
     protected int damage, block, draw, energy, weak, strength;
+    protected boolean active;
 
     public Card(String nama, String type, int cost) {
         this.nama = nama;
@@ -18,17 +19,25 @@ public abstract class Card {
         this.energy = 0;
         this.weak = 0;
         this.strength = 0;
+        this.active=false;
         status();
     }
 
     public void activate(Kapal k, Enemy e){
         drainEnergy(k);
         twice();
+        active=false;
     }
 
     public void activate(Kapal k){
         drainEnergy(k);
         twice();
+        active=false;
+    }
+
+    //untuk strength up card
+    public void deactivate(Kapal k){
+
     }
 
     public void twice(){
@@ -63,7 +72,17 @@ public abstract class Card {
         k.setEnergy(k.getEnergy()-cost);
     }
 
+    public void restoreEnergy(Kapal k){
+        k.setEnergy(k.getEnergy()+energy);
+        if (k.getEnergy()>k.getMaxenergy()){
+            k.setEnergy(k.getMaxenergy());
+        }
+    }
+
     public void attack(Kapal k, Enemy e){
+        if (k.getAttack()<0){
+            k.setAttack(0);
+        }
         int attack = damage + k.getAttack();
         if (attack>e.getBlock()){
             attack -= e.getBlock();

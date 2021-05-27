@@ -1,8 +1,8 @@
 package com.SlayTheSpirelike;
 
-public class DefendCard extends Card{
-    public DefendCard() {
-        super("Defend", "Self", 1);
+public class SalvationCard extends Card{
+    public SalvationCard() {
+        super("Salvation", "Self", 0);
         status();
     }
 
@@ -10,7 +10,10 @@ public class DefendCard extends Card{
     public void activate(Kapal k) {
         if (active&&k.isAlive()){
             for (int i = 0; i < twice; i++) {
-                k.setBlock(k.getBlock()+block);
+                k.setHealth(k.getMaxhealth()+30/100);
+                if (k.getHealth()>k.getMaxhealth()){
+                    k.setHealth(k.getMaxhealth());
+                }
             }
             super.activate(k);
         }
@@ -19,8 +22,7 @@ public class DefendCard extends Card{
     @Override
     public void status() {
         if (level==1){
-            block=2;
-            desc = "Gain "+block+" block";
+            desc = "Heal 30% of max health";
         }
     }
 
