@@ -13,13 +13,18 @@ public class WeakeningPotion extends Potion{
         if (active&&used){
             enemy.setAtkhigh(enemy.getAtkhigh()-5);
             enemy.setAtklow(enemy.getAtklow()-5);
+            if (enemy.getAtkhigh()<0){
+                enemy.setAtkhigh(0);
+            }
+            if (enemy.getAtklow()<0){
+                enemy.setAtklow(0);
+            }
             used = false;
         }
     }
 
     @Override
     public void deactivate(Enemy enemy) {
-        enemy.setAtkhigh(enemy.getAtkhigh()+5);
-        enemy.setAtklow(enemy.getAtklow()+5);
+
     }
 }

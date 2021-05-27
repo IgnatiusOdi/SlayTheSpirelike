@@ -1,8 +1,8 @@
 package com.SlayTheSpirelike;
 
-public class DefendCard extends Card{
-    public DefendCard() {
-        super("Defend", "Self", 1);
+public class FortifyCard extends Card{
+    public FortifyCard() {
+        super("Fortify", "Self", 2);
         status();
     }
 
@@ -10,7 +10,7 @@ public class DefendCard extends Card{
     public void activate(Kapal k) {
         if (active&&k.isAlive()){
             for (int i = 0; i < twice; i++) {
-                k.setBlock(k.getBlock()+block);
+                k.setBlock(k.getBlock()*2);
             }
             super.activate(k);
         }
@@ -19,13 +19,11 @@ public class DefendCard extends Card{
     @Override
     public void status() {
         if (level==1){
-            block=2;
-            desc = "Gain "+block+" block";
+            cost=2;
         }
-    }
-
-    @Override
-    public void upgrade() {
-
+        else if(level>=2){
+            cost=1;
+        }
+        desc = "Double your block";
     }
 }
