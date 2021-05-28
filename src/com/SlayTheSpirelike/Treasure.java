@@ -76,7 +76,7 @@ public class Treasure extends JPanel {
                 super.paintComponent(g);
             }
         };
-        card1 = new JLabel() {
+        card1 = new JLabel("?") {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(closechest,0,0, this.getWidth(), this.getHeight(),null);
@@ -187,6 +187,11 @@ public class Treasure extends JPanel {
 
         //CARD 1
         card1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        card1.setForeground(Color.white);
+        card1.setFont(new Font("Monospace", Font.PLAIN, 40));
+
+        card1.setHorizontalAlignment(SwingConstants.CENTER);
+        card1.setVerticalAlignment(SwingConstants.CENTER);
         card1.setBounds(space, space*2, height, width);
         card1.addMouseListener(new MouseAdapter() {
             @Override
@@ -224,6 +229,7 @@ public class Treasure extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 card1.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                card1.setForeground(Color.red);
                 card1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 card1.setSize(card1.getWidth() + 10, card1.getHeight() + 10);
                 card1.setLocation(card1.getX() - 5, card1.getY() - 5);
@@ -231,6 +237,7 @@ public class Treasure extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {
                 card1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+                card1.setForeground(Color.white);
                 card1.setSize(card1.getWidth() - 10, card1.getHeight() - 10);
                 card1.setLocation(card1.getX() + 5, card1.getY() + 5);
             }
