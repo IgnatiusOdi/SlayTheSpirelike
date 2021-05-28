@@ -7,12 +7,12 @@ public class DefendCard extends Card{
     }
 
     @Override
-    public void activate(Kapal k) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal) {
+        if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                k.setBlock(k.getBlock()+block);
+                kapal.setBlock(kapal.getBlock()+block);
             }
-            super.activate(k);
+            super.activate(kapal);
         }
     }
 

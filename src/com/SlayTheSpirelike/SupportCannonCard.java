@@ -8,11 +8,11 @@ public class SupportCannonCard extends Card{
     }
 
     @Override
-    public void activate(Kapal k) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal) {
+        if (active&& kapal.isAlive()){
             twicetime = tt;
             twice = t;
-            drainEnergy(k);
+            drainEnergy(kapal);
             active=false;
         }
     }

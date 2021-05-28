@@ -7,14 +7,14 @@ public class ExplodingPayloadCard extends Card{
     }
 
     @Override
-    public void activate(Kapal k, Enemy e) {
-        if (active&&k.isAlive()){
-            damage*=k.getEnergy();
-            cost=k.getEnergy();
+    public void activate(Kapal kapal, Enemy enemy) {
+        if (active&& kapal.isAlive()){
+            damage*= kapal.getEnergy();
+            cost= kapal.getEnergy();
             for (int i = 0; i < twice; i++) {
-                attack(k,e);
+                attack(kapal, enemy);
             }
-            super.activate(k,e);
+            super.activate(kapal, enemy);
         }
     }
 

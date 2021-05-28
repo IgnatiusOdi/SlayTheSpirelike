@@ -9,23 +9,23 @@ public class OverclockingReactorCard extends Card{
     }
 
     @Override
-    public void activate(Kapal k) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal) {
+        if (active&& kapal.isAlive()){
             if (twice>1) twiced = true;
             for (int i = 0; i < twice; i++) {
-                k.setAttack(k.getAttack()+strength);
+                kapal.setAttack(kapal.getAttack()+strength);
             }
-            super.activate(k);
+            super.activate(kapal);
         }
     }
 
     @Override
-    public void deactivate(Kapal k) {
+    public void deactivate(Kapal kapal) {
         if (twiced){
-            k.setAttack(k.getAttack()-strength);
+            kapal.setAttack(kapal.getAttack()-strength);
             twiced=false;
         }
-        k.setAttack(k.getAttack()-strength);
+        kapal.setAttack(kapal.getAttack()-strength);
     }
 
     @Override

@@ -7,15 +7,15 @@ public class SalvationCard extends Card{
     }
 
     @Override
-    public void activate(Kapal k) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal) {
+        if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                k.setHealth(k.getMaxhealth()+30/100);
-                if (k.getHealth()>k.getMaxhealth()){
-                    k.setHealth(k.getMaxhealth());
+                kapal.setHealth(kapal.getMaxhealth()+30/100);
+                if (kapal.getHealth()> kapal.getMaxhealth()){
+                    kapal.setHealth(kapal.getMaxhealth());
                 }
             }
-            super.activate(k);
+            super.activate(kapal);
         }
     }
 

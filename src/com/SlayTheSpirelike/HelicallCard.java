@@ -7,12 +7,12 @@ public class HelicallCard extends Card{
     }
 
     @Override
-    public void activate(Kapal k) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal) {
+        if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                k.summon(new HeliSummon());
+                kapal.summon(new HeliSummon());
             }
-            super.activate(k);
+            super.activate(kapal);
         }
     }
 

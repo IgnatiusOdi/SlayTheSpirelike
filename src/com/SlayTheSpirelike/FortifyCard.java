@@ -7,12 +7,12 @@ public class FortifyCard extends Card{
     }
 
     @Override
-    public void activate(Kapal k) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal) {
+        if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                k.setBlock(k.getBlock()*2);
+                kapal.setBlock(kapal.getBlock()*2);
             }
-            super.activate(k);
+            super.activate(kapal);
         }
     }
 

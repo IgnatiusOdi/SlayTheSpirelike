@@ -22,21 +22,27 @@ public abstract class Card {
         this.active=false;
         status();
     }
-
-    public void activate(Kapal k, Enemy e){
-        drainEnergy(k);
+    //enemy
+    public void activate(Kapal kapal, Enemy enemy){
+        drainEnergy(kapal);
         twice();
         active=false;
     }
-
-    public void activate(Kapal k){
-        drainEnergy(k);
+    //self
+    public void activate(Kapal kapal){
+        drainEnergy(kapal);
+        twice();
+        active=false;
+    }
+    //battle
+    public void activate(Kapal kapal, Enemy enemy, Battle battle){
+        drainEnergy(kapal);
         twice();
         active=false;
     }
 
     //untuk strength up card
-    public void deactivate(Kapal k){
+    public void deactivate(Kapal kapal){
 
     }
 

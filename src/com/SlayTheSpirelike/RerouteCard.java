@@ -7,13 +7,13 @@ public class RerouteCard extends Card{
     }
 
     @Override
-    public void activate(Kapal k) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal) {
+        if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                restoreEnergy(k);
-                k.setHealth(k.getHealth()-2);
+                restoreEnergy(kapal);
+                kapal.setHealth(kapal.getHealth()-2);
             }
-            super.activate(k);
+            super.activate(kapal);
         }
     }
 

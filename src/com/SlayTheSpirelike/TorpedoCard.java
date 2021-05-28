@@ -6,12 +6,12 @@ public class TorpedoCard extends Card{
         status();
     }
     @Override
-    public void activate(Kapal k, Enemy e) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal, Enemy enemy) {
+        if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                attack(k,e);
+                attack(kapal, enemy);
             }
-            super.activate(k,e);
+            super.activate(kapal, enemy);
         }
     }
 

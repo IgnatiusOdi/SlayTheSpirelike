@@ -6,20 +6,20 @@ public class HeavyArtileryCard extends Card{
         status();
     }
     @Override
-    public void activate(Kapal k, Enemy e) {
-        if (active&&k.isAlive()){
+    public void activate(Kapal kapal, Enemy enemy) {
+        if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                attack(k,e);
-                e.setAtkhigh(e.getAtkhigh()-weak);
-                e.setAtklow(e.getAtklow()-weak);
-                if (e.getAtkhigh()<0){
-                    e.setAtkhigh(0);
+                attack(kapal, enemy);
+                enemy.setAtkhigh(enemy.getAtkhigh()-weak);
+                enemy.setAtklow(enemy.getAtklow()-weak);
+                if (enemy.getAtkhigh()<0){
+                    enemy.setAtkhigh(0);
                 }
-                if (e.getAtklow()<0){
-                    e.setAtklow(0);
+                if (enemy.getAtklow()<0){
+                    enemy.setAtklow(0);
                 }
             }
-            super.activate(k,e);
+            super.activate(kapal, enemy);
         }
     }
 
