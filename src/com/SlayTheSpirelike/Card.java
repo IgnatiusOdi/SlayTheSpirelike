@@ -46,7 +46,7 @@ public abstract class Card {
         active=false;
     }
 
-    public void reactivate(Kapal kapal){
+    public void reactivate(){
         active=true;
     }
 
