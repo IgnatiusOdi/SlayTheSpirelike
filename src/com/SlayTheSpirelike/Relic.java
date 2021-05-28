@@ -61,6 +61,10 @@ public abstract class Relic extends Sprite{
 
     }
 
+    public void activate(Battle battle){
+
+    }
+
     @Override
     public JLabel getItem() {
         return super.getItem();

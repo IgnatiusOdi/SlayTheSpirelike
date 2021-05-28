@@ -118,12 +118,12 @@ public class Battle extends JPanel {
     }
 
     //escape, no reward
-    private void escape(){
+    public void escape(){
         body.setPanel(returnPanel);
     }
 
     //draw x amount of cards
-    private void draw(int amount){
+    public void draw(int amount){
         Random r = new Random();
         int cardIndex;
         for (int i = 0; i < amount; i++) {

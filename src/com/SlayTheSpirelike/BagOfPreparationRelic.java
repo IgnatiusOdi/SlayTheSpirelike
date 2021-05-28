@@ -6,4 +6,12 @@ public class BagOfPreparationRelic extends Relic{
                 "of each turn, draw 1 \n" +
                 "additional cards ");
     }
+
+    @Override
+    public void activate(Battle battle) {
+        if (active){
+            battle.draw(1);
+        }
+
+    }
 }
