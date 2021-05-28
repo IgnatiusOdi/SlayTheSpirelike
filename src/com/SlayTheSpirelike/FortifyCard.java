@@ -12,7 +12,7 @@ public class FortifyCard extends Card{
             for (int i = 0; i < twice; i++) {
                 kapal.setBlock(kapal.getBlock()*2);
             }
-            super.activate(kapal);
+            finish(kapal);
         }
     }
 

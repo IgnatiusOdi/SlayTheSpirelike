@@ -15,7 +15,7 @@ public class SalvationCard extends Card{
                     kapal.setHealth(kapal.getMaxhealth());
                 }
             }
-            super.activate(kapal);
+            finish(kapal);
         }
     }
 

@@ -13,7 +13,7 @@ public class GatlingGunCard extends Card{
                 attack(kapal, enemy);
                 enemy.setBlock(enemy.getBlock() + 2);
             }
-            super.activate(kapal, enemy);
+            finish(kapal);
         }
     }
 

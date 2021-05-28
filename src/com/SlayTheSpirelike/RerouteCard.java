@@ -13,7 +13,7 @@ public class RerouteCard extends Card{
                 restoreEnergy(kapal);
                 kapal.setHealth(kapal.getHealth()-2);
             }
-            super.activate(kapal);
+            finish(kapal);
         }
     }
 

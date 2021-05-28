@@ -24,26 +24,26 @@ public abstract class Card {
     }
     //enemy
     public void activate(Kapal kapal, Enemy enemy){
-        drainEnergy(kapal);
-        twice();
-        active=false;
+
     }
     //self
     public void activate(Kapal kapal){
-        drainEnergy(kapal);
-        twice();
-        active=false;
+
     }
     //battle
     public void activate(Kapal kapal, Enemy enemy, Battle battle){
-        drainEnergy(kapal);
-        twice();
-        active=false;
+
     }
 
     //untuk strength up card
     public void deactivate(Kapal kapal){
 
+    }
+
+    public void finish(Kapal kapal){
+        drainEnergy(kapal);
+        twice();
+        active=false;
     }
 
     public void twice(){

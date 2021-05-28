@@ -15,7 +15,7 @@ public class OverclockingReactorCard extends Card{
             for (int i = 0; i < twice; i++) {
                 kapal.setAttack(kapal.getAttack()+strength);
             }
-            super.activate(kapal);
+            finish(kapal);
         }
     }
 

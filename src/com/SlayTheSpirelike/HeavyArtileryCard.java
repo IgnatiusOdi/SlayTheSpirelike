@@ -19,7 +19,7 @@ public class HeavyArtileryCard extends Card{
                     enemy.setAtklow(0);
                 }
             }
-            super.activate(kapal, enemy);
+            finish(kapal);
         }
     }
 

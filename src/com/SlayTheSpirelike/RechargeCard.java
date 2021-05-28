@@ -12,7 +12,7 @@ public class RechargeCard extends Card{
             for (int i = 0; i < twice; i++) {
                 restoreEnergy(kapal);
             }
-            super.activate(kapal);
+            finish(kapal);
         }
     }
 

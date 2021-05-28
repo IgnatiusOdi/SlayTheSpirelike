@@ -12,7 +12,7 @@ public class HelicallCard extends Card{
             for (int i = 0; i < twice; i++) {
                 kapal.summon(new HeliSummon());
             }
-            super.activate(kapal);
+            finish(kapal);
         }
     }
 

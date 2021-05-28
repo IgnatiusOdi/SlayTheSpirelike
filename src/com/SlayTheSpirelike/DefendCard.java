@@ -12,7 +12,7 @@ public class DefendCard extends Card{
             for (int i = 0; i < twice; i++) {
                 kapal.setBlock(kapal.getBlock()+block);
             }
-            super.activate(kapal);
+            finish(kapal);
         }
     }
 

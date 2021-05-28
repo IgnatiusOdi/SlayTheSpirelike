@@ -11,7 +11,7 @@ public class PlasmaNapalmCard extends Card{
             for (int i = 0; i < twice; i++) {
                 attack(kapal, enemy);
             }
-            super.activate(kapal, enemy);
+            finish(kapal);
         }
     }
 
