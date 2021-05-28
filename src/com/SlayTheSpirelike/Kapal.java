@@ -57,6 +57,12 @@ public abstract class Kapal extends Sprite{
         }
     }
 
+    public void reactivateCard(){
+        for (Card c:card) {
+            c.reactivate();
+        }
+    }
+
     @Override
     public JLabel getItem() {
         return super.getItem();

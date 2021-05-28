@@ -137,12 +137,14 @@ public class Battle extends JPanel {
     private void returnHand(){
         player.getCard().addAll(hand);
         hand.clear();
+        reactivate();
     }
 
     //return 1 card from hand to deck
     private void returnHand(int index){
         player.getCard().add(hand.get(index));
         hand.remove(index);
+        reactivate();
     }
 
     public void upgradeHand(){
@@ -154,6 +156,10 @@ public class Battle extends JPanel {
         for (Card h:hand) {
             h.downgrade();
         }
+    }
+    //turn active kembali jadi true
+    public void reactivate(){
+        player.reactivateCard();
     }
 
 
