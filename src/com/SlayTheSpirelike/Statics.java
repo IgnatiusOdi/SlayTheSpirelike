@@ -74,15 +74,15 @@ public class Statics {
         cards.clear();
         cards.add(new AttackCard());
         cards.add(new DefendCard());
-
+        cards.add(new GreedofPotCard());
         cards.add(new RechargeCard());
-
+        cards.add(new InspiringShotCard());
         cards.add(new FlakgunCard());
         cards.add(new PlasmaNapalmCard());
         cards.add(new HeavyArtileryCard());
         cards.add(new OverclockingReactorCard());
         cards.add(new FortifyCard());
-
+        cards.add(new RethinkCard());
         cards.add(new OneforAllCard());
         cards.add(new RerouteCard());
         cards.add(new ExplodingPayloadCard());
