@@ -17,7 +17,7 @@ public class StarterPackRelic extends Relic{
 
     @Override
     public void activate(Kapal kapal) {
-        if (active){
+        if (active&& kapal.isAlive()){
             int p = rnd.nextInt(40)+1;
             if (p<=20){
                 int potion = rnd.nextInt(commonPotion.size());
@@ -38,7 +38,7 @@ public class StarterPackRelic extends Relic{
                 else if (kapal instanceof Tanker){
                     kapal.addPotion(new InvinciblePotion());
                 }
-                if (kapal instanceof Warship){
+                else if (kapal instanceof Warship){
                     kapal.addPotion(new RevivePotion());
                 }
             }
@@ -46,6 +46,24 @@ public class StarterPackRelic extends Relic{
             kapal.setCoin(kapal.getCoin()+10);
             kapal.setMaxhealth(kapal.getMaxhealth()+3);
             kapal.setHealth(kapal.getHealth()+3);
+
+            int card = rnd.nextInt(cards.size()+1);
+            if (card==cards.size()){
+                if (kapal instanceof Aircraft){
+                    kapal.addCard(new HelicallCard());
+                }
+                else if (kapal instanceof Tanker){
+                    kapal.addCard(new SalvationCard());
+                }
+                else if (kapal instanceof Warship){
+                    kapal.addCard(new GatlingGunCard());
+                }
+            }
+            else{
+                kapal.addCard(cards.get(card));
+            }
+
+            active=false;
         }
     }
 

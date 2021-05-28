@@ -15,6 +15,8 @@ public class Statics {
     public static ArrayList<Relic> shopRelic = new ArrayList();
     public static ArrayList<Relic> bossRelic = new ArrayList();
 
+    public static ArrayList<Card> cards = new ArrayList();
+
     public Statics() {
         commonPotion.clear();
         uncommonPotion.clear();
@@ -68,5 +70,25 @@ public class Statics {
         bossRelic.add(new StarterPackRelic());
         bossRelic.add(new PhilosophersStoneRelic());
         bossRelic.add(new SozuRelic());
+
+        cards.clear();
+        cards.add(new AttackCard());
+        cards.add(new DefendCard());
+
+        cards.add(new RechargeCard());
+
+        cards.add(new FlakgunCard());
+        cards.add(new PlasmaNapalmCard());
+        cards.add(new HeavyArtileryCard());
+        cards.add(new OverclockingReactorCard());
+        cards.add(new FortifyCard());
+
+        cards.add(new OneforAllCard());
+        cards.add(new RerouteCard());
+        cards.add(new ExplodingPayloadCard());
+        cards.add(new TorpedoCard());
+        cards.add(new PiercingBulletCard());
+        cards.add(new SupportCannonCard());
+
     }
 }
