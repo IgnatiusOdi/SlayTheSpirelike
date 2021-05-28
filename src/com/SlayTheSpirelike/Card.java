@@ -46,6 +46,10 @@ public abstract class Card {
         active=false;
     }
 
+    public void reactivate(Kapal kapal){
+        active=true;
+    }
+
     public void twice(){
         if(twicetime>1){
             twicetime--;
