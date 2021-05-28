@@ -145,4 +145,17 @@ public class Battle extends JPanel {
         hand.remove(index);
     }
 
+    public void upgradeHand(){
+        for (Card h:hand) {
+            h.upgrade();
+        }
+    }
+    public void downgradeHand(){
+        for (Card h:hand) {
+            h.downgrade();
+        }
+    }
+
+
+
 }
