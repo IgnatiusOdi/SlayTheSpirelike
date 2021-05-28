@@ -200,6 +200,14 @@ public abstract class Kapal extends Sprite{
         return relic;
     }
 
+    public Card getCard(int index){
+        return card.get(index);
+    }
+
+    public ArrayList<Card> getCard() {
+        return card;
+    }
+
     public int getBlock() {
         return block;
     }
