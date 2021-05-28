@@ -12,6 +12,5 @@ public class BagOfPreparationRelic extends Relic{
         if (active){
             battle.draw(1);
         }
-
     }
 }

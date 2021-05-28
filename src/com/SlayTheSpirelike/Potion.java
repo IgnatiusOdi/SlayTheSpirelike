@@ -73,6 +73,26 @@ public abstract class Potion extends Sprite {
 
     }
 
+    public void activate(Battle battle){
+
+    }
+
+    public void deactivate(Battle battle){
+
+    }
+
+    public void activate(Kapal kapal, Enemy enemy, Battle battle){
+        activate(kapal);
+        activate(enemy);
+        activate(battle);
+    }
+
+    public void deactivate(Kapal kapal, Enemy enemy, Battle battle){
+        deactivate(kapal);
+        deactivate(enemy);
+        deactivate(battle);
+    }
+
     public boolean activate(){
         return false;
     }

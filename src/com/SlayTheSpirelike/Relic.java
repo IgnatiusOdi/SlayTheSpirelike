@@ -65,6 +65,22 @@ public abstract class Relic extends Sprite{
 
     }
 
+    public void deactivate(Battle battle){
+
+    }
+
+    public void activate(Kapal kapal, Enemy enemy, Battle battle){
+        activate(kapal);
+        activate(enemy);
+        activate(battle);
+    }
+
+    public void deactivate(Kapal kapal, Enemy enemy, Battle battle){
+        deactivate(kapal);
+        deactivate(enemy);
+        deactivate(battle);
+    }
+
     @Override
     public JLabel getItem() {
         return super.getItem();
