@@ -5,9 +5,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Battle extends JPanel {
     private final Body body;
+    private final JPanel returnPanel;
     private Kapal player;
 
     private JLabel  playerSprite, enemySprite,
@@ -15,6 +17,7 @@ public class Battle extends JPanel {
                     potion1, potion2, potion3,
                     endTurn;
     private ArrayList<Relic> relics;
+    private ArrayList<Card> hand;
 
     //override to draw image
     @Override
@@ -36,8 +39,9 @@ public class Battle extends JPanel {
         g.drawString(String.valueOf(player.getCoin()),380,35);
     }
 
-    public Battle(Body body, Kapal player) {
+    public Battle(Body body, JPanel returnPanel, Kapal player) {
         this.body = body;
+        this.returnPanel = returnPanel;
         this.player = player;
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
@@ -107,9 +111,38 @@ public class Battle extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 // TODO: 27/05/2021 clickEvent
+                returnHand();
             }
         });
         add(endTurn);
+    }
+
+    //escape, no reward
+    private void escape(){
+        body.setPanel(returnPanel);
+    }
+
+    //draw x amount of cards
+    private void draw(int amount){
+        Random r = new Random();
+        int cardIndex;
+        for (int i = 0; i < amount; i++) {
+            cardIndex = r.nextInt(player.getCard().size());
+            hand.add(player.getCard(cardIndex));
+            player.getCard().remove(cardIndex);
+        }
+    }
+
+    //return all cards on hand to deck
+    private void returnHand(){
+        player.getCard().addAll(hand);
+        hand.clear();
+    }
+
+    //return 1 card from hand to deck
+    private void returnHand(int index){
+        player.getCard().add(hand.get(index));
+        hand.remove(index);
     }
 
 }

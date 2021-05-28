@@ -19,6 +19,6 @@ public class EnemyTile extends MapTile{
 
     @Override
     public void enterTile() {
-        body.setPanel(new Battle(body,player));
+        body.setPanel(new Battle(body,returnPanel,player));
     }
 }
