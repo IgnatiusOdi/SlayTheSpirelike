@@ -18,6 +18,7 @@ public class Battle extends JPanel {
                     endTurn;
     private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
+    private int strengthtemp, strength;
 
     //override to draw image
     @Override
@@ -43,6 +44,8 @@ public class Battle extends JPanel {
         this.body = body;
         this.returnPanel = returnPanel;
         this.player = player;
+        this.strengthtemp=0;
+        this.strength=0;
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
 
@@ -162,6 +165,30 @@ public class Battle extends JPanel {
         player.reactivateCard();
     }
 
+    public int getStrengthtemp() {
+        return strengthtemp;
+    }
 
+    public void setStrengthtemp(int strengthtemp) {
+        this.strengthtemp = strengthtemp;
+    }
 
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    //yang strength hanya satu turn
+    public void removeStrengthtemp(){
+        player.setAttack(player.getAttack()-strengthtemp);
+        strengthtemp=0;
+    }
+    //yang strength untuk seluruh battle
+    public void removeStrength(){
+        player.setAttack(player.getAttack()-strength);
+        strength=0;
+    }
 }

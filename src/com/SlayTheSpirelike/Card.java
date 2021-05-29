@@ -35,11 +35,6 @@ public abstract class Card {
 
     }
 
-    //untuk strength up card
-    public void deactivate(Kapal kapal){
-
-    }
-
     public void finish(Kapal kapal){
         drainEnergy(kapal);
         twice();

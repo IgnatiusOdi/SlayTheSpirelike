@@ -11,25 +11,17 @@ public class PiercingBulletCard extends Card{
     }
 
     @Override
-    public void activate(Kapal kapal) {
+    public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (used&&active&& kapal.isAlive()){
             if (twice>1) twiced = true;
             for (int i = 0; i < twice; i++) {
                 kapal.setAttack(kapal.getAttack()+strength);
+                battle.setStrength(battle.getStrength()+strength);
             }
             finish(kapal);
             active=true;
             used=false;
         }
-    }
-
-    @Override
-    public void deactivate(Kapal kapal) {
-        if (twiced){
-            kapal.setAttack(kapal.getAttack()-strength);
-            twiced=false;
-        }
-        kapal.setAttack(kapal.getAttack()-strength);
     }
 
     @Override
@@ -42,5 +34,12 @@ public class PiercingBulletCard extends Card{
         }
         desc = "Gain "+strength+" attack for the \n" +
                 "rest of the battle";
+    }
+
+    @Override
+    public void reactivate() {
+        super.reactivate();
+        twiced = false;
+        used = true;
     }
 }

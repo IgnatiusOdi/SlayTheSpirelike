@@ -9,23 +9,15 @@ public class OverclockingReactorCard extends Card{
     }
 
     @Override
-    public void activate(Kapal kapal) {
+    public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             if (twice>1) twiced = true;
             for (int i = 0; i < twice; i++) {
                 kapal.setAttack(kapal.getAttack()+strength);
+                battle.setStrengthtemp(battle.getStrengthtemp()+strength);
             }
             finish(kapal);
         }
-    }
-
-    @Override
-    public void deactivate(Kapal kapal) {
-        if (twiced){
-            kapal.setAttack(kapal.getAttack()-strength);
-            twiced=false;
-        }
-        kapal.setAttack(kapal.getAttack()-strength);
     }
 
     @Override
@@ -38,5 +30,11 @@ public class OverclockingReactorCard extends Card{
         }
         desc = "Gain "+strength+" attack \n" +
                 "for one turn";
+    }
+
+    @Override
+    public void reactivate() {
+        super.reactivate();
+        twiced=false;
     }
 }

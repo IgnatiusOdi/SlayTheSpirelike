@@ -1,11 +1,13 @@
 package com.SlayTheSpirelike;
 
 public class PhilosophersStoneRelic extends Relic{
+    private boolean used;
     public PhilosophersStoneRelic() {
         super("Philosopher's Stone Relic", "Boss Drop", "Start Turn", "resources/PhilosophersStone.png","Gain 1 energy at the \n" +
                 "start of each turn. \n" +
-                "All enemies start \n" +
+                "Enemy start \n" +
                 "with 1 attack.");
+        used = true;
     }
 
     @Override
@@ -17,9 +19,16 @@ public class PhilosophersStoneRelic extends Relic{
 
     @Override
     public void activate(Enemy enemy) {
-        if (active){
+        if (active&&used){
             enemy.setAtkhigh(1);
             enemy.setAtklow(1);
+            used=false;
         }
+    }
+
+    @Override
+    public void deactivate(Kapal kapal) {
+        super.deactivate(kapal);
+        used = true;
     }
 }

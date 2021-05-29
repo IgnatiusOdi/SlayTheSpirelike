@@ -3,6 +3,7 @@ package com.SlayTheSpirelike;
 public class GatlingGunCard extends Card{
     public GatlingGunCard() {
         super("Gatling Gun", "Enemy", 2);
+        status();
     }
 
     @Override
