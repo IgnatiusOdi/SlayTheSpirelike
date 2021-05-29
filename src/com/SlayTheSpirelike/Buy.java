@@ -30,6 +30,8 @@ public class Buy extends JPanel {
     private JLabel coinplayer;
     private JLabel back;
 
+    //CARD 1
+    int random1 = (int) (Math.random() * Statics.cards.size());
     private JLabel card1;
     private JButton card1button;
     private Boolean card1bought;
