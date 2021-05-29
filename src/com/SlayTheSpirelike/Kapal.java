@@ -161,11 +161,10 @@ public abstract class Kapal extends Sprite{
     }
 
     //waktu battle
-    public void activateRelic(String condition, Enemy enemy){
+    public void activateRelic(String condition, Enemy enemy, Battle battle){
         for (Relic r:relic) {
             if (r.getCondition().equalsIgnoreCase(condition)){
-                r.activate(this);
-                r.activate(enemy);
+                r.activate(this,enemy,battle);
             }
         }
     }
