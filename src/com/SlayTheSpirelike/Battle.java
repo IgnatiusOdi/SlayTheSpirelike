@@ -38,6 +38,13 @@ public class Battle extends JPanel {
 
         g.drawImage(Assets.coin,350,15,25,25,null);
         g.drawString(String.valueOf(player.getCoin()),380,35);
+
+        g.drawImage(Assets.deck, 10,580,40,55,null);
+        g.setColor(Color.red);
+        g.fillOval(40,620,25,25);
+        g.setColor(Color.BLACK);
+        g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",15));
+        g.drawString(String.valueOf(player.getCard().size()),48,638);
     }
 
     public Battle(Body body, JPanel returnPanel, Kapal player) {
@@ -46,18 +53,21 @@ public class Battle extends JPanel {
         this.player = player;
         this.strengthtemp=0;
         this.strength=0;
+        hand = new ArrayList<>(5);
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
 
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
 
-        // TODO: 27/05/2021 potion is null, cannot access
-//        potion1 = player.getPotion(0).getItem();
-//        potion1.setBounds(400,15,25,25);
-//        add(potion1);
+        // TODO: 27/05/2021 potion is null, untested
+        if (player.getPotion().size() != 0) {
+            potion1 = player.getPotion(0).getItem();
+            potion1.setBounds(400,15,25,25);
+            add(potion1);
+        }
 
-        // TODO: 27/05/2021 Relic is empty
+        // TODO: 27/05/2021 Relic is empty, untested
         relics = player.getRelic();
         JLabel[] relicLabel = new JLabel[relics.size()];
         for (int i = 0; i < relics.size(); i++) {
@@ -108,7 +118,7 @@ public class Battle extends JPanel {
                 g.drawString("End Turn",10,28);
             }
         };
-        endTurn.setBounds(900,500,130,40);
+        endTurn.setBounds(900,550,130,40);
         endTurn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -118,6 +128,15 @@ public class Battle extends JPanel {
             }
         });
         add(endTurn);
+
+        //battle Begins
+
+        draw(5);
+
+        //display card
+        for (Card card : hand) {
+
+        }
     }
 
     //escape, no reward
