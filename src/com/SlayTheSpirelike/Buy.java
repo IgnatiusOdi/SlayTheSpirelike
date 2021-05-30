@@ -22,6 +22,31 @@ public class Buy extends JPanel {
     private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
     private final Image black = new ImageIcon("resources/black.png").getImage();
 
+    private final Image attackcard = new ImageIcon("resources/").getImage();
+    private final Image defendcard = new ImageIcon("resources/").getImage();
+    private final Image explodingpayloadcard = new ImageIcon("resources/").getImage();
+    private final Image flakguncard = new ImageIcon("resources/").getImage();
+    private final Image fortifycard = new ImageIcon("resources/").getImage();
+    private final Image gatlingguncard = new ImageIcon("resources/").getImage();
+    private final Image greedofpot = new ImageIcon("resources/").getImage();
+    private final Image heavyartilerycard = new ImageIcon("resources/").getImage();
+    private final Image helicallcard = new ImageIcon("resources/").getImage();
+    private final Image inspiringshotcard = new ImageIcon("resources/").getImage();
+    private final Image oneforallcard = new ImageIcon("resources/").getImage();
+    private final Image overclockingreactorcard = new ImageIcon("resources/").getImage();
+    private final Image piercingbulletcard = new ImageIcon("resources/").getImage();
+    private final Image plasmanapalmcard = new ImageIcon("resources/").getImage();
+    private final Image rechargecard = new ImageIcon("resources/").getImage();
+    private final Image reroutecard = new ImageIcon("resources/").getImage();
+    private final Image rethinkcard = new ImageIcon("resources/").getImage();
+    private final Image salvationcard = new ImageIcon("resources/").getImage();
+    private final Image supportcannoncard = new ImageIcon("resources/").getImage();
+    private final Image torpedocard = new ImageIcon("resources/").getImage();
+
+    private final Image cauldron = new ImageIcon("resources/Cauldron.png").getImage();
+    private final Image cookie = new ImageIcon("resources/cookie.png").getImage();
+    private final Image membershipcard = new ImageIcon("resources/MembershipCard.png").getImage();
+
     //PROPERTIES
     private JLabel bg;
     private JLabel title;
@@ -38,30 +63,35 @@ public class Buy extends JPanel {
     private JLabel card1layer;
     private int card1price;
 
+    //CARD 2
     private JLabel card2;
     private JButton card2button;
     private Boolean card2bought;
     private JLabel card2layer;
     private int card2price;
 
+    //CARD 3
     private JLabel card3;
     private JButton card3button;
     private Boolean card3bought;
     private JLabel card3layer;
     private int card3price;
 
+    //RELIC 1
     private JLabel relic1;
     private JButton relic1button;
     private Boolean relic1bought;
     private JLabel relic1layer;
     private int relic1price;
 
+    //RELIC 2
     private JLabel relic2;
     private JButton relic2button;
     private Boolean relic2bought;
     private JLabel relic2layer;
     private int relic2price;
 
+    //RELIC 3
     private JLabel relic3;
     private JButton relic3button;
     private Boolean relic3bought;
@@ -136,7 +166,7 @@ public class Buy extends JPanel {
         card1button = new JButton();
         card1bought = false;
         card1layer = new JLabel();
-        card1price = 100;
+        card1price = 200;
 
         card2 = new JLabel("CARD 2") {
             @Override
@@ -160,43 +190,43 @@ public class Buy extends JPanel {
         card3button = new JButton();
         card3bought = false;
         card3layer = new JLabel();
-        card3price = 300;
+        card3price = 200;
 
-        relic1 = new JLabel("RELIC 1") {
+        relic1 = new JLabel("Membership Card Relic") {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(black,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(membershipcard,0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         relic1button = new JButton();
         relic1bought = false;
         relic1layer = new JLabel();
-        relic1price = 400;
+        relic1price = 300;
 
-        relic2 = new JLabel("RELIC 2") {
+        relic2 = new JLabel("Cauldron Relic") {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(black,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(cauldron,0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         relic2button = new JButton();
         relic2bought = false;
         relic2layer = new JLabel();
-        relic2price = 500;
+        relic2price = 300;
 
-        relic3 = new JLabel("RELIC 3") {
+        relic3 = new JLabel("Cookie Relic") {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(black,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(cookie,0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         relic3button = new JButton();
         relic3bought = false;
         relic3layer = new JLabel();
-        relic3price = 600;
+        relic3price = 300;
 
         //---------------------------------------------------------------------------------------------//
 
