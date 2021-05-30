@@ -141,7 +141,7 @@ public class Treasure extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "The chance doesn't come twice. Are you sure?", "EXIT", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
-                    body.dispose();
+                    body.setPanel(returnPanel);
                 }
             }
             @Override
