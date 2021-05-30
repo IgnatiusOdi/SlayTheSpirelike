@@ -7,8 +7,8 @@ import com.SlayTheSpirelike.Shop;
 import javax.swing.*;
 
 public class ShopTile extends MapTile{
-    private Body body;
-    private Shop shop;
+    private final Body body;
+    private final Shop shop;
 
     public ShopTile(Body body, JPanel returnPanel, Kapal player) {
         shop = new Shop(body,returnPanel,player);

@@ -312,7 +312,7 @@ public class Map extends JPanel {
                 x = r.nextInt(8);
                 y = r.nextInt(5);
             } while (mapTiles[y][x]!=null || (x==0 && y==0));
-            mapTiles[y][x] = new TreasureTile();
+            mapTiles[y][x] = new TreasureTile(body,this,player);
         }
         for (int i = 0; i < 10; i++) {
             do {
