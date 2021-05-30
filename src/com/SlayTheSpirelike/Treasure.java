@@ -278,7 +278,7 @@ public class Treasure extends JPanel {
                     //ADD & CHECK COUNTER
                     counteropened += 1;
                     if (counteropened == 3) {
-                        body.dispose();
+                        body.setPanel(returnPanel);
                         JOptionPane.showMessageDialog(null, "Well, you opened all the treasure, so bye bye!!");
                     }
                 }
@@ -406,7 +406,7 @@ public class Treasure extends JPanel {
                     //ADD & CHECK COUNTER
                     counteropened += 1;
                     if (counteropened == 3) {
-                        body.dispose();
+                        body.setPanel(returnPanel);
                         JOptionPane.showMessageDialog(null, "Well, you opened all the treasure, so bye bye!!");
                     }
                 }
@@ -534,7 +534,7 @@ public class Treasure extends JPanel {
                     //ADD & CHECK COUNTER
                     counteropened += 1;
                     if (counteropened == 3) {
-                        body.dispose();
+                        body.setPanel(returnPanel);
                         JOptionPane.showMessageDialog(null, "Well, you opened all the treasure, so bye bye!!");
                     }
                 }
