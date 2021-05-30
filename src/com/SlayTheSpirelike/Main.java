@@ -1,5 +1,7 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Potions.*;
+
 /**
  * Slay the Spirelike <br>
  * Alexander Kevin <br>
@@ -11,7 +13,7 @@ package com.SlayTheSpirelike;
 public class Main {
 
     public static void main(String[] args) {
-//        new Statics();//initialize static potions
+        new Statics();//initialize static potions
         Body body = new Body(1162,648);
 
 //        new SummonPotion();
@@ -24,6 +26,9 @@ public class Main {
 //        c.upgrade();
 //        System.out.println(c.desc);
 //        Kapal k = new Aircraft("nama");
+//        Relic r = new CauldronRelic();
+//        r.activate(k);
+//        k.viewPotion();
 //        Potion p2 = new DuplicationPotion();
 //        p2.activate(k);
 //        k.card.get(6).activate(k);
@@ -44,7 +49,7 @@ public class Main {
 //        p.deactivate(k);
 //        System.out.println(k);
 
-//        k.obtainPotion(new AttackPotion());
+//        k.addPotion(new AttackPotion());
 //        System.out.println(k.isPotion("Attack Potion"));
 //        System.out.println(k.isAlive());
 

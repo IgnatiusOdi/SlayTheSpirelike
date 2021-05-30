@@ -41,6 +41,10 @@ public abstract class Kapal extends Sprite{
 //        frame.setVisible(true);
     }
 
+    public void setTwice(int t){
+        card.get(0).setTwice(t);
+    }
+
     public void addCard(Card c){
         card.add(c);
     }

@@ -1,6 +1,9 @@
 package com.SlayTheSpirelike;
 
 
+import com.SlayTheSpirelike.Cards.AttackCard;
+import com.SlayTheSpirelike.Cards.DefendCard;
+
 public class Tanker extends Kapal {
     public Tanker(String nama) {
         super(nama,"resources/tanker.png");

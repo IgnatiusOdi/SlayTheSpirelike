@@ -1,5 +1,9 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Potions.InvinciblePotion;
+import com.SlayTheSpirelike.Potions.RevivePotion;
+import com.SlayTheSpirelike.Potions.SummonPotion;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

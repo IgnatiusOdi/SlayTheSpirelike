@@ -1,5 +1,9 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Cards.AttackCard;
+import com.SlayTheSpirelike.Cards.DefendCard;
+import com.SlayTheSpirelike.Cards.HelicallCard;
+
 public class Aircraft extends Kapal {
     public Aircraft(String nama) {
         super(nama,"resources/aircraft.png");

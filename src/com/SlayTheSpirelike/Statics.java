@@ -1,5 +1,9 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Cards.*;
+import com.SlayTheSpirelike.Potions.*;
+import com.SlayTheSpirelike.Relics.*;
+
 import java.util.ArrayList;
 
 public class Statics {
