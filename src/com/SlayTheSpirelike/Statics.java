@@ -9,22 +9,22 @@ import java.util.ArrayList;
 public class Statics {
     //utility untuk dapat potion
     //karena special spesifik untuk tiap kapal, langsung masukan potion ketika dapat special
-    public static ArrayList<Potion> commonPotion = new ArrayList();
-    public static ArrayList<Potion> uncommonPotion = new ArrayList();
-    public static ArrayList<Potion> rarePotion = new ArrayList();
+    public static ArrayList<Potion> commonPotion = new ArrayList<>();
+    public static ArrayList<Potion> uncommonPotion = new ArrayList<>();
+    public static ArrayList<Potion> rarePotion = new ArrayList<>();
 
-    public static ArrayList<Relic> commonRelic = new ArrayList();
-    public static ArrayList<Relic> uncommonRelic = new ArrayList();
-    public static ArrayList<Relic> rareRelic = new ArrayList();
-    public static ArrayList<Relic> shopRelic = new ArrayList();
-    public static ArrayList<Relic> bossRelic = new ArrayList();
+    public static ArrayList<Relic> commonRelic = new ArrayList<>();
+    public static ArrayList<Relic> uncommonRelic = new ArrayList<>();
+    public static ArrayList<Relic> rareRelic = new ArrayList<>();
+    public static ArrayList<Relic> shopRelic = new ArrayList<>();
+    public static ArrayList<Relic> bossRelic = new ArrayList<>();
 
-    public static ArrayList<Card> cards = new ArrayList();
+    public static ArrayList<Card> cards = new ArrayList<>();
 
-    public Statics() {
-        commonPotion.clear();
-        uncommonPotion.clear();
-        rarePotion.clear();
+    static {
+//        commonPotion.clear();
+//        uncommonPotion.clear();
+//        rarePotion.clear();
 
         commonPotion.add(new AttackPotion());
         commonPotion.add(new BlockPotion());
@@ -44,11 +44,11 @@ public class Statics {
         rarePotion.add(new AppleJuicePotion());
         rarePotion.add(new BrewPotion());
 
-        commonRelic.clear();
-        uncommonRelic.clear();
-        rareRelic.clear();
-        shopRelic.clear();
-        bossRelic.clear();
+//        commonRelic.clear();
+//        uncommonRelic.clear();
+//        rareRelic.clear();
+//        shopRelic.clear();
+//        bossRelic.clear();
 
         commonRelic.add(new CannontizerRelic());
         commonRelic.add(new BagOfPreparationRelic());
@@ -75,7 +75,7 @@ public class Statics {
         bossRelic.add(new PhilosophersStoneRelic());
         bossRelic.add(new SozuRelic());
 
-        cards.clear();
+//        cards.clear();
         cards.add(new AttackCard());
         cards.add(new DefendCard());
         cards.add(new GreedofPotCard());
