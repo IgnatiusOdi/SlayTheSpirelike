@@ -11,9 +11,6 @@ public class Buy extends JPanel {
     private Shop shop;
     private Kapal kapal;
 
-    //VARIABLE
-    int pcoin = 1000;
-
     //SIZE
     private final int width = 290;
     private final int height = 162;
@@ -33,6 +30,8 @@ public class Buy extends JPanel {
     private JLabel coinplayer;
     private JLabel back;
 
+    //CARD 1
+    int random1 = (int) (Math.random() * Statics.cards.size());
     private JLabel card1;
     private JButton card1button;
     private Boolean card1bought;
@@ -112,7 +111,7 @@ public class Buy extends JPanel {
                 super.paintComponent(g);
             }
         };
-        coinplayer = new JLabel(String.valueOf(pcoin)){
+        coinplayer = new JLabel(String.valueOf(kapal.getCoin())){
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(wood,0,0,100,50,null);
@@ -315,14 +314,14 @@ public class Buy extends JPanel {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (pcoin >= card1price) {
+                    if (kapal.getCoin() >= card1price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         card1.setEnabled(false);
                         card1bought = true;
                         card1layer.setVisible(true);
-                        pcoin -= card1price;
-                        coinplayer.setText(String.valueOf(pcoin));
+                        kapal.setCoin(kapal.getCoin() - card1price);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -356,14 +355,14 @@ public class Buy extends JPanel {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (pcoin >= card2price) {
+                    if (kapal.getCoin() >= card2price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         card2.setEnabled(false);
                         card2bought = true;
                         card2layer.setVisible(true);
-                        pcoin -= card2price;
-                        coinplayer.setText(String.valueOf(pcoin));
+                        kapal.setCoin(kapal.getCoin() - card2price);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -398,14 +397,14 @@ public class Buy extends JPanel {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (pcoin >= card3price) {
+                    if (kapal.getCoin() >= card3price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         card3.setEnabled(false);
                         card3bought = true;
                         card3layer.setVisible(true);
-                        pcoin -= card3price;
-                        coinplayer.setText(String.valueOf(pcoin));
+                        kapal.setCoin(kapal.getCoin() - card3price);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -440,14 +439,14 @@ public class Buy extends JPanel {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (pcoin >= relic1price) {
+                    if (kapal.getCoin() >= relic1price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         relic1.setEnabled(false);
                         relic1bought = true;
                         relic1layer.setVisible(true);
-                        pcoin -= relic1price;
-                        coinplayer.setText(String.valueOf(pcoin));
+                        kapal.setCoin(kapal.getCoin() - relic1price);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -482,14 +481,14 @@ public class Buy extends JPanel {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (pcoin >= relic2price) {
+                    if (kapal.getCoin() >= relic2price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         relic2.setEnabled(false);
                         relic2bought = true;
                         relic2layer.setVisible(true);
-                        pcoin -= relic2price;
-                        coinplayer.setText(String.valueOf(pcoin));
+                        kapal.setCoin(kapal.getCoin() - relic2price);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -524,14 +523,14 @@ public class Buy extends JPanel {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (pcoin >= relic3price) {
+                    if (kapal.getCoin() >= relic3price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         relic3.setEnabled(false);
                         relic3bought = true;
                         relic3layer.setVisible(true);
-                        pcoin -= relic3price;
-                        coinplayer.setText(String.valueOf(pcoin));
+                        kapal.setCoin(kapal.getCoin() - relic3price);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);

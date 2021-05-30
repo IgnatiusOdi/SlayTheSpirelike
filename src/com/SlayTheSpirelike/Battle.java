@@ -7,7 +7,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.SlayTheSpirelike.Statics.*;
+import static com.SlayTheSpirelike.Statics.rarePotion;
+
 public class Battle extends JPanel {
+    private Random rnd;
     private final Body body;
     private final JPanel returnPanel;
     private Kapal player;
@@ -19,6 +23,8 @@ public class Battle extends JPanel {
     private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
     private int strengthtemp, strength;
+    private int potionchance;
+    private boolean invincible, nopotion;
 
     //override to draw image
     @Override
@@ -53,6 +59,10 @@ public class Battle extends JPanel {
         this.player = player;
         this.strengthtemp=0;
         this.strength=0;
+        this.potionchance = 100;
+        this.invincible = false;
+        this.nopotion = false;
+        this.rnd = new Random();
         hand = new ArrayList<>(5);
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
@@ -209,5 +219,58 @@ public class Battle extends JPanel {
     public void removeStrength(){
         player.setAttack(player.getAttack()-strength);
         strength=0;
+    }
+
+    public int getPotionchance() {
+        return potionchance;
+    }
+
+    public void setPotionchance(int potionchance) {
+        this.potionchance = potionchance;
+    }
+
+    public void potionReward(){
+        if (!nopotion){
+            int p = rnd.nextInt(potionchance)+1;
+            if (p<=20){
+                int potion = rnd.nextInt(commonPotion.size());
+                player.addPotion(commonPotion.get(potion));
+            }
+            else if(p<=30){
+                int potion = rnd.nextInt(uncommonPotion.size());
+                player.addPotion(uncommonPotion.get(potion));
+            }
+            else if(p<=35){
+                int potion = rnd.nextInt(rarePotion.size());
+                player.addPotion(rarePotion.get(potion));
+            }
+            else if(p<=40){
+                if (player instanceof Aircraft){
+                    player.addPotion(new SummonPotion());
+                }
+                else if (player instanceof Tanker){
+                    player.addPotion(new InvinciblePotion());
+                }
+                if (player instanceof Warship){
+                    player.addPotion(new RevivePotion());
+                }
+            }
+        }
+    }
+
+    public boolean isInvincible() {
+        return invincible;
+    }
+
+    public void setInvincible(boolean invincible) {
+        this.invincible = invincible;
+    }
+
+    public boolean isNopotion() {
+        return nopotion;
+    }
+
+    public void setNopotion(boolean nopotion) {
+        this.nopotion = nopotion;
     }
 }

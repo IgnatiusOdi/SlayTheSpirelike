@@ -15,7 +15,9 @@ public class SozuRelic extends Relic{
     }
 
     @Override
-    public boolean activate() {
-        return active;
+    public void activate(Battle battle) {
+        if (active){
+            battle.setNopotion(true);
+        }
     }
 }

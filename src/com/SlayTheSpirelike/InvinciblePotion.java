@@ -8,9 +8,10 @@ public class InvinciblePotion extends Potion{
     }
 
     @Override
-    public boolean activate(){
-        boolean on = active;
-        active = false;
-        return on;
+    public void activate(Battle battle) {
+        if (active){
+            battle.setInvincible(true);
+            active=false;
+        }
     }
 }

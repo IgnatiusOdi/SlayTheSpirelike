@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 public class Treasure extends JPanel {
 
     private Body body;
+    private Kapal kapal;
+    private JPanel returnPanel;
 
     //OPENED CHEST COUNTER
     int counteropened = 0;
@@ -21,11 +23,8 @@ public class Treasure extends JPanel {
     private final Image treasurepile = new ImageIcon("resources/treasurepile.png").getImage();
     private final Image closechest = new ImageIcon("resources/closechest.png").getImage();
     private final Image openchest = new ImageIcon("resources/openchest.png").getImage();
-    private final Image sallyangry = new ImageIcon("resources/sallyangry.png").getImage();
 
     //LAYOUT
-    private JPanel surprise;
-    private JLabel sally;
     private JLabel title;
     private JLabel warning;
     private JLabel bg;
@@ -37,8 +36,10 @@ public class Treasure extends JPanel {
     private JLabel card3;
     private JLabel card3opened;
 
-    public Treasure(Body body) {
+    public Treasure(Body body, Kapal kapal, JPanel returnPanel) {
         this.body = body;
+        this.kapal = kapal;
+        this.returnPanel = returnPanel;
         init();
     }
 
@@ -50,14 +51,6 @@ public class Treasure extends JPanel {
         setVisible(true);
 
         //INIT
-        surprise = new JPanel();
-        sally = new JLabel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(sallyangry,0,0, this.getWidth(), this.getHeight(),null);
-                super.paintComponent(g);
-            }
-        };
         title = new JLabel("GZ!! You found treasures, what would you like to do with them?");
         bg = new JLabel() {
             @Override
@@ -113,16 +106,6 @@ public class Treasure extends JPanel {
                 super.paintComponent(g);
             }
         };
-
-        //SURPRISE
-        surprise.setLayout(null);
-        surprise.setSize(1162, 648);
-        surprise.setVisible(false);
-        add(surprise);
-
-        //SALLY
-        sally.setBounds(0, 0, 1162, 648);
-        surprise.add(sally);
 
         //TITLE
         title.setBounds(0, 0, this.getWidth(), 60);
@@ -180,18 +163,22 @@ public class Treasure extends JPanel {
         add(skip);
 
         //CARD 1 OPENED
-        card1opened.setBorder(BorderFactory.createLineBorder(Color.red, 2));
         card1opened.setBounds(space, space*2, height, width);
         card1opened.setVisible(false);
         add(card1opened);
 
+        //CARD 2 OPENED
+        card2opened.setBounds((height + space) + space, space*2, height, width);
+        card2opened.setVisible(false);
+        add(card2opened);
+
+        //CARD 3 OPENED
+        card3opened.setBounds((height + space)*2 + space, space*2, height, width);
+        card3opened.setVisible(false);
+        add(card3opened);
+
         //CARD 1
         card1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-        card1.setForeground(Color.white);
-        card1.setFont(new Font("Monospace", Font.PLAIN, 40));
-
-        card1.setHorizontalAlignment(SwingConstants.CENTER);
-        card1.setVerticalAlignment(SwingConstants.CENTER);
         card1.setBounds(space, space*2, height, width);
         card1.addMouseListener(new MouseAdapter() {
             @Override
@@ -203,33 +190,107 @@ public class Treasure extends JPanel {
                     card1opened.setVisible(true);
 
                     //RANDOM
-                    int random = (int) (Math.random() * 2);
-                    if (random == 0) {
+                    int random = (int) (Math.random() * 10);
+                    if (random < 6) {
+                        //60% ZONK
                         JOptionPane.showMessageDialog(null, "Oops you found nothing");
+                    } else if (random < 8) {
+                        //20% POTION
+                        random = (int) (Math.random() * 10);
+                        if (random < 7) {
+                            //70% COMMON
+                            random = (int) (Math.random() * Statics.commonPotion.size());
+                            kapal.addPotion(Statics.commonPotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonPotion.get(random).nama, "Common Potion", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random < 9) {
+                            //20% UNCOMMON
+                            random = (int) (Math.random() * Statics.uncommonPotion.size());
+                            kapal.addPotion(Statics.uncommonPotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.uncommonPotion.get(random).nama, "Uncommon Potion", JOptionPane.PLAIN_MESSAGE);
+                        } else {
+                            //10% RARE
+                            random = (int) (Math.random() * Statics.rarePotion.size());
+                            kapal.addPotion(Statics.rarePotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.rarePotion.get(random).nama, "Rare Potion", JOptionPane.PLAIN_MESSAGE);
+                        }
+                    } else if (random < 9) {
+                        //10% CARD
+                        random = (int) (Math.random() * Statics.cards.size());
+                        kapal.addCard(Statics.cards.get(random));
+                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
                     } else {
-                        surprise.setVisible(true);
-                        for (int i = 0; i < 2; i++) {
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException interruptedException) {
-                                interruptedException.printStackTrace();
+                        //10% RELIC
+                        random = (int) (Math.random() * 10);
+                        if (random < 7) {
+                            //70% COMMON
+                            random = (int) (Math.random() * Statics.commonRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.commonRelic.size(); i++) {
+                                if (Statics.commonRelic.get(i) == Statics.commonRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 100);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.commonRelic.get(random).nama + ". Instead you get 100 Coin", "Common Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.commonRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonRelic.get(random).nama, "Common Relic", JOptionPane.PLAIN_MESSAGE);
+                            }
+                        } else if (random < 9) {
+                            //UNCOMMON 20%
+                            random = (int) (Math.random() * Statics.uncommonRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.uncommonRelic.size(); i++) {
+                                if (Statics.uncommonRelic.get(i) == Statics.uncommonRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 250);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.uncommonRelic.get(random).nama + ". Instead you get 250 Coin", "Uncommon Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.uncommonRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.uncommonRelic.get(random).nama, "Uncommon Relic", JOptionPane.PLAIN_MESSAGE);
+                            }
+                        } else {
+                            //RARE 10%
+                            random = (int) (Math.random() * Statics.rareRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.rareRelic.size(); i++) {
+                                if (Statics.rareRelic.get(i) == Statics.rareRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 500);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.rareRelic.get(random).nama + ". Instead you get 500 Coin", "Rare Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.rareRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.rareRelic.get(random).nama, "Rare Relic", JOptionPane.PLAIN_MESSAGE);
                             }
                         }
-                        surprise.setVisible(false);
-                        JOptionPane.showMessageDialog(null, "Sally Angry XD");
                     }
 
                     //ADD & CHECK COUNTER
                     counteropened += 1;
                     if (counteropened == 3) {
                         body.dispose();
+                        JOptionPane.showMessageDialog(null, "Well, you opened all the treasure, so bye bye!!");
                     }
                 }
             }
             @Override
             public void mouseEntered(MouseEvent e) {
                 card1.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                card1.setText("?");
                 card1.setForeground(Color.red);
+                card1.setFont(new Font("Monospace", Font.ITALIC, 100));
+                card1.setHorizontalAlignment(SwingConstants.CENTER);
+                card1.setVerticalAlignment(SwingConstants.CENTER);
                 card1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 card1.setSize(card1.getWidth() + 10, card1.getHeight() + 10);
                 card1.setLocation(card1.getX() - 5, card1.getY() - 5);
@@ -237,18 +298,12 @@ public class Treasure extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {
                 card1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-                card1.setForeground(Color.white);
+                card1.setText("");
                 card1.setSize(card1.getWidth() - 10, card1.getHeight() - 10);
                 card1.setLocation(card1.getX() + 5, card1.getY() + 5);
             }
         });
         add(card1);
-
-        //CARD 2 LAYER
-        card2opened.setBorder(BorderFactory.createLineBorder(Color.red, 2));
-        card2opened.setBounds((height + space) + space, space*2, height, width);
-        card2opened.setVisible(false);
-        add(card2opened);
 
         //CARD 2
         card2.setBorder(BorderFactory.createLineBorder(Color.white, 2));
@@ -263,32 +318,107 @@ public class Treasure extends JPanel {
                     card2opened.setVisible(true);
 
                     //RANDOM
-                    int random = (int) (Math.random() * 2);
-                    if (random == 0) {
+                    int random = (int) (Math.random() * 10);
+                    if (random < 6) {
+                        //60% ZONK
                         JOptionPane.showMessageDialog(null, "Oops you found nothing");
+                    } else if (random < 8) {
+                        //20% POTION
+                        random = (int) (Math.random() * 10);
+                        if (random < 7) {
+                            //70% COMMON
+                            random = (int) (Math.random() * Statics.commonPotion.size());
+                            kapal.addPotion(Statics.commonPotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonPotion.get(random).nama, "Common Potion", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random < 9) {
+                            //20% UNCOMMON
+                            random = (int) (Math.random() * Statics.uncommonPotion.size());
+                            kapal.addPotion(Statics.uncommonPotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.uncommonPotion.get(random).nama, "Uncommon Potion", JOptionPane.PLAIN_MESSAGE);
+                        } else {
+                            //10% RARE
+                            random = (int) (Math.random() * Statics.rarePotion.size());
+                            kapal.addPotion(Statics.rarePotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.rarePotion.get(random).nama, "Rare Potion", JOptionPane.PLAIN_MESSAGE);
+                        }
+                    } else if (random < 9) {
+                        //10% CARD
+                        random = (int) (Math.random() * Statics.cards.size());
+                        kapal.addCard(Statics.cards.get(random));
+                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
                     } else {
-                        surprise.setVisible(true);
-                        for (int i = 0; i < 2; i++) {
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException interruptedException) {
-                                interruptedException.printStackTrace();
+                        //10% RELIC
+                        random = (int) (Math.random() * 10);
+                        if (random < 7) {
+                            //70% COMMON
+                            random = (int) (Math.random() * Statics.commonRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.commonRelic.size(); i++) {
+                                if (Statics.commonRelic.get(i) == Statics.commonRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 100);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.commonRelic.get(random).nama + ". Instead you get 100 Coin", "Common Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.commonRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonRelic.get(random).nama, "Common Relic", JOptionPane.PLAIN_MESSAGE);
+                            }
+                        } else if (random < 9) {
+                            //UNCOMMON 20%
+                            random = (int) (Math.random() * Statics.uncommonRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.uncommonRelic.size(); i++) {
+                                if (Statics.uncommonRelic.get(i) == Statics.uncommonRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 250);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.uncommonRelic.get(random).nama + ". Instead you get 250 Coin", "Uncommon Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.uncommonRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.uncommonRelic.get(random).nama, "Uncommon Relic", JOptionPane.PLAIN_MESSAGE);
+                            }
+                        } else {
+                            //RARE 10%
+                            random = (int) (Math.random() * Statics.rareRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.rareRelic.size(); i++) {
+                                if (Statics.rareRelic.get(i) == Statics.rareRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 500);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.rareRelic.get(random).nama + ". Instead you get 500 Coin", "Rare Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.rareRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.rareRelic.get(random).nama, "Rare Relic", JOptionPane.PLAIN_MESSAGE);
                             }
                         }
-                        surprise.setVisible(false);
-                        JOptionPane.showMessageDialog(null, "Sally Angry XD");
                     }
 
                     //ADD & CHECK COUNTER
                     counteropened += 1;
                     if (counteropened == 3) {
                         body.dispose();
+                        JOptionPane.showMessageDialog(null, "Well, you opened all the treasure, so bye bye!!");
                     }
                 }
             }
             @Override
             public void mouseEntered(MouseEvent e) {
                 card2.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                card2.setText("?");
+                card2.setForeground(Color.red);
+                card2.setFont(new Font("Monospace", Font.ITALIC, 100));
+                card2.setHorizontalAlignment(SwingConstants.CENTER);
+                card2.setVerticalAlignment(SwingConstants.CENTER);
                 card2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 card2.setSize(card2.getWidth() + 10, card2.getHeight() + 10);
                 card2.setLocation(card2.getX() - 5, card2.getY() - 5);
@@ -296,17 +426,12 @@ public class Treasure extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {
                 card2.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+                card2.setText("");
                 card2.setSize(card2.getWidth() - 10, card2.getHeight() - 10);
                 card2.setLocation(card2.getX() + 5, card2.getY() + 5);
             }
         });
         add(card2);
-
-        //CARD 3 LAYER
-        card3opened.setBorder(BorderFactory.createLineBorder(Color.red, 2));
-        card3opened.setBounds((height + space)*2 + space, space*2, height, width);
-        card3opened.setVisible(false);
-        add(card3opened);
 
         //CARD 3
         card3.setBorder(BorderFactory.createLineBorder(Color.white, 2));
@@ -321,32 +446,107 @@ public class Treasure extends JPanel {
                     card3opened.setVisible(true);
 
                     //RANDOM
-                    int random = (int) (Math.random() * 2);
-                    if (random == 0) {
+                    int random = (int) (Math.random() * 10);
+                    if (random < 6) {
+                        //60% ZONK
                         JOptionPane.showMessageDialog(null, "Oops you found nothing");
+                    } else if (random < 8) {
+                        //20% POTION
+                        random = (int) (Math.random() * 10);
+                        if (random < 7) {
+                            //70% COMMON
+                            random = (int) (Math.random() * Statics.commonPotion.size());
+                            kapal.addPotion(Statics.commonPotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonPotion.get(random).nama, "Common Potion", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random < 9) {
+                            //20% UNCOMMON
+                            random = (int) (Math.random() * Statics.uncommonPotion.size());
+                            kapal.addPotion(Statics.uncommonPotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.uncommonPotion.get(random).nama, "Uncommon Potion", JOptionPane.PLAIN_MESSAGE);
+                        } else {
+                            //10% RARE
+                            random = (int) (Math.random() * Statics.rarePotion.size());
+                            kapal.addPotion(Statics.rarePotion.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.rarePotion.get(random).nama, "Rare Potion", JOptionPane.PLAIN_MESSAGE);
+                        }
+                    } else if (random < 9) {
+                        //10% CARD
+                        random = (int) (Math.random() * Statics.cards.size());
+                        kapal.addCard(Statics.cards.get(random));
+                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
                     } else {
-                        surprise.setVisible(true);
-                        for (int i = 0; i < 2; i++) {
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException interruptedException) {
-                                interruptedException.printStackTrace();
+                        //10% RELIC
+                        random = (int) (Math.random() * 10);
+                        if (random < 7) {
+                            //70% COMMON
+                            random = (int) (Math.random() * Statics.commonRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.commonRelic.size(); i++) {
+                                if (Statics.commonRelic.get(i) == Statics.commonRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 100);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.commonRelic.get(random).nama + ". Instead you get 100 Coin", "Common Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.commonRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonRelic.get(random).nama, "Common Relic", JOptionPane.PLAIN_MESSAGE);
+                            }
+                        } else if (random < 9) {
+                            //UNCOMMON 20%
+                            random = (int) (Math.random() * Statics.uncommonRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.uncommonRelic.size(); i++) {
+                                if (Statics.uncommonRelic.get(i) == Statics.uncommonRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 250);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.uncommonRelic.get(random).nama + ". Instead you get 250 Coin", "Uncommon Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.uncommonRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.uncommonRelic.get(random).nama, "Uncommon Relic", JOptionPane.PLAIN_MESSAGE);
+                            }
+                        } else {
+                            //RARE 10%
+                            random = (int) (Math.random() * Statics.rareRelic.size());
+                            boolean ada = false;
+                            for (int i = 0; i < Statics.rareRelic.size(); i++) {
+                                if (Statics.rareRelic.get(i) == Statics.rareRelic.get(random)) {
+                                    ada = true;
+                                    break;
+                                }
+                            }
+                            if (ada) {
+                                kapal.setCoin(kapal.getCoin() + 500);
+                                JOptionPane.showMessageDialog(null, "Aww, you already have " + Statics.rareRelic.get(random).nama + ". Instead you get 500 Coin", "Rare Relic", JOptionPane.PLAIN_MESSAGE);
+                            } else {
+                                kapal.addRelic(Statics.rareRelic.get(random));
+                                JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.rareRelic.get(random).nama, "Rare Relic", JOptionPane.PLAIN_MESSAGE);
                             }
                         }
-                        surprise.setVisible(false);
-                        JOptionPane.showMessageDialog(null, "Sally Angry XD");
                     }
 
                     //ADD & CHECK COUNTER
                     counteropened += 1;
                     if (counteropened == 3) {
                         body.dispose();
+                        JOptionPane.showMessageDialog(null, "Well, you opened all the treasure, so bye bye!!");
                     }
                 }
             }
             @Override
             public void mouseEntered(MouseEvent e) {
                 card3.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+                card3.setText("?");
+                card3.setForeground(Color.red);
+                card3.setFont(new Font("Monospace", Font.ITALIC, 100));
+                card3.setHorizontalAlignment(SwingConstants.CENTER);
+                card3.setVerticalAlignment(SwingConstants.CENTER);
                 card3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 card3.setSize(card3.getWidth() + 10, card3.getHeight() + 10);
                 card3.setLocation(card3.getX() - 5, card3.getY() - 5);
@@ -354,6 +554,7 @@ public class Treasure extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {
                 card3.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+                card3.setText("");
                 card3.setSize(card3.getWidth() - 10, card3.getHeight() - 10);
                 card3.setLocation(card3.getX() + 5, card3.getY() + 5);
             }
