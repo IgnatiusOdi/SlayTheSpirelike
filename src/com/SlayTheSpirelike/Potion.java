@@ -15,10 +15,10 @@ public abstract class Potion extends Sprite {
     JFrame frame;
 
     public Potion(String nama, String type, String rarity, String image, String desc) {
-        super(image);
-        this.item.setText(nama);
-        this.item.setVerticalTextPosition(JLabel.BOTTOM);
-        this.item.setHorizontalTextPosition(JLabel.CENTER);
+        super(ImageLoader.LoadImage(image));
+//        this.item.setText(nama);
+//        this.item.setVerticalTextPosition(JLabel.BOTTOM);
+//        this.item.setHorizontalTextPosition(JLabel.CENTER);
         this.nama = nama;
         this.type = type;
         this.active = true;
@@ -33,7 +33,7 @@ public abstract class Potion extends Sprite {
 //        frame.setVisible(true);
     }
 
-    @Override
+/*    @Override
     public JLabel getItem() {
         return super.getItem();
     }
@@ -51,7 +51,7 @@ public abstract class Potion extends Sprite {
     @Override
     public void setPanel(JPanel panel) {
         super.setPanel(panel);
-    }
+    }*/
 
     public void activate(Kapal kapal){
 

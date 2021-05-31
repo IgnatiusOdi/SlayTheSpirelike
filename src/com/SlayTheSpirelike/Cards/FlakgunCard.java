@@ -1,5 +1,6 @@
 package com.SlayTheSpirelike.Cards;
 
+import com.SlayTheSpirelike.Battle;
 import com.SlayTheSpirelike.Card;
 import com.SlayTheSpirelike.Enemy;
 import com.SlayTheSpirelike.Kapal;
@@ -11,7 +12,7 @@ public class FlakgunCard extends Card {
     }
 
     @Override
-    public void activate(Kapal kapal, Enemy enemy) {
+    public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
                 attack(kapal, enemy);

@@ -18,12 +18,13 @@ public class Battle extends JPanel {
     private final JPanel returnPanel;
     private Kapal player;
 
-    private JLabel  playerSprite, enemySprite,
+    private JLabel  playerSprite,
                     energy,
-                    potion1, potion2, potion3,
                     endTurn;
+    private ArrayList<Potion> potions;
     private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
+    private Enemy enemy;
     private int strengthtemp, strength;
     private int potionchance;
     private boolean invincible, nopotion;
@@ -72,23 +73,34 @@ public class Battle extends JPanel {
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
 
+        initComponents();
+
+
+        //battle Begins
+
+        initCards();
+        draw(5);
+
+    }
+
+    private void initComponents(){
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
 
-        // TODO: 27/05/2021 potion is null, untested
-        if (player.getPotion().size() != 0) {
-            potion1 = player.getPotion(0).getItem();
-            potion1.setBounds(400,15,25,25);
-            add(potion1);
+        // TODO: 27/05/2021 clickevent
+        potions = player.getPotion();
+        for (int i = 0; i < potions.size(); i++) {
+            potions.get(i).setDimension(25,25);
+            potions.get(i).setBounds(400 + (i*30),15,25,25);
+            add(potions.get(i));
         }
 
-        // TODO: 27/05/2021 Relic is empty, untested
+        // TODO: 27/05/2021 Relic clickevent
         relics = player.getRelic();
-        JLabel[] relicLabel = new JLabel[relics.size()];
         for (int i = 0; i < relics.size(); i++) {
-            relicLabel[i] = relics.get(i).getItem();
-            relicLabel[i].setBounds(10+(25*i),30,25,25);
-            add(relicLabel[i]);
+            relics.get(i).setDimension(50,50);
+            relics.get(i).setBounds(10 + (i*55),50,50,50);
+            add(relics.get(i));
         }
 
         //extend class jlabel untuk override paintComponent
@@ -144,13 +156,6 @@ public class Battle extends JPanel {
             }
         });
         add(endTurn);
-
-
-        //battle Begins
-
-        initCards();
-        draw(5);
-
     }
 
     //escape, no reward
@@ -158,38 +163,11 @@ public class Battle extends JPanel {
         body.setPanel(returnPanel);
     }
 
-    private class cardMouseAdapter extends MouseAdapter{
-        private final Card card;
-
-        public cardMouseAdapter(Card card) {
-            this.card = card;
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            super.mouseClicked(e);
-            // TODO: 31/05/2021 Enemy not redy
-            if (player.getEnergy()>=card.cost) {
-                if (card.getType().equals("Self")){
-                    card.activate(player);
-                } else if (card.getType().equals("Enemy")){
-    //                        card.activate(player,enemy);
-                } else if (card.getType().equals("Battle")){
-    //                        card.activate(player,enemy,);
-                }
-                player.getCard().add(card);
-                hand.remove(card);
-                remove(card);
-                System.out.println(hand.size());
-                repaint();revalidate();invalidate();
-            }
-        }
-    }
-
+    // TODO: 31/05/2021 Enemy not redy
     private void initCards(){
         System.out.println(player.getCard().size());
         for (Card card : player.getCard()) {
-            card.addMouseListener(new cardMouseAdapter(card));
+            card.initForBattle(player,enemy,this);
         }
     }
 
@@ -321,5 +299,9 @@ public class Battle extends JPanel {
 
     public void setNopotion(boolean nopotion) {
         this.nopotion = nopotion;
+    }
+
+    public ArrayList<Card> getHand() {
+        return hand;
     }
 }

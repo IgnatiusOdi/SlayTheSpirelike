@@ -16,7 +16,7 @@ public abstract class Kapal extends Sprite{
     JFrame frame;
 
     public Kapal(String nama,String image) {
-        super(image);
+        super(ImageLoader.LoadImage(image));
         this.relic = new ArrayList();
         this.card = new ArrayList();
         this.potion = new ArrayList();
@@ -67,7 +67,7 @@ public abstract class Kapal extends Sprite{
         }
     }
 
-    @Override
+/*    @Override
     public JLabel getItem() {
         return super.getItem();
     }
@@ -85,7 +85,7 @@ public abstract class Kapal extends Sprite{
     @Override
     public void setPanel(JPanel panel) {
         super.setPanel(panel);
-    }
+    }*/
 
     public void summon(Summon summon){
         this.summon.add(summon);

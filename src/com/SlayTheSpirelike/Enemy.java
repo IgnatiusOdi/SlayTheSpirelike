@@ -7,7 +7,7 @@ public abstract class Enemy extends Sprite {
     protected int health,maxhealth,block, skill, skillchance, atklow, atkhigh;
 
     public Enemy(String nama, int health,int block, int skill, int skillchance, int atklow, int atkhigh, String image) {
-        super(image);
+        super(ImageLoader.LoadImage(image));
         this.nama = nama;
         this.health = health;
         this.maxhealth = health;
@@ -18,7 +18,7 @@ public abstract class Enemy extends Sprite {
         this.atkhigh = atkhigh;
     }
 
-    @Override
+/*    @Override
     public JLabel getItem() {
         return super.getItem();
     }
@@ -36,7 +36,7 @@ public abstract class Enemy extends Sprite {
     @Override
     public void setPanel(JPanel panel) {
         super.setPanel(panel);
-    }
+    }*/
 
     public int getBlock() {
         return block;

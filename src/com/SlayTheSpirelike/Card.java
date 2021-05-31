@@ -13,6 +13,31 @@ public abstract class Card extends JLabel {
     protected int damage, block, draw, energy, weak, strength;
     protected boolean active;
 
+    protected Kapal kapal;
+    protected Enemy enemy;
+    protected Battle battle;
+
+    private class cardMouseAdapter extends MouseAdapter {
+        private final Card card;
+
+        public cardMouseAdapter(Card card) {
+            this.card = card;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            if (kapal.getEnergy()>=cost) {
+                activate(kapal, enemy, battle);
+                kapal.getCard().add(card);
+                battle.getHand().remove(card);
+                battle.remove(card);
+                System.out.println(battle.getHand().size());
+                battle.repaint();
+            }
+        }
+    }
+
     public Card(String nama, String type, int cost) {
         this.nama = nama;
         this.type = type;
@@ -26,17 +51,7 @@ public abstract class Card extends JLabel {
         this.strength = 0;
         this.active=true;
         status();
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-
-            }
-        });
-//        setForeground(Color.BLACK);
-//        setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
-//        setVerticalAlignment(TOP);
-//        setText(desc);
+        addMouseListener(new cardMouseAdapter(this));
     }
 
     @Override
@@ -60,15 +75,13 @@ public abstract class Card extends JLabel {
         super.paintComponent(g);
     }
 
-    //enemy
-    public void activate(Kapal kapal, Enemy enemy){
-
+    public void initForBattle(Kapal kapal, Enemy enemy, Battle battle){
+        this.kapal = kapal;
+        this.enemy = enemy;
+        this.battle = battle;
     }
-    //self
-    public void activate(Kapal kapal){
 
-    }
-    //battle
+    //all activation use this
     public void activate(Kapal kapal, Enemy enemy, Battle battle){
 
     }
@@ -143,7 +156,7 @@ public abstract class Card extends JLabel {
     }
 
     public void setTwice(int twice) {
-        this.twice = twice;
+        Card.twice = twice;
     }
 
     public static int getTwicetime() {
@@ -151,7 +164,7 @@ public abstract class Card extends JLabel {
     }
 
     public void setTwicetime(int twicetime) {
-        this.twicetime = twicetime;
+        Card.twicetime = twicetime;
     }
 
     public String getNama() {
