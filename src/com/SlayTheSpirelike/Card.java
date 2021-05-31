@@ -1,6 +1,11 @@
 package com.SlayTheSpirelike;
 
-public abstract class Card {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public abstract class Card extends JLabel {
     protected static int twice=1;
     protected static int twicetime=1;
     protected String nama, type, desc;
@@ -19,9 +24,42 @@ public abstract class Card {
         this.energy = 0;
         this.weak = 0;
         this.strength = 0;
-        this.active=false;
+        this.active=true;
         status();
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+
+            }
+        });
+//        setForeground(Color.BLACK);
+//        setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
+//        setVerticalAlignment(TOP);
+//        setText(desc);
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        switch (type) {
+            case "Self" -> g.setColor(Color.BLUE);
+            case "Enemy" -> g.setColor(Color.GREEN);
+            case "Battle" -> g.setColor(Color.MAGENTA);
+        }
+        g.fillRect(0,0,180,320);
+        g.setColor(Color.BLACK);
+        g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
+        g.drawString(nama,10,20);
+        g.drawImage(Assets.energy,140,0,20,20,null);
+        g.drawString(String.valueOf(cost),160,20);
+
+        String[] descSplit = desc.split("\n");
+        for (int i = 0; i < descSplit.length; i++) {
+            g.drawString(descSplit[i],10,60+(i*30));
+        }
+        super.paintComponent(g);
+    }
+
     //enemy
     public void activate(Kapal kapal, Enemy enemy){
 

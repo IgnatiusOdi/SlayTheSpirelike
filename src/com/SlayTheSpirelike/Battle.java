@@ -11,8 +11,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.SlayTheSpirelike.Statics.*;
-import static com.SlayTheSpirelike.Statics.rarePotion;
 
 public class Battle extends JPanel {
     private Random rnd;
@@ -48,6 +46,9 @@ public class Battle extends JPanel {
 
         g.drawImage(Assets.coin,350,15,25,25,null);
         g.drawString(String.valueOf(player.getCoin()),380,35);
+
+        g.drawImage(Assets.shield,350,420,50,50,null);
+        g.drawString(String.valueOf(player.getBlock()),368,453);
 
         g.drawImage(Assets.deck, 10,580,40,55,null);
         g.setColor(Color.red);
@@ -120,7 +121,7 @@ public class Battle extends JPanel {
                 g.drawString(String.valueOf(player.getEnergy()),60,40);
             }
         };
-        energy.setBounds(70,520,100,50);
+        energy.setBounds(70,320,100,50);
         add(energy);
 
         endTurn = new JLabel(){
@@ -132,30 +133,64 @@ public class Battle extends JPanel {
                 g.drawString("End Turn",10,28);
             }
         };
-        endTurn.setBounds(900,550,130,40);
+        endTurn.setBounds(1020,590,130,40);
         endTurn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                // TODO: 27/05/2021 clickEvent
                 returnHand();
+                draw(5);
+                repaint();revalidate();invalidate();
             }
         });
         add(endTurn);
 
+
         //battle Begins
 
+        initCards();
         draw(5);
 
-        //display card
-        for (Card card : hand) {
-
-        }
     }
 
     //escape, no reward
     public void escape(){
         body.setPanel(returnPanel);
+    }
+
+    private class cardMouseAdapter extends MouseAdapter{
+        private final Card card;
+
+        public cardMouseAdapter(Card card) {
+            this.card = card;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            // TODO: 31/05/2021 Enemy not redy
+            if (player.getEnergy()>=card.cost) {
+                if (card.getType().equals("Self")){
+                    card.activate(player);
+                } else if (card.getType().equals("Enemy")){
+    //                        card.activate(player,enemy);
+                } else if (card.getType().equals("Battle")){
+    //                        card.activate(player,enemy,);
+                }
+                player.getCard().add(card);
+                hand.remove(card);
+                remove(card);
+                System.out.println(hand.size());
+                repaint();revalidate();invalidate();
+            }
+        }
+    }
+
+    private void initCards(){
+        System.out.println(player.getCard().size());
+        for (Card card : player.getCard()) {
+            card.addMouseListener(new cardMouseAdapter(card));
+        }
     }
 
     //draw x amount of cards
@@ -167,13 +202,23 @@ public class Battle extends JPanel {
             hand.add(player.getCard(cardIndex));
             player.getCard().remove(cardIndex);
         }
+
+        //display card
+        for (int i = 0; i < hand.size(); i++) {
+            hand.get(i).setBounds(80 + (i * 185), 500, 180, 320);
+            add(hand.get(i));
+        }
     }
 
     //return all cards on hand to deck
     private void returnHand(){
         player.getCard().addAll(hand);
+        for (Card card : hand) {
+            remove(card);
+        }
         hand.clear();
         reactivate();
+        player.setEnergy(player.getMaxenergy());
     }
 
     //return 1 card from hand to deck
@@ -237,16 +282,16 @@ public class Battle extends JPanel {
         if (!nopotion){
             int p = rnd.nextInt(potionchance)+1;
             if (p<=20){
-                int potion = rnd.nextInt(commonPotion.size());
-                player.addPotion(commonPotion.get(potion));
+                int potion = rnd.nextInt(Statics.commonPotion.size());
+                player.addPotion(Statics.commonPotion.get(potion));
             }
             else if(p<=30){
-                int potion = rnd.nextInt(uncommonPotion.size());
-                player.addPotion(uncommonPotion.get(potion));
+                int potion = rnd.nextInt(Statics.uncommonPotion.size());
+                player.addPotion(Statics.uncommonPotion.get(potion));
             }
             else if(p<=35){
-                int potion = rnd.nextInt(rarePotion.size());
-                player.addPotion(rarePotion.get(potion));
+                int potion = rnd.nextInt(Statics.rarePotion.size());
+                player.addPotion(Statics.rarePotion.get(potion));
             }
             else if(p<=40){
                 if (player instanceof Aircraft){
