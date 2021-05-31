@@ -2,18 +2,16 @@ package com.SlayTheSpirelike.Cards;
 
 import com.SlayTheSpirelike.*;
 
-public class HelicallCard extends Card {
-    public HelicallCard() {
-        super("Helicall", "Self", 2);
+public class DeflectCard extends Card {
+    public DeflectCard() {
+        super("Deflect", "Self", 0);
         status();
     }
-
     @Override
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
-        if (active&& kapal.isAlive()){
+        if (active&&kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                kapal.summon(new HeliSummon());
-                kapal.summon(new HeliSummon());
+                kapal.setBlock(kapal.getBlock()+block);
             }
             finish(kapal);
         }
@@ -22,12 +20,11 @@ public class HelicallCard extends Card {
     @Override
     public void status() {
         if (level==1){
-            cost = 1;
+            block=2;
         }
-        else if (level>=2){
-            cost = 2;
+        else if(level>=2){
+            block=4;
         }
-        desc = "Summon 2 heli";
+        desc = "Gain "+block+" block";
     }
-
 }
