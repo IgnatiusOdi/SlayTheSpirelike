@@ -1,9 +1,29 @@
 package com.SlayTheSpirelike;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public abstract class Sprite {
-    protected JLabel item;
+public abstract class Sprite extends JLabel {
+    protected BufferedImage image;
+    protected int width, height;
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image,0,0,width,height,null);
+    }
+
+    public Sprite(BufferedImage image) {
+        this.image = image;
+    }
+
+    public void setDimension(int width, int height){
+        this.width = width;
+        this.height = height;
+    }
+
+/*    protected JLabel item;
     protected JPanel panel;
     public Sprite(String image) {
         this.item = new JLabel();
@@ -30,5 +50,5 @@ public abstract class Sprite {
 
     public void setPanel(JPanel panel) {
         this.panel = panel;
-    }
+    }*/
 }

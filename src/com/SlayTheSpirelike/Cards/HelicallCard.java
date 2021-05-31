@@ -1,8 +1,6 @@
 package com.SlayTheSpirelike.Cards;
 
-import com.SlayTheSpirelike.Card;
-import com.SlayTheSpirelike.HeliSummon;
-import com.SlayTheSpirelike.Kapal;
+import com.SlayTheSpirelike.*;
 
 public class HelicallCard extends Card {
     public HelicallCard() {
@@ -11,7 +9,7 @@ public class HelicallCard extends Card {
     }
 
     @Override
-    public void activate(Kapal kapal) {
+    public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
                 kapal.summon(new HeliSummon());

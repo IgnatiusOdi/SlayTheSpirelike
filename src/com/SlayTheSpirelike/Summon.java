@@ -12,7 +12,7 @@ public abstract class Summon extends Sprite{
     JFrame frame;
 
     public Summon(String nama, int health, int maxhealth, int attack,String image) {
-        super(image);
+        super(ImageLoader.LoadImage(image));
         this.nama = nama;
         this.health = health;
         this.maxhealth = maxhealth;
@@ -25,7 +25,7 @@ public abstract class Summon extends Sprite{
 //        frame.setVisible(true);
     }
 
-    @Override
+/*    @Override
     public JLabel getItem() {
         return super.getItem();
     }
@@ -43,7 +43,7 @@ public abstract class Summon extends Sprite{
     @Override
     public void setPanel(JPanel panel) {
         super.setPanel(panel);
-    }
+    }*/
 
     public String getNama() {
         return nama;

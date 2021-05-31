@@ -11,8 +11,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.SlayTheSpirelike.Statics.*;
-import static com.SlayTheSpirelike.Statics.rarePotion;
 
 public class Battle extends JPanel {
     private Random rnd;
@@ -20,12 +18,13 @@ public class Battle extends JPanel {
     private final JPanel returnPanel;
     private Kapal player;
 
-    private JLabel  playerSprite, enemySprite,
+    private JLabel  playerSprite,
                     energy,
-                    potion1, potion2, potion3,
                     endTurn;
+    private ArrayList<Potion> potions;
     private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
+    private Enemy enemy;
     private int strengthtemp, strength;
     private int potionchance;
     private boolean invincible, nopotion;
@@ -49,6 +48,9 @@ public class Battle extends JPanel {
         g.drawImage(Assets.coin,350,15,25,25,null);
         g.drawString(String.valueOf(player.getCoin()),380,35);
 
+        g.drawImage(Assets.shield,350,420,50,50,null);
+        g.drawString(String.valueOf(player.getBlock()),368,453);
+
         g.drawImage(Assets.deck, 10,580,40,55,null);
         g.setColor(Color.red);
         g.fillOval(40,620,25,25);
@@ -71,23 +73,34 @@ public class Battle extends JPanel {
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
 
+        initComponents();
+
+
+        //battle Begins
+
+        initCards();
+        draw(5);
+
+    }
+
+    private void initComponents(){
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
 
-        // TODO: 27/05/2021 potion is null, untested
-        if (player.getPotion().size() != 0) {
-            potion1 = player.getPotion(0).getItem();
-            potion1.setBounds(400,15,25,25);
-            add(potion1);
+        // TODO: 27/05/2021 clickevent
+        potions = player.getPotion();
+        for (int i = 0; i < potions.size(); i++) {
+            potions.get(i).setDimension(25,25);
+            potions.get(i).setBounds(400 + (i*30),15,25,25);
+            add(potions.get(i));
         }
 
-        // TODO: 27/05/2021 Relic is empty, untested
+        // TODO: 27/05/2021 Relic clickevent
         relics = player.getRelic();
-        JLabel[] relicLabel = new JLabel[relics.size()];
         for (int i = 0; i < relics.size(); i++) {
-            relicLabel[i] = relics.get(i).getItem();
-            relicLabel[i].setBounds(10+(25*i),30,25,25);
-            add(relicLabel[i]);
+            relics.get(i).setDimension(50,50);
+            relics.get(i).setBounds(10 + (i*55),50,50,50);
+            add(relics.get(i));
         }
 
         //extend class jlabel untuk override paintComponent
@@ -120,7 +133,7 @@ public class Battle extends JPanel {
                 g.drawString(String.valueOf(player.getEnergy()),60,40);
             }
         };
-        energy.setBounds(70,520,100,50);
+        energy.setBounds(70,320,100,50);
         add(energy);
 
         endTurn = new JLabel(){
@@ -132,30 +145,30 @@ public class Battle extends JPanel {
                 g.drawString("End Turn",10,28);
             }
         };
-        endTurn.setBounds(900,550,130,40);
+        endTurn.setBounds(1020,590,130,40);
         endTurn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                // TODO: 27/05/2021 clickEvent
                 returnHand();
+                draw(5);
+                repaint();revalidate();invalidate();
             }
         });
         add(endTurn);
-
-        //battle Begins
-
-        draw(5);
-
-        //display card
-        for (Card card : hand) {
-
-        }
     }
 
     //escape, no reward
     public void escape(){
         body.setPanel(returnPanel);
+    }
+
+    // TODO: 31/05/2021 Enemy not redy
+    private void initCards(){
+        System.out.println(player.getCard().size());
+        for (Card card : player.getCard()) {
+            card.initForBattle(player,enemy,this);
+        }
     }
 
     //draw x amount of cards
@@ -167,13 +180,23 @@ public class Battle extends JPanel {
             hand.add(player.getCard(cardIndex));
             player.getCard().remove(cardIndex);
         }
+
+        //display card
+        for (int i = 0; i < hand.size(); i++) {
+            hand.get(i).setBounds(80 + (i * 185), 500, 180, 320);
+            add(hand.get(i));
+        }
     }
 
     //return all cards on hand to deck
     private void returnHand(){
         player.getCard().addAll(hand);
+        for (Card card : hand) {
+            remove(card);
+        }
         hand.clear();
         reactivate();
+        player.setEnergy(player.getMaxenergy());
     }
 
     //return 1 card from hand to deck
@@ -237,16 +260,16 @@ public class Battle extends JPanel {
         if (!nopotion){
             int p = rnd.nextInt(potionchance)+1;
             if (p<=20){
-                int potion = rnd.nextInt(commonPotion.size());
-                player.addPotion(commonPotion.get(potion));
+                int potion = rnd.nextInt(Statics.commonPotion.size());
+                player.addPotion(Statics.commonPotion.get(potion));
             }
             else if(p<=30){
-                int potion = rnd.nextInt(uncommonPotion.size());
-                player.addPotion(uncommonPotion.get(potion));
+                int potion = rnd.nextInt(Statics.uncommonPotion.size());
+                player.addPotion(Statics.uncommonPotion.get(potion));
             }
             else if(p<=35){
-                int potion = rnd.nextInt(rarePotion.size());
-                player.addPotion(rarePotion.get(potion));
+                int potion = rnd.nextInt(Statics.rarePotion.size());
+                player.addPotion(Statics.rarePotion.get(potion));
             }
             else if(p<=40){
                 if (player instanceof Aircraft){
@@ -276,5 +299,9 @@ public class Battle extends JPanel {
 
     public void setNopotion(boolean nopotion) {
         this.nopotion = nopotion;
+    }
+
+    public ArrayList<Card> getHand() {
+        return hand;
     }
 }

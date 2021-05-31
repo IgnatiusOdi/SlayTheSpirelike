@@ -21,10 +21,10 @@ public abstract class Relic extends Sprite{
     JFrame frame;
 
     public Relic(String nama, String rarity, String condition, String image, String desc) {
-        super(image);
-        this.item.setText(nama);
-        this.item.setVerticalTextPosition(JLabel.BOTTOM);
-        this.item.setHorizontalTextPosition(JLabel.CENTER);
+        super(ImageLoader.LoadImage(image));
+//        this.item.setText(nama);
+//        this.item.setVerticalTextPosition(JLabel.BOTTOM);
+//        this.item.setHorizontalTextPosition(JLabel.CENTER);
         this.nama = nama;
         this.rarity = rarity;
         this.active = true;
@@ -81,7 +81,7 @@ public abstract class Relic extends Sprite{
         deactivate(battle);
     }
 
-    @Override
+/*    @Override
     public JLabel getItem() {
         return super.getItem();
     }
@@ -99,7 +99,7 @@ public abstract class Relic extends Sprite{
     @Override
     public void setPanel(JPanel panel) {
         super.setPanel(panel);
-    }
+    }*/
 
     public String getCondition() {
         return condition;

@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Map extends JPanel {
     private final Body body;
@@ -243,6 +244,17 @@ public class Map extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Infinite Coin");
                 player.setCoin(999999);
+                repaint();
+            }
+        });
+
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_P,0),"addPot");
+        getActionMap().put("addPot", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Scanner s = new Scanner(System.in);
+                System.out.print("addPot :");
+                player.addPotion(Statics.commonPotion.get(s.nextInt()));
                 repaint();
             }
         });

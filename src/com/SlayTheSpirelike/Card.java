@@ -1,12 +1,42 @@
 package com.SlayTheSpirelike;
 
-public abstract class Card {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public abstract class Card extends JLabel {
     protected static int twice=1;
     protected static int twicetime=1;
     protected String nama, type, desc;
     protected int level, cost;
     protected int damage, block, draw, energy, weak, strength;
     protected boolean active;
+
+    protected Kapal kapal;
+    protected Enemy enemy;
+    protected Battle battle;
+
+    private class cardMouseAdapter extends MouseAdapter {
+        private final Card card;
+
+        public cardMouseAdapter(Card card) {
+            this.card = card;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            if (kapal.getEnergy()>=cost) {
+                activate(kapal, enemy, battle);
+                kapal.getCard().add(card);
+                battle.getHand().remove(card);
+                battle.remove(card);
+                System.out.println(battle.getHand().size());
+                battle.repaint();
+            }
+        }
+    }
 
     public Card(String nama, String type, int cost) {
         this.nama = nama;
@@ -19,18 +49,39 @@ public abstract class Card {
         this.energy = 0;
         this.weak = 0;
         this.strength = 0;
-        this.active=false;
+        this.active=true;
         status();
+        addMouseListener(new cardMouseAdapter(this));
     }
-    //enemy
-    public void activate(Kapal kapal, Enemy enemy){
 
-    }
-    //self
-    public void activate(Kapal kapal){
+    @Override
+    protected void paintComponent(Graphics g) {
+        switch (type) {
+            case "Self" -> g.setColor(Color.BLUE);
+            case "Enemy" -> g.setColor(Color.GREEN);
+            case "Battle" -> g.setColor(Color.MAGENTA);
+        }
+        g.fillRect(0,0,180,320);
+        g.setColor(Color.BLACK);
+        g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
+        g.drawString(nama,10,20);
+        g.drawImage(Assets.energy,140,0,20,20,null);
+        g.drawString(String.valueOf(cost),160,20);
 
+        String[] descSplit = desc.split("\n");
+        for (int i = 0; i < descSplit.length; i++) {
+            g.drawString(descSplit[i],10,60+(i*30));
+        }
+        super.paintComponent(g);
     }
-    //battle
+
+    public void initForBattle(Kapal kapal, Enemy enemy, Battle battle){
+        this.kapal = kapal;
+        this.enemy = enemy;
+        this.battle = battle;
+    }
+
+    //all activation use this
     public void activate(Kapal kapal, Enemy enemy, Battle battle){
 
     }
@@ -105,7 +156,7 @@ public abstract class Card {
     }
 
     public void setTwice(int twice) {
-        this.twice = twice;
+        Card.twice = twice;
     }
 
     public static int getTwicetime() {
@@ -113,7 +164,7 @@ public abstract class Card {
     }
 
     public void setTwicetime(int twicetime) {
-        this.twicetime = twicetime;
+        Card.twicetime = twicetime;
     }
 
     public String getNama() {

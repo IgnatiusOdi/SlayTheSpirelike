@@ -1,6 +1,8 @@
 package com.SlayTheSpirelike.Cards;
 
+import com.SlayTheSpirelike.Battle;
 import com.SlayTheSpirelike.Card;
+import com.SlayTheSpirelike.Enemy;
 import com.SlayTheSpirelike.Kapal;
 
 public class SalvationCard extends Card {
@@ -10,9 +12,10 @@ public class SalvationCard extends Card {
     }
 
     @Override
-    public void activate(Kapal kapal) {
+    public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
+                // TODO: 31/05/2021 abraham arthur fix this pls ty
                 kapal.setHealth(kapal.getMaxhealth()+30/100);
                 if (kapal.getHealth()> kapal.getMaxhealth()){
                     kapal.setHealth(kapal.getMaxhealth());
