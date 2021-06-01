@@ -78,7 +78,7 @@ public class Battle extends JPanel {
 
         //battle Begins
 
-        initCards();
+        initPlayer();
         draw(5);
 
     }
@@ -90,15 +90,16 @@ public class Battle extends JPanel {
         // TODO: 27/05/2021 clickevent
         potions = player.getPotion();
         for (int i = 0; i < potions.size(); i++) {
-            potions.get(i).setDimension(25,25);
+            potions.get(i).setDimension(400 + (i*30),15,25,25);
             potions.get(i).setBounds(400 + (i*30),15,25,25);
+            potions.get(i).initForBattle(player,enemy,this);
             add(potions.get(i));
         }
 
         // TODO: 27/05/2021 Relic clickevent
         relics = player.getRelic();
         for (int i = 0; i < relics.size(); i++) {
-            relics.get(i).setDimension(50,50);
+            relics.get(i).setDimension(10 + (i*55),50,50,50);
             relics.get(i).setBounds(10 + (i*55),50,50,50);
             add(relics.get(i));
         }
@@ -164,7 +165,7 @@ public class Battle extends JPanel {
     }
 
     // TODO: 31/05/2021 Enemy not redy
-    private void initCards(){
+    private void initPlayer(){
         System.out.println(player.getCard().size());
         for (Card card : player.getCard()) {
             card.initForBattle(player,enemy,this);

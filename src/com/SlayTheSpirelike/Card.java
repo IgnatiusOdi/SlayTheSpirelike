@@ -27,12 +27,11 @@ public abstract class Card extends JLabel {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            if (kapal.getEnergy()>=cost) {
+            if (kapal.getEnergy()>=cost && battle!=null) {
                 activate(kapal, enemy, battle);
                 kapal.getCard().add(card);
                 battle.getHand().remove(card);
                 battle.remove(card);
-                System.out.println(battle.getHand().size());
                 battle.repaint();
             }
         }
@@ -79,6 +78,12 @@ public abstract class Card extends JLabel {
         this.kapal = kapal;
         this.enemy = enemy;
         this.battle = battle;
+    }
+
+    public void deInitBattle(){
+        this.kapal = null;
+        this.enemy = null;
+        this.battle = null;
     }
 
     //all activation use this

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Sprite extends JLabel {
     protected BufferedImage image;
-    protected int width, height;
+    protected int x,y, width, height;
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -18,7 +18,9 @@ public abstract class Sprite extends JLabel {
         this.image = image;
     }
 
-    public void setDimension(int width, int height){
+    public void setDimension(int x, int y, int width, int height){
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.height = height;
     }
