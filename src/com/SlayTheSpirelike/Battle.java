@@ -89,7 +89,7 @@ public class Battle extends JPanel {
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
 
-        // TODO: 27/05/2021 clickevent
+        // TODO: 01/06/2021 testing battle
         potions = player.getPotion();
         for (int i = 0; i < potions.size(); i++) {
             potions.get(i).setDimension(400 + (i*30),15,25,25);
@@ -98,7 +98,6 @@ public class Battle extends JPanel {
             add(potions.get(i));
         }
 
-        // TODO: 27/05/2021 Relic clickevent
         relics = player.getRelic();
         for (int i = 0; i < relics.size(); i++) {
             relics.get(i).setDimension(10 + (i*55),50,50,50);
@@ -186,6 +185,7 @@ public class Battle extends JPanel {
         for (Card card : player.getCard()) {
             card.initForBattle(player,enemy,this);
         }
+        player.activateRelic("Start Battle",enemy,this);
     }
 
     //draw x amount of cards

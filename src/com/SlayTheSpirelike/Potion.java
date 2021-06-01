@@ -30,6 +30,7 @@ public abstract class Potion extends Sprite {
             this.potion = potion;
         }
 
+        //extend JLabel to override paintComponent
         JLabel descLabel = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
@@ -110,13 +111,13 @@ public abstract class Potion extends Sprite {
         super.setPanel(panel);
     }*/
 
+    //init before battle
     public void initForBattle(Kapal kapal, Enemy enemy,Battle battle){
         this.panel = battle;
         this.battle = battle;
         this.kapal = kapal;
         this.enemy = enemy;
         pma.setPanel(battle);
-        System.out.println(panel);
     }
 
     public void activate(Kapal kapal){
