@@ -10,8 +10,9 @@ public abstract class Card extends JLabel {
     protected static int twicetime=1;
     protected String nama, type, desc;
     protected int level, cost;
-    protected int damage, block, draw, energy, weak, strength;
-    protected boolean active;
+    protected int damage, block, draw, energy, weak, strength, heal;
+    protected boolean active, dispose, singleuse;
+    //dispose untuk torpedo, singleuse untuk heal card
 
     protected Kapal kapal;
     protected Enemy enemy;
@@ -38,7 +39,10 @@ public abstract class Card extends JLabel {
         this.energy = 0;
         this.weak = 0;
         this.strength = 0;
+        this.heal = 0;
         this.active=true;
+        this.dispose=false;
+        this.singleuse=false;
         status();
         addMouseListener(new cardMouseAdapter());
     }
@@ -152,6 +156,37 @@ public abstract class Card extends JLabel {
         e.setHealth(e.getHealth()-attack);
     }
 
+    public void restoreHealth(Kapal k){
+        k.setHealth(k.getHealth()+heal);
+        if (k.getHealth()> k.getMaxhealth()){
+            k.setHealth(k.getMaxhealth());
+        }
+    }
+
+    public boolean isSingleuse() {
+        return singleuse;
+    }
+
+    public void setSingleuse(boolean singleuse) {
+        this.singleuse = singleuse;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isDispose() {
+        return dispose;
+    }
+
+    public void setDispose(boolean dispose) {
+        this.dispose = dispose;
+    }
+
     public int getTwice() {
         return twice;
     }
@@ -254,5 +289,13 @@ public abstract class Card extends JLabel {
 
     public void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    public int getHeal() {
+        return heal;
+    }
+
+    public void setHeal(int heal) {
+        this.heal = heal;
     }
 }

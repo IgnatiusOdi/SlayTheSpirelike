@@ -29,6 +29,7 @@ public class Battle extends JPanel {
     private Enemy enemy;
     private int strengthtemp, strength;
     private int potionchance;
+    private int heal; //untuk self repair
     private boolean invincible, nopotion;
 
     //override to draw image
@@ -210,6 +211,12 @@ public class Battle extends JPanel {
 
     //return all cards on hand to deck
     private void returnHand(){
+        //for torpedo card
+        for (Card card : hand) {
+            if (card.isDispose()){
+                remove(card);
+            }
+        }
         player.getCard().addAll(hand);
         for (Card card : hand) {
             remove(card);
@@ -221,7 +228,9 @@ public class Battle extends JPanel {
 
     //return 1 card from hand to deck
     private void returnHand(int index){
-        player.getCard().add(hand.get(index));
+        if(!hand.get(index).isDispose()){
+            player.getCard().add(hand.get(index));
+        }
         hand.remove(index);
         reactivate();
     }
@@ -266,6 +275,15 @@ public class Battle extends JPanel {
     public void removeStrength(){
         player.setAttack(player.getAttack()-strength);
         strength=0;
+    }
+
+    //untuk heal after battle
+    public void restoreHealth(){
+        player.setHealth(player.getHealth()+heal);
+        if (player.getHealth()> player.getMaxhealth()){
+            player.setHealth(player.getMaxhealth());
+        }
+        heal=0;
     }
 
     public int getPotionchance() {
@@ -323,5 +341,13 @@ public class Battle extends JPanel {
 
     public ArrayList<Card> getHand() {
         return hand;
+    }
+
+    public int getHeal() {
+        return heal;
+    }
+
+    public void setHeal(int heal) {
+        this.heal = heal;
     }
 }
