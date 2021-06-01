@@ -1,13 +1,10 @@
 package com.SlayTheSpirelike.Cards;
 
-import com.SlayTheSpirelike.Battle;
-import com.SlayTheSpirelike.Card;
-import com.SlayTheSpirelike.Enemy;
-import com.SlayTheSpirelike.Kapal;
+import com.SlayTheSpirelike.*;
 
-public class RechargeCard extends Card {
-    public RechargeCard() {
-        super("Recharge", "Self", 1);
+public class SelfRepairCard extends Card {
+    public SelfRepairCard() {
+        super("Self Repair", "Self", 1);
         status();
         singleuse=true;
     }
@@ -16,7 +13,7 @@ public class RechargeCard extends Card {
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                restoreEnergy(kapal);
+                battle.setHeal(battle.getHeal()+heal);
             }
             finish(kapal);
         }
@@ -24,13 +21,14 @@ public class RechargeCard extends Card {
 
     @Override
     public void status() {
-        if (level==1){
-            energy = 2;
+        if(level==1){
+            heal = 5;
         }
         else if(level>=2){
-            energy = 3;
+            heal = 7;
         }
-        desc = "Gain "+energy+" energy.\n" +
+        desc = "At end of battle, \n" +
+                "heal "+heal+" health. \n" +
                 "(Single use)";
     }
 }

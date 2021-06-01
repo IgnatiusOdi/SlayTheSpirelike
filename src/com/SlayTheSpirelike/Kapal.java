@@ -87,6 +87,10 @@ public abstract class Kapal extends Sprite{
         super.setPanel(panel);
     }*/
 
+    public int summonSize(){
+        return summon.size();
+    }
+
     public void summon(Summon summon){
         this.summon.add(summon);
     }
