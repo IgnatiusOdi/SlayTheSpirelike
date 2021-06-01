@@ -181,9 +181,12 @@ public class Battle extends JPanel {
             hand.add(player.getCard(cardIndex));
             player.getCard().remove(cardIndex);
         }
+        displayCard();
+    }
 
-        //display card
+    public void displayCard(){
         for (int i = 0; i < hand.size(); i++) {
+            remove(hand.get(i));
             hand.get(i).setBounds(80 + (i * 185), 500, 180, 320);
             add(hand.get(i));
         }

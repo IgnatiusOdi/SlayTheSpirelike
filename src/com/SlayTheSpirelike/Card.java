@@ -32,6 +32,7 @@ public abstract class Card extends JLabel {
                 kapal.getCard().add(card);
                 battle.getHand().remove(card);
                 battle.remove(card);
+                battle.displayCard();
                 battle.repaint();
             }
         }
