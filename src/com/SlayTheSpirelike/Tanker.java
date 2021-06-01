@@ -3,8 +3,6 @@ package com.SlayTheSpirelike;
 
 import com.SlayTheSpirelike.Cards.AttackCard;
 import com.SlayTheSpirelike.Cards.DefendCard;
-import com.SlayTheSpirelike.Potions.SwiftPotion;
-import com.SlayTheSpirelike.Potions.WrathPotion;
 
 public class Tanker extends Kapal {
     public Tanker(String nama) {
