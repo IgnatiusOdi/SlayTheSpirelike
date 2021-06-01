@@ -6,6 +6,8 @@ import com.SlayTheSpirelike.Potions.SummonPotion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -157,6 +159,20 @@ public class Battle extends JPanel {
             }
         });
         add(endTurn);
+
+        initCheats();
+    }
+
+    private void initCheats(){
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_I,0),"fillEnergy");
+        getActionMap().put("fillEnergy",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Fill energy");
+                player.setEnergy(9);
+                repaint();
+            }
+        });
     }
 
     //escape, no reward
