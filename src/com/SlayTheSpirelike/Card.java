@@ -19,22 +19,11 @@ public abstract class Card extends JLabel {
     protected Battle battle;
 
     private class cardMouseAdapter extends MouseAdapter {
-        private final Card card;
-
-        public cardMouseAdapter(Card card) {
-            this.card = card;
-        }
-
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            if (kapal.getEnergy()>=cost) {
+            if (kapal.getEnergy()>=cost && battle!=null) {
                 activate(kapal, enemy, battle);
-                kapal.getCard().add(card);
-                battle.getHand().remove(card);
-                battle.remove(card);
-                System.out.println(battle.getHand().size());
-                battle.repaint();
             }
         }
     }
@@ -55,7 +44,7 @@ public abstract class Card extends JLabel {
         this.dispose=false;
         this.singleuse=false;
         status();
-        addMouseListener(new cardMouseAdapter(this));
+        addMouseListener(new cardMouseAdapter());
     }
 
     @Override
@@ -85,6 +74,12 @@ public abstract class Card extends JLabel {
         this.battle = battle;
     }
 
+    public void deInitBattle(){
+        this.kapal = null;
+        this.enemy = null;
+        this.battle = null;
+    }
+
     //all activation use this
     public void activate(Kapal kapal, Enemy enemy, Battle battle){
 
@@ -94,6 +89,12 @@ public abstract class Card extends JLabel {
         drainEnergy(kapal);
         twice();
         active=false;
+
+        kapal.getCard().add(this);
+        battle.getHand().remove(this);
+        battle.remove(this);
+        battle.displayCard();
+        battle.repaint();
     }
 
     public void reactivate(){

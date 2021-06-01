@@ -3,6 +3,8 @@ package com.SlayTheSpirelike;
 
 import com.SlayTheSpirelike.Cards.AttackCard;
 import com.SlayTheSpirelike.Cards.DefendCard;
+import com.SlayTheSpirelike.Potions.SwiftPotion;
+import com.SlayTheSpirelike.Potions.WrathPotion;
 
 public class Tanker extends Kapal {
     public Tanker(String nama) {
@@ -18,6 +20,8 @@ public class Tanker extends Kapal {
         card.add(new DefendCard());
         card.add(new DefendCard());
         card.add(new DefendCard());
+        potion.add(new WrathPotion());
+        potion.add(new SwiftPotion());
         //heal card
     }
 }

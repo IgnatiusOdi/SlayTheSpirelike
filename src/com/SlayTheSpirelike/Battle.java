@@ -6,6 +6,8 @@ import com.SlayTheSpirelike.Potions.SummonPotion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -79,7 +81,7 @@ public class Battle extends JPanel {
 
         //battle Begins
 
-        initCards();
+        initPlayer();
         draw(5);
 
     }
@@ -88,18 +90,18 @@ public class Battle extends JPanel {
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
 
-        // TODO: 27/05/2021 clickevent
+        // TODO: 01/06/2021 testing battle
         potions = player.getPotion();
         for (int i = 0; i < potions.size(); i++) {
-            potions.get(i).setDimension(25,25);
+            potions.get(i).setDimension(400 + (i*30),15,25,25);
             potions.get(i).setBounds(400 + (i*30),15,25,25);
+            potions.get(i).initForBattle(player,enemy,this);
             add(potions.get(i));
         }
 
-        // TODO: 27/05/2021 Relic clickevent
         relics = player.getRelic();
         for (int i = 0; i < relics.size(); i++) {
-            relics.get(i).setDimension(50,50);
+            relics.get(i).setDimension(10 + (i*55),50,50,50);
             relics.get(i).setBounds(10 + (i*55),50,50,50);
             add(relics.get(i));
         }
@@ -157,6 +159,20 @@ public class Battle extends JPanel {
             }
         });
         add(endTurn);
+
+        initCheats();
+    }
+
+    private void initCheats(){
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_I,0),"fillEnergy");
+        getActionMap().put("fillEnergy",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Fill energy");
+                player.setEnergy(9);
+                repaint();
+            }
+        });
     }
 
     //escape, no reward
@@ -165,11 +181,12 @@ public class Battle extends JPanel {
     }
 
     // TODO: 31/05/2021 Enemy not redy
-    private void initCards(){
+    private void initPlayer(){
         System.out.println(player.getCard().size());
         for (Card card : player.getCard()) {
             card.initForBattle(player,enemy,this);
         }
+        player.activateRelic("Start Battle",enemy,this);
     }
 
     //draw x amount of cards
@@ -181,9 +198,12 @@ public class Battle extends JPanel {
             hand.add(player.getCard(cardIndex));
             player.getCard().remove(cardIndex);
         }
+        displayCard();
+    }
 
-        //display card
+    public void displayCard(){
         for (int i = 0; i < hand.size(); i++) {
+            remove(hand.get(i));
             hand.get(i).setBounds(80 + (i * 185), 500, 180, 320);
             add(hand.get(i));
         }
