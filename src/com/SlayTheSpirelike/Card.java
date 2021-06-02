@@ -10,7 +10,7 @@ public abstract class Card extends JLabel {
     protected static int twicetime=1;
     protected String nama, type, desc;
     protected int level, cost;
-    protected int damage, block, draw, energy, weak, strength, heal,summon;
+    protected int damage, block, draw, energy, weak, strength, heal, summon, bleed;
     protected boolean active, dispose, singleuse;
     //dispose untuk torpedo, singleuse untuk heal card
 
@@ -41,6 +41,7 @@ public abstract class Card extends JLabel {
         this.strength = 0;
         this.heal = 0;
         this.summon = 0;
+        this.bleed = 0;
         this.active=true;
         this.dispose=false;
         this.singleuse=false;

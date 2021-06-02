@@ -2,9 +2,9 @@ package com.SlayTheSpirelike.Cards;
 
 import com.SlayTheSpirelike.*;
 
-public class Reposition extends Card {
-    public Reposition() {
-        super("Reposition", "Self", 1);
+public class DeniumShieldingCard extends Card {
+    public DeniumShieldingCard() {
+        super("Denium Shielding", "Self", 1);
         status();
     }
 
@@ -12,8 +12,8 @@ public class Reposition extends Card {
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                battle.draw(draw);
                 kapal.setBlock(kapal.getBlock()+block);
+                battle.setEnergyplus(battle.getEnergyplus()+energy);
             }
             finish(kapal);
         }
@@ -22,14 +22,14 @@ public class Reposition extends Card {
     @Override
     public void status() {
         if (level==1){
-            draw=1;
-            block=3;
+            block=4;
+            energy=1;
         }
         else if(level>=2){
-            draw=2;
-            block=3;
+            block=6;
+            energy=1;
         }
-        desc = "Gain " + block +" block, \n"+
-                "draw "+draw+" cards";
+        desc = "Gain "+block+" block,\n" +
+                "next turn restore "+energy+" energy";
     }
 }

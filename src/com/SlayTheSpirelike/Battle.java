@@ -30,8 +30,9 @@ public class Battle extends JPanel {
     private Enemy enemy;
     private int strengthtemp, strength;
     private int potionchance;
-    private int heal; //untuk self repair
+    private int heal, energyplus; //untuk self repair //untuk Denium Shielding
     private boolean invincible, nopotion;
+    private int bleed, bleeddmg;
 
     //override to draw image
     @Override
@@ -72,6 +73,9 @@ public class Battle extends JPanel {
         this.potionchance = 100;
         this.invincible = false;
         this.nopotion = false;
+        this.bleed = 0;
+        this.bleeddmg = 1;
+        this.energyplus = 0;
         this.rnd = new Random();
         hand = new ArrayList<>(5);
         setSize(body.getWidth(), body.getHeight());
@@ -338,6 +342,19 @@ public class Battle extends JPanel {
         }
     }
 
+    public void bleed(){
+        if (bleed>0){
+            enemy.setHealth(enemy.getHealth()-bleeddmg);
+            bleed--;
+        }
+    }
+
+    //untuk denium shielding
+    public void energy(){
+        player.setEnergy(player.getEnergy()+energyplus);
+        energyplus=0;
+    }
+
     public boolean isInvincible() {
         return invincible;
     }
@@ -364,5 +381,29 @@ public class Battle extends JPanel {
 
     public void setHeal(int heal) {
         this.heal = heal;
+    }
+
+    public int getEnergyplus() {
+        return energyplus;
+    }
+
+    public void setEnergyplus(int energyplus) {
+        this.energyplus = energyplus;
+    }
+
+    public int getBleed() {
+        return bleed;
+    }
+
+    public void setBleed(int bleed) {
+        this.bleed = bleed;
+    }
+
+    public int getBleeddmg() {
+        return bleeddmg;
+    }
+
+    public void setBleeddmg(int bleeddmg) {
+        this.bleeddmg = bleeddmg;
     }
 }
