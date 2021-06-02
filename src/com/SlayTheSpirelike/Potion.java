@@ -47,25 +47,25 @@ public abstract class Potion extends Sprite {
         public void mouseEntered(MouseEvent e) {
             super.mouseEntered(e);
             descLabel.setBounds(x,y+height,desc.length()*13,40);
-            panel.add(descLabel);
-            panel.repaint();
+            ((Potion)e.getSource()).getPanel().add(descLabel);
+            ((Potion)e.getSource()).getPanel().repaint();
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
             super.mouseExited(e);
-            panel.remove(descLabel);
-            panel.repaint();
+            ((Potion)e.getSource()).getPanel().remove(descLabel);
+            ((Potion)e.getSource()).getPanel().repaint();
         }
 
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            potion.activate(kapal,enemy,battle);
+            ((Potion)e.getSource()).activate(kapal,enemy,battle);
             kapal.getPotion().remove(potion);
-            panel.remove(potion);
-            panel.remove(descLabel);
-            panel.repaint();
+            ((Potion)e.getSource()).getPanel().remove(potion);
+            ((Potion)e.getSource()).getPanel().remove(descLabel);
+            ((Potion)e.getSource()).getPanel().repaint();
         }
 
         public void setPanel(JPanel panel) {
@@ -186,5 +186,9 @@ public abstract class Potion extends Sprite {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public JPanel getPanel() {
+        return panel;
     }
 }
