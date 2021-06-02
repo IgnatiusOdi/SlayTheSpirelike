@@ -91,7 +91,7 @@ public class Statics {
         cards.add(new RerouteCard());
         cards.add(new ExplodingPayloadCard());
         cards.add(new MissleCard());
-        cards.add(new PiercingBulletCard());
+        cards.add(new ExtraGunpowderCard());
         cards.add(new SupportCannonCard());
 
     }

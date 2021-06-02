@@ -189,6 +189,14 @@ public class Battle extends JPanel {
         player.activateRelic("Start Battle",enemy,this);
     }
 
+    private void deInitPlayer(){
+        for (Card card : player.getCard()) {
+            card.deInitBattle();
+        }
+        player.activateRelic("End Battle",enemy,this);
+        player.deactivateRelic();
+    }
+
     //draw x amount of cards
     public void draw(int amount){
         Random r = new Random();
