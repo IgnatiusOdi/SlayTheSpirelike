@@ -2,15 +2,16 @@ package com.SlayTheSpirelike.Cards;
 
 import com.SlayTheSpirelike.*;
 
-public class GatlingGunCard extends Card {
-    public GatlingGunCard() {
-        super("Gatling Gun", "Battle", 2);
+public class MoralSupportCard extends Card {
+    public MoralSupportCard() {
+        super("Moral Support", "Battle", 1);
         status();
     }
 
     @Override
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
+            draw = kapal.summonSize();
             for (int i = 0; i < twice; i++) {
                 attack(kapal,enemy);
                 battle.draw(draw);
@@ -22,16 +23,13 @@ public class GatlingGunCard extends Card {
     @Override
     public void status() {
         if (level==1){
-            draw=1;
             damage=4;
-            desc = "Deal " + damage +" to enemy, \n"+
-                    "draw "+draw+" card";
         }
         else if(level>=2){
-            draw=2;
-            damage=5;
-            desc = "Deal " + damage +" to enemy, \n"+
-                    "draw "+draw+" cards";
+            damage=6;
         }
+        desc = "Deal " + damage +" to enemy, \n"+
+                "draw 1 card for \n" +
+                "each heli you have";
     }
 }

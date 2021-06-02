@@ -1,5 +1,6 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Cards.TorpedoCard;
 import com.SlayTheSpirelike.Potions.InvinciblePotion;
 import com.SlayTheSpirelike.Potions.RevivePotion;
 import com.SlayTheSpirelike.Potions.SummonPotion;
@@ -207,6 +208,12 @@ public class Battle extends JPanel {
             player.getCard().remove(cardIndex);
         }
         displayCard();
+    }
+
+    public void drawTorpedo(int draw){
+        for (int i = 0; i < draw; i++) {
+            hand.add(new TorpedoCard());
+        }
     }
 
     public void displayCard(){

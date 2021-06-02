@@ -10,7 +10,7 @@ public abstract class Card extends JLabel {
     protected static int twicetime=1;
     protected String nama, type, desc;
     protected int level, cost;
-    protected int damage, block, draw, energy, weak, strength, heal;
+    protected int damage, block, draw, energy, weak, strength, heal,summon;
     protected boolean active, dispose, singleuse;
     //dispose untuk torpedo, singleuse untuk heal card
 
@@ -40,6 +40,7 @@ public abstract class Card extends JLabel {
         this.weak = 0;
         this.strength = 0;
         this.heal = 0;
+        this.summon = 0;
         this.active=true;
         this.dispose=false;
         this.singleuse=false;
@@ -156,10 +157,27 @@ public abstract class Card extends JLabel {
         e.setHealth(e.getHealth()-attack);
     }
 
-    public void restoreHealth(Kapal k){
-        k.setHealth(k.getHealth()+heal);
-        if (k.getHealth()> k.getMaxhealth()){
-            k.setHealth(k.getMaxhealth());
+    public void restoreHealth(Kapal kapal){
+        kapal.setHealth(kapal.getHealth()+heal);
+        if (kapal.getHealth()> kapal.getMaxhealth()){
+            kapal.setHealth(kapal.getMaxhealth());
+        }
+    }
+
+    public void applyWeak(Enemy enemy){
+        enemy.setAtkhigh(enemy.getAtkhigh()-weak);
+        enemy.setAtklow(enemy.getAtklow()-weak);
+        if (enemy.getAtkhigh()<0){
+            enemy.setAtkhigh(0);
+        }
+        if (enemy.getAtklow()<0){
+            enemy.setAtklow(0);
+        }
+    }
+
+    public void summon(Kapal kapal){
+        for (int i = 0; i < summon; i++) {
+            kapal.summon(new HeliSummon());
         }
     }
 

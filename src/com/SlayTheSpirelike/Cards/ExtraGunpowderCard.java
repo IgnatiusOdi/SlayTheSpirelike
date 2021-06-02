@@ -9,7 +9,7 @@ public class ExtraGunpowderCard extends Card {
     private boolean twiced;
     private boolean used;
     public ExtraGunpowderCard() {
-        super("Piercing Bullet", "Self", 3);
+        super("Extra Gundpowder", "Self", 3);
         status();
         twiced = false;
         used = true;

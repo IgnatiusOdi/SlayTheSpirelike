@@ -1,15 +1,11 @@
 package com.SlayTheSpirelike.Cards;
 
-import com.SlayTheSpirelike.Battle;
-import com.SlayTheSpirelike.Card;
-import com.SlayTheSpirelike.Enemy;
-import com.SlayTheSpirelike.Kapal;
+import com.SlayTheSpirelike.*;
 
-public class RechargeCard extends Card {
-    public RechargeCard() {
-        super("Recharge", "Self", 0);
+public class FuelContainerCard extends Card {
+    public FuelContainerCard() {
+        super("Fuel Container", "Self", 0);
         status();
-        singleuse=true;
     }
 
     @Override
@@ -25,12 +21,11 @@ public class RechargeCard extends Card {
     @Override
     public void status() {
         if (level==1){
-            energy = 2;
+            energy = 1;
         }
         else if(level>=2){
-            energy = 3;
+            energy = 2;
         }
-        desc = "Gain "+energy+" energy.\n" +
-                "(Single use)";
+        desc = "Gain "+energy+" energy.";
     }
 }

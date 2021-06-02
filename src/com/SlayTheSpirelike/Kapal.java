@@ -100,6 +100,12 @@ public abstract class Kapal extends Sprite{
         summon.clear();
     }
 
+    public void destroySummon(){
+        if (summon.size()>0){
+            summon.remove(summon.size()-1);
+        }
+    }
+
     //cek eksistensi potion
     public boolean isPotion(String nama){
         boolean exist = false;
