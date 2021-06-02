@@ -1,5 +1,9 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Relics.CauldronRelic;
+import com.SlayTheSpirelike.Relics.CookieRelic;
+import com.SlayTheSpirelike.Relics.MembershipCardRelic;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -80,21 +84,21 @@ public class Buy extends JPanel {
     //RELIC 1
     private JLabel relic1;
     private JButton relic1button;
-    private Boolean relic1bought;
+    private Boolean haverelic1 = false;
     private JLabel relic1layer;
     private int relic1price;
 
     //RELIC 2
     private JLabel relic2;
     private JButton relic2button;
-    private Boolean relic2bought;
+    private Boolean haverelic2 = false;
     private JLabel relic2layer;
     private int relic2price;
 
     //RELIC 3
     private JLabel relic3;
     private JButton relic3button;
-    private Boolean relic3bought;
+    private Boolean haverelic3 = false;
     private JLabel relic3layer;
     private int relic3price;
 
@@ -102,6 +106,9 @@ public class Buy extends JPanel {
         this.body = body;
         this.shop = shop;
         this.kapal = kapal;
+
+        kapal.setCoin(10000);
+
         init();
     }
 
@@ -165,7 +172,7 @@ public class Buy extends JPanel {
         };
         card1button = new JButton();
         card1bought = false;
-        card1layer = new JLabel();
+        card1layer = new JLabel("ALREADY BOUGHT");
         card1price = 200;
 
         card2 = new JLabel("CARD 2") {
@@ -177,7 +184,7 @@ public class Buy extends JPanel {
         };
         card2button = new JButton();
         card2bought = false;
-        card2layer = new JLabel();
+        card2layer = new JLabel("ALREADY BOUGHT");
         card2price = 200;
 
         card3 = new JLabel("CARD 3") {
@@ -189,7 +196,7 @@ public class Buy extends JPanel {
         };
         card3button = new JButton();
         card3bought = false;
-        card3layer = new JLabel();
+        card3layer = new JLabel("ALREADY BOUGHT");
         card3price = 200;
 
         relic1 = new JLabel("Membership Card Relic") {
@@ -200,8 +207,13 @@ public class Buy extends JPanel {
             }
         };
         relic1button = new JButton();
-        relic1bought = false;
-        relic1layer = new JLabel();
+        for (int i = 0; i < kapal.relic.size(); i++) {
+            if (kapal.relic.get(i).nama.equals("Membership Card Relic")) {
+                haverelic1 = true;
+                break;
+            }
+        }
+        relic1layer = new JLabel("ALREADY HAVE RELIC");
         relic1price = 300;
 
         relic2 = new JLabel("Cauldron Relic") {
@@ -212,8 +224,13 @@ public class Buy extends JPanel {
             }
         };
         relic2button = new JButton();
-        relic2bought = false;
-        relic2layer = new JLabel();
+        for (int i = 0; i < kapal.relic.size(); i++) {
+            if (kapal.relic.get(i).nama.equals("Cauldron Relic")) {
+                haverelic2 = true;
+                break;
+            }
+        }
+        relic2layer = new JLabel("ALREADY HAVE RELIC");
         relic2price = 300;
 
         relic3 = new JLabel("Cookie Relic") {
@@ -224,8 +241,13 @@ public class Buy extends JPanel {
             }
         };
         relic3button = new JButton();
-        relic3bought = false;
-        relic3layer = new JLabel();
+        for (int i = 0; i < kapal.relic.size(); i++) {
+            if (kapal.relic.get(i).nama.equals("Cookie Relic")) {
+                haverelic3 = true;
+                break;
+            }
+        }
+        relic3layer = new JLabel("ALREADY HAVE RELIC");
         relic3price = 300;
 
         //---------------------------------------------------------------------------------------------//
@@ -288,44 +310,74 @@ public class Buy extends JPanel {
 
         //CARD 1 LAYER
         card1layer.setBounds(space, (int) (height*1.6), height, width);
-        card1layer.setBackground(new Color(211,211,211,100));
+        card1layer.setBackground(new Color(0,0,0, 240));
+        card1layer.setForeground(Color.red);
+        card1layer.setFont(new Font("Monospace", Font.ITALIC, 12));
+        card1layer.setHorizontalAlignment(SwingConstants.CENTER);
         card1layer.setOpaque(true);
         card1layer.setVisible(false);
         add(card1layer);
 
         //CARD 2 LAYER
         card2layer.setBounds((height + space) + space, (int) (height*1.6), height, width);
-        card2layer.setBackground(new Color(211,211,211,100));
+        card2layer.setBackground(new Color(0,0,0, 240));
+        card2layer.setForeground(Color.red);
+        card2layer.setFont(new Font("Monospace", Font.ITALIC, 12));
+        card2layer.setHorizontalAlignment(SwingConstants.CENTER);
         card2layer.setOpaque(true);
         card2layer.setVisible(false);
         add(card2layer);
 
         //CARD 3 LAYER
         card3layer.setBounds((height + space)*2 + space, (int) (height*1.6), height, width);
-        card3layer.setBackground(new Color(211,211,211,100));
+        card3layer.setBackground(new Color(0,0,0, 240));
+        card3layer.setForeground(Color.red);
+        card3layer.setFont(new Font("Monospace", Font.ITALIC, 12));
+        card3layer.setHorizontalAlignment(SwingConstants.CENTER);
         card3layer.setOpaque(true);
         card3layer.setVisible(false);
         add(card3layer);
 
         //RELIC 1 LAYER
         relic1layer.setBounds((height + space)*3 + space, (int) (height*1.6), height, width);
-        relic1layer.setBackground(new Color(211,211,211,100));
+        relic1layer.setBackground(new Color(0,0,0, 240));
+        relic1layer.setForeground(Color.red);
+        relic1layer.setFont(new Font("Monospace", Font.ITALIC, 12));
+        relic1layer.setHorizontalAlignment(SwingConstants.CENTER);
         relic1layer.setOpaque(true);
-        relic1layer.setVisible(false);
+        if (!haverelic1) {
+            relic1layer.setVisible(false);
+        } else {
+            relic1layer.setVisible(true);
+        }
         add(relic1layer);
 
         //RELIC 2 LAYER
         relic2layer.setBounds((height + space)*4 + space, (int) (height*1.6), height, width);
-        relic2layer.setBackground(new Color(211,211,211,100));
+        relic2layer.setBackground(new Color(0,0,0, 240));
+        relic2layer.setForeground(Color.red);
+        relic2layer.setFont(new Font("Monospace", Font.ITALIC, 12));
+        relic2layer.setHorizontalAlignment(SwingConstants.CENTER);
         relic2layer.setOpaque(true);
-        relic2layer.setVisible(false);
+        if (!haverelic2) {
+            relic2layer.setVisible(false);
+        } else {
+            relic2layer.setVisible(true);
+        }
         add(relic2layer);
 
         //RELIC 3 LAYER
         relic3layer.setBounds((height + space)*5 + space, (int) (height*1.6), height, width);
-        relic3layer.setBackground(new Color(211,211,211,100));
+        relic3layer.setBackground(new Color(0,0,0, 240));
+        relic3layer.setForeground(Color.red);
+        relic3layer.setFont(new Font("Monospace", Font.ITALIC, 12));
+        relic3layer.setHorizontalAlignment(SwingConstants.CENTER);
         relic3layer.setOpaque(true);
-        relic3layer.setVisible(false);
+        if (!haverelic3) {
+            relic3layer.setVisible(false);
+        } else {
+            relic3layer.setVisible(true);
+        }
         add(relic3layer);
 
         //CARD 1 BUTTON
@@ -414,7 +466,11 @@ public class Buy extends JPanel {
         //CARD 3 BUTTON
         card3button.setBorderPainted(false);
         card3button.setBounds((height + space)*2 + space,(int) (height*1.6) + width - 50, height, 50);
-        card3button.setText(String.valueOf(card3price));
+        if (!haverelic1) {
+            card3button.setText(String.valueOf(card3price));
+        } else {
+            card3button.setText(String.valueOf(card3price/2));
+        }
         card3button.setHorizontalTextPosition(JButton.CENTER);
         card3button.setVerticalTextPosition(JButton.CENTER);
         card3button.setFont(new Font("Monospace",Font.ITALIC,20));
@@ -473,10 +529,22 @@ public class Buy extends JPanel {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         relic1.setEnabled(false);
-                        relic1bought = true;
+                        haverelic1 = true;
                         relic1layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - relic1price);
+                        kapal.addRelic(new MembershipCardRelic());
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
+
+                        card1price /= 2;
+                        card2price /= 2;
+                        card3price /= 2;
+                        relic2price /= 2;
+                        relic3price /= 2;
+                        card1button.setText(String.valueOf(card1price));
+                        card2button.setText(String.valueOf(card2price));
+                        card3button.setText(String.valueOf(card3price));
+                        relic2button.setText(String.valueOf(relic2price));
+                        relic3button.setText(String.valueOf(relic3price));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -498,7 +566,11 @@ public class Buy extends JPanel {
         //RELIC 2 BUTTON
         relic2button.setBorderPainted(false);
         relic2button.setBounds((height + space)*4 + space,(int) (height*1.6) + width - 50, height, 50);
-        relic2button.setText(String.valueOf(relic2price));
+        if (!haverelic1) {
+            relic2button.setText(String.valueOf(relic2price));
+        } else {
+            relic2button.setText(String.valueOf(relic2price/2));
+        }
         relic2button.setHorizontalTextPosition(JButton.CENTER);
         relic2button.setVerticalTextPosition(JButton.CENTER);
         relic2button.setFont(new Font("Monospace",Font.ITALIC,20));
@@ -515,9 +587,10 @@ public class Buy extends JPanel {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         relic2.setEnabled(false);
-                        relic2bought = true;
+                        haverelic2 = true;
                         relic2layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - relic2price);
+                        kapal.addRelic(new CauldronRelic());
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
@@ -540,7 +613,11 @@ public class Buy extends JPanel {
         //RELIC 3 BUTTON
         relic3button.setBorderPainted(false);
         relic3button.setBounds((height + space)*5 + space,(int) (height*1.6) + width - 50, height, 50);
-        relic3button.setText(String.valueOf(relic3price));
+        if (!haverelic1) {
+            relic3button.setText(String.valueOf(relic3price));
+        } else {
+            relic3button.setText(String.valueOf(relic3price/2));
+        }
         relic3button.setHorizontalTextPosition(JButton.CENTER);
         relic3button.setVerticalTextPosition(JButton.CENTER);
         relic3button.setFont(new Font("Monospace",Font.ITALIC,20));
@@ -557,9 +634,10 @@ public class Buy extends JPanel {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         relic3.setEnabled(false);
-                        relic3bought = true;
+                        haverelic3 = true;
                         relic3layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - relic3price);
+                        kapal.addRelic(new CookieRelic());
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
@@ -581,7 +659,7 @@ public class Buy extends JPanel {
 
         //CARD 1
         card1.setBounds(space, (int) (height*1.6), height, width);
-        card1.setForeground(Color.white);
+        card1.setForeground(Color.green);
         card1.setHorizontalAlignment(SwingConstants.CENTER);
         card1.setVerticalAlignment(SwingConstants.CENTER);
         card1.addMouseListener(new MouseAdapter() {
@@ -601,7 +679,7 @@ public class Buy extends JPanel {
 
         //CARD 2
         card2.setBounds((height + space) + space, (int) (height*1.6), height, width);
-        card2.setForeground(Color.white);
+        card2.setForeground(Color.green);
         card2.setHorizontalAlignment(SwingConstants.CENTER);
         card2.setVerticalAlignment(SwingConstants.CENTER);
         card2.addMouseListener(new MouseAdapter() {
@@ -621,7 +699,7 @@ public class Buy extends JPanel {
 
         //CARD 3
         card3.setBounds((height + space)*2 + space, (int) (height*1.6), height, width);
-        card3.setForeground(Color.white);
+        card3.setForeground(Color.green);
         card3.setHorizontalAlignment(SwingConstants.CENTER);
         card3.setVerticalAlignment(SwingConstants.CENTER);
         card3.addMouseListener(new MouseAdapter() {
@@ -641,13 +719,13 @@ public class Buy extends JPanel {
 
         //RELIC 1
         relic1.setBounds((height + space)*3 + space, (int) (height*1.6), height, width);
-        relic1.setForeground(Color.white);
+        relic1.setForeground(Color.green);
+        relic1.setFont(new Font("Monospace", Font.BOLD, 12));
         relic1.setHorizontalAlignment(SwingConstants.CENTER);
-        relic1.setVerticalAlignment(SwingConstants.CENTER);
         relic1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!relic1bought) {
+                if (!haverelic1) {
                     relic1button.setVisible(true);
                     relic1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
@@ -661,13 +739,13 @@ public class Buy extends JPanel {
 
         //RELIC 2
         relic2.setBounds((height + space)*4 + space, (int) (height*1.6), height, width);
-        relic2.setForeground(Color.white);
+        relic2.setForeground(Color.green);
+        relic2.setFont(new Font("Monospace", Font.BOLD, 12));
         relic2.setHorizontalAlignment(SwingConstants.CENTER);
-        relic2.setVerticalAlignment(SwingConstants.CENTER);
         relic2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!relic2bought) {
+                if (!haverelic2) {
                     relic2button.setVisible(true);
                     relic2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
@@ -681,13 +759,13 @@ public class Buy extends JPanel {
 
         //RELIC 3
         relic3.setBounds((height + space)*5 + space, (int) (height*1.6), height, width);
-        relic3.setForeground(Color.white);
+        relic3.setForeground(Color.green);
+        relic3.setFont(new Font("Monospace", Font.BOLD, 12));
         relic3.setHorizontalAlignment(SwingConstants.CENTER);
-        relic3.setVerticalAlignment(SwingConstants.CENTER);
         relic3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!relic3bought) {
+                if (!haverelic3) {
                     relic3button.setVisible(true);
                     relic3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
