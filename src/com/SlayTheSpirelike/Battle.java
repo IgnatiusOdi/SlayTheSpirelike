@@ -25,6 +25,7 @@ public class Battle extends JPanel {
                     energy,
                     endTurn;
     private ArrayList<Potion> potions;
+    private ArrayList<Potion> usedpotions;
     private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
     private ArrayList<Card> singleuse;
@@ -80,6 +81,7 @@ public class Battle extends JPanel {
         this.rnd = new Random();
         hand = new ArrayList<>(5);
         singleuse = new ArrayList<>();
+        usedpotions = new ArrayList<>();
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
 
@@ -273,6 +275,33 @@ public class Battle extends JPanel {
             h.downgrade();
         }
     }
+
+    // make use potion implement
+
+    // at start every turn
+    public void activatePotions(){
+        for(Potion p: usedpotions){
+            p.activate(player,enemy,this);
+        }
+    }
+
+    public void disposePotions(){
+        for(Potion p: usedpotions){
+            if(!p.isActive()){
+                p.deactivate(player,enemy,this);
+                usedpotions.remove(p);
+            }
+        }
+    }
+
+    //when battle end
+    public void forceDisposePotions(){
+        for(Potion p: usedpotions){
+            p.deactivate(player,enemy,this);
+        }
+        usedpotions.clear();
+    }
+
     //turn active kembali jadi true
     public void reactivate(){
         player.reactivateCard();
