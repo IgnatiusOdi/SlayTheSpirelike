@@ -38,4 +38,9 @@ public class ExplodingPayloadCard extends Card {
                 "to enemy. Consumes \n" +
                 "all remaining energy\n";
     }
+
+    @Override
+    protected Card copy() {
+        return new ExplodingPayloadCard();
+    }
 }

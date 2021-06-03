@@ -31,4 +31,9 @@ public class RocketSalvoCard extends Card {
         desc = "Deal "+damage+" damage \n" +
                 "and apply "+weak+" weak";
     }
+
+    @Override
+    protected Card copy() {
+        return new RocketSalvoCard();
+    }
 }

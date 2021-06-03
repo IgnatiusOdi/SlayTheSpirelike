@@ -32,4 +32,9 @@ public class SupportFlareCard extends Card {
         desc = "Deal "+damage+" to enemy,\n" +
                 "summon "+summon+" heli";
     }
+
+    @Override
+    protected Card copy() {
+        return new SupportFlareCard();
+    }
 }

@@ -22,8 +22,8 @@ public abstract class Card extends JLabel {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            if (kapal.getEnergy()>=cost && battle!=null) {
-                activate(kapal, enemy, battle);
+            if (((Card)e.getSource()).kapal.getEnergy()>=cost && ((Card)e.getSource()).battle!=null) {
+                activate(((Card)e.getSource()).kapal, ((Card)e.getSource()).enemy, ((Card)e.getSource()).battle);
             }
         }
     }
@@ -181,6 +181,9 @@ public abstract class Card extends JLabel {
             kapal.summon(new HeliSummon());
         }
     }
+
+    //untuk cheat, return new copy of the Card
+    abstract protected Card copy();
 
     public boolean isSingleuse() {
         return singleuse;

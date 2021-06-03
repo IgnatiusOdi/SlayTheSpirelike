@@ -33,4 +33,9 @@ public class RerouteCard extends Card {
         desc = "Restore "+energy+" energy \n"
         +", lose 2 health";
     }
+
+    @Override
+    protected Card copy() {
+        return new RerouteCard();
+    }
 }

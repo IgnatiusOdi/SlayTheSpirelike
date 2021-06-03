@@ -31,4 +31,9 @@ public class GreedofPotCard extends Card {
         }
         desc = "Draw "+draw+" cards";
     }
+
+    @Override
+    protected Card copy() {
+        return new GreedofPotCard();
+    }
 }

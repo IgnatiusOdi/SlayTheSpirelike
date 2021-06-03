@@ -33,4 +33,9 @@ public class SalvationCard extends Card {
     public void upgrade() {
 
     }
+
+    @Override
+    protected Card copy() {
+        return new SalvationCard();
+    }
 }

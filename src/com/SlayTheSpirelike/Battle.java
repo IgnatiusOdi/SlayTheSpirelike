@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class Battle extends JPanel {
@@ -173,12 +174,27 @@ public class Battle extends JPanel {
     }
 
     private void initCheats(){
+        Battle b = this;
         getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_I,0),"fillEnergy");
         getActionMap().put("fillEnergy",new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Fill energy");
                 player.setEnergy(9);
+                repaint();
+            }
+        });
+
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_K,0),"addCard");
+        getActionMap().put("addCard",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Scanner s = new Scanner(System.in);
+                System.out.print("Card Num:");
+                Card c = Statics.cards.get(s.nextInt()).copy();
+                c.initForBattle(player,enemy,b);
+                hand.add(c);
+                displayCard();
                 repaint();
             }
         });

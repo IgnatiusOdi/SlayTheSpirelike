@@ -33,4 +33,9 @@ public class KamikazeCard extends Card {
                 "Draw "+draw+" cards\n" +
                 "(Must have heli)";
     }
+
+    @Override
+    protected Card copy() {
+        return new KamikazeCard();
+    }
 }

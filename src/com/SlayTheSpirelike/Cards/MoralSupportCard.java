@@ -32,4 +32,9 @@ public class MoralSupportCard extends Card {
                 "draw 1 card for \n" +
                 "each heli you have";
     }
+
+    @Override
+    protected Card copy() {
+        return new MoralSupportCard();
+    }
 }

@@ -34,4 +34,9 @@ public class GatlingGunCard extends Card {
                     "draw "+draw+" cards";
         }
     }
+
+    @Override
+    protected Card copy() {
+        return new GatlingGunCard();
+    }
 }

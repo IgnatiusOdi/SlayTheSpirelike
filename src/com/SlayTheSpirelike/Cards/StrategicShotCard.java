@@ -28,4 +28,9 @@ public class StrategicShotCard extends Card {
         }
         desc = "Double enemy's bleed";
     }
+
+    @Override
+    protected Card copy() {
+        return new StrategicShotCard();
+    }
 }

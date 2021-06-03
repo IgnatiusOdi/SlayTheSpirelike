@@ -32,4 +32,9 @@ public class DeniumShieldingCard extends Card {
         desc = "Gain "+block+" block,\n" +
                 "next turn restore "+energy+" energy";
     }
+
+    @Override
+    protected Card copy() {
+        return new DeniumShieldingCard();
+    }
 }

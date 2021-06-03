@@ -37,4 +37,9 @@ public class OneforAllCard extends Card {
         level++;
         status();
     }
+
+    @Override
+    protected Card copy() {
+        return new OneforAllCard();
+    }
 }

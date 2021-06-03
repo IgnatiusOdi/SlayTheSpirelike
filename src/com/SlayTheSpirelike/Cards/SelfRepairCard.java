@@ -31,4 +31,9 @@ public class SelfRepairCard extends Card {
                 "heal "+heal+" health. \n" +
                 "(Single use)";
     }
+
+    @Override
+    protected Card copy() {
+        return new SelfRepairCard();
+    }
 }

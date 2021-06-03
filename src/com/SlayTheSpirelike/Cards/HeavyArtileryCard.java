@@ -35,6 +35,10 @@ public class HeavyArtileryCard extends Card {
                 "and apply "+weak+" weak";
     }
 
+    @Override
+    protected Card copy() {
+        return new HeavyArtileryCard();
+    }
 }
 
 

@@ -43,4 +43,9 @@ public class SalvageCard extends Card {
                     "draw "+draw+" cards";
         }
     }
+
+    @Override
+    protected Card copy() {
+        return new SalvageCard();
+    }
 }

@@ -33,4 +33,9 @@ public class PiercingShotCard extends Card {
                 "apply "+bleed+" bleed \n" +
                 "to enemy";
     }
+
+    @Override
+    protected Card copy() {
+        return new PiercingShotCard();
+    }
 }

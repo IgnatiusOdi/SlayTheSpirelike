@@ -47,4 +47,9 @@ public class ExtraGunpowderCard extends Card {
         twiced = false;
         used = true;
     }
+
+    @Override
+    protected Card copy() {
+        return new ExtraGunpowderCard();
+    }
 }
