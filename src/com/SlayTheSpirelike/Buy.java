@@ -18,42 +18,11 @@ public class Buy extends JPanel {
     private Shop shop;
     private Kapal kapal;
 
-    //SIZE
-    private final int width = 200;
-    private final int height = 220;
-    private final int space = 25;
-
     //IMAGE
     private final Image hangingsign = new ImageIcon("resources/hangingsign.png").getImage();
     private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
     private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
     private final Image coinimg = new ImageIcon("resources/coin.png").getImage();
-    private final Image black = new ImageIcon("resources/black.png").getImage();
-
-    //POTION
-    private final Image applejuicepotion = new ImageIcon("resources/").getImage();
-    private final Image attackpotion = new ImageIcon("resources/").getImage();
-    private final Image blockpotion = new ImageIcon("resources/").getImage();
-    private final Image brewpotion = new ImageIcon("resources/").getImage();
-    private final Image duplicationpotion = new ImageIcon("resources/").getImage();
-    private final Image energypotion = new ImageIcon("resources/").getImage();
-    private final Image forgepotion = new ImageIcon("resources/").getImage();
-    private final Image healthpotion = new ImageIcon("resources/").getImage();
-    private final Image invinciblepotion = new ImageIcon("resources/").getImage();
-    private final Image nukepotion = new ImageIcon("resources/").getImage();
-    private final Image regenerationpotion = new ImageIcon("resources/").getImage();
-    private final Image revivepotion = new ImageIcon("resources/").getImage();
-    private final Image smokepotion = new ImageIcon("resources/").getImage();
-    private final Image steelpotion = new ImageIcon("resources/").getImage();
-    private final Image summonpotion = new ImageIcon("resources/").getImage();
-    private final Image swiftpotion = new ImageIcon("resources/").getImage();
-    private final Image weakeningpotion = new ImageIcon("resources/").getImage();
-    private final Image wrathpotion = new ImageIcon("resources/").getImage();
-
-    //RELIC
-    private final Image cauldron = new ImageIcon("resources/Cauldron.png").getImage();
-    private final Image cookie = new ImageIcon("resources/cookie.png").getImage();
-    private final Image membershipcard = new ImageIcon("resources/MembershipCard.png").getImage();
 
     //PROPERTIES
     private JLabel bg;
@@ -524,6 +493,11 @@ public class Buy extends JPanel {
         slot7button = new JButton(String.valueOf(slot7price));
 
         //---------------------------------------------------------------------------------------------//
+
+        //SIZE
+        final int width = 200;
+        final int height = 220;
+        final int space = 25;
 
         //TITLE
         title.setBounds(this.getWidth()/2 - width,0, width*2, height - 60);
