@@ -28,6 +28,7 @@ public class Battle extends JPanel {
     private ArrayList<Potion> potions;
     private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
+    private ArrayList<Card> singleuse;
     private Enemy enemy;
     private int strengthtemp, strength;
     private int potionchance;
@@ -79,6 +80,7 @@ public class Battle extends JPanel {
         this.energyplus = 0;
         this.rnd = new Random();
         hand = new ArrayList<>(5);
+        singleuse = new ArrayList<>();
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
 
@@ -249,14 +251,16 @@ public class Battle extends JPanel {
         //for torpedo card
         for (Card card : hand) {
             if (card.isDispose()){
-                remove(card);
+                hand.remove(card);
             }
         }
         player.getCard().addAll(hand);
         for (Card card : hand) {
-            remove(card);
+            hand.remove(card);
         }
         hand.clear();
+        player.getCard().addAll(singleuse);
+        singleuse.clear();
         reactivate();
         player.setEnergy(player.getMaxenergy());
     }
@@ -264,7 +268,12 @@ public class Battle extends JPanel {
     //return 1 card from hand to deck
     private void returnHand(int index){
         if(!hand.get(index).isDispose()){
-            player.getCard().add(hand.get(index));
+            if(hand.get(index).isSingleuse()){
+                singleuse.add(hand.get(index));
+            }
+            else{
+                player.getCard().add(hand.get(index));
+            }
         }
         hand.remove(index);
         reactivate();
