@@ -1,7 +1,7 @@
 package com.SlayTheSpirelike.Relics;
 
 import com.SlayTheSpirelike.*;
-import com.SlayTheSpirelike.Cards.GatlingGunCard;
+import com.SlayTheSpirelike.Cards.SniperShotCard;
 import com.SlayTheSpirelike.Cards.HelicallCard;
 import com.SlayTheSpirelike.Cards.SalvationCard;
 import com.SlayTheSpirelike.Potions.InvinciblePotion;
@@ -64,7 +64,7 @@ public class StarterPackRelic extends Relic {
                     kapal.addCard(new SalvationCard());
                 }
                 else if (kapal instanceof Warship){
-                    kapal.addCard(new GatlingGunCard());
+                    kapal.addCard(new SniperShotCard());
                 }
             }
             else{

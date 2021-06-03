@@ -5,12 +5,11 @@ import com.SlayTheSpirelike.Card;
 import com.SlayTheSpirelike.Enemy;
 import com.SlayTheSpirelike.Kapal;
 
-public class FlakgunCard extends Card {
-    public FlakgunCard() {
-        super("Flakgun", "Enemy", 2);
+public class MissleCard extends Card {
+    public MissleCard() {
+        super("Missle", "Enemy", 3);
         status();
     }
-
     @Override
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
@@ -24,10 +23,10 @@ public class FlakgunCard extends Card {
     @Override
     public void status() {
         if (level==1){
-            damage=5;
+            damage=13;
         }
         else if(level>=2){
-            damage=7;
+            damage=17;
         }
         desc = "Deal "+damage+" damage \n" +
                 "to enemy";
@@ -35,6 +34,6 @@ public class FlakgunCard extends Card {
 
     @Override
     protected Card copy() {
-        return new FlakgunCard();
+        return new MissleCard();
     }
 }

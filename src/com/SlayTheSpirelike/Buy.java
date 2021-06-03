@@ -6,6 +6,8 @@ import com.SlayTheSpirelike.Relics.MembershipCardRelic;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -110,6 +112,7 @@ public class Buy extends JPanel {
         kapal.setCoin(10000);
 
         init();
+        initCheats();
     }
 
     private void init() {
@@ -780,5 +783,27 @@ public class Buy extends JPanel {
         //BACKGROUND
         bg.setBounds(0, 0,1162,648);
         add(bg);
+    }
+
+    private void initCheats(){
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_E,0),"viewInven");
+        getActionMap().put("viewInven",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Inventory:");
+                System.out.println("Cards:");
+                for (Card card : kapal.getCard()) {
+                    System.out.println(card.getNama());
+                }
+                System.out.println("Potions:");
+                for (Potion potion : kapal.getPotion()) {
+                    System.out.println(potion.getNama());
+                }
+                System.out.println("Relics:");
+                for (Relic relic : kapal.getRelic()) {
+                    System.out.println(relic.getNama());
+                }
+            }
+        });
     }
 }

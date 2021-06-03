@@ -5,10 +5,15 @@ import com.SlayTheSpirelike.Card;
 import com.SlayTheSpirelike.Enemy;
 import com.SlayTheSpirelike.Kapal;
 
-public class RethinkCard extends Card {
+public class RethinkCard extends Card implements Cloneable{
     public RethinkCard() {
         super("Rethink", "Battle", 1);
         status();
+    }
+
+    @Override
+    public Card copy(){
+        return new RethinkCard();
     }
 
     @Override

@@ -15,11 +15,8 @@ public class SalvationCard extends Card {
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                // TODO: 31/05/2021 abraham arthur fix this pls ty
-                kapal.setHealth(kapal.getMaxhealth()+30/100);
-                if (kapal.getHealth()> kapal.getMaxhealth()){
-                    kapal.setHealth(kapal.getMaxhealth());
-                }
+                heal = kapal.getMaxhealth()*30/100;
+                restoreHealth(kapal);
             }
             finish(kapal);
         }
@@ -35,5 +32,10 @@ public class SalvationCard extends Card {
     @Override
     public void upgrade() {
 
+    }
+
+    @Override
+    protected Card copy() {
+        return new SalvationCard();
     }
 }

@@ -5,17 +5,19 @@ import com.SlayTheSpirelike.Card;
 import com.SlayTheSpirelike.Enemy;
 import com.SlayTheSpirelike.Kapal;
 
-public class FlakgunCard extends Card {
-    public FlakgunCard() {
-        super("Flakgun", "Enemy", 2);
+public class SniperShotCard extends Card {
+    public SniperShotCard() {
+        super("Sniper Shot", "Enemy", 2);
         status();
     }
 
     @Override
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
-        if (active&& kapal.isAlive()){
+        if (active&& kapal.isAlive()) {
             for (int i = 0; i < twice; i++) {
+                enemy.setBlock(enemy.getBlock() - 2);
                 attack(kapal, enemy);
+                enemy.setBlock(enemy.getBlock() + 2);
             }
             finish(kapal);
         }
@@ -24,17 +26,19 @@ public class FlakgunCard extends Card {
     @Override
     public void status() {
         if (level==1){
-            damage=5;
+            damage=2;
+            desc = "Bypass 2 block and \n" +
+                    "deal "+damage+" to enemy";
         }
-        else if(level>=2){
-            damage=7;
-        }
-        desc = "Deal "+damage+" damage \n" +
-                "to enemy";
+    }
+
+    @Override
+    public void upgrade() {
+
     }
 
     @Override
     protected Card copy() {
-        return new FlakgunCard();
+        return new SniperShotCard();
     }
 }

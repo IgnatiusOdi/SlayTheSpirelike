@@ -15,14 +15,7 @@ public class HeavyArtileryCard extends Card {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
                 attack(kapal, enemy);
-                enemy.setAtkhigh(enemy.getAtkhigh()-weak);
-                enemy.setAtklow(enemy.getAtklow()-weak);
-                if (enemy.getAtkhigh()<0){
-                    enemy.setAtkhigh(0);
-                }
-                if (enemy.getAtklow()<0){
-                    enemy.setAtklow(0);
-                }
+                applyWeak(enemy);
             }
             finish(kapal);
         }
@@ -42,6 +35,10 @@ public class HeavyArtileryCard extends Card {
                 "and apply "+weak+" weak";
     }
 
+    @Override
+    protected Card copy() {
+        return new HeavyArtileryCard();
+    }
 }
 
 

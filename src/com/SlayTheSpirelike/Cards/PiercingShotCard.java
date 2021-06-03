@@ -1,13 +1,10 @@
 package com.SlayTheSpirelike.Cards;
 
-import com.SlayTheSpirelike.Battle;
-import com.SlayTheSpirelike.Card;
-import com.SlayTheSpirelike.Enemy;
-import com.SlayTheSpirelike.Kapal;
+import com.SlayTheSpirelike.*;
 
-public class FlakgunCard extends Card {
-    public FlakgunCard() {
-        super("Flakgun", "Enemy", 2);
+public class PiercingShotCard extends Card {
+    public PiercingShotCard() {
+        super("Piercing Shot", "Battle", 2);
         status();
     }
 
@@ -16,6 +13,7 @@ public class FlakgunCard extends Card {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
                 attack(kapal, enemy);
+                battle.setBleed(battle.getBleed()+bleed);
             }
             finish(kapal);
         }
@@ -24,17 +22,20 @@ public class FlakgunCard extends Card {
     @Override
     public void status() {
         if (level==1){
-            damage=5;
+            damage=4;
+            bleed=3;
         }
         else if(level>=2){
-            damage=7;
+            damage=6;
+            bleed=3;
         }
-        desc = "Deal "+damage+" damage \n" +
+        desc = "Deal "+damage+" damage, \n" +
+                "apply "+bleed+" bleed \n" +
                 "to enemy";
     }
 
     @Override
     protected Card copy() {
-        return new FlakgunCard();
+        return new PiercingShotCard();
     }
 }

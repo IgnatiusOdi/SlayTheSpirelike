@@ -1,20 +1,19 @@
 package com.SlayTheSpirelike.Cards;
 
-import com.SlayTheSpirelike.Battle;
-import com.SlayTheSpirelike.Card;
-import com.SlayTheSpirelike.Enemy;
-import com.SlayTheSpirelike.Kapal;
+import com.SlayTheSpirelike.*;
 
-public class GreedofPotCard extends Card {
-    public GreedofPotCard() {
-        super("Greed of Pot", "Battle", 1);
+public class MoralSupportCard extends Card {
+    public MoralSupportCard() {
+        super("Moral Support", "Battle", 1);
         status();
     }
 
     @Override
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
+            draw = kapal.summonSize();
             for (int i = 0; i < twice; i++) {
+                attack(kapal,enemy);
                 battle.draw(draw);
             }
             finish(kapal);
@@ -24,16 +23,18 @@ public class GreedofPotCard extends Card {
     @Override
     public void status() {
         if (level==1){
-            draw=2;
+            damage=4;
         }
         else if(level>=2){
-            draw=3;
+            damage=6;
         }
-        desc = "Draw "+draw+" cards";
+        desc = "Deal " + damage +" to enemy, \n"+
+                "draw 1 card for \n" +
+                "each heli you have";
     }
 
     @Override
     protected Card copy() {
-        return new GreedofPotCard();
+        return new MoralSupportCard();
     }
 }

@@ -31,4 +31,9 @@ public class FortifyCard extends Card {
         }
         desc = "Double your block";
     }
+
+    @Override
+    protected Card copy() {
+        return new FortifyCard();
+    }
 }

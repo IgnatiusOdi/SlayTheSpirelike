@@ -2,9 +2,9 @@ package com.SlayTheSpirelike.Cards;
 
 import com.SlayTheSpirelike.*;
 
-public class GatlingGunCard extends Card {
-    public GatlingGunCard() {
-        super("Gatling Gun", "Battle", 2);
+public class CombustCard extends Card {
+    public CombustCard() {
+        super("Combust", "Enemy", 1);
         status();
     }
 
@@ -12,8 +12,8 @@ public class GatlingGunCard extends Card {
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
+                kapal.setHealth(kapal.getHealth()-heal);
                 attack(kapal,enemy);
-                battle.draw(draw);
             }
             finish(kapal);
         }
@@ -21,22 +21,20 @@ public class GatlingGunCard extends Card {
 
     @Override
     public void status() {
-        if (level==1){
-            draw=1;
-            damage=4;
-            desc = "Deal " + damage +" to enemy, \n"+
-                    "draw "+draw+" card";
+        if(level==1){
+            heal = 5;
+            damage = 7;
         }
         else if(level>=2){
-            draw=2;
-            damage=5;
-            desc = "Deal " + damage +" to enemy, \n"+
-                    "draw "+draw+" cards";
+            heal=4;
+            damage=9;
         }
+        desc = "Lose "+heal+" health, \n" +
+                "deal "+damage+" damage to enemy";
     }
 
     @Override
     protected Card copy() {
-        return new GatlingGunCard();
+        return new CombustCard();
     }
 }

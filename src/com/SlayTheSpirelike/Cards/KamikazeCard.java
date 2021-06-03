@@ -1,13 +1,10 @@
 package com.SlayTheSpirelike.Cards;
 
-import com.SlayTheSpirelike.Battle;
-import com.SlayTheSpirelike.Card;
-import com.SlayTheSpirelike.Enemy;
-import com.SlayTheSpirelike.Kapal;
+import com.SlayTheSpirelike.*;
 
-public class GreedofPotCard extends Card {
-    public GreedofPotCard() {
-        super("Greed of Pot", "Battle", 1);
+public class KamikazeCard extends Card {
+    public KamikazeCard() {
+        super("Kamikaze", "Battle", 1);
         status();
     }
 
@@ -15,7 +12,10 @@ public class GreedofPotCard extends Card {
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                battle.draw(draw);
+                if (kapal.summonSize()>0){
+                    battle.draw(draw);
+                    kapal.destroySummon();
+                }
             }
             finish(kapal);
         }
@@ -29,11 +29,13 @@ public class GreedofPotCard extends Card {
         else if(level>=2){
             draw=3;
         }
-        desc = "Draw "+draw+" cards";
+        desc = "Destroy 1 heli\n" +
+                "Draw "+draw+" cards\n" +
+                "(Must have heli)";
     }
 
     @Override
     protected Card copy() {
-        return new GreedofPotCard();
+        return new KamikazeCard();
     }
 }

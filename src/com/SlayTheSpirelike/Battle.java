@@ -1,15 +1,19 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Cards.TorpedoCard;
 import com.SlayTheSpirelike.Potions.InvinciblePotion;
 import com.SlayTheSpirelike.Potions.RevivePotion;
 import com.SlayTheSpirelike.Potions.SummonPotion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class Battle extends JPanel {
@@ -22,12 +26,16 @@ public class Battle extends JPanel {
                     energy,
                     endTurn;
     private ArrayList<Potion> potions;
+    private ArrayList<Potion> usedpotions;
     private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
+    private ArrayList<Card> singleuse;
     private Enemy enemy;
     private int strengthtemp, strength;
     private int potionchance;
+    private int heal, energyplus; //untuk self repair //untuk Denium Shielding
     private boolean invincible, nopotion;
+    private int bleed, bleeddmg;
 
     //override to draw image
     @Override
@@ -68,8 +76,13 @@ public class Battle extends JPanel {
         this.potionchance = 100;
         this.invincible = false;
         this.nopotion = false;
+        this.bleed = 0;
+        this.bleeddmg = 1;
+        this.energyplus = 0;
         this.rnd = new Random();
         hand = new ArrayList<>(5);
+        singleuse = new ArrayList<>();
+        usedpotions = new ArrayList<>();
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
 
@@ -78,7 +91,7 @@ public class Battle extends JPanel {
 
         //battle Begins
 
-        initCards();
+        initPlayer();
         draw(5);
 
     }
@@ -87,18 +100,18 @@ public class Battle extends JPanel {
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
 
-        // TODO: 27/05/2021 clickevent
+        // TODO: 01/06/2021 testing battle
         potions = player.getPotion();
         for (int i = 0; i < potions.size(); i++) {
-            potions.get(i).setDimension(25,25);
+            potions.get(i).setDimension(400 + (i*30),15,25,25);
             potions.get(i).setBounds(400 + (i*30),15,25,25);
+            potions.get(i).initForBattle(player,enemy,this);
             add(potions.get(i));
         }
 
-        // TODO: 27/05/2021 Relic clickevent
         relics = player.getRelic();
         for (int i = 0; i < relics.size(); i++) {
-            relics.get(i).setDimension(50,50);
+            relics.get(i).setDimension(10 + (i*55),50,50,50);
             relics.get(i).setBounds(10 + (i*55),50,50,50);
             add(relics.get(i));
         }
@@ -156,6 +169,35 @@ public class Battle extends JPanel {
             }
         });
         add(endTurn);
+
+        initCheats();
+    }
+
+    private void initCheats(){
+        Battle b = this;
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_I,0),"fillEnergy");
+        getActionMap().put("fillEnergy",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Fill energy");
+                player.setEnergy(9);
+                repaint();
+            }
+        });
+
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_K,0),"addCard");
+        getActionMap().put("addCard",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Scanner s = new Scanner(System.in);
+                System.out.print("Card Num:");
+                Card c = Statics.cards.get(s.nextInt()).copy();
+                c.initForBattle(player,enemy,b);
+                hand.add(c);
+                displayCard();
+                repaint();
+            }
+        });
     }
 
     //escape, no reward
@@ -164,11 +206,20 @@ public class Battle extends JPanel {
     }
 
     // TODO: 31/05/2021 Enemy not redy
-    private void initCards(){
+    private void initPlayer(){
         System.out.println(player.getCard().size());
         for (Card card : player.getCard()) {
             card.initForBattle(player,enemy,this);
         }
+        player.activateRelic("Start Battle",enemy,this);
+    }
+
+    private void deInitPlayer(){
+        for (Card card : player.getCard()) {
+            card.deInitBattle();
+        }
+        player.activateRelic("End Battle",enemy,this);
+        player.deactivateRelic();
     }
 
     //draw x amount of cards
@@ -180,9 +231,18 @@ public class Battle extends JPanel {
             hand.add(player.getCard(cardIndex));
             player.getCard().remove(cardIndex);
         }
+        displayCard();
+    }
 
-        //display card
+    public void drawTorpedo(int draw){
+        for (int i = 0; i < draw; i++) {
+            hand.add(new TorpedoCard());
+        }
+    }
+
+    public void displayCard(){
         for (int i = 0; i < hand.size(); i++) {
+            remove(hand.get(i));
             hand.get(i).setBounds(80 + (i * 185), 500, 180, 320);
             add(hand.get(i));
         }
@@ -190,18 +250,33 @@ public class Battle extends JPanel {
 
     //return all cards on hand to deck
     private void returnHand(){
+        //for torpedo card
+        for (Card card : hand) {
+            if (card.isDispose()){
+                hand.remove(card);
+            }
+        }
         player.getCard().addAll(hand);
         for (Card card : hand) {
-            remove(card);
+            hand.remove(card);
         }
         hand.clear();
+        player.getCard().addAll(singleuse);
+        singleuse.clear();
         reactivate();
         player.setEnergy(player.getMaxenergy());
     }
 
     //return 1 card from hand to deck
     private void returnHand(int index){
-        player.getCard().add(hand.get(index));
+        if(!hand.get(index).isDispose()){
+            if(hand.get(index).isSingleuse()){
+                singleuse.add(hand.get(index));
+            }
+            else{
+                player.getCard().add(hand.get(index));
+            }
+        }
         hand.remove(index);
         reactivate();
     }
@@ -216,6 +291,33 @@ public class Battle extends JPanel {
             h.downgrade();
         }
     }
+
+    // make use potion implement
+
+    // at start every turn
+    public void activatePotions(){
+        for(Potion p: usedpotions){
+            p.activate(player,enemy,this);
+        }
+    }
+
+    public void disposePotions(){
+        for(Potion p: usedpotions){
+            if(!p.isActive()){
+                p.deactivate(player,enemy,this);
+                usedpotions.remove(p);
+            }
+        }
+    }
+
+    //when battle end
+    public void forceDisposePotions(){
+        for(Potion p: usedpotions){
+            p.deactivate(player,enemy,this);
+        }
+        usedpotions.clear();
+    }
+
     //turn active kembali jadi true
     public void reactivate(){
         player.reactivateCard();
@@ -246,6 +348,15 @@ public class Battle extends JPanel {
     public void removeStrength(){
         player.setAttack(player.getAttack()-strength);
         strength=0;
+    }
+
+    //untuk heal after battle
+    public void restoreHealth(){
+        player.setHealth(player.getHealth()+heal);
+        if (player.getHealth()> player.getMaxhealth()){
+            player.setHealth(player.getMaxhealth());
+        }
+        heal=0;
     }
 
     public int getPotionchance() {
@@ -285,6 +396,19 @@ public class Battle extends JPanel {
         }
     }
 
+    public void bleed(){
+        if (bleed>0){
+            enemy.setHealth(enemy.getHealth()-bleeddmg);
+            bleed--;
+        }
+    }
+
+    //untuk denium shielding
+    public void energy(){
+        player.setEnergy(player.getEnergy()+energyplus);
+        energyplus=0;
+    }
+
     public boolean isInvincible() {
         return invincible;
     }
@@ -303,5 +427,37 @@ public class Battle extends JPanel {
 
     public ArrayList<Card> getHand() {
         return hand;
+    }
+
+    public int getHeal() {
+        return heal;
+    }
+
+    public void setHeal(int heal) {
+        this.heal = heal;
+    }
+
+    public int getEnergyplus() {
+        return energyplus;
+    }
+
+    public void setEnergyplus(int energyplus) {
+        this.energyplus = energyplus;
+    }
+
+    public int getBleed() {
+        return bleed;
+    }
+
+    public void setBleed(int bleed) {
+        this.bleed = bleed;
+    }
+
+    public int getBleeddmg() {
+        return bleeddmg;
+    }
+
+    public void setBleeddmg(int bleeddmg) {
+        this.bleeddmg = bleeddmg;
     }
 }

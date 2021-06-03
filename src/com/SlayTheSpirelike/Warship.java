@@ -3,7 +3,7 @@ package com.SlayTheSpirelike;
 
 import com.SlayTheSpirelike.Cards.AttackCard;
 import com.SlayTheSpirelike.Cards.DefendCard;
-import com.SlayTheSpirelike.Cards.GatlingGunCard;
+import com.SlayTheSpirelike.Cards.SniperShotCard;
 
 public class Warship extends Kapal {
     public Warship(String nama) {
@@ -19,6 +19,6 @@ public class Warship extends Kapal {
         card.add(new DefendCard());
         card.add(new DefendCard());
         card.add(new DefendCard());
-        card.add(new GatlingGunCard());
+        card.add(new SniperShotCard());
     }
 }

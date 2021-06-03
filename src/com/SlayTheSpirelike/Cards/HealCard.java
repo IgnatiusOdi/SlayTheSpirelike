@@ -2,18 +2,18 @@ package com.SlayTheSpirelike.Cards;
 
 import com.SlayTheSpirelike.*;
 
-public class TorpedoCard extends Card {
-    public TorpedoCard() {
-        super("Torpedo", "Enemy", 0);
+public class HealCard extends Card {
+    public HealCard() {
+        super("Heal", "Self", 0);
         status();
-        dispose=true;
+        singleuse=true;
     }
 
     @Override
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
-                attack(kapal, enemy);
+                restoreHealth(kapal);
             }
             finish(kapal);
         }
@@ -21,20 +21,18 @@ public class TorpedoCard extends Card {
 
     @Override
     public void status() {
-        if (level==1){
-            damage=2;
-            desc = "Deal "+damage+" damage \n" +
-                    "to enemy. (Remove after use)";
+        if(level==1){
+            heal = 5;
         }
-    }
-
-    @Override
-    public void upgrade() {
-
+        else if(level>=2){
+            heal = 7;
+        }
+        desc = "Heal "+heal+" health. \n" +
+                "(Single use)";
     }
 
     @Override
     protected Card copy() {
-        return new TorpedoCard();
+        return new HealCard();
     }
 }

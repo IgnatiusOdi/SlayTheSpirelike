@@ -1,5 +1,7 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Cards.TorpedoCard;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -42,7 +44,14 @@ public abstract class Kapal extends Sprite{
     }
 
     public void setTwice(int t){
-        card.get(0).setTwice(t);
+        if(card.size()>0){
+            card.get(0).setTwice(t);
+        }
+        else{
+            card.add(new TorpedoCard());
+            card.get(0).setTwice(t);
+            card.remove(0);
+        }
     }
 
     public void addCard(Card c){
@@ -87,6 +96,10 @@ public abstract class Kapal extends Sprite{
         super.setPanel(panel);
     }*/
 
+    public int summonSize(){
+        return summon.size();
+    }
+
     public void summon(Summon summon){
         this.summon.add(summon);
     }
@@ -94,6 +107,12 @@ public abstract class Kapal extends Sprite{
     //setelah battle, jalan ini untuk desummon
     public void desummon(){
         summon.clear();
+    }
+
+    public void destroySummon(){
+        if (summon.size()>0){
+            summon.remove(summon.size()-1);
+        }
     }
 
     //cek eksistensi potion
@@ -194,6 +213,14 @@ public abstract class Kapal extends Sprite{
     public void deactivateRelic(){
         for (Relic r:relic) {
             r.deactivate(this);
+        }
+    }
+    //remove torpedo
+    public void removeDisposeCard(){
+        for (Card c: card){
+            if(c.isDispose()){
+                card.remove(c);
+            }
         }
     }
 

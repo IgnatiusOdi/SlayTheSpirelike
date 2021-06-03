@@ -5,11 +5,11 @@ import com.SlayTheSpirelike.Card;
 import com.SlayTheSpirelike.Enemy;
 import com.SlayTheSpirelike.Kapal;
 
-public class PiercingBulletCard extends Card {
+public class ExtraGunpowderCard extends Card {
     private boolean twiced;
     private boolean used;
-    public PiercingBulletCard() {
-        super("Piercing Bullet", "Self", 3);
+    public ExtraGunpowderCard() {
+        super("Extra Gundpowder", "Self", 3);
         status();
         twiced = false;
         used = true;
@@ -46,5 +46,10 @@ public class PiercingBulletCard extends Card {
         super.reactivate();
         twiced = false;
         used = true;
+    }
+
+    @Override
+    protected Card copy() {
+        return new ExtraGunpowderCard();
     }
 }

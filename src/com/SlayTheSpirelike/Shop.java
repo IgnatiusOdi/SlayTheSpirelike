@@ -2,10 +2,7 @@ package com.SlayTheSpirelike;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class Shop extends JPanel {
 
@@ -42,6 +39,7 @@ public class Shop extends JPanel {
         this.returnPanel = returnPanel;
         this.kapal = player;
         init();
+        initCheats();
     }
 
     private void init() {
@@ -310,5 +308,27 @@ public class Shop extends JPanel {
         //BACKGROUND
         bg.setBounds(0, 0,1162,648);
         add(bg);
+    }
+
+    private void initCheats(){
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_E,0),"viewInven");
+        getActionMap().put("viewInven",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Inventory:");
+                System.out.println("Cards:");
+                for (Card card : kapal.getCard()) {
+                    System.out.println(card.getNama());
+                }
+                System.out.println("Potions:");
+                for (Potion potion : kapal.getPotion()) {
+                    System.out.println(potion.getNama());
+                }
+                System.out.println("Relics:");
+                for (Relic relic : kapal.getRelic()) {
+                    System.out.println(relic.getNama());
+                }
+            }
+        });
     }
 }

@@ -36,4 +36,9 @@ public class InspiringShotCard extends Card {
                 "to enemy and \n" +
                 "draw "+draw+" card";
     }
+
+    @Override
+    protected Card copy() {
+        return new InspiringShotCard();
+    }
 }

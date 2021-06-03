@@ -10,30 +10,20 @@ public abstract class Card extends JLabel {
     protected static int twicetime=1;
     protected String nama, type, desc;
     protected int level, cost;
-    protected int damage, block, draw, energy, weak, strength;
-    protected boolean active;
+    protected int damage, block, draw, energy, weak, strength, heal, summon, bleed;
+    protected boolean active, dispose, singleuse;
+    //dispose untuk torpedo, singleuse untuk heal card
 
     protected Kapal kapal;
     protected Enemy enemy;
     protected Battle battle;
 
     private class cardMouseAdapter extends MouseAdapter {
-        private final Card card;
-
-        public cardMouseAdapter(Card card) {
-            this.card = card;
-        }
-
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            if (kapal.getEnergy()>=cost) {
-                activate(kapal, enemy, battle);
-                kapal.getCard().add(card);
-                battle.getHand().remove(card);
-                battle.remove(card);
-                System.out.println(battle.getHand().size());
-                battle.repaint();
+            if (((Card)e.getSource()).kapal.getEnergy()>=cost && ((Card)e.getSource()).battle!=null) {
+                activate(((Card)e.getSource()).kapal, ((Card)e.getSource()).enemy, ((Card)e.getSource()).battle);
             }
         }
     }
@@ -49,9 +39,14 @@ public abstract class Card extends JLabel {
         this.energy = 0;
         this.weak = 0;
         this.strength = 0;
+        this.heal = 0;
+        this.summon = 0;
+        this.bleed = 0;
         this.active=true;
+        this.dispose=false;
+        this.singleuse=false;
         status();
-        addMouseListener(new cardMouseAdapter(this));
+        addMouseListener(new cardMouseAdapter());
     }
 
     @Override
@@ -81,6 +76,12 @@ public abstract class Card extends JLabel {
         this.battle = battle;
     }
 
+    public void deInitBattle(){
+        this.kapal = null;
+        this.enemy = null;
+        this.battle = null;
+    }
+
     //all activation use this
     public void activate(Kapal kapal, Enemy enemy, Battle battle){
 
@@ -90,6 +91,12 @@ public abstract class Card extends JLabel {
         drainEnergy(kapal);
         twice();
         active=false;
+
+        kapal.getCard().add(this);
+        battle.getHand().remove(this);
+        battle.remove(this);
+        battle.displayCard();
+        battle.repaint();
     }
 
     public void reactivate(){
@@ -149,6 +156,57 @@ public abstract class Card extends JLabel {
             attack=0;
         }
         e.setHealth(e.getHealth()-attack);
+    }
+
+    public void restoreHealth(Kapal kapal){
+        kapal.setHealth(kapal.getHealth()+heal);
+        if (kapal.getHealth()> kapal.getMaxhealth()){
+            kapal.setHealth(kapal.getMaxhealth());
+        }
+    }
+
+    public void applyWeak(Enemy enemy){
+        enemy.setAtkhigh(enemy.getAtkhigh()-weak);
+        enemy.setAtklow(enemy.getAtklow()-weak);
+        if (enemy.getAtkhigh()<0){
+            enemy.setAtkhigh(0);
+        }
+        if (enemy.getAtklow()<0){
+            enemy.setAtklow(0);
+        }
+    }
+
+    public void summon(Kapal kapal){
+        for (int i = 0; i < summon; i++) {
+            kapal.summon(new HeliSummon());
+        }
+    }
+
+    //untuk cheat, return new copy of the Card
+    abstract protected Card copy();
+
+    public boolean isSingleuse() {
+        return singleuse;
+    }
+
+    public void setSingleuse(boolean singleuse) {
+        this.singleuse = singleuse;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isDispose() {
+        return dispose;
+    }
+
+    public void setDispose(boolean dispose) {
+        this.dispose = dispose;
     }
 
     public int getTwice() {
@@ -253,5 +311,13 @@ public abstract class Card extends JLabel {
 
     public void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    public int getHeal() {
+        return heal;
+    }
+
+    public void setHeal(int heal) {
+        this.heal = heal;
     }
 }

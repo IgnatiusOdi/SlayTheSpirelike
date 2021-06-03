@@ -90,9 +90,23 @@ public class Statics {
         cards.add(new OneforAllCard());
         cards.add(new RerouteCard());
         cards.add(new ExplodingPayloadCard());
-        cards.add(new TorpedoCard());
-        cards.add(new PiercingBulletCard());
+        cards.add(new MissleCard());
+        cards.add(new ExtraGunpowderCard());
         cards.add(new SupportCannonCard());
-
+        cards.add(new RocketSalvoCard());
+        cards.add(new CommandersWisdom());
+        cards.add(new RepositionCard());
+        cards.add(new LoadUpCard());
+        cards.add(new CounterplayCard());
+        cards.add(new GatlingGunCard());
+        cards.add(new DeflectCard());
+        cards.add(new PiercingShotCard());
+        cards.add(new StrategicShotCard());
+        cards.add(new FuelContainerCard());
+        cards.add(new SalvageCard());
+        cards.add(new DeniumShieldingCard());
+        cards.add(new SelfRepairCard());
+        cards.add(new BufferCard());
+        cards.add(new CombustCard());
     }
 }

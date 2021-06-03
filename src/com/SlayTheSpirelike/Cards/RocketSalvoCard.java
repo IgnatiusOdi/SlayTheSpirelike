@@ -1,21 +1,18 @@
 package com.SlayTheSpirelike.Cards;
 
-import com.SlayTheSpirelike.Battle;
-import com.SlayTheSpirelike.Card;
-import com.SlayTheSpirelike.Enemy;
-import com.SlayTheSpirelike.Kapal;
+import com.SlayTheSpirelike.*;
 
-public class FlakgunCard extends Card {
-    public FlakgunCard() {
-        super("Flakgun", "Enemy", 2);
+public class RocketSalvoCard extends Card {
+    public RocketSalvoCard() {
+        super("Rocket Salvo", "Enemy", 0);
         status();
     }
-
     @Override
     public void activate(Kapal kapal, Enemy enemy, Battle battle) {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
                 attack(kapal, enemy);
+                applyWeak(enemy);
             }
             finish(kapal);
         }
@@ -24,17 +21,19 @@ public class FlakgunCard extends Card {
     @Override
     public void status() {
         if (level==1){
-            damage=5;
+            damage=1;
+            weak=1;
         }
         else if(level>=2){
-            damage=7;
+            damage=1;
+            weak=2;
         }
         desc = "Deal "+damage+" damage \n" +
-                "to enemy";
+                "and apply "+weak+" weak";
     }
 
     @Override
     protected Card copy() {
-        return new FlakgunCard();
+        return new RocketSalvoCard();
     }
 }
