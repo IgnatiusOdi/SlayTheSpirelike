@@ -75,38 +75,65 @@ public class Statics {
         bossRelic.add(new PhilosophersStoneRelic());
         bossRelic.add(new SozuRelic());
 
-//        cards.clear();
+//        cards.clear()
+        //0
+        cards.add(new AllOutAttackCard());
         cards.add(new AttackCard());
-        cards.add(new DefendCard());
-        cards.add(new GreedofPotCard());
-        cards.add(new RechargeCard());
-        cards.add(new InspiringShotCard());
-        cards.add(new FlakgunCard());
-        cards.add(new PlasmaNapalmCard());
-        cards.add(new HeavyArtileryCard());
-        cards.add(new OverclockingReactorCard());
-        cards.add(new FortifyCard());
-        cards.add(new RethinkCard());
-        cards.add(new OneforAllCard());
-        cards.add(new RerouteCard());
-        cards.add(new ExplodingPayloadCard());
-        cards.add(new MissleCard());
-        cards.add(new ExtraGunpowderCard());
-        cards.add(new SupportCannonCard());
-        cards.add(new RocketSalvoCard());
-        cards.add(new CommandersWisdom());
-        cards.add(new RepositionCard());
-        cards.add(new LoadUpCard());
-        cards.add(new CounterplayCard());
-        cards.add(new GatlingGunCard());
-        cards.add(new DeflectCard());
-        cards.add(new PiercingShotCard());
-        cards.add(new StrategicShotCard());
-        cards.add(new FuelContainerCard());
-        cards.add(new SalvageCard());
-        cards.add(new DeniumShieldingCard());
-        cards.add(new SelfRepairCard());
         cards.add(new BufferCard());
         cards.add(new CombustCard());
+        cards.add(new CommandersWisdom());
+
+        //5
+        cards.add(new CounterplayCard());
+        cards.add(new DefendCard());
+        cards.add(new DeflectCard());
+        cards.add(new DeniumShieldingCard());
+        cards.add(new ExplodingPayloadCard());
+
+        //10
+        cards.add(new ExtraGunpowderCard());
+        cards.add(new FlakgunCard());
+        cards.add(new FortifyCard());
+        cards.add(new FuelContainerCard());
+        cards.add(new GatlingGunCard());
+
+        //15
+        cards.add(new GreedofPotCard());
+        cards.add(new HealCard());
+        cards.add(new HeavyArtileryCard());
+        cards.add(new HelicallCard());
+        cards.add(new InspiringShotCard());
+
+        //20
+        cards.add(new KamikazeCard());
+        cards.add(new LoadUpCard());
+        cards.add(new MissleCard());
+        cards.add(new MoralSupportCard());
+        cards.add(new OneforAllCard());
+
+        //25
+        cards.add(new OverclockingReactorCard());
+        cards.add(new PiercingShotCard());
+        cards.add(new PlasmaNapalmCard());
+        cards.add(new RechargeCard());
+        cards.add(new RepositionCard());
+
+        //30
+        cards.add(new RerouteCard());
+        cards.add(new RethinkCard());
+        cards.add(new RocketSalvoCard());
+        cards.add(new SalvageCard());
+        cards.add(new SalvationCard());
+
+        //35
+        cards.add(new SelfRepairCard());
+        cards.add(new SniperShotCard());
+        cards.add(new StrategicShotCard());
+        cards.add(new SupportCannonCard());
+        cards.add(new SupportFlareCard());
+
+        //40
+        cards.add(new SupportFlareV2Card());
+        cards.add(new TorpedoCard());
     }
 }

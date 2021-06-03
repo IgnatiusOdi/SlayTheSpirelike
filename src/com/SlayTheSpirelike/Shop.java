@@ -23,7 +23,6 @@ public class Shop extends JPanel {
     //IMAGE
     private final Image desainshop = new ImageIcon("resources/desainshop.png").getImage();
     private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
-    private final Image black = new ImageIcon("resources/black.png").getImage();
 
     //LAYOUT
     private JLabel bg;
@@ -111,12 +110,12 @@ public class Shop extends JPanel {
         buyButton.setBounds(button_x, button_y, button_width, button_height);
         buyButton.setText("BUY");
         buyButton.setHorizontalAlignment(SwingConstants.CENTER);
-        buyButton.setVerticalAlignment(SwingConstants.CENTER);
         buyButton.setFont(new Font("Calibri", Font.BOLD, fontsize));
         buyButton.setForeground(Color.white);
         buyButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                b.refreshCoin();
                 body.setPanel(b);
                 mouseExited(e);
             }
@@ -144,7 +143,6 @@ public class Shop extends JPanel {
         sellButton.setBounds(button_x, button_y + button_height + spacing, button_width, button_height);
         sellButton.setText("SELL");
         sellButton.setHorizontalAlignment(SwingConstants.CENTER);
-        sellButton.setVerticalAlignment(SwingConstants.CENTER);
         sellButton.setFont(new Font("Calibri", Font.BOLD, fontsize));
         sellButton.setForeground(Color.white);
         sellButton.addMouseListener(new MouseAdapter() {
@@ -177,7 +175,6 @@ public class Shop extends JPanel {
         drawButton.setBounds(button_x, button_y + (button_height + spacing)*2, button_width, button_height);
         drawButton.setText("DRAW");
         drawButton.setHorizontalAlignment(SwingConstants.CENTER);
-        drawButton.setVerticalAlignment(SwingConstants.CENTER);
         drawButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         drawButton.setForeground(Color.white);
         drawButton.addMouseListener(new MouseAdapter() {
@@ -210,7 +207,6 @@ public class Shop extends JPanel {
         upgradeButton.setBounds(button_x + button_width + spacing, button_y + (int) (spacing * 1.5), button_width, button_height);
         upgradeButton.setText("UPGRADE");
         upgradeButton.setHorizontalAlignment(SwingConstants.CENTER);
-        upgradeButton.setVerticalAlignment(SwingConstants.CENTER);
         upgradeButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         upgradeButton.setForeground(Color.white);
         upgradeButton.addMouseListener(new MouseAdapter() {
@@ -243,7 +239,6 @@ public class Shop extends JPanel {
         mergeButton.setBounds(button_x + button_width + spacing,button_y + (int) ((button_height + spacing) * 1.5), button_width, button_height);
         mergeButton.setText("MERGE");
         mergeButton.setHorizontalAlignment(SwingConstants.CENTER);
-        mergeButton.setVerticalAlignment(SwingConstants.CENTER);
         mergeButton.setFont(new Font("Calibri",Font.BOLD,fontsize));
         mergeButton.setForeground(Color.white);
         mergeButton.addMouseListener(new MouseAdapter() {
@@ -276,7 +271,6 @@ public class Shop extends JPanel {
         exitShop.setText("<< EXIT");
         exitShop.setFont(new Font("Monospace",Font.BOLD,25));
         exitShop.setHorizontalAlignment(SwingConstants.CENTER);
-        exitShop.setVerticalAlignment(SwingConstants.CENTER);
         exitShop.setForeground(Color.white);
         exitShop.addMouseListener(new MouseAdapter() {
             @Override
@@ -284,6 +278,7 @@ public class Shop extends JPanel {
                 int n = JOptionPane.showConfirmDialog(null, "Are you sure?", "EXIT", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     body.setPanel(returnPanel);
+                    mouseExited(e);
                 }
             }
             @Override

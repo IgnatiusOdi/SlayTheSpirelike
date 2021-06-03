@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Potion;
 
 public class AppleJuicePotion extends Potion {
     public AppleJuicePotion() {
-        super("Apple Juice", "Self", "Rare","resources/AppleJuice.png","Increase max health by 5");
+        super("Apple Juice", "Self", "Rare","resources/AppleJuice.png","Increase max health \n" + "by 5");
     }
 
     @Override

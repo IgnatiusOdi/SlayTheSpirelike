@@ -1,5 +1,6 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Cards.*;
 import com.SlayTheSpirelike.Relics.CauldronRelic;
 import com.SlayTheSpirelike.Relics.CookieRelic;
 import com.SlayTheSpirelike.Relics.MembershipCardRelic;
@@ -18,37 +19,38 @@ public class Buy extends JPanel {
     private Kapal kapal;
 
     //SIZE
-    private final int width = 290;
-    private final int height = 162;
+    private final int width = 200;
+    private final int height = 220;
     private final int space = 25;
 
     //IMAGE
     private final Image hangingsign = new ImageIcon("resources/hangingsign.png").getImage();
     private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
     private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
+    private final Image coinimg = new ImageIcon("resources/coin.png").getImage();
     private final Image black = new ImageIcon("resources/black.png").getImage();
 
-    private final Image attackcard = new ImageIcon("resources/").getImage();
-    private final Image defendcard = new ImageIcon("resources/").getImage();
-    private final Image explodingpayloadcard = new ImageIcon("resources/").getImage();
-    private final Image flakguncard = new ImageIcon("resources/").getImage();
-    private final Image fortifycard = new ImageIcon("resources/").getImage();
-    private final Image gatlingguncard = new ImageIcon("resources/").getImage();
-    private final Image greedofpot = new ImageIcon("resources/").getImage();
-    private final Image heavyartilerycard = new ImageIcon("resources/").getImage();
-    private final Image helicallcard = new ImageIcon("resources/").getImage();
-    private final Image inspiringshotcard = new ImageIcon("resources/").getImage();
-    private final Image oneforallcard = new ImageIcon("resources/").getImage();
-    private final Image overclockingreactorcard = new ImageIcon("resources/").getImage();
-    private final Image piercingbulletcard = new ImageIcon("resources/").getImage();
-    private final Image plasmanapalmcard = new ImageIcon("resources/").getImage();
-    private final Image rechargecard = new ImageIcon("resources/").getImage();
-    private final Image reroutecard = new ImageIcon("resources/").getImage();
-    private final Image rethinkcard = new ImageIcon("resources/").getImage();
-    private final Image salvationcard = new ImageIcon("resources/").getImage();
-    private final Image supportcannoncard = new ImageIcon("resources/").getImage();
-    private final Image torpedocard = new ImageIcon("resources/").getImage();
+    //POTION
+    private final Image applejuicepotion = new ImageIcon("resources/").getImage();
+    private final Image attackpotion = new ImageIcon("resources/").getImage();
+    private final Image blockpotion = new ImageIcon("resources/").getImage();
+    private final Image brewpotion = new ImageIcon("resources/").getImage();
+    private final Image duplicationpotion = new ImageIcon("resources/").getImage();
+    private final Image energypotion = new ImageIcon("resources/").getImage();
+    private final Image forgepotion = new ImageIcon("resources/").getImage();
+    private final Image healthpotion = new ImageIcon("resources/").getImage();
+    private final Image invinciblepotion = new ImageIcon("resources/").getImage();
+    private final Image nukepotion = new ImageIcon("resources/").getImage();
+    private final Image regenerationpotion = new ImageIcon("resources/").getImage();
+    private final Image revivepotion = new ImageIcon("resources/").getImage();
+    private final Image smokepotion = new ImageIcon("resources/").getImage();
+    private final Image steelpotion = new ImageIcon("resources/").getImage();
+    private final Image summonpotion = new ImageIcon("resources/").getImage();
+    private final Image swiftpotion = new ImageIcon("resources/").getImage();
+    private final Image weakeningpotion = new ImageIcon("resources/").getImage();
+    private final Image wrathpotion = new ImageIcon("resources/").getImage();
 
+    //RELIC
     private final Image cauldron = new ImageIcon("resources/Cauldron.png").getImage();
     private final Image cookie = new ImageIcon("resources/cookie.png").getImage();
     private final Image membershipcard = new ImageIcon("resources/MembershipCard.png").getImage();
@@ -57,62 +59,83 @@ public class Buy extends JPanel {
     private JLabel bg;
     private JLabel title;
     private JLabel coinsymbol;
-    private JLabel coin;
     private JLabel coinplayer;
     private JLabel back;
-
-    //CARD 1
-    int random1 = (int) (Math.random() * Statics.cards.size());
-    private JLabel card1;
-    private JButton card1button;
-    private Boolean card1bought;
-    private JLabel card1layer;
-    private int card1price;
-
-    //CARD 2
-    private JLabel card2;
-    private JButton card2button;
-    private Boolean card2bought;
-    private JLabel card2layer;
-    private int card2price;
-
-    //CARD 3
-    private JLabel card3;
-    private JButton card3button;
-    private Boolean card3bought;
-    private JLabel card3layer;
-    private int card3price;
-
-    //RELIC 1
-    private JLabel relic1;
-    private JButton relic1button;
-    private Boolean haverelic1 = false;
-    private JLabel relic1layer;
-    private int relic1price;
-
-    //RELIC 2
-    private JLabel relic2;
-    private JButton relic2button;
-    private Boolean haverelic2 = false;
-    private JLabel relic2layer;
-    private int relic2price;
-
-    //RELIC 3
-    private JLabel relic3;
-    private JButton relic3button;
-    private Boolean haverelic3 = false;
-    private JLabel relic3layer;
-    private int relic3price;
+    //SLOT 1
+    private JLabel slot1;
+    private Card card1;
+    private JButton slot1button;
+    private Boolean slot1bought;
+    private JLabel slot1layer;
+    private int slot1price;
+    //SLOT 2
+    private JLabel slot2;
+    private Card card2;
+    private JButton slot2button;
+    private Boolean slot2bought;
+    private JLabel slot2layer;
+    private int slot2price;
+    //SLOT 3
+    private JLabel slot3;
+    private Card card3;
+    private JButton slot3button;
+    private Boolean slot3bought;
+    private JLabel slot3layer;
+    private int slot3price;
+    //SLOT 4
+    private JLabel slot4;
+    private Card card4;
+    private JButton slot4button;
+    private Boolean slot4bought;
+    private JLabel slot4layer;
+    private int slot4price;
+    //SLOT 5
+    private JLabel slot5;
+    private Card card5;
+    private JButton slot5button;
+    private Boolean slot5bought;
+    private JLabel slot5layer;
+    private int slot5price;
+    //SLOT 6
+    private JLabel slot6;
+    private Card card6;
+    private JButton slot6button;
+    private Boolean slot6bought;
+    private JLabel slot6layer;
+    private int slot6price;
+    //SLOT 7
+    private JLabel slot7;
+    private Relic relic7;
+    private JButton slot7button;
+    private Boolean slot7bought;
+    private JLabel slot7layer;
+    private int slot7price;
+    //SLOT 8
+    private JLabel slot8;
+    private Relic relic8;
+    private JButton slot8button;
+    private Boolean slot8bought;
+    private JLabel slot8layer;
+    private int slot8price;
+    //SLOT 9
+    private JLabel slot9;
+    private Potion potion9;
+    private JButton slot9button;
+    private Boolean slot9bought;
+    private JLabel slot9layer;
+    private int slot9price;
 
     public Buy(Body body, Shop shop, Kapal kapal) {
         this.body = body;
         this.shop = shop;
         this.kapal = kapal;
 
-        kapal.setCoin(10000);
-
         init();
         initCheats();
+    }
+
+    public void refreshCoin() {
+        coinplayer.setText(String.valueOf(kapal.getCoin()));
     }
 
     private void init() {
@@ -120,13 +143,69 @@ public class Buy extends JPanel {
         setSize(1162,648);
         setVisible(true);
 
+        if (kapal instanceof Tanker) {
+            int random1 = (int) (Math.random() * 12);
+            int random2 = (int) (Math.random() * 12);
+            int random3 = (int) (Math.random() * 12);
+            int random4 = (int) (Math.random() * 12);
+            int random5 = (int) (Math.random() * 12);
+            int random6 = (int) (Math.random() * 12);
+            int random8 = (int) (Math.random() * 3);
+            int random9 = (int) (Math.random() * 3);
+            card1 = tankerCards(random1);
+            card2 = tankerCards(random2);
+            card3 = tankerCards(random3);
+            card4 = tankerCards(random4);
+            card5 = tankerCards(random5);
+            card6 = tankerCards(random6);
+            relic8 = relicRandomizer(random8);
+            potion9 = potionRandomizer(random9);
+        } else if (kapal instanceof Warship) {
+            int random1 = (int) (Math.random() * 14);
+            int random2 = (int) (Math.random() * 14);
+            int random3 = (int) (Math.random() * 14);
+            int random4 = (int) (Math.random() * 14);
+            int random5 = (int) (Math.random() * 14);
+            int random6 = (int) (Math.random() * 14);
+            int random8 = (int) (Math.random() * 3);
+            int random9 = (int) (Math.random() * 3);
+            card1 = warshipCards(random1);
+            card2 = warshipCards(random2);
+            card3 = warshipCards(random3);
+            card4 = warshipCards(random4);
+            card5 = warshipCards(random5);
+            card6 = warshipCards(random6);
+            relic8 = relicRandomizer(random8);
+            potion9 = potionRandomizer(random9);
+        } else {
+            int random1 = (int) (Math.random() * 11);
+            int random2 = (int) (Math.random() * 11);
+            int random3 = (int) (Math.random() * 11);
+            int random4 = (int) (Math.random() * 11);
+            int random5 = (int) (Math.random() * 11);
+            int random6 = (int) (Math.random() * 11);
+            int random8 = (int) (Math.random() * 3);
+            int random9 = (int) (Math.random() * 3);
+            card1 = aircraftCards(random1);
+            card2 = aircraftCards(random2);
+            card3 = aircraftCards(random3);
+            card4 = aircraftCards(random4);
+            card5 = aircraftCards(random5);
+            card6 = aircraftCards(random6);
+            relic8 = relicRandomizer(random8);
+            potion9 = potionRandomizer(random9);
+        }
+//        relic7 = Statics.shopRelic.get(0);
+        relic7 = new MembershipCardRelic();
+
         //INIT
         title = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(hangingsign,0,0,width,height,null);
-                g.drawString("BUY",70,135);
+                g.drawImage(hangingsign,0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.green);
+                g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 60));
+                g.drawString("BUY",140,135);
                 super.paintComponent(g);
             }
         };
@@ -137,151 +216,331 @@ public class Buy extends JPanel {
                 super.paintComponent(g);
             }
         };
-        coinsymbol = new JLabel("C") {
+        coinsymbol = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(black,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(coinimg,0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
-        coin = new JLabel("COIN : "){
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0,105,50,null);
-                super.paintComponent(g);
-            }
-        };
-        coinplayer = new JLabel(String.valueOf(kapal.getCoin())){
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0,100,50,null);
-                super.paintComponent(g);
-            }
-        };
+        coinplayer = new JLabel(String.valueOf(kapal.getCoin()));
         back = new JLabel("<< BACK"){
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0,180,90,null);
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
 
-        card1 = new JLabel("CARD 1") {
+        //SLOT 1
+        slot1 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(black,0,0, this.getWidth(), this.getHeight(),null);
-                super.paintComponent(g);
-            }
-        };
-        card1button = new JButton();
-        card1bought = false;
-        card1layer = new JLabel("ALREADY BOUGHT");
-        card1price = 200;
+                switch (card1.type) {
+                    case "Self" -> g.setColor(Color.BLUE);
+                    case "Enemy" -> g.setColor(Color.GREEN);
+                    case "Battle" -> g.setColor(Color.MAGENTA);
+                }
+                g.fillRect(0,0, this.getWidth(), this.getHeight());
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(card1.nama,10, this.getHeight()/4);
+                g.drawImage(Assets.energy,0,0,20,20,null);
+                g.drawString(String.valueOf(card1.cost),22,15);
 
-        card2 = new JLabel("CARD 2") {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(black,0,0, this.getWidth(), this.getHeight(),null);
+                String[] descSplit = card1.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
+                }
                 super.paintComponent(g);
             }
         };
-        card2button = new JButton();
-        card2bought = false;
-        card2layer = new JLabel("ALREADY BOUGHT");
-        card2price = 200;
+        slot1bought = false;
+        slot1layer = new JLabel("ALREADY BOUGHT");
+        slot1price = 100;
+        slot1button = new JButton(String.valueOf(slot1price));
 
-        card3 = new JLabel("CARD 3") {
+        //SLOT 2
+        slot2 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(black,0,0, this.getWidth(), this.getHeight(),null);
-                super.paintComponent(g);
-            }
-        };
-        card3button = new JButton();
-        card3bought = false;
-        card3layer = new JLabel("ALREADY BOUGHT");
-        card3price = 200;
+                switch (card2.type) {
+                    case "Self" -> g.setColor(Color.BLUE);
+                    case "Enemy" -> g.setColor(Color.GREEN);
+                    case "Battle" -> g.setColor(Color.MAGENTA);
+                }
+                g.fillRect(0,0, this.getWidth(), this.getHeight());
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(card2.nama,10,this.getHeight()/4);
+                g.drawImage(Assets.energy,0,0,20,20,null);
+                g.drawString(String.valueOf(card2.cost),22,15);
 
-        relic1 = new JLabel("Membership Card Relic") {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(membershipcard,0,0, this.getWidth(), this.getHeight(),null);
+                String[] descSplit = card2.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
+                }
                 super.paintComponent(g);
             }
         };
-        relic1button = new JButton();
+        slot2bought = false;
+        slot2layer = new JLabel("ALREADY BOUGHT");
+        slot2price = 100;
+        slot2button = new JButton(String.valueOf(slot2price));
+
+        //SLOT 3
+        slot3 = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                switch (card3.type) {
+                    case "Self" -> g.setColor(Color.BLUE);
+                    case "Enemy" -> g.setColor(Color.GREEN);
+                    case "Battle" -> g.setColor(Color.MAGENTA);
+                }
+                g.fillRect(0,0, this.getWidth(), this.getHeight());
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(card3.nama,10,this.getHeight()/4);
+                g.drawImage(Assets.energy,0,0,20,20,null);
+                g.drawString(String.valueOf(card3.cost),22,15);
+
+                String[] descSplit = card3.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
+                }
+                super.paintComponent(g);
+            }
+        };
+        slot3bought = false;
+        slot3layer = new JLabel("ALREADY BOUGHT");
+        slot3price = 100;
+        slot3button = new JButton(String.valueOf(slot3price));
+
+        //SLOT 4
+        slot4 = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                switch (card4.type) {
+                    case "Self" -> g.setColor(Color.BLUE);
+                    case "Enemy" -> g.setColor(Color.GREEN);
+                    case "Battle" -> g.setColor(Color.MAGENTA);
+                }
+                g.fillRect(0,0, this.getWidth(), this.getHeight());
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(card4.nama,10,this.getHeight()/4);
+                g.drawImage(Assets.energy,0,0,20,20,null);
+                g.drawString(String.valueOf(card4.cost),22,15);
+
+                String[] descSplit = card4.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
+                }
+                super.paintComponent(g);
+            }
+        };
+        slot4bought = false;
+        slot4layer = new JLabel("ALREADY BOUGHT");
+        slot4price = 100;
+        slot4button = new JButton(String.valueOf(slot4price));
+
+        //SLOT 5
+        slot5 = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                switch (card5.type) {
+                    case "Self" -> g.setColor(Color.BLUE);
+                    case "Enemy" -> g.setColor(Color.GREEN);
+                    case "Battle" -> g.setColor(Color.MAGENTA);
+                }
+                g.fillRect(0,0, this.getWidth(), this.getHeight());
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(card5.nama,10,this.getHeight()/4);
+                g.drawImage(Assets.energy,0,0,20,20,null);
+                g.drawString(String.valueOf(card5.cost),22,15);
+
+                String[] descSplit = card5.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
+                }
+                super.paintComponent(g);
+            }
+        };
+        slot5bought = false;
+        slot5layer = new JLabel("ALREADY BOUGHT");
+        slot5price = 100;
+        slot5button = new JButton(String.valueOf(slot5price));
+
+        //SLOT 6
+        slot6 = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                switch (card6.type) {
+                    case "Self" -> g.setColor(Color.BLUE);
+                    case "Enemy" -> g.setColor(Color.GREEN);
+                    case "Battle" -> g.setColor(Color.MAGENTA);
+                }
+                g.fillRect(0,0, this.getWidth(), this.getHeight());
+                g.setColor(Color.BLACK);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(card6.nama,10,this.getHeight()/4);
+                g.drawImage(Assets.energy,0,0,20,20,null);
+                g.drawString(String.valueOf(card6.cost),22,15);
+
+                String[] descSplit = card6.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
+                }
+                super.paintComponent(g);
+            }
+        };
+        slot6bought = false;
+        slot6layer = new JLabel("ALREADY BOUGHT");
+        slot6price = 100;
+        slot6button = new JButton(String.valueOf(slot6price));
+
+        //SLOT 8
+        slot8 = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                switch (relic8.rarity) {
+                    case "Common" -> g.setColor(Color.gray);
+                    case "Uncommon" -> g.setColor(Color.green);
+                    case "Rare" -> g.setColor(Color.orange);
+                    case "Shop" -> g.setColor(Color.blue);
+                }
+                g.fillRect(0, 0, this.getWidth(), this.getHeight());
+                g.drawImage(relic8.image,0,0, this.getWidth(), this.getHeight(),null);
+                g.setColor(Color.black);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(relic8.nama, 10,this.getHeight()/4);
+
+                String[] descSplit = relic8.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
+                }
+                super.paintComponent(g);
+            }
+        };
+        slot8bought = false;
         for (int i = 0; i < kapal.relic.size(); i++) {
-            if (kapal.relic.get(i).nama.equals("Membership Card Relic")) {
-                haverelic1 = true;
+            if (kapal.relic.get(i).nama.equals(relic8.nama)) {
+                slot8bought = true;
+                slot8layer.setVisible(true);
                 break;
             }
         }
-        relic1layer = new JLabel("ALREADY HAVE RELIC");
-        relic1price = 300;
+        slot8layer = new JLabel("ALREADY HAD");
+        if (relic8.rarity.equals("Shop")) {
+            slot8price = 300;
+        } else if (relic8.rarity.equals("Common")) {
+            slot8price = 150;
+        } else if (relic8.rarity.equals("Uncommon")) {
+            slot8price = 300;
+        } else if (relic8.rarity.equals("Rare")) {
+            slot8price = 600;
+        }
+        slot8button = new JButton(String.valueOf(slot8price));
 
-        relic2 = new JLabel("Cauldron Relic") {
+        //SLOT 9
+        slot9 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(cauldron,0,0, this.getWidth(), this.getHeight(),null);
+                switch (potion9.rarity) {
+                    case "Common" -> g.setColor(Color.gray);
+                    case "Uncommon" -> g.setColor(Color.green);
+                    case "Rare" -> g.setColor(Color.orange);
+                }
+                g.fillRect(0, 0, this.getWidth(), this.getHeight());
+                g.drawImage(potion9.image,0,0, this.getWidth(), this.getHeight(),null);
+                g.setColor(Color.black);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(potion9.nama, 10,this.getHeight()/4);
+
+                String[] descSplit = potion9.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
+                }
                 super.paintComponent(g);
             }
         };
-        relic2button = new JButton();
-        for (int i = 0; i < kapal.relic.size(); i++) {
-            if (kapal.relic.get(i).nama.equals("Cauldron Relic")) {
-                haverelic2 = true;
-                break;
-            }
+        slot9bought = false;
+        slot9layer = new JLabel("ALREADY BOUGHT");
+        if (potion9.rarity.equals("Common")) {
+            slot9price = 100;
+        } else if (potion9.rarity.equals("Uncommon")) {
+            slot9price = 200;
+        } else if (potion9.rarity.equals("Rare")) {
+            slot9price = 300;
         }
-        relic2layer = new JLabel("ALREADY HAVE RELIC");
-        relic2price = 300;
+        slot9button = new JButton(String.valueOf(slot9price));
 
-        relic3 = new JLabel("Cookie Relic") {
+        //SLOT 7
+        slot7 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(cookie,0,0, this.getWidth(), this.getHeight(),null);
+                g.setColor(Color.blue);
+                g.fillRect(0, 0, this.getWidth(), this.getHeight());
+                g.drawImage(relic7.image,0,0, this.getWidth(), this.getHeight(),null);
+                g.setColor(Color.black);
+                g.setFont(new Font("Monospace", Font.BOLD, 15));
+                g.drawString(relic7.nama, 10,this.getHeight()/4);
+
+                String[] descSplit = relic7.desc.split("\n");
+                for (int i = 0; i < descSplit.length; i++) {
+                    g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
+                }
                 super.paintComponent(g);
             }
         };
-        relic3button = new JButton();
+        slot7bought = false;
         for (int i = 0; i < kapal.relic.size(); i++) {
-            if (kapal.relic.get(i).nama.equals("Cookie Relic")) {
-                haverelic3 = true;
+            if (kapal.relic.get(i).nama.equals(relic7.nama)) {
+                slot7bought = true;
+                slot7layer.setVisible(true);
+
+                slot1price /= 2;
+                slot2price /= 2;
+                slot3price /= 2;
+                slot4price /= 2;
+                slot5price /= 2;
+                slot6price /= 2;
+                slot8price /= 2;
+                slot9price /= 2;
+                slot1button.setText(String.valueOf(slot1price));
+                slot2button.setText(String.valueOf(slot2price));
+                slot3button.setText(String.valueOf(slot3price));
+                slot4button.setText(String.valueOf(slot4price));
+                slot5button.setText(String.valueOf(slot5price));
+                slot6button.setText(String.valueOf(slot6price));
+                slot8button.setText(String.valueOf(slot8price));
+                slot9button.setText(String.valueOf(slot9price));
                 break;
             }
         }
-        relic3layer = new JLabel("ALREADY HAVE RELIC");
-        relic3price = 300;
+        slot7layer = new JLabel("ALREADY HAD");
+        slot7price = 300;
+        slot7button = new JButton(String.valueOf(slot7price));
 
         //---------------------------------------------------------------------------------------------//
 
         //TITLE
-        title.setBounds(this.getWidth()/2 - width/2,0,width,height);
-        title.setFont(new Font("Monospace", Font.ITALIC + Font.BOLD, 70));
-        title.setForeground(Color.green);
+        title.setBounds(this.getWidth()/2 - width,0, width*2, height - 60);
         add(title);
 
         //COIN SYMBOL
-        coinsymbol.setBounds(830,80,50,50);
-        coinsymbol.setForeground(Color.white);
-        coinsymbol.setHorizontalAlignment(SwingConstants.CENTER);
-        coinsymbol.setVerticalAlignment(SwingConstants.CENTER);
+        coinsymbol.setBounds(870,80,50,50);
         add(coinsymbol);
 
-        //COIN
-        coin.setBounds(880, 80, 105,50);
-        coin.setFont(new Font("Monospace", Font.BOLD,30));
-        coin.setForeground(Color.white);
-        add(coin);
-
-        //PLAYER COIN
-        coinplayer.setBounds(983,80,100,50);
+        //COIN PLAYER
+        coinplayer.setBounds(930,80,150,50);
         coinplayer.setFont(new Font("Monospace",Font.BOLD,30));
         coinplayer.setForeground(Color.white);
         add(coinplayer);
 
         //BACK
-        back.setBounds(height-20,70,180,90);
+        back.setBounds(50,50,160,60);
         back.setForeground(Color.white);
         back.setFont(new Font("Monospace", Font.BOLD,30));
         back.setHorizontalAlignment(SwingConstants.CENTER);
@@ -311,101 +570,118 @@ public class Buy extends JPanel {
         });
         add(back);
 
-        //CARD 1 LAYER
-        card1layer.setBounds(space, (int) (height*1.6), height, width);
-        card1layer.setBackground(new Color(0,0,0, 240));
-        card1layer.setForeground(Color.red);
-        card1layer.setFont(new Font("Monospace", Font.ITALIC, 12));
-        card1layer.setHorizontalAlignment(SwingConstants.CENTER);
-        card1layer.setOpaque(true);
-        card1layer.setVisible(false);
-        add(card1layer);
+        //SLOT 1 LAYER
+        slot1layer.setBounds(space, height - space*2, width, height);
+        slot1layer.setBackground(new Color(0,0,0, 240));
+        slot1layer.setOpaque(true);
+        slot1layer.setForeground(Color.red);
+        slot1layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot1layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot1layer.setVisible(false);
+        add(slot1layer);
 
-        //CARD 2 LAYER
-        card2layer.setBounds((height + space) + space, (int) (height*1.6), height, width);
-        card2layer.setBackground(new Color(0,0,0, 240));
-        card2layer.setForeground(Color.red);
-        card2layer.setFont(new Font("Monospace", Font.ITALIC, 12));
-        card2layer.setHorizontalAlignment(SwingConstants.CENTER);
-        card2layer.setOpaque(true);
-        card2layer.setVisible(false);
-        add(card2layer);
+        //SLOT 2 LAYER
+        slot2layer.setBounds(width/2 + space, (height - space*2) + (height + space), width, height);
+        slot2layer.setBackground(new Color(0,0,0, 240));
+        slot2layer.setOpaque(true);
+        slot2layer.setForeground(Color.red);
+        slot2layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot2layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot2layer.setVisible(false);
+        add(slot2layer);
 
-        //CARD 3 LAYER
-        card3layer.setBounds((height + space)*2 + space, (int) (height*1.6), height, width);
-        card3layer.setBackground(new Color(0,0,0, 240));
-        card3layer.setForeground(Color.red);
-        card3layer.setFont(new Font("Monospace", Font.ITALIC, 12));
-        card3layer.setHorizontalAlignment(SwingConstants.CENTER);
-        card3layer.setOpaque(true);
-        card3layer.setVisible(false);
-        add(card3layer);
+        //SLOT 3 LAYER
+        slot3layer.setBounds((width + space) + space, height - space*2, width, height);
+        slot3layer.setBackground(new Color(0,0,0, 240));
+        slot3layer.setOpaque(true);
+        slot3layer.setForeground(Color.red);
+        slot3layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot3layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot3layer.setVisible(false);
+        add(slot3layer);
 
-        //RELIC 1 LAYER
-        relic1layer.setBounds((height + space)*3 + space, (int) (height*1.6), height, width);
-        relic1layer.setBackground(new Color(0,0,0, 240));
-        relic1layer.setForeground(Color.red);
-        relic1layer.setFont(new Font("Monospace", Font.ITALIC, 12));
-        relic1layer.setHorizontalAlignment(SwingConstants.CENTER);
-        relic1layer.setOpaque(true);
-        if (!haverelic1) {
-            relic1layer.setVisible(false);
-        } else {
-            relic1layer.setVisible(true);
-        }
-        add(relic1layer);
+        //SLOT 4 LAYER
+        slot4layer.setBounds((width/2 + space) + (width + space), (height - space*2) + (height + space), width, height);
+        slot4layer.setBackground(new Color(0,0,0, 240));
+        slot4layer.setOpaque(true);
+        slot4layer.setForeground(Color.red);
+        slot4layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot4layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot4layer.setVisible(false);
+        add(slot4layer);
 
-        //RELIC 2 LAYER
-        relic2layer.setBounds((height + space)*4 + space, (int) (height*1.6), height, width);
-        relic2layer.setBackground(new Color(0,0,0, 240));
-        relic2layer.setForeground(Color.red);
-        relic2layer.setFont(new Font("Monospace", Font.ITALIC, 12));
-        relic2layer.setHorizontalAlignment(SwingConstants.CENTER);
-        relic2layer.setOpaque(true);
-        if (!haverelic2) {
-            relic2layer.setVisible(false);
-        } else {
-            relic2layer.setVisible(true);
-        }
-        add(relic2layer);
+        //SLOT 5 LAYER
+        slot5layer.setBounds((width + space)*2 + space, height - space*2, width, height);
+        slot5layer.setBackground(new Color(0,0,0, 240));
+        slot5layer.setOpaque(true);
+        slot5layer.setForeground(Color.red);
+        slot5layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot5layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot5layer.setVisible(false);
+        add(slot5layer);
 
-        //RELIC 3 LAYER
-        relic3layer.setBounds((height + space)*5 + space, (int) (height*1.6), height, width);
-        relic3layer.setBackground(new Color(0,0,0, 240));
-        relic3layer.setForeground(Color.red);
-        relic3layer.setFont(new Font("Monospace", Font.ITALIC, 12));
-        relic3layer.setHorizontalAlignment(SwingConstants.CENTER);
-        relic3layer.setOpaque(true);
-        if (!haverelic3) {
-            relic3layer.setVisible(false);
-        } else {
-            relic3layer.setVisible(true);
-        }
-        add(relic3layer);
+        //SLOT 6 LAYER
+        slot6layer.setBounds((width/2 + space) + (width + space)*2, (height - space*2) + (height + space), width, height);
+        slot6layer.setBackground(new Color(0,0,0, 240));
+        slot6layer.setOpaque(true);
+        slot6layer.setForeground(Color.red);
+        slot6layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot6layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot6layer.setVisible(false);
+        add(slot6layer);
 
-        //CARD 1 BUTTON
-        card1button.setBorderPainted(false);
-        card1button.setBounds(space,(int) (height*1.6) + width - 50, height, 50);
-        card1button.setText(String.valueOf(card1price));
-        card1button.setHorizontalTextPosition(JButton.CENTER);
-        card1button.setVerticalTextPosition(JButton.CENTER);
-        card1button.setFont(new Font("Monospace",Font.ITALIC,20));
-        card1button.setForeground(Color.black);
-        card1button.setBackground(new Color(211,211,211));
-        card1button.setVisible(false);
-        card1button.addMouseListener(new MouseAdapter() {
+        //SLOT 7 LAYER
+        slot7layer.setBounds((width + space)*3 + space, height - space*2, width, height);
+        slot7layer.setBackground(new Color(0,0,0, 240));
+        slot7layer.setOpaque(true);
+        slot7layer.setForeground(Color.red);
+        slot7layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot7layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot7layer.setVisible(false);
+        add(slot7layer);
+
+        //SLOT 8 LAYER
+        slot8layer.setBounds((width/2 + space) + (width + space)*3, (height - space*2) + (height + space), width, height);
+        slot8layer.setBackground(new Color(0,0,0, 240));
+        slot8layer.setOpaque(true);
+        slot8layer.setForeground(Color.red);
+        slot8layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot8layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot8layer.setVisible(false);
+        add(slot8layer);
+
+        //SLOT 9 LAYER
+        slot9layer.setBounds((width + space)*4 + space, height - space*2, width, height);
+        slot9layer.setBackground(new Color(0,0,0, 240));
+        slot9layer.setOpaque(true);
+        slot9layer.setForeground(Color.red);
+        slot9layer.setFont(new Font("Monospace", Font.ITALIC, 16));
+        slot9layer.setHorizontalAlignment(SwingConstants.CENTER);
+        slot9layer.setVisible(false);
+        add(slot9layer);
+
+        //SLOT 1 BUTTON
+        slot1button.setBorderPainted(false);
+        slot1button.setBounds(space, (height - space*2) + height - 50, width, 50);
+        slot1button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot1button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot1button.setForeground(Color.black);
+        slot1button.setBackground(new Color(211, 211, 211));
+        slot1button.setVisible(false);
+        slot1button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (kapal.getCoin() >= card1price) {
+                    if (kapal.getCoin() >= slot1price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-                        card1.setEnabled(false);
-                        card1bought = true;
-                        card1layer.setVisible(true);
-                        kapal.setCoin(kapal.getCoin() - card1price);
+                        slot1.setEnabled(false);
+                        slot1bought = true;
+                        slot1layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot1price);
+                        kapal.addCard(card1);
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
@@ -415,38 +691,37 @@ public class Buy extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                card1button.setVisible(true);
+                slot1button.setVisible(true);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                card1button.setVisible(false);
+                slot1button.setVisible(false);
             }
         });
-        add(card1button);
+        add(slot1button);
 
-        //CARD 2 BUTTON
-        card2button.setBorderPainted(false);
-        card2button.setBounds((height + space) + space,(int) (height*1.6) + width - 50, height, 50);
-        card2button.setText(String.valueOf(card2price));
-        card2button.setHorizontalTextPosition(JButton.CENTER);
-        card2button.setVerticalTextPosition(JButton.CENTER);
-        card2button.setFont(new Font("Monospace",Font.ITALIC,20));
-        card2button.setForeground(Color.black);
-        card2button.setBackground(new Color(211,211,211));
-        card2button.setVisible(false);
-        card2button.addMouseListener(new MouseAdapter() {
+        //SLOT 2 BUTTON
+        slot2button.setBorderPainted(false);
+        slot2button.setBounds(width/2 + space, (height - space*2) + (height + space) + height - 50, width, 50);
+        slot2button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot2button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot2button.setForeground(Color.black);
+        slot2button.setBackground(new Color(211, 211, 211));
+        slot2button.setVisible(false);
+        slot2button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (kapal.getCoin() >= card2price) {
+                    if (kapal.getCoin() >= slot2price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-                        card2.setEnabled(false);
-                        card2bought = true;
-                        card2layer.setVisible(true);
-                        kapal.setCoin(kapal.getCoin() - card2price);
+                        slot2.setEnabled(false);
+                        slot2bought = true;
+                        slot2layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot2price);
+                        kapal.addCard(card2);
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
@@ -456,43 +731,37 @@ public class Buy extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                card2button.setVisible(true);
-                card2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                slot2button.setVisible(true);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                card2button.setVisible(false);
+                slot2button.setVisible(false);
             }
         });
-        add(card2button);
+        add(slot2button);
 
-        //CARD 3 BUTTON
-        card3button.setBorderPainted(false);
-        card3button.setBounds((height + space)*2 + space,(int) (height*1.6) + width - 50, height, 50);
-        if (!haverelic1) {
-            card3button.setText(String.valueOf(card3price));
-        } else {
-            card3button.setText(String.valueOf(card3price/2));
-        }
-        card3button.setHorizontalTextPosition(JButton.CENTER);
-        card3button.setVerticalTextPosition(JButton.CENTER);
-        card3button.setFont(new Font("Monospace",Font.ITALIC,20));
-        card3button.setForeground(Color.black);
-        card3button.setBackground(new Color(211,211,211));
-        card3button.setVisible(false);
-        card3button.addMouseListener(new MouseAdapter() {
+        //SLOT 3 BUTTON
+        slot3button.setBorderPainted(false);
+        slot3button.setBounds((width + space) + space, (height - space*2) + height - 50, width, 50);
+        slot3button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot3button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot3button.setForeground(Color.black);
+        slot3button.setBackground(new Color(211, 211, 211));
+        slot3button.setVisible(false);
+        slot3button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (kapal.getCoin() >= card3price) {
+                    if (kapal.getCoin() >= slot3price) {
                         //SUCCESS
                         JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-                        card3.setEnabled(false);
-                        card3bought = true;
-                        card3layer.setVisible(true);
-                        kapal.setCoin(kapal.getCoin() - card3price);
+                        slot3.setEnabled(false);
+                        slot3bought = true;
+                        slot3layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot3price);
+                        kapal.addCard(card3);
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
@@ -502,52 +771,38 @@ public class Buy extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                card3button.setVisible(true);
-                card3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                slot3button.setVisible(true);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                card3button.setVisible(false);
+                slot3button.setVisible(false);
             }
         });
-        add(card3button);
+        add(slot3button);
 
-        //RELIC 1 BUTTON
-        relic1button.setBorderPainted(false);
-        relic1button.setBounds((height + space)*3 + space,(int) (height*1.6) + width - 50, height, 50);
-        relic1button.setText(String.valueOf(relic1price));
-        relic1button.setHorizontalTextPosition(JButton.CENTER);
-        relic1button.setVerticalTextPosition(JButton.CENTER);
-        relic1button.setFont(new Font("Monospace",Font.ITALIC,20));
-        relic1button.setForeground(Color.black);
-        relic1button.setBackground(new Color(211,211,211));
-        relic1button.setVisible(false);
-        relic1button.addMouseListener(new MouseAdapter() {
+        //SLOT 4 BUTTON
+        slot4button.setBorderPainted(false);
+        slot4button.setBounds((width/2 + space) + (width + space), (height - space*2) + (height + space) + height - 50, width, 50);
+        slot4button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot4button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot4button.setForeground(Color.black);
+        slot4button.setBackground(new Color(211, 211, 211));
+        slot4button.setVisible(false);
+        slot4button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (kapal.getCoin() >= relic1price) {
+                    if (kapal.getCoin() >= slot4price) {
                         //SUCCESS
-                        JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-                        relic1.setEnabled(false);
-                        haverelic1 = true;
-                        relic1layer.setVisible(true);
-                        kapal.setCoin(kapal.getCoin() - relic1price);
-                        kapal.addRelic(new MembershipCardRelic());
+                        JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        slot4.setEnabled(false);
+                        slot4bought = true;
+                        slot4layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot4price);
+                        kapal.addCard(card4);
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
-
-                        card1price /= 2;
-                        card2price /= 2;
-                        card3price /= 2;
-                        relic2price /= 2;
-                        relic3price /= 2;
-                        card1button.setText(String.valueOf(card1price));
-                        card2button.setText(String.valueOf(card2price));
-                        card3button.setText(String.valueOf(card3price));
-                        relic2button.setText(String.valueOf(relic2price));
-                        relic3button.setText(String.valueOf(relic3price));
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -556,44 +811,37 @@ public class Buy extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                relic1button.setVisible(true);
-                relic1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                slot4button.setVisible(true);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                relic1button.setVisible(false);
+                slot4button.setVisible(false);
             }
         });
-        add(relic1button);
+        add(slot4button);
 
-        //RELIC 2 BUTTON
-        relic2button.setBorderPainted(false);
-        relic2button.setBounds((height + space)*4 + space,(int) (height*1.6) + width - 50, height, 50);
-        if (!haverelic1) {
-            relic2button.setText(String.valueOf(relic2price));
-        } else {
-            relic2button.setText(String.valueOf(relic2price/2));
-        }
-        relic2button.setHorizontalTextPosition(JButton.CENTER);
-        relic2button.setVerticalTextPosition(JButton.CENTER);
-        relic2button.setFont(new Font("Monospace",Font.ITALIC,20));
-        relic2button.setForeground(Color.black);
-        relic2button.setBackground(new Color(211,211,211));
-        relic2button.setVisible(false);
-        relic2button.addMouseListener(new MouseAdapter() {
+        //SLOT 5 BUTTON
+        slot5button.setBorderPainted(false);
+        slot5button.setBounds((width + space)*2 + space, (height - space*2) + height - 50, width, 50);
+        slot5button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot5button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot5button.setForeground(Color.black);
+        slot5button.setBackground(new Color(211, 211, 211));
+        slot5button.setVisible(false);
+        slot5button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (kapal.getCoin() >= relic2price) {
+                    if (kapal.getCoin() >= slot5price) {
                         //SUCCESS
-                        JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-                        relic2.setEnabled(false);
-                        haverelic2 = true;
-                        relic2layer.setVisible(true);
-                        kapal.setCoin(kapal.getCoin() - relic2price);
-                        kapal.addRelic(new CauldronRelic());
+                        JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        slot5.setEnabled(false);
+                        slot5bought = true;
+                        slot5layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot5price);
+                        kapal.addCard(card5);
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
@@ -603,44 +851,37 @@ public class Buy extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                relic2button.setVisible(true);
-                relic2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                slot5button.setVisible(true);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                relic2button.setVisible(false);
+                slot5button.setVisible(false);
             }
         });
-        add(relic2button);
+        add(slot5button);
 
-        //RELIC 3 BUTTON
-        relic3button.setBorderPainted(false);
-        relic3button.setBounds((height + space)*5 + space,(int) (height*1.6) + width - 50, height, 50);
-        if (!haverelic1) {
-            relic3button.setText(String.valueOf(relic3price));
-        } else {
-            relic3button.setText(String.valueOf(relic3price/2));
-        }
-        relic3button.setHorizontalTextPosition(JButton.CENTER);
-        relic3button.setVerticalTextPosition(JButton.CENTER);
-        relic3button.setFont(new Font("Monospace",Font.ITALIC,20));
-        relic3button.setForeground(Color.black);
-        relic3button.setBackground(new Color(211,211,211));
-        relic3button.setVisible(false);
-        relic3button.addMouseListener(new MouseAdapter() {
+        //SLOT 6 BUTTON
+        slot6button.setBorderPainted(false);
+        slot6button.setBounds((width/2 + space) + (width + space)*2, (height - space*2) + (height + space) + height - 50, width, 50);
+        slot6button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot6button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot6button.setForeground(Color.black);
+        slot6button.setBackground(new Color(211, 211, 211));
+        slot6button.setVisible(false);
+        slot6button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                 if (n == JOptionPane.YES_OPTION) {
                     //CHECK MONEY
-                    if (kapal.getCoin() >= relic3price) {
+                    if (kapal.getCoin() >= slot6price) {
                         //SUCCESS
-                        JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-                        relic3.setEnabled(false);
-                        haverelic3 = true;
-                        relic3layer.setVisible(true);
-                        kapal.setCoin(kapal.getCoin() - relic3price);
-                        kapal.addRelic(new CookieRelic());
+                        JOptionPane.showMessageDialog(null,"CARD BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        slot6.setEnabled(false);
+                        slot6bought = true;
+                        slot6layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot6price);
+                        kapal.addCard(card6);
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
                     } else {
                         //FAILED
@@ -650,135 +891,304 @@ public class Buy extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                relic3button.setVisible(true);
-                relic3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                slot6button.setVisible(true);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                relic3button.setVisible(false);
+                slot6button.setVisible(false);
             }
         });
-        add(relic3button);
+        add(slot6button);
 
-        //CARD 1
-        card1.setBounds(space, (int) (height*1.6), height, width);
-        card1.setForeground(Color.green);
-        card1.setHorizontalAlignment(SwingConstants.CENTER);
-        card1.setVerticalAlignment(SwingConstants.CENTER);
-        card1.addMouseListener(new MouseAdapter() {
+        //SLOT 7 BUTTON
+        slot7button.setBorderPainted(false);
+        slot7button.setBounds((width + space)*3 + space, (height - space*2) + height - 50, width, 50);
+        slot7button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot7button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot7button.setForeground(Color.black);
+        slot7button.setBackground(new Color(211, 211, 211));
+        slot7button.setVisible(false);
+        slot7button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHECK MONEY
+                    if (kapal.getCoin() >= slot7price) {
+                        //SUCCESS
+                        JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        slot7.setEnabled(false);
+                        slot7bought = true;
+                        slot7layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot7price);
+                        kapal.addRelic(relic7);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+
+                        slot1price /= 2;
+                        slot2price /= 2;
+                        slot3price /= 2;
+                        slot4price /= 2;
+                        slot5price /= 2;
+                        slot6price /= 2;
+                        slot8price /= 2;
+                        slot9price /= 2;
+                        slot1button.setText(String.valueOf(slot1price));
+                        slot2button.setText(String.valueOf(slot2price));
+                        slot3button.setText(String.valueOf(slot3price));
+                        slot4button.setText(String.valueOf(slot4price));
+                        slot5button.setText(String.valueOf(slot5price));
+                        slot6button.setText(String.valueOf(slot6price));
+                        slot8button.setText(String.valueOf(slot8price));
+                        slot9button.setText(String.valueOf(slot9price));
+                    } else {
+                        //FAILED
+                        JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!card1bought) {
-                    card1button.setVisible(true);
-                    card1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                slot7button.setVisible(true);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                slot7button.setVisible(false);
+            }
+        });
+        add(slot7button);
+
+        //SLOT 8 BUTTON
+        slot8button.setBorderPainted(false);
+        slot8button.setBounds((width/2 + space) + (width + space)*3, (height - space*2) + (height + space) + height - 50, width, 50);
+        slot8button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot8button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot8button.setForeground(Color.black);
+        slot8button.setBackground(new Color(211, 211, 211));
+        slot8button.setVisible(false);
+        slot8button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHECK MONEY
+                    if (kapal.getCoin() >= slot8price) {
+                        //SUCCESS
+                        JOptionPane.showMessageDialog(null,"RELIC BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        slot8.setEnabled(false);
+                        slot8bought = true;
+                        slot8layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot8price);
+                        kapal.addRelic(relic8);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                    } else {
+                        //FAILED
+                        JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                slot8button.setVisible(true);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                slot8button.setVisible(false);
+            }
+        });
+        add(slot8button);
+
+        //SLOT 9 BUTTON
+        slot9button.setBorderPainted(false);
+        slot9button.setBounds((width + space)*4 + space, (height - space*2) + height - 50, width, 50);
+        slot9button.setHorizontalAlignment(SwingConstants.CENTER);
+        slot9button.setFont(new Font("Monospace", Font.BOLD,20));
+        slot9button.setForeground(Color.black);
+        slot9button.setBackground(new Color(211, 211, 211));
+        slot9button.setVisible(false);
+        slot9button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int n = JOptionPane.showConfirmDialog(null, "You sure buying this one?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    //CHECK MONEY
+                    if (kapal.getCoin() >= slot9price) {
+                        //SUCCESS
+                        JOptionPane.showMessageDialog(null,"POTIONBOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        slot9.setEnabled(false);
+                        slot9bought = true;
+                        slot9layer.setVisible(true);
+                        kapal.setCoin(kapal.getCoin() - slot9price);
+                        kapal.addPotion(potion9);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                    } else {
+                        //FAILED
+                        JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                slot9button.setVisible(true);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                slot9button.setVisible(false);
+            }
+        });
+        add(slot9button);
+
+        //SLOT 1
+        slot1.setBounds(space, height - space*2, width, height);
+        slot1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if (!slot1bought) {
+                    slot1button.setVisible(true);
+                    slot1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                card1button.setVisible(false);
+                slot1button.setVisible(false);
             }
         });
-        add(card1);
+        add(slot1);
 
-        //CARD 2
-        card2.setBounds((height + space) + space, (int) (height*1.6), height, width);
-        card2.setForeground(Color.green);
-        card2.setHorizontalAlignment(SwingConstants.CENTER);
-        card2.setVerticalAlignment(SwingConstants.CENTER);
-        card2.addMouseListener(new MouseAdapter() {
+        //SLOT 2
+        slot2.setBounds(width/2 + space, (height - space*2) + (height + space), width, height);
+        slot2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!card2bought) {
-                    card2button.setVisible(true);
-                    card2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                if (!slot2bought) {
+                    slot2button.setVisible(true);
+                    slot2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                card2button.setVisible(false);
+                slot2button.setVisible(false);
             }
         });
-        add(card2);
+        add(slot2);
 
-        //CARD 3
-        card3.setBounds((height + space)*2 + space, (int) (height*1.6), height, width);
-        card3.setForeground(Color.green);
-        card3.setHorizontalAlignment(SwingConstants.CENTER);
-        card3.setVerticalAlignment(SwingConstants.CENTER);
-        card3.addMouseListener(new MouseAdapter() {
+        //SLOT 3
+        slot3.setBounds((width + space) + space, height - space*2, width, height);
+        slot3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!card3bought) {
-                    card3button.setVisible(true);
-                    card3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                if (!slot3bought) {
+                    slot3button.setVisible(true);
+                    slot3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                card3button.setVisible(false);
+                slot3button.setVisible(false);
             }
         });
-        add(card3);
+        add(slot3);
 
-        //RELIC 1
-        relic1.setBounds((height + space)*3 + space, (int) (height*1.6), height, width);
-        relic1.setForeground(Color.green);
-        relic1.setFont(new Font("Monospace", Font.BOLD, 12));
-        relic1.setHorizontalAlignment(SwingConstants.CENTER);
-        relic1.addMouseListener(new MouseAdapter() {
+        //SLOT 4
+        slot4.setBounds((width/2 + space) + (width + space), (height - space*2) + (height + space), width, height);
+        slot4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!haverelic1) {
-                    relic1button.setVisible(true);
-                    relic1button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                if (!slot4bought) {
+                    slot4button.setVisible(true);
+                    slot4button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                relic1button.setVisible(false);
+                slot4button.setVisible(false);
             }
         });
-        add(relic1);
+        add(slot4);
 
-        //RELIC 2
-        relic2.setBounds((height + space)*4 + space, (int) (height*1.6), height, width);
-        relic2.setForeground(Color.green);
-        relic2.setFont(new Font("Monospace", Font.BOLD, 12));
-        relic2.setHorizontalAlignment(SwingConstants.CENTER);
-        relic2.addMouseListener(new MouseAdapter() {
+        //SLOT 5
+        slot5.setBounds((width + space)*2 + space, height - space*2, width, height);
+        slot5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!haverelic2) {
-                    relic2button.setVisible(true);
-                    relic2button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                if (!slot5bought) {
+                    slot5button.setVisible(true);
+                    slot5button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                relic2button.setVisible(false);
+                slot5button.setVisible(false);
             }
         });
-        add(relic2);
+        add(slot5);
 
-        //RELIC 3
-        relic3.setBounds((height + space)*5 + space, (int) (height*1.6), height, width);
-        relic3.setForeground(Color.green);
-        relic3.setFont(new Font("Monospace", Font.BOLD, 12));
-        relic3.setHorizontalAlignment(SwingConstants.CENTER);
-        relic3.addMouseListener(new MouseAdapter() {
+        //SLOT 6
+        slot6.setBounds((width/2 + space) + (width + space)*2, (height - space*2) + (height + space), width, height);
+        slot6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!haverelic3) {
-                    relic3button.setVisible(true);
-                    relic3button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                if (!slot6bought) {
+                    slot6button.setVisible(true);
+                    slot6button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                relic3button.setVisible(false);
+                slot6button.setVisible(false);
             }
         });
-        add(relic3);
+        add(slot6);
+
+        //SLOT 7
+        slot7.setBounds((width + space)*3 + space, height - space*2, width, height);
+        slot7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if (!slot7bought) {
+                    slot7button.setVisible(true);
+                    slot7button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                slot7button.setVisible(false);
+            }
+        });
+        add(slot7);
+
+        //SLOT 8
+        slot8.setBounds((width/2 + space) + (width + space)*3, (height - space*2) + (height + space), width, height);
+        slot8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if (!slot8bought) {
+                    slot8button.setVisible(true);
+                    slot8button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                slot8button.setVisible(false);
+            }
+        });
+        add(slot8);
+
+        //SLOT 9
+        slot9.setBounds((width + space)*4 + space, height - space*2, width, height);
+        slot9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if (!slot9bought) {
+                    slot9button.setVisible(true);
+                    slot9button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                slot9button.setVisible(false);
+            }
+        });
+        add(slot9);
 
         //BACKGROUND
         bg.setBounds(0, 0,1162,648);
@@ -805,5 +1215,172 @@ public class Buy extends JPanel {
                 }
             }
         });
+    }
+
+    private Card tankerCards(int random) {
+        Card card;
+        if (random == 0) {
+            card = new HeavyArtileryCard();
+        } else if (random == 1) {
+            card = new OverclockingReactorCard();
+        } else if (random == 2) {
+            card = new FortifyCard();
+        } else if (random == 3) {
+            card = new RethinkCard();
+        } else if (random == 4) {
+            card = new OneforAllCard();
+        } else if (random == 5) {
+            card = new RerouteCard();
+        } else if (random == 6) {
+            card = new ExplodingPayloadCard();
+        } else if (random == 7) {
+            card = new MissleCard();
+        } else if (random == 8) {
+            card = new ExtraGunpowderCard();
+        } else if (random == 9) {
+            card = new SupportCannonCard();
+        } else if (random == 10) {
+            card = new HealCard();
+        } else {
+            random = (int) (Math.random() * 5);
+            if (random == 0) {
+                card = new AttackCard();
+            } else if (random == 1) {
+                card = new DefendCard();
+            } else if (random == 2) {
+                card = new GreedofPotCard();
+            } else if (random == 3) {
+                card = new RechargeCard();
+            } else {
+                card = new InspiringShotCard();
+            }
+        }
+
+        return card;
+    }
+
+    private Card warshipCards(int random) {
+        Card card;
+        if (random == 0) {
+            card = new SniperShotCard();
+        } else if (random == 1) {
+            card = new RocketSalvoCard();
+        } else if (random == 2) {
+            card = new CommandersWisdom();
+        } else if (random == 3) {
+            card = new RepositionCard();
+        } else if (random == 4) {
+            card = new LoadUpCard();
+        } else if (random == 5) {
+            card = new CounterplayCard();
+        } else if (random == 6) {
+            card = new GatlingGunCard();
+        } else if (random == 7) {
+            card = new DeflectCard();
+        } else if (random == 8) {
+            card = new PiercingShotCard();
+        } else if (random == 9) {
+            card = new StrategicShotCard();
+        } else if (random == 10) {
+            card = new FuelContainerCard();
+        } else if (random == 11) {
+            card = new SalvageCard();
+        } else if (random == 12) {
+            card = new TorpedoCard();
+        } else {
+            random = (int) (Math.random() * 5);
+            if (random == 0) {
+                card = new AttackCard();
+            } else if (random == 1) {
+                card = new DefendCard();
+            } else if (random == 2) {
+                card = new GreedofPotCard();
+            } else if (random == 3) {
+                card = new RechargeCard();
+            } else {
+                card = new InspiringShotCard();
+            }
+        }
+
+        return card;
+    }
+
+    private Card aircraftCards(int random) {
+        Card card;
+        if (random == 0) {
+            card = new HelicallCard();
+        } else if (random == 1) {
+            card = new SupportFlareCard();
+        } else if (random == 2) {
+            card = new DeniumShieldingCard();
+        } else if (random == 3) {
+            card = new MoralSupportCard();
+        } else if (random == 4) {
+            card = new AllOutAttackCard();
+        } else if (random == 5) {
+            card = new SupportFlareV2Card();
+        } else if (random == 6) {
+            card = new SelfRepairCard();
+        } else if (random == 7) {
+            card = new BufferCard();
+        } else if (random == 8) {
+            card = new CombustCard();
+        } else if (random == 9) {
+            card = new KamikazeCard();
+        } else {
+            random = (int) (Math.random() * 5);
+            if (random == 0) {
+                card = new AttackCard();
+            } else if (random == 1) {
+                card = new DefendCard();
+            } else if (random == 2) {
+                card = new GreedofPotCard();
+            } else if (random == 3) {
+                card = new RechargeCard();
+            } else {
+                card = new InspiringShotCard();
+            }
+        }
+
+        return card;
+    }
+
+    private Relic relicRandomizer(int random) {
+        Relic relic;
+        if (random == 0) {
+            relic = new CauldronRelic();
+        } else if (random == 1) {
+            relic = new CookieRelic();
+        } else {
+            random = (int) (Math.random() * 3);
+            if (random == 0) {
+                random = (int) (Math.random() * Statics.commonRelic.size());
+                relic = Statics.commonRelic.get(random);
+            } else if (random == 1) {
+                random = (int) (Math.random() * Statics.uncommonRelic.size());
+                relic = Statics.uncommonRelic.get(random);
+            } else {
+                random = (int) (Math.random() * Statics.rareRelic.size());
+                relic = Statics.rareRelic.get(random);
+            }
+        }
+
+        return relic;
+    }
+
+    private Potion potionRandomizer(int random) {
+        Potion potion;
+        if (random == 0) {
+            random = (int) (Math.random() * Statics.commonPotion.size());
+            potion = Statics.commonPotion.get(random);
+        } else if (random == 1) {
+            random = (int) (Math.random() * Statics.uncommonPotion.size());
+            potion = Statics.uncommonPotion.get(random);
+        } else {
+            random = (int) (Math.random() * Statics.rarePotion.size());
+            potion = Statics.rarePotion.get(random);
+        }
+
+        return potion;
     }
 }
