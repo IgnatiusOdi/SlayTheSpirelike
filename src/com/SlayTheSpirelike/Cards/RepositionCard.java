@@ -32,4 +32,9 @@ public class RepositionCard extends Card {
         desc = "Gain " + block +" block, \n"+
                 "draw "+draw+" cards";
     }
+
+    @Override
+    protected Card copy() {
+        return new RepositionCard();
+    }
 }

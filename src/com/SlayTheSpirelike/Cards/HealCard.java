@@ -30,4 +30,9 @@ public class HealCard extends Card {
         desc = "Heal "+heal+" health. \n" +
                 "(Single use)";
     }
+
+    @Override
+    protected Card copy() {
+        return new HealCard();
+    }
 }

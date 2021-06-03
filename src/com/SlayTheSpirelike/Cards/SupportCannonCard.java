@@ -37,4 +37,9 @@ public class SupportCannonCard extends Card {
                     "is played twice";
         }
     }
+
+    @Override
+    protected Card copy() {
+        return new SupportCannonCard();
+    }
 }

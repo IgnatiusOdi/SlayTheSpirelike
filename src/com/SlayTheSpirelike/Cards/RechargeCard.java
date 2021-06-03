@@ -33,4 +33,9 @@ public class RechargeCard extends Card {
         desc = "Gain "+energy+" energy.\n" +
                 "(Single use)";
     }
+
+    @Override
+    protected Card copy() {
+        return new RechargeCard();
+    }
 }

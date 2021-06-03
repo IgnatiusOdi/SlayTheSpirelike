@@ -27,4 +27,9 @@ public class DeflectCard extends Card {
         }
         desc = "Gain "+block+" block";
     }
+
+    @Override
+    protected Card copy() {
+        return new DeflectCard();
+    }
 }

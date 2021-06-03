@@ -30,4 +30,9 @@ public class CommandersWisdom extends Card {
     public void upgrade() {
 
     }
+
+    @Override
+    protected Card copy() {
+        return new CommandersWisdom();
+    }
 }

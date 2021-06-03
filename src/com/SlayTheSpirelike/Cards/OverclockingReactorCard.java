@@ -42,4 +42,9 @@ public class OverclockingReactorCard extends Card {
         super.reactivate();
         twiced=false;
     }
+
+    @Override
+    protected Card copy() {
+        return new OverclockingReactorCard();
+    }
 }

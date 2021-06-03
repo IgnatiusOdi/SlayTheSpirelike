@@ -32,4 +32,9 @@ public class TorpedoCard extends Card {
     public void upgrade() {
 
     }
+
+    @Override
+    protected Card copy() {
+        return new TorpedoCard();
+    }
 }

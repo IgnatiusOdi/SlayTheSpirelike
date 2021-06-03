@@ -34,4 +34,9 @@ public class AllOutAttackCard extends Card {
                 "deal "+tempdamage+" damage. \n" +
                 "Desummon all heli.";
     }
+
+    @Override
+    protected Card copy() {
+        return new AllOutAttackCard();
+    }
 }

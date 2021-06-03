@@ -33,4 +33,9 @@ public class CounterplayCard extends Card {
                 "add "+draw+" Torpedoes\n" +
                 "into your hand";
     }
+
+    @Override
+    protected Card copy() {
+        return new CounterplayCard();
+    }
 }

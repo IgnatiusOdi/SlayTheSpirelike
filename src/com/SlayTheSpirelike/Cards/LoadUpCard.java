@@ -31,4 +31,9 @@ public class LoadUpCard extends Card {
         desc = "Add "+draw+" Torpedoes \n" +
                 "into your deck";
     }
+
+    @Override
+    protected Card copy() {
+        return new LoadUpCard();
+    }
 }

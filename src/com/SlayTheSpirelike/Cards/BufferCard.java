@@ -29,4 +29,9 @@ public class BufferCard extends Card {
         desc = "Prevent the next time \n" +
                 "you would lose health";
     }
+
+    @Override
+    protected Card copy() {
+        return new BufferCard();
+    }
 }

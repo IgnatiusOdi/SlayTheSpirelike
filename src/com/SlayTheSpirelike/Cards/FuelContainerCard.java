@@ -28,4 +28,9 @@ public class FuelContainerCard extends Card {
         }
         desc = "Gain "+energy+" energy.";
     }
+
+    @Override
+    protected Card copy() {
+        return new FuelContainerCard();
+    }
 }

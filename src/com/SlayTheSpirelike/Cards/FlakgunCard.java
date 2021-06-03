@@ -32,4 +32,9 @@ public class FlakgunCard extends Card {
         desc = "Deal "+damage+" damage \n" +
                 "to enemy";
     }
+
+    @Override
+    protected Card copy() {
+        return new FlakgunCard();
+    }
 }

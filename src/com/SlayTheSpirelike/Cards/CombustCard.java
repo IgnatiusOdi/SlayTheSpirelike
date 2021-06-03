@@ -32,4 +32,9 @@ public class CombustCard extends Card {
         desc = "Lose "+heal+" health, \n" +
                 "deal "+damage+" damage to enemy";
     }
+
+    @Override
+    protected Card copy() {
+        return new CombustCard();
+    }
 }

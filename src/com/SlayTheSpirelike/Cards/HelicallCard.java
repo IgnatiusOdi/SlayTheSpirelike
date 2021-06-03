@@ -29,4 +29,8 @@ public class HelicallCard extends Card {
         desc = "Summon "+summon+" heli";
     }
 
+    @Override
+    protected Card copy() {
+        return new HelicallCard();
+    }
 }
