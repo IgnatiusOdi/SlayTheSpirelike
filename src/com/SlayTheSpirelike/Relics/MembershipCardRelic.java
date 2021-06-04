@@ -22,4 +22,9 @@ public class MembershipCardRelic extends Relic {
 
         active=true;
     }
+
+    @Override
+    protected Relic copy() {
+        return new MembershipCardRelic();
+    }
 }

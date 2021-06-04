@@ -17,4 +17,9 @@ public class InvinciblePotion extends Potion {
             active=false;
         }
     }
+
+    @Override
+    protected Potion copy() {
+        return new InvinciblePotion();
+    }
 }

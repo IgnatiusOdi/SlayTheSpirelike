@@ -41,4 +41,9 @@ public class ForgePotion extends Potion {
     public void deactivate(Battle battle) {
         battle.downgradeHand();
     }
+
+    @Override
+    protected Potion copy() {
+        return new ForgePotion();
+    }
 }

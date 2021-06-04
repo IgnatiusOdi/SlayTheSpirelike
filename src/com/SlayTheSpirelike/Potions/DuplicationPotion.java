@@ -16,4 +16,9 @@ public class DuplicationPotion extends Potion {
             active=false;
         }
     }
+
+    @Override
+    protected Potion copy() {
+        return new DuplicationPotion();
+    }
 }

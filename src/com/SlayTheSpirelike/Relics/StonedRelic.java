@@ -21,4 +21,9 @@ public class StonedRelic extends Relic {
         kapal.setBlock(0);
         super.deactivate(kapal);
     }
+
+    @Override
+    protected Relic copy() {
+        return new StonedRelic();
+    }
 }

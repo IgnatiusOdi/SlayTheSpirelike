@@ -18,4 +18,9 @@ public class TankRelic extends Relic {
             }
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new TankRelic();
+    }
 }

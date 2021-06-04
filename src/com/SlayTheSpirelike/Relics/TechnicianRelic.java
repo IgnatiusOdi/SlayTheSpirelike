@@ -17,4 +17,9 @@ public class TechnicianRelic extends Relic {
             active=false;
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new TechnicianRelic();
+    }
 }

@@ -1189,6 +1189,16 @@ public class Buy extends JPanel {
                 }
             }
         });
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_C,0),"infCoin");
+        getActionMap().put("infCoin",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("inf coin");
+                kapal.setCoin(9999999);
+                coinplayer.setText(String.valueOf(kapal.getCoin()));
+                repaint();revalidate();
+            }
+        });
     }
 
     private Card tankerCards(int random) {
@@ -1329,13 +1339,13 @@ public class Buy extends JPanel {
             random = (int) (Math.random() * 3);
             if (random == 0) {
                 random = (int) (Math.random() * Statics.commonRelic.size());
-                relic = Statics.commonRelic.get(random);
+                relic = Statics.commonRelic.get(random).copy();
             } else if (random == 1) {
                 random = (int) (Math.random() * Statics.uncommonRelic.size());
-                relic = Statics.uncommonRelic.get(random);
+                relic = Statics.uncommonRelic.get(random).copy();
             } else {
                 random = (int) (Math.random() * Statics.rareRelic.size());
-                relic = Statics.rareRelic.get(random);
+                relic = Statics.rareRelic.get(random).copy();
             }
         }
 
@@ -1346,13 +1356,13 @@ public class Buy extends JPanel {
         Potion potion;
         if (random == 0) {
             random = (int) (Math.random() * Statics.commonPotion.size());
-            potion = Statics.commonPotion.get(random);
+            potion = Statics.commonPotion.get(random).copy();
         } else if (random == 1) {
             random = (int) (Math.random() * Statics.uncommonPotion.size());
-            potion = Statics.uncommonPotion.get(random);
+            potion = Statics.uncommonPotion.get(random).copy();
         } else {
             random = (int) (Math.random() * Statics.rarePotion.size());
-            potion = Statics.rarePotion.get(random);
+            potion = Statics.rarePotion.get(random).copy();
         }
 
         return potion;

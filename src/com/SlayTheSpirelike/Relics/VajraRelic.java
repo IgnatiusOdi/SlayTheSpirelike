@@ -32,4 +32,9 @@ public class VajraRelic extends Relic {
         }
         super.deactivate(kapal);
     }
+
+    @Override
+    protected Relic copy() {
+        return new VajraRelic();
+    }
 }

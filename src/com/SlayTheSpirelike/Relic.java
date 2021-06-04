@@ -106,6 +106,9 @@ public abstract class Relic extends Sprite{
         super.setPanel(panel);
     }*/
 
+    //untuk cheat, return new copy of the Relic
+    abstract protected Relic copy();
+
     public String getCondition() {
         return condition;
     }

@@ -16,4 +16,8 @@ public class NukePotion extends Potion {
         }
     }
 
+    @Override
+    protected Potion copy() {
+        return new NukePotion();
+    }
 }

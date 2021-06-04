@@ -24,4 +24,9 @@ public class BlockPotion extends Potion {
             kapal.setBlock(0);
         }
     }
+
+    @Override
+    protected Potion copy() {
+        return new BlockPotion();
+    }
 }

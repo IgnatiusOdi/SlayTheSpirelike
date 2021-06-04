@@ -16,4 +16,9 @@ public class SmokePotion extends Potion {
             active=false;
         }
     }
+
+    @Override
+    protected Potion copy() {
+        return new SmokePotion();
+    }
 }
