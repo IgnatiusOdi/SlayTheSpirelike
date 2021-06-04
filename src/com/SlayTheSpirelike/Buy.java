@@ -1367,4 +1367,398 @@ public class Buy extends JPanel {
 
         return potion;
     }
+
+
+
+    public int getSlot1price() {
+        return slot1price;
+    }
+
+    public void setSlot1price(int slot1price) {
+        this.slot1price = slot1price;
+    }
+
+    public JLabel getSlot2() {
+        return slot2;
+    }
+
+    public void setSlot2(JLabel slot2) {
+        this.slot2 = slot2;
+    }
+
+    public Card getCard2() {
+        return card2;
+    }
+
+    public void setCard2(Card card2) {
+        this.card2 = card2;
+    }
+
+    public JButton getSlot2button() {
+        return slot2button;
+    }
+
+    public void setSlot2button(JButton slot2button) {
+        this.slot2button = slot2button;
+    }
+
+    public Boolean getSlot2bought() {
+        return slot2bought;
+    }
+
+    public void setSlot2bought(Boolean slot2bought) {
+        this.slot2bought = slot2bought;
+    }
+
+    public JLabel getSlot2layer() {
+        return slot2layer;
+    }
+
+    public void setSlot2layer(JLabel slot2layer) {
+        this.slot2layer = slot2layer;
+    }
+
+    public int getSlot2price() {
+        return slot2price;
+    }
+
+    public void setSlot2price(int slot2price) {
+        this.slot2price = slot2price;
+    }
+
+    public JLabel getSlot3() {
+        return slot3;
+    }
+
+    public void setSlot3(JLabel slot3) {
+        this.slot3 = slot3;
+    }
+
+    public Card getCard3() {
+        return card3;
+    }
+
+    public void setCard3(Card card3) {
+        this.card3 = card3;
+    }
+
+    public JButton getSlot3button() {
+        return slot3button;
+    }
+
+    public void setSlot3button(JButton slot3button) {
+        this.slot3button = slot3button;
+    }
+
+    public Boolean getSlot3bought() {
+        return slot3bought;
+    }
+
+    public void setSlot3bought(Boolean slot3bought) {
+        this.slot3bought = slot3bought;
+    }
+
+    public JLabel getSlot3layer() {
+        return slot3layer;
+    }
+
+    public void setSlot3layer(JLabel slot3layer) {
+        this.slot3layer = slot3layer;
+    }
+
+    public int getSlot3price() {
+        return slot3price;
+    }
+
+    public void setSlot3price(int slot3price) {
+        this.slot3price = slot3price;
+    }
+
+    public JLabel getSlot4() {
+        return slot4;
+    }
+
+    public void setSlot4(JLabel slot4) {
+        this.slot4 = slot4;
+    }
+
+    public Card getCard4() {
+        return card4;
+    }
+
+    public void setCard4(Card card4) {
+        this.card4 = card4;
+    }
+
+    public JButton getSlot4button() {
+        return slot4button;
+    }
+
+    public void setSlot4button(JButton slot4button) {
+        this.slot4button = slot4button;
+    }
+
+    public Boolean getSlot4bought() {
+        return slot4bought;
+    }
+
+    public void setSlot4bought(Boolean slot4bought) {
+        this.slot4bought = slot4bought;
+    }
+
+    public JLabel getSlot4layer() {
+        return slot4layer;
+    }
+
+    public void setSlot4layer(JLabel slot4layer) {
+        this.slot4layer = slot4layer;
+    }
+
+    public int getSlot4price() {
+        return slot4price;
+    }
+
+    public void setSlot4price(int slot4price) {
+        this.slot4price = slot4price;
+    }
+
+    public JLabel getSlot5() {
+        return slot5;
+    }
+
+    public void setSlot5(JLabel slot5) {
+        this.slot5 = slot5;
+    }
+
+    public Card getCard5() {
+        return card5;
+    }
+
+    public void setCard5(Card card5) {
+        this.card5 = card5;
+    }
+
+    public JButton getSlot5button() {
+        return slot5button;
+    }
+
+    public void setSlot5button(JButton slot5button) {
+        this.slot5button = slot5button;
+    }
+
+    public Boolean getSlot5bought() {
+        return slot5bought;
+    }
+
+    public void setSlot5bought(Boolean slot5bought) {
+        this.slot5bought = slot5bought;
+    }
+
+    public JLabel getSlot5layer() {
+        return slot5layer;
+    }
+
+    public void setSlot5layer(JLabel slot5layer) {
+        this.slot5layer = slot5layer;
+    }
+
+    public int getSlot5price() {
+        return slot5price;
+    }
+
+    public void setSlot5price(int slot5price) {
+        this.slot5price = slot5price;
+    }
+
+    public JLabel getSlot6() {
+        return slot6;
+    }
+
+    public void setSlot6(JLabel slot6) {
+        this.slot6 = slot6;
+    }
+
+    public Card getCard6() {
+        return card6;
+    }
+
+    public void setCard6(Card card6) {
+        this.card6 = card6;
+    }
+
+    public JButton getSlot6button() {
+        return slot6button;
+    }
+
+    public void setSlot6button(JButton slot6button) {
+        this.slot6button = slot6button;
+    }
+
+    public Boolean getSlot6bought() {
+        return slot6bought;
+    }
+
+    public void setSlot6bought(Boolean slot6bought) {
+        this.slot6bought = slot6bought;
+    }
+
+    public JLabel getSlot6layer() {
+        return slot6layer;
+    }
+
+    public void setSlot6layer(JLabel slot6layer) {
+        this.slot6layer = slot6layer;
+    }
+
+    public int getSlot6price() {
+        return slot6price;
+    }
+
+    public void setSlot6price(int slot6price) {
+        this.slot6price = slot6price;
+    }
+
+    public JLabel getSlot7() {
+        return slot7;
+    }
+
+    public void setSlot7(JLabel slot7) {
+        this.slot7 = slot7;
+    }
+
+    public Relic getRelic7() {
+        return relic7;
+    }
+
+    public void setRelic7(Relic relic7) {
+        this.relic7 = relic7;
+    }
+
+    public JButton getSlot7button() {
+        return slot7button;
+    }
+
+    public void setSlot7button(JButton slot7button) {
+        this.slot7button = slot7button;
+    }
+
+    public Boolean getSlot7bought() {
+        return slot7bought;
+    }
+
+    public void setSlot7bought(Boolean slot7bought) {
+        this.slot7bought = slot7bought;
+    }
+
+    public JLabel getSlot7layer() {
+        return slot7layer;
+    }
+
+    public void setSlot7layer(JLabel slot7layer) {
+        this.slot7layer = slot7layer;
+    }
+
+    public int getSlot7price() {
+        return slot7price;
+    }
+
+    public void setSlot7price(int slot7price) {
+        this.slot7price = slot7price;
+    }
+
+    public JLabel getSlot8() {
+        return slot8;
+    }
+
+    public void setSlot8(JLabel slot8) {
+        this.slot8 = slot8;
+    }
+
+    public Relic getRelic8() {
+        return relic8;
+    }
+
+    public void setRelic8(Relic relic8) {
+        this.relic8 = relic8;
+    }
+
+    public JButton getSlot8button() {
+        return slot8button;
+    }
+
+    public void setSlot8button(JButton slot8button) {
+        this.slot8button = slot8button;
+    }
+
+    public Boolean getSlot8bought() {
+        return slot8bought;
+    }
+
+    public void setSlot8bought(Boolean slot8bought) {
+        this.slot8bought = slot8bought;
+    }
+
+    public JLabel getSlot8layer() {
+        return slot8layer;
+    }
+
+    public void setSlot8layer(JLabel slot8layer) {
+        this.slot8layer = slot8layer;
+    }
+
+    public int getSlot8price() {
+        return slot8price;
+    }
+
+    public void setSlot8price(int slot8price) {
+        this.slot8price = slot8price;
+    }
+
+    public JLabel getSlot9() {
+        return slot9;
+    }
+
+    public void setSlot9(JLabel slot9) {
+        this.slot9 = slot9;
+    }
+
+    public Potion getPotion9() {
+        return potion9;
+    }
+
+    public void setPotion9(Potion potion9) {
+        this.potion9 = potion9;
+    }
+
+    public JButton getSlot9button() {
+        return slot9button;
+    }
+
+    public void setSlot9button(JButton slot9button) {
+        this.slot9button = slot9button;
+    }
+
+    public Boolean getSlot9bought() {
+        return slot9bought;
+    }
+
+    public void setSlot9bought(Boolean slot9bought) {
+        this.slot9bought = slot9bought;
+    }
+
+    public JLabel getSlot9layer() {
+        return slot9layer;
+    }
+
+    public void setSlot9layer(JLabel slot9layer) {
+        this.slot9layer = slot9layer;
+    }
+
+    public int getSlot9price() {
+        return slot9price;
+    }
+
+    public void setSlot9price(int slot9price) {
+        this.slot9price = slot9price;
+    }
 }
