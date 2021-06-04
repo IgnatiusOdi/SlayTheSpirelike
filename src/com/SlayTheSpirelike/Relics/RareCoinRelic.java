@@ -15,4 +15,9 @@ public class RareCoinRelic extends Relic {
             kapal.setCoin(kapal.getCoin()+5);
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new RareCoinRelic();
+    }
 }

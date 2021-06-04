@@ -15,4 +15,9 @@ public class PotionBeltsRelic extends Relic {
             kapal.setPotionLimit(kapal.getPotionLimit() + 2);
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new PotionBeltsRelic();
+    }
 }

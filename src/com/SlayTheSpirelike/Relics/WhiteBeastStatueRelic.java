@@ -16,4 +16,9 @@ public class WhiteBeastStatueRelic extends Relic {
             active=false;
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new WhiteBeastStatueRelic();
+    }
 }

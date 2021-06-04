@@ -14,4 +14,9 @@ public class SwiftPotion extends Potion {
             active=false;
         }
     }
+
+    @Override
+    protected Potion copy() {
+        return new SwiftPotion();
+    }
 }

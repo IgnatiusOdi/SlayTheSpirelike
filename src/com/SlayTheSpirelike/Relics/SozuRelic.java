@@ -24,4 +24,9 @@ public class SozuRelic extends Relic {
             battle.setNopotion(true);
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new SozuRelic();
+    }
 }

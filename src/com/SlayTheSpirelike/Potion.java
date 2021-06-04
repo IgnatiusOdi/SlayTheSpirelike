@@ -160,6 +160,9 @@ public abstract class Potion extends Sprite {
         deactivate(battle);
     }
 
+    //return new copy of the Potion
+    abstract protected Potion copy();
+
     public boolean activate(){
         return false;
     }

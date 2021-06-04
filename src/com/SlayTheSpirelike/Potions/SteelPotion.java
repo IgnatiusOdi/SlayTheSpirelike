@@ -20,4 +20,9 @@ public class SteelPotion extends Potion {
     public void deactivate(Kapal kapal) {
         kapal.setBlock(0);
     }
+
+    @Override
+    protected Potion copy() {
+        return new SteelPotion();
+    }
 }

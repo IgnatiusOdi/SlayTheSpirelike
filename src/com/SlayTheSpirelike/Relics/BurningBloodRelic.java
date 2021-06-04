@@ -18,4 +18,9 @@ public class BurningBloodRelic extends Relic {
             }
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new BurningBloodRelic();
+    }
 }

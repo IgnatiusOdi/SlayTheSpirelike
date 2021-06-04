@@ -20,7 +20,7 @@ public class Map extends JPanel {
     private final JLabel left;
     private final JLabel right;
     private final int   COL_NUM=8, ROW_NUM=5,
-                        MAP_PADDING_X=30, MAP_PADDING_Y=80,
+                        MAP_PADDING_X=80, MAP_PADDING_Y=80,
                         MAP_WIDTH=1000, MAP_HEIGHT=500;
 
 
@@ -90,12 +90,15 @@ public class Map extends JPanel {
 
         randomizeTile();
 
+        final Boolean[] moveActionHovered = {false,false,false,false};
         down = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-//                g.setColor(new Color(255, 255,100, 127));
-//                g.fillRect(0,0,(MAP_WIDTH/COL_NUM)-10,(MAP_HEIGHT/ROW_NUM)+20);
+                if (moveActionHovered[0]) {
+                    g.setColor(new Color(255, 255,100, 127));
+                    g.fillRect(0,25,(MAP_WIDTH/COL_NUM)-10,(MAP_HEIGHT/ROW_NUM)-10);
+                }
                 g.drawImage(Assets.arrowDown,40,0,40,60,null);
             }
         };
@@ -113,6 +116,20 @@ public class Map extends JPanel {
                     zeroFuel();
                 }
             }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                moveActionHovered[0] = true;
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                moveActionHovered[0] = false;
+                repaint();
+            }
         });
         add(down);
 
@@ -120,8 +137,10 @@ public class Map extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-//                g.setColor(new Color(255, 255,100, 127));
-//                g.fillRect(0,0,(MAP_WIDTH/COL_NUM)-10,(MAP_HEIGHT/ROW_NUM)+20);
+                if (moveActionHovered[1]) {
+                    g.setColor(new Color(255, 255,100, 127));
+                    g.fillRect(0,0,(MAP_WIDTH/COL_NUM)-10,(MAP_HEIGHT/ROW_NUM)-10);
+                }
                 g.drawImage(Assets.arrowUp,40,60,40,60,null);
             }
         };
@@ -139,6 +158,20 @@ public class Map extends JPanel {
                     zeroFuel();
                 }
             }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                moveActionHovered[1] = true;
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                moveActionHovered[1] = false;
+                repaint();
+            }
         });
         add(up);
 
@@ -146,8 +179,10 @@ public class Map extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-//                g.setColor(new Color(255, 255,100, 127));
-//                g.fillRect(0,0,(MAP_WIDTH/COL_NUM)+30,(MAP_HEIGHT/ROW_NUM)-10);
+                if (moveActionHovered[2]) {
+                    g.setColor(new Color(255, 255,100, 127));
+                    g.fillRect(35,0,(MAP_WIDTH/COL_NUM)-10,(MAP_HEIGHT/ROW_NUM)-10);
+                }
                 g.drawImage(Assets.arrowRight,0,20,60,40,null);
             }
         };
@@ -165,6 +200,20 @@ public class Map extends JPanel {
                     zeroFuel();
                 }
             }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                moveActionHovered[2] = true;
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                moveActionHovered[2] = false;
+                repaint();
+            }
         });
         add(right);
 
@@ -172,8 +221,10 @@ public class Map extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-//                g.setColor(new Color(255, 255,100, 127));
-//                g.fillRect(0,0,(MAP_WIDTH/COL_NUM)+30,(MAP_HEIGHT/ROW_NUM)-10);
+                if (moveActionHovered[3]) {
+                    g.setColor(new Color(255, 255,100, 127));
+                    g.fillRect(0,0,(MAP_WIDTH/COL_NUM)-10,(MAP_HEIGHT/ROW_NUM)-10);
+                }
                 g.drawImage(Assets.arrowLeft,90,20,60,40,null);
             }
         };
@@ -190,6 +241,20 @@ public class Map extends JPanel {
                 } else {
                     zeroFuel();
                 }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                moveActionHovered[3] = true;
+                repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                moveActionHovered[3] = false;
+                repaint();
             }
         });
         add(left);

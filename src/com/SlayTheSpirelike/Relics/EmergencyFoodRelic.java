@@ -17,4 +17,9 @@ public class EmergencyFoodRelic extends Relic {
             active=false;
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new EmergencyFoodRelic();
+    }
 }

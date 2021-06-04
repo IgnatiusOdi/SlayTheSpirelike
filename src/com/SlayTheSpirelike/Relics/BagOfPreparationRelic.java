@@ -16,4 +16,9 @@ public class BagOfPreparationRelic extends Relic {
             battle.draw(1);
         }
     }
+
+    @Override
+    protected Relic copy() {
+        return new BagOfPreparationRelic();
+    }
 }

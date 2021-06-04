@@ -18,4 +18,9 @@ public class RevivePotion extends Potion {
             active=false;
         }
     }
+
+    @Override
+    protected Potion copy() {
+        return new RevivePotion();
+    }
 }

@@ -79,4 +79,9 @@ public class StarterPackRelic extends Relic {
     public void deactivate(Kapal kapal) {
 
     }
+
+    @Override
+    protected Relic copy() {
+        return new StarterPackRelic();
+    }
 }

@@ -12,4 +12,9 @@ public class MembershipCardRelic extends Relic {
     public boolean activate() {
         return active;
     }
+
+    @Override
+    protected Relic copy() {
+        return new MembershipCardRelic();
+    }
 }

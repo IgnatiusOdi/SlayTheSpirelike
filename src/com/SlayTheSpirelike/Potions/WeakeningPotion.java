@@ -30,4 +30,9 @@ public class WeakeningPotion extends Potion {
     public void deactivate(Enemy enemy) {
 
     }
+
+    @Override
+    protected Potion copy() {
+        return new WeakeningPotion();
+    }
 }

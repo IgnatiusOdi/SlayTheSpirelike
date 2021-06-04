@@ -55,4 +55,9 @@ public class CauldronRelic extends Relic {
     public void deactivate(Kapal kapal) {
 
     }
+
+    @Override
+    protected Relic copy() {
+        return new CauldronRelic();
+    }
 }

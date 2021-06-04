@@ -22,4 +22,9 @@ public class MangoRelic extends Relic {
     public void deactivate(Kapal kapal) {
 
     }
+
+    @Override
+    protected Relic copy() {
+        return new MangoRelic();
+    }
 }

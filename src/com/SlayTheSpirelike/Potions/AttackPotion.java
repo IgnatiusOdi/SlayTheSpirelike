@@ -24,4 +24,9 @@ public class AttackPotion extends Potion {
             kapal.setAttack(0);
         }
     }
+
+    @Override
+    protected Potion copy() {
+        return new AttackPotion();
+    }
 }

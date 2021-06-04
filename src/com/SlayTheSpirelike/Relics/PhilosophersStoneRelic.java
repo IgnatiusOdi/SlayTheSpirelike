@@ -35,4 +35,9 @@ public class PhilosophersStoneRelic extends Relic {
         super.deactivate(kapal);
         used = true;
     }
+
+    @Override
+    protected Relic copy() {
+        return new PhilosophersStoneRelic();
+    }
 }

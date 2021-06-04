@@ -19,4 +19,9 @@ public class RegenerationPotion extends Potion {
         }
 
     }
+
+    @Override
+    protected Potion copy() {
+        return new RegenerationPotion();
+    }
 }
