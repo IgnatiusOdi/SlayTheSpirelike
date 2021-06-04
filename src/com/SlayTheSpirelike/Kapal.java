@@ -201,15 +201,6 @@ public abstract class Kapal extends Sprite{
         }
     }
 
-    public boolean activateRelicSpecial(String nama){
-        for (Relic r:relic) {
-            if (r.getNama().equalsIgnoreCase(nama)){
-                return r.activate();
-            }
-        }
-        return false;
-    }
-
     public void deactivateRelic(){
         for (Relic r:relic) {
             r.deactivate(this);
