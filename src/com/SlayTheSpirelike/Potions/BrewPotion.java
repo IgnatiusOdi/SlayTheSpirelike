@@ -22,15 +22,15 @@ public class BrewPotion extends Potion {
                 int p = rnd.nextInt(40)+1;
                 if (p<=20){
                     int potion = rnd.nextInt(commonPotion.size());
-                    kapal.addPotion(commonPotion.get(potion));
+                    kapal.addPotion(commonPotion.get(potion).copy());
                 }
                 else if(p<=30){
                     int potion = rnd.nextInt(uncommonPotion.size());
-                    kapal.addPotion(uncommonPotion.get(potion));
+                    kapal.addPotion(uncommonPotion.get(potion).copy());
                 }
                 else if(p<=35){
                     int potion = rnd.nextInt(rarePotion.size());
-                    kapal.addPotion(rarePotion.get(potion));
+                    kapal.addPotion(rarePotion.get(potion).copy());
                 }
                 else{
                     if (kapal instanceof Aircraft){
@@ -49,7 +49,7 @@ public class BrewPotion extends Potion {
     }
 
     @Override
-    protected Potion copy() {
+    public Potion copy() {
         return new BrewPotion();
     }
 }

@@ -183,7 +183,7 @@ public abstract class Card extends JLabel {
     }
 
     //untuk cheat, return new copy of the Card
-    abstract protected Card copy();
+    public abstract Card copy();
 
     public boolean isSingleuse() {
         return singleuse;

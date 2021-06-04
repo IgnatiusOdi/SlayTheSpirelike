@@ -21,7 +21,7 @@ public class SummonPotion extends Potion {
     }
 
     @Override
-    protected Potion copy() {
+    public Potion copy() {
         return new SummonPotion();
     }
 }

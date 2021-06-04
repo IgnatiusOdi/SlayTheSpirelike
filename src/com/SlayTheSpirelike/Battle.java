@@ -191,7 +191,7 @@ public class Battle extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Scanner s = new Scanner(System.in);
                 System.out.print("Card Num:");
-                Card c = Statics.cards.get(s.nextInt()).copy();
+                Card c = Statics.commonCards.get(s.nextInt()).copy();
                 c.initForBattle(player,enemy,b);
                 hand.add(c);
                 displayCard();
@@ -372,15 +372,15 @@ public class Battle extends JPanel {
             int p = rnd.nextInt(potionchance)+1;
             if (p<=20){
                 int potion = rnd.nextInt(Statics.commonPotion.size());
-                player.addPotion(Statics.commonPotion.get(potion));
+                player.addPotion(Statics.commonPotion.get(potion).copy());
             }
             else if(p<=30){
                 int potion = rnd.nextInt(Statics.uncommonPotion.size());
-                player.addPotion(Statics.uncommonPotion.get(potion));
+                player.addPotion(Statics.uncommonPotion.get(potion).copy());
             }
             else if(p<=35){
                 int potion = rnd.nextInt(Statics.rarePotion.size());
-                player.addPotion(Statics.rarePotion.get(potion));
+                player.addPotion(Statics.rarePotion.get(potion).copy());
             }
             else if(p<=40){
                 if (player instanceof Aircraft){

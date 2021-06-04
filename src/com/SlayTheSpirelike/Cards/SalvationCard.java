@@ -35,7 +35,7 @@ public class SalvationCard extends Card {
     }
 
     @Override
-    protected Card copy() {
+    public Card copy() {
         return new SalvationCard();
     }
 }

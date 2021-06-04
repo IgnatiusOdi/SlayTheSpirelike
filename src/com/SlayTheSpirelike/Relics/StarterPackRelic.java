@@ -29,15 +29,15 @@ public class StarterPackRelic extends Relic {
             int p = rnd.nextInt(40)+1;
             if (p<=20){
                 int potion = rnd.nextInt(commonPotion.size());
-                kapal.addPotion(commonPotion.get(potion));
+                kapal.addPotion(commonPotion.get(potion).copy());
             }
             else if(p<=30){
                 int potion = rnd.nextInt(uncommonPotion.size());
-                kapal.addPotion(uncommonPotion.get(potion));
+                kapal.addPotion(uncommonPotion.get(potion).copy());
             }
             else if(p<=35){
                 int potion = rnd.nextInt(rarePotion.size());
-                kapal.addPotion(rarePotion.get(potion));
+                kapal.addPotion(rarePotion.get(potion).copy());
             }
             else{
                 if (kapal instanceof Aircraft){
@@ -58,20 +58,20 @@ public class StarterPackRelic extends Relic {
             int c = rnd.nextInt(100)+1;
             if(c<=50){
                 int card = rnd.nextInt(commonCards.size());
-                kapal.addCard(commonCards.get(card));
+                kapal.addCard(commonCards.get(card).copy());
             }
             else{
                 if (kapal instanceof Aircraft){
                     int card = rnd.nextInt(aircraftCards.size());
-                    kapal.addCard(aircraftCards.get(card));
+                    kapal.addCard(aircraftCards.get(card).copy());
                 }
                 else if (kapal instanceof Tanker){
                     int card = rnd.nextInt(tankerCards.size());
-                    kapal.addCard(tankerCards.get(card));
+                    kapal.addCard(tankerCards.get(card).copy());
                 }
                 else if (kapal instanceof Warship){
                     int card = rnd.nextInt(warshipCards.size());
-                    kapal.addCard(warshipCards.get(card));
+                    kapal.addCard(warshipCards.get(card).copy());
                 }
             }
 

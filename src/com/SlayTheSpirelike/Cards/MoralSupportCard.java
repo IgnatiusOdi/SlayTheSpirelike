@@ -34,7 +34,7 @@ public class MoralSupportCard extends Card {
     }
 
     @Override
-    protected Card copy() {
+    public Card copy() {
         return new MoralSupportCard();
     }
 }

@@ -36,7 +36,7 @@ public class HeavyArtileryCard extends Card {
     }
 
     @Override
-    protected Card copy() {
+    public Card copy() {
         return new HeavyArtileryCard();
     }
 }

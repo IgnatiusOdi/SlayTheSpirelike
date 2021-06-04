@@ -30,7 +30,7 @@ public class StrategicShotCard extends Card {
     }
 
     @Override
-    protected Card copy() {
+    public Card copy() {
         return new StrategicShotCard();
     }
 }

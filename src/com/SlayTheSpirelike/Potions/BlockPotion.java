@@ -26,7 +26,7 @@ public class BlockPotion extends Potion {
     }
 
     @Override
-    protected Potion copy() {
+    public Potion copy() {
         return new BlockPotion();
     }
 }

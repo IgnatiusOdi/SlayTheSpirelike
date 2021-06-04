@@ -34,7 +34,7 @@ public class SupportFlareCard extends Card {
     }
 
     @Override
-    protected Card copy() {
+    public Card copy() {
         return new SupportFlareCard();
     }
 }

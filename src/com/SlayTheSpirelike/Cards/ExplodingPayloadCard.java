@@ -40,7 +40,7 @@ public class ExplodingPayloadCard extends Card {
     }
 
     @Override
-    protected Card copy() {
+    public Card copy() {
         return new ExplodingPayloadCard();
     }
 }

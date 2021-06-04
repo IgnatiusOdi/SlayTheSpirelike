@@ -19,7 +19,7 @@ public class InvinciblePotion extends Potion {
     }
 
     @Override
-    protected Potion copy() {
+    public Potion copy() {
         return new InvinciblePotion();
     }
 }

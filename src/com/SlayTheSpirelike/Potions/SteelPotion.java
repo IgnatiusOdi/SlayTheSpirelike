@@ -22,7 +22,7 @@ public class SteelPotion extends Potion {
     }
 
     @Override
-    protected Potion copy() {
+    public Potion copy() {
         return new SteelPotion();
     }
 }

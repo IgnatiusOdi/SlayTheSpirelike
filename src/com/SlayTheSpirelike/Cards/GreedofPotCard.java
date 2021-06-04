@@ -33,7 +33,7 @@ public class GreedofPotCard extends Card {
     }
 
     @Override
-    protected Card copy() {
+    public Card copy() {
         return new GreedofPotCard();
     }
 }

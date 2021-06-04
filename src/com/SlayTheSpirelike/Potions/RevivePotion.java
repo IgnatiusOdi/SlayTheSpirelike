@@ -20,7 +20,7 @@ public class RevivePotion extends Potion {
     }
 
     @Override
-    protected Potion copy() {
+    public Potion copy() {
         return new RevivePotion();
     }
 }
