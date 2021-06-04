@@ -19,7 +19,10 @@ public class Statics {
     public static ArrayList<Relic> shopRelic = new ArrayList<>();
     public static ArrayList<Relic> bossRelic = new ArrayList<>();
 
-    public static ArrayList<Card> cards = new ArrayList<>();
+    public static ArrayList<Card> commonCards = new ArrayList<>();
+    public static ArrayList<Card> tankerCards = new ArrayList<>();
+    public static ArrayList<Card> warshipCards = new ArrayList<>();
+    public static ArrayList<Card> aircraftCards = new ArrayList<>();
 
     static {
 //        commonPotion.clear();
@@ -76,37 +79,49 @@ public class Statics {
         bossRelic.add(new SozuRelic());
 
 //        cards.clear();
-        cards.add(new AttackCard());
-        cards.add(new DefendCard());
-        cards.add(new GreedofPotCard());
-        cards.add(new RechargeCard());
-        cards.add(new InspiringShotCard());
-        cards.add(new FlakgunCard());
-        cards.add(new PlasmaNapalmCard());
-        cards.add(new HeavyArtileryCard());
-        cards.add(new OverclockingReactorCard());
-        cards.add(new FortifyCard());
-        cards.add(new RethinkCard());
-        cards.add(new OneforAllCard());
-        cards.add(new RerouteCard());
-        cards.add(new ExplodingPayloadCard());
-        cards.add(new MissleCard());
-        cards.add(new ExtraGunpowderCard());
-        cards.add(new SupportCannonCard());
-        cards.add(new RocketSalvoCard());
-        cards.add(new CommandersWisdom());
-        cards.add(new RepositionCard());
-        cards.add(new LoadUpCard());
-        cards.add(new CounterplayCard());
-        cards.add(new GatlingGunCard());
-        cards.add(new DeflectCard());
-        cards.add(new PiercingShotCard());
-        cards.add(new StrategicShotCard());
-        cards.add(new FuelContainerCard());
-        cards.add(new SalvageCard());
-        cards.add(new DeniumShieldingCard());
-        cards.add(new SelfRepairCard());
-        cards.add(new BufferCard());
-        cards.add(new CombustCard());
+        commonCards.add(new AttackCard());
+        commonCards.add(new DefendCard());
+        commonCards.add(new GreedofPotCard());
+        commonCards.add(new RechargeCard());
+        commonCards.add(new InspiringShotCard());
+        commonCards.add(new FlakgunCard());
+        commonCards.add(new PlasmaNapalmCard());
+        commonCards.add(new SalvationCard());
+
+        tankerCards.add(new HeavyArtileryCard());
+        tankerCards.add(new OverclockingReactorCard());
+        tankerCards.add(new FortifyCard());
+        tankerCards.add(new RethinkCard());
+        tankerCards.add(new OneforAllCard());
+        tankerCards.add(new RerouteCard());
+        tankerCards.add(new ExplodingPayloadCard());
+        tankerCards.add(new MissleCard());
+        tankerCards.add(new ExtraGunpowderCard());
+        tankerCards.add(new SupportCannonCard());
+        tankerCards.add(new HealCard());
+
+        warshipCards.add(new SniperShotCard());
+        warshipCards.add(new RocketSalvoCard());
+        warshipCards.add(new CommandersWisdom());
+        warshipCards.add(new RepositionCard());
+        warshipCards.add(new LoadUpCard());
+        warshipCards.add(new CounterplayCard());
+        warshipCards.add(new GatlingGunCard());
+        warshipCards.add(new DeflectCard());
+        warshipCards.add(new PiercingShotCard());
+        warshipCards.add(new StrategicShotCard());
+        warshipCards.add(new FuelContainerCard());
+        warshipCards.add(new SalvageCard());
+
+        aircraftCards.add(new HelicallCard());
+        aircraftCards.add(new SupportFlareCard());
+        aircraftCards.add(new DeniumShieldingCard());
+        aircraftCards.add(new MoralSupportCard());
+        aircraftCards.add(new AllOutAttackCard());
+        aircraftCards.add(new SupportFlareV2Card());
+        aircraftCards.add(new SelfRepairCard());
+        aircraftCards.add(new BufferCard());
+        aircraftCards.add(new CombustCard());
+        aircraftCards.add(new KamikazeCard());
     }
 }

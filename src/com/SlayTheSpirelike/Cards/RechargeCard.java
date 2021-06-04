@@ -7,7 +7,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class RechargeCard extends Card {
     public RechargeCard() {
-        super("Recharge", "Self", 0);
+        super("Recharge", "Self", 1);
         status();
         singleuse=true;
     }

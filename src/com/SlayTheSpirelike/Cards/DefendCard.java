@@ -25,13 +25,11 @@ public class DefendCard extends Card {
     public void status() {
         if (level==1){
             block=2;
-            desc = "Gain "+block+" block";
         }
-    }
-
-    @Override
-    public void upgrade() {
-
+        else if(level>=2){
+            block=4;
+        }
+        desc = "Gain "+block+" block";
     }
 
     @Override

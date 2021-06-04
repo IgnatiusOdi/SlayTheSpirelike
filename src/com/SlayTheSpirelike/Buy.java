@@ -58,7 +58,7 @@ public class Buy extends JPanel {
     private JLabel back;
 
     //CARD 1
-    int random1 = (int) (Math.random() * Statics.cards.size());
+    int random1 = (int) (Math.random() * Statics.commonCards.size());
     private JLabel card1;
     private JButton card1button;
     private Boolean card1bought;
@@ -727,5 +727,54 @@ public class Buy extends JPanel {
                 }
             }
         });
+    }
+
+    public int getCard1price() {
+        return card1price;
+    }
+
+    public void setCard1price(int card1price) {
+        this.card1price = card1price;
+    }
+
+    public int getCard2price() {
+        return card2price;
+    }
+
+    public void setCard2price(int card2price) {
+        this.card2price = card2price;
+    }
+
+    public int getCard3price() {
+        return card3price;
+    }
+
+    public void setCard3price(int card3price) {
+        this.card3price = card3price;
+    }
+
+    public int getRelic1price() {
+        return relic1price;
+    }
+
+    public void setRelic1price(int relic1price) {
+        this.relic1price = relic1price;
+    }
+
+    public int getRelic2price() {
+        return relic2price;
+    }
+
+    public void setRelic2price(int relic2price) {
+        this.relic2price = relic2price;
+    }
+
+
+    public int getRelic3price() {
+        return relic3price;
+    }
+
+    public void setRelic3price(int relic3price) {
+        this.relic3price = relic3price;
     }
 }

@@ -55,20 +55,24 @@ public class StarterPackRelic extends Relic {
             kapal.setMaxhealth(kapal.getMaxhealth()+3);
             kapal.setHealth(kapal.getHealth()+3);
 
-            int card = rnd.nextInt(cards.size()+1);
-            if (card==cards.size()){
-                if (kapal instanceof Aircraft){
-                    kapal.addCard(new HelicallCard());
-                }
-                else if (kapal instanceof Tanker){
-                    kapal.addCard(new SalvationCard());
-                }
-                else if (kapal instanceof Warship){
-                    kapal.addCard(new SniperShotCard());
-                }
+            int c = rnd.nextInt(100)+1;
+            if(c<=50){
+                int card = rnd.nextInt(commonCards.size());
+                kapal.addCard(commonCards.get(card));
             }
             else{
-                kapal.addCard(cards.get(card));
+                if (kapal instanceof Aircraft){
+                    int card = rnd.nextInt(aircraftCards.size());
+                    kapal.addCard(aircraftCards.get(card));
+                }
+                else if (kapal instanceof Tanker){
+                    int card = rnd.nextInt(tankerCards.size());
+                    kapal.addCard(tankerCards.get(card));
+                }
+                else if (kapal instanceof Warship){
+                    int card = rnd.nextInt(warshipCards.size());
+                    kapal.addCard(warshipCards.get(card));
+                }
             }
 
             active=false;

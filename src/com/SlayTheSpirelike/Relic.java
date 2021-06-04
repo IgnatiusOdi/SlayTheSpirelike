@@ -48,11 +48,6 @@ public abstract class Relic extends Sprite{
         active = true;
     }
 
-    //untuk special, ketika ada sebuah event, dicari relicnya lalu jalan ini untuk cek bila relic boleh dipakai //efek code manual di tempat
-    public boolean activate(){
-        return false;
-    }
-
     public void activate(Enemy enemy){
 
     }
@@ -79,6 +74,16 @@ public abstract class Relic extends Sprite{
         deactivate(kapal);
         deactivate(enemy);
         deactivate(battle);
+    }
+
+    //untuk membership card relic
+    public void activate(Buy buy){
+
+    }
+
+    //untuk membership card relic
+    public void deactivate(Buy buy){
+
     }
 
 /*    @Override
