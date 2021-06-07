@@ -76,14 +76,11 @@ public class Sell extends JPanel {
             mycard.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    int n = JOptionPane.showConfirmDialog(null, "You will sell this card for 50C", "CONFIRMATION", JOptionPane.YES_NO_OPTION)
+                    int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                     if (n == JOptionPane.YES_OPTION) {
                         kapal.card.remove(mycard);
                         kapal.setCoin(kapal.getCoin() + 50);
-
-                        JOptionPane.showMessageDialog();
-                    } else {
-
+                        JOptionPane.showMessageDialog(null,"You got 50C");
                     }
                 }
                 @Override
