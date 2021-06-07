@@ -173,8 +173,8 @@ public class Buy extends JPanel {
             protected void paintComponent(Graphics g) {
                 g.drawImage(hangingsign,0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.green);
-                g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 60));
-                g.drawString("BUY",140,135);
+                g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 75));
+                g.drawString("BUY",120,138);
                 super.paintComponent(g);
             }
         };
@@ -504,17 +504,17 @@ public class Buy extends JPanel {
         add(title);
 
         //COIN SYMBOL
-        coinsymbol.setBounds(870,80,50,50);
+        coinsymbol.setBounds(870,60,50,50);
         add(coinsymbol);
 
         //COIN PLAYER
-        coinplayer.setBounds(930,80,150,50);
+        coinplayer.setBounds(930,60,150,50);
         coinplayer.setFont(new Font("Monospace",Font.BOLD,30));
         coinplayer.setForeground(Color.white);
         add(coinplayer);
 
         //BACK
-        back.setBounds(50,50,160,60);
+        back.setBounds(120,60,160,60);
         back.setForeground(Color.white);
         back.setFont(new Font("Monospace", Font.BOLD,30));
         back.setHorizontalAlignment(SwingConstants.CENTER);

@@ -223,6 +223,8 @@ public abstract class Kapal extends Sprite{
         return potion;
     }
 
+    public Relic getRelic(int index) { return relic.get(index); }
+
     public ArrayList<Relic> getRelic() {
         return relic;
     }

@@ -2,6 +2,9 @@ package com.SlayTheSpirelike;
 
 import com.SlayTheSpirelike.Potions.*;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Slay the Spirelike <br>
  * Alexander Kevin <br>
