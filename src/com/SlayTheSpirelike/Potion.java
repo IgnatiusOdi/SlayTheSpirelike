@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
-public abstract class Potion extends Sprite {
+public abstract class Potion extends Sprite implements Serializable {
     //type ada 3
     //self: bekerja langsung kepada player
     //enemy: bekerja langsung pada enemy
@@ -22,14 +23,7 @@ public abstract class Potion extends Sprite {
 
     JFrame frame;
 
-    private class PotionMouseAdapter extends MouseAdapter{
-        private Potion potion;
-        private JPanel panel;
-
-        public PotionMouseAdapter(Potion potion) {
-            this.potion = potion;
-        }
-
+    private class PotionMouseAdapter extends MouseAdapter {
         //extend JLabel to override paintComponent
         JLabel descLabel = new JLabel(){
             @Override
@@ -62,26 +56,21 @@ public abstract class Potion extends Sprite {
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
             ((Potion)e.getSource()).activate(kapal,enemy,battle);
-            kapal.getPotion().remove(potion);
-            ((Potion)e.getSource()).getPanel().remove(potion);
+            kapal.getPotion().remove((Potion) e.getSource());
+            ((Potion)e.getSource()).getPanel().remove((Potion)e.getSource());
             ((Potion)e.getSource()).getPanel().remove(descLabel);
             ((Potion)e.getSource()).getPanel().repaint();
         }
-
-        public void setPanel(JPanel panel) {
-            this.panel = panel;
-        }
     }
-    PotionMouseAdapter pma = new PotionMouseAdapter(this);
 
     public Potion(String nama, String type, String rarity, String image, String desc) {
-        super(ImageLoader.LoadImage(image));
+        super(image);
         this.nama = nama;
         this.type = type;
         this.active = true;
         this.rarity = rarity;
         this.desc = desc;
-        addMouseListener(pma);
+        addMouseListener(new PotionMouseAdapter());
 
         //uncomment to look
 //        frame = new JFrame();
@@ -89,6 +78,10 @@ public abstract class Potion extends Sprite {
 //        frame.add(panel);
 //        frame.pack();
 //        frame.setVisible(true);
+    }
+
+    public void reConstruct(){
+        addMouseListener(new PotionMouseAdapter());
     }
 
 /*    @Override
@@ -117,7 +110,6 @@ public abstract class Potion extends Sprite {
         this.battle = battle;
         this.kapal = kapal;
         this.enemy = enemy;
-        pma.setPanel(battle);
     }
 
     public void activate(Kapal kapal){

@@ -1,6 +1,9 @@
 package com.SlayTheSpirelike.MapItems;
 
+import com.SlayTheSpirelike.Body;
 import com.SlayTheSpirelike.Kapal;
+
+import javax.swing.*;
 
 public class FuelTile extends MapTile{
 
@@ -13,5 +16,10 @@ public class FuelTile extends MapTile{
     @Override
     public void enterTile() {
         player.setFuel(player.getMaxfuel());
+    }
+
+    @Override
+    public void reInit(Body body, JPanel returnPanel, Kapal player) {
+        this.player = player;
     }
 }

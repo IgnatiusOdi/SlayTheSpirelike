@@ -3,9 +3,10 @@ package com.SlayTheSpirelike;
 import com.SlayTheSpirelike.Cards.TorpedoCard;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Kapal extends Sprite{
+public abstract class Kapal extends Sprite implements Serializable {
     protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin, mapPosX, mapPosY;
     protected String nama;
     protected ArrayList<Card> card;
@@ -13,16 +14,16 @@ public abstract class Kapal extends Sprite{
     protected ArrayList<Potion> potion;
     protected ArrayList<Relic> relic;
     protected ArrayList<Summon> summon;
-    protected JLabel kapal;
-    protected JPanel panel;
-    JFrame frame;
+//    protected JLabel kapal;
+//    protected JPanel panel;
+//    JFrame frame;
 
     public Kapal(String nama,String image) {
-        super(ImageLoader.LoadImage(image));
-        this.relic = new ArrayList();
-        this.card = new ArrayList();
-        this.potion = new ArrayList();
-        this.summon = new ArrayList();
+        super(image);
+        this.relic = new ArrayList<>();
+        this.card = new ArrayList<>();
+        this.potion = new ArrayList<>();
+        this.summon = new ArrayList<>();
         this.potionLimit = 5;
         this.nama = nama;
         this.block = 0;
@@ -36,11 +37,15 @@ public abstract class Kapal extends Sprite{
         this.coin = 0;
         this.mapPosX = 0;
         this.mapPosY = 0;
+    }
 
-//        frame = new JFrame();
-//        frame.add(panel);
-//        frame.pack();
-//        frame.setVisible(true);
+    public void reConstruct(){
+        for (Card c : card) {
+            c.reConstruct();
+        }
+        for (Potion p : potion) {
+            p.reConstruct();
+        }
     }
 
     public void setTwice(int t){

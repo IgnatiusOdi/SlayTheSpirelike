@@ -8,17 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Map extends JPanel {
+public class Map extends JPanel implements Serializable {
     private final Body body;
     private MapTile[][] mapTiles;
-    private final Kapal player;
-    private final JLabel up;
-    private final JLabel down;
-    private final JLabel left;
-    private final JLabel right;
+    private Kapal player;
+    private JLabel up;
+    private JLabel down;
+    private JLabel left;
+    private JLabel right;
     private final int   COL_NUM=8, ROW_NUM=5,
                         MAP_PADDING_X=80, MAP_PADDING_Y=80,
                         MAP_WIDTH=1000, MAP_HEIGHT=500;
@@ -82,14 +83,28 @@ public class Map extends JPanel {
         }
     }
 
-    public Map(Body body, Kapal player) {
+    public Map(Body body, Kapal kapal) {
         this.body = body;
-        this.player = player;
+        this.player = kapal;
         this.setLayout(null);
         setSize(body.getWidth(), body.getHeight());
 
         randomizeTile();
 
+        initArrow();
+
+        paintMoveButton();
+
+        initCheat();
+    }
+
+    public void reConstruct(){
+        removeAll();
+        initArrow();
+        paintMoveButton();
+    }
+
+    private void initArrow(){
         final Boolean[] moveActionHovered = {false,false,false,false};
         down = new JLabel(){
             @Override
@@ -115,6 +130,7 @@ public class Map extends JPanel {
                 } else {
                     zeroFuel();
                 }
+                mouseExited(e);
             }
 
             @Override
@@ -157,6 +173,7 @@ public class Map extends JPanel {
                 } else {
                     zeroFuel();
                 }
+                mouseExited(e);
             }
 
             @Override
@@ -199,6 +216,7 @@ public class Map extends JPanel {
                 } else {
                     zeroFuel();
                 }
+                mouseExited(e);
             }
 
             @Override
@@ -241,6 +259,7 @@ public class Map extends JPanel {
                 } else {
                     zeroFuel();
                 }
+                mouseExited(e);
             }
 
             @Override
@@ -259,9 +278,6 @@ public class Map extends JPanel {
         });
         add(left);
 
-        paintMoveButton();
-
-        initCheat();
     }
 
     private void initCheat(){
@@ -320,6 +336,24 @@ public class Map extends JPanel {
                 Scanner s = new Scanner(System.in);
                 System.out.print("addPot :");
                 player.addPotion(Statics.commonPotion.get(s.nextInt()));
+                repaint();
+            }
+        });
+
+        Map mapSave = this;
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_V,0),"save");
+        getActionMap().put("save", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SaveGame(mapSave);
+            }
+        });
+
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_B,0),"load");
+        getActionMap().put("load", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoadGame(mapSave);
                 repaint();
             }
         });
@@ -398,5 +432,28 @@ public class Map extends JPanel {
             } while (mapTiles[y][x]!=null || (x==0 && y==0));
             mapTiles[y][x] = new EnemyTile(body,this,player);
         }
+    }
+
+    public MapTile[][] getMapTiles() {
+        return mapTiles;
+    }
+
+    public void setMapTiles(MapTile[][] mapTiles) {
+        this.mapTiles = mapTiles;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (mapTiles[i][j] != null) {
+                    mapTiles[i][j].reInit(body,this,player);
+                }
+            }
+        }
+    }
+
+    public Kapal getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Kapal player) {
+        this.player = player;
     }
 }

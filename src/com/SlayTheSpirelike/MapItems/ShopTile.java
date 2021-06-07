@@ -7,7 +7,7 @@ import com.SlayTheSpirelike.Shop;
 import javax.swing.*;
 
 public class ShopTile extends MapTile{
-    private final Body body;
+    private Body body;
     private final Shop shop;
 
     public ShopTile(Body body, JPanel returnPanel, Kapal player) {
@@ -18,5 +18,11 @@ public class ShopTile extends MapTile{
     @Override
     public void enterTile() {
         body.setPanel(shop);
+    }
+
+    @Override
+    public void reInit(Body body, JPanel returnPanel, Kapal player) {
+        this.body = body;
+        this.shop.reConstruct(body, returnPanel, player);
     }
 }

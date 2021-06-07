@@ -21,4 +21,11 @@ public class EnemyTile extends MapTile{
     public void enterTile() {
         body.setPanel(new Battle(body,returnPanel,player));
     }
+
+    @Override
+    public void reInit(Body body, JPanel returnPanel, Kapal player) {
+        this.body = body;
+        this.returnPanel = returnPanel;
+        this.player = player;
+    }
 }

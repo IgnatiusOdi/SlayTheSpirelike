@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
-public abstract class Card extends JLabel {
+public abstract class Card extends JLabel implements Serializable {
     protected static int twice=1;
     protected static int twicetime=1;
     protected String nama, type, desc;
@@ -22,8 +23,10 @@ public abstract class Card extends JLabel {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
-            if (((Card)e.getSource()).kapal.getEnergy()>=cost && ((Card)e.getSource()).battle!=null) {
+            if (((Card)e.getSource()).battle!=null && ((Card)e.getSource()).kapal.getEnergy()>=cost) {
                 activate(((Card)e.getSource()).kapal, ((Card)e.getSource()).enemy, ((Card)e.getSource()).battle);
+            } else {
+                System.out.println(((Card)e.getSource()).battle);
             }
         }
     }
@@ -49,6 +52,10 @@ public abstract class Card extends JLabel {
         addMouseListener(new cardMouseAdapter());
     }
 
+    public void reConstruct(){
+        addMouseListener(new cardMouseAdapter());
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         switch (type) {
@@ -70,6 +77,7 @@ public abstract class Card extends JLabel {
         super.paintComponent(g);
     }
 
+    //setiap add tengah battle, harus init card dulu, khususnya torpedo
     public void initForBattle(Kapal kapal, Enemy enemy, Battle battle){
         this.kapal = kapal;
         this.enemy = enemy;
@@ -92,7 +100,7 @@ public abstract class Card extends JLabel {
         twice();
         active=false;
 
-        kapal.getCard().add(this);
+        this.kapal.getCard().add(this);
         battle.getHand().remove(this);
         battle.remove(this);
         battle.displayCard();

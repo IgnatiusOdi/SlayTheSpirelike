@@ -2,8 +2,9 @@ package com.SlayTheSpirelike;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 
-public abstract class Relic extends Sprite{
+public abstract class Relic extends Sprite implements Serializable {
     //condition
     //- Passive
 //- Start Turn
@@ -21,7 +22,7 @@ public abstract class Relic extends Sprite{
     JFrame frame;
 
     public Relic(String nama, String rarity, String condition, String image, String desc) {
-        super(ImageLoader.LoadImage(image));
+        super(image);
 //        this.item.setText(nama);
 //        this.item.setVerticalTextPosition(JLabel.BOTTOM);
 //        this.item.setHorizontalTextPosition(JLabel.CENTER);

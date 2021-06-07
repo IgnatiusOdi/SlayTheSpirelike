@@ -380,7 +380,7 @@ public class Buy extends JPanel {
                     case "Shop" -> g.setColor(Color.blue);
                 }
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
-                g.drawImage(relic8.image,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(relic8.image),0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.black);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
                 g.drawString(relic8.nama, 10,this.getHeight()/4);
@@ -422,7 +422,7 @@ public class Buy extends JPanel {
                     case "Rare" -> g.setColor(Color.orange);
                 }
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
-                g.drawImage(potion9.image,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(potion9.image),0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.black);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
                 g.drawString(potion9.nama, 10,this.getHeight()/4);
@@ -451,7 +451,7 @@ public class Buy extends JPanel {
             protected void paintComponent(Graphics g) {
                 g.setColor(Color.blue);
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
-                g.drawImage(relic7.image,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(relic7.image),0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.black);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
                 g.drawString(relic7.nama, 10,this.getHeight()/4);

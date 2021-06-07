@@ -1,8 +1,9 @@
 package com.SlayTheSpirelike;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public abstract class Summon extends Sprite{
+public abstract class Summon extends Sprite implements Serializable {
     //jika ada summon, enemy akan attack summon yang terbaru
     //summon attack setelah player selesai attack, attack random/musuh terdepan
 
@@ -12,7 +13,7 @@ public abstract class Summon extends Sprite{
     JFrame frame;
 
     public Summon(String nama, int health, int maxhealth, int attack,String image) {
-        super(ImageLoader.LoadImage(image));
+        super(image);
         this.nama = nama;
         this.health = health;
         this.maxhealth = maxhealth;

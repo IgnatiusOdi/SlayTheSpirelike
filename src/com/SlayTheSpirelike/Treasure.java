@@ -218,9 +218,9 @@ public class Treasure extends JPanel {
                         }
                     } else if (random < 9) {
                         //10% CARD
-                        random = (int) (Math.random() * Statics.cards.size());
-                        kapal.addCard(Statics.cards.get(random));
-                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+//                        random = (int) (Math.random() * Statics.cards.size());
+//                        kapal.addCard(Statics.cards.get(random));
+//                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
                     } else {
                         //10% RELIC
                         random = (int) (Math.random() * 10);
@@ -346,9 +346,9 @@ public class Treasure extends JPanel {
                         }
                     } else if (random < 9) {
                         //10% CARD
-                        random = (int) (Math.random() * Statics.cards.size());
-                        kapal.addCard(Statics.cards.get(random));
-                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+//                        random = (int) (Math.random() * Statics.cards.size());
+//                        kapal.addCard(Statics.cards.get(random));
+//                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
                     } else {
                         //10% RELIC
                         random = (int) (Math.random() * 10);
@@ -474,9 +474,9 @@ public class Treasure extends JPanel {
                         }
                     } else if (random < 9) {
                         //10% CARD
-                        random = (int) (Math.random() * Statics.cards.size());
-                        kapal.addCard(Statics.cards.get(random));
-                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+//                        random = (int) (Math.random() * Statics.cards.size());
+//                        kapal.addCard(Statics.cards.get(random));
+//                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
                     } else {
                         //10% RELIC
                         random = (int) (Math.random() * 10);

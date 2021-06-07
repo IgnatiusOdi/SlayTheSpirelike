@@ -21,17 +21,19 @@ public class Shop extends JPanel {
     private final int fontsize = 35;
 
     //IMAGE
-    private final Image desainshop = new ImageIcon("resources/desainshop.png").getImage();
-    private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
+//    private final Image desainshop = new ImageIcon("resources/desainshop.png").getImage();
+//    private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
+    private final String desainshop = "resources/desainshop.png";
+    private final String wood = "resources/woodtextures.jpg";
 
     //LAYOUT
-    private JLabel bg;
-    private JLabel buyButton;
-    private JLabel sellButton;
-    private JLabel drawButton;
-    private JLabel upgradeButton;
-    private JLabel mergeButton;
-    private JLabel exitShop;
+    private transient JLabel bg;
+    private transient JLabel buyButton;
+    private transient JLabel sellButton;
+    private transient JLabel drawButton;
+    private transient JLabel upgradeButton;
+    private transient JLabel mergeButton;
+    private transient JLabel exitShop;
 
     public Shop(Body body, JPanel returnPanel, Kapal player) {
         this.body = body;
@@ -39,6 +41,14 @@ public class Shop extends JPanel {
         this.kapal = player;
         init();
         initCheats();
+    }
+
+    public void reConstruct(Body body, JPanel returnPanel, Kapal player){
+        this.body = body;
+        this.returnPanel = returnPanel;
+        this.kapal = player;
+        removeAll();
+        init();
     }
 
     private void init() {
@@ -58,49 +68,49 @@ public class Shop extends JPanel {
         bg = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(desainshop,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(desainshop),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         buyButton = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(wood),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         sellButton = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(wood),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         drawButton = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(wood),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         upgradeButton = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(wood),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         mergeButton = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(wood),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         exitShop = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(wood),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
@@ -121,6 +131,7 @@ public class Shop extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
+                System.out.println("AAAAA");
                 buyButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.green, Color.green, Color.orange));
                 buyButton.setLocation(buyButton.getX() + 3, buyButton.getY() - 3);
                 buyButton.setForeground(Color.green);

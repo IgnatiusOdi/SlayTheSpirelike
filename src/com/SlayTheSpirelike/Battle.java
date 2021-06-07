@@ -198,6 +198,21 @@ public class Battle extends JPanel {
                 repaint();
             }
         });
+
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_L,0),"showCards");
+        getActionMap().put("showCards",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Card :");
+                for (Card card : player.getCard()) {
+                    System.out.println(card.getNama());
+                }
+                System.out.println("Hand:");
+                for (Card card : hand) {
+                    System.out.println(card.getNama());
+                }
+            }
+        });
     }
 
     //escape, no reward
@@ -236,7 +251,9 @@ public class Battle extends JPanel {
 
     public void drawTorpedo(int draw){
         for (int i = 0; i < draw; i++) {
-            hand.add(new TorpedoCard());
+            Card t = new TorpedoCard();
+            t.initForBattle(player,enemy,this);
+            hand.add(t);
         }
     }
 
@@ -251,14 +268,10 @@ public class Battle extends JPanel {
     //return all cards on hand to deck
     private void returnHand(){
         //for torpedo card
-        for (Card card : hand) {
-            if (card.isDispose()){
-                hand.remove(card);
-            }
-        }
+//        hand.removeIf(Card::isDispose);
         player.getCard().addAll(hand);
         for (Card card : hand) {
-            hand.remove(card);
+            remove(card);
         }
         hand.clear();
         player.getCard().addAll(singleuse);

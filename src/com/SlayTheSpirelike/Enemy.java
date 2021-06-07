@@ -7,7 +7,7 @@ public abstract class Enemy extends Sprite {
     protected int health,maxhealth,block, skill, skillchance, atklow, atkhigh;
 
     public Enemy(String nama, int health,int block, int skill, int skillchance, int atklow, int atkhigh, String image) {
-        super(ImageLoader.LoadImage(image));
+        super(image);
         this.nama = nama;
         this.health = health;
         this.maxhealth = health;

@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Body extends JFrame {
     private JPanel panel;
-    private MouseManager mouse;
+//    private MouseManager mouse;
     private KeyboardManager keyboard;
 
     public Body(int width, int height) throws HeadlessException {
@@ -19,10 +19,10 @@ public class Body extends JFrame {
         setContentPane(panel);
         setVisible(true);
 
-        mouse = new MouseManager();
-        addMouseListener(mouse);
-        addMouseMotionListener(mouse);
-        addMouseWheelListener(mouse);
+//        mouse = new MouseManager();
+//        addMouseListener(mouse);
+//        addMouseMotionListener(mouse);
+//        addMouseWheelListener(mouse);
 
         keyboard = new KeyboardManager();
         addKeyListener(keyboard);
@@ -40,9 +40,9 @@ public class Body extends JFrame {
         return panel;
     }
 
-    public MouseManager getMouse() {
-        return mouse;
-    }
+//    public MouseManager getMouse() {
+//        return mouse;
+//    }
 
     public KeyboardManager getKeyboard() {
         return keyboard;

@@ -7,12 +7,13 @@ package com.SlayTheSpirelike;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 
 /**
  *
  * @author CBEngineer
  */
-public class KeyboardManager implements KeyListener{
+public class KeyboardManager implements KeyListener, Serializable {
     int keyCode;
     char key;
     String input;

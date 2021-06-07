@@ -13,7 +13,9 @@ public class LoadUpCard extends Card {
         if (active&& kapal.isAlive()){
             for (int i = 0; i < twice; i++) {
                 for (int j = 0; j < draw; j++) {
-                    kapal.addCard(new TorpedoCard());
+                    Card c = new TorpedoCard();
+                    c.initForBattle(kapal,enemy,battle);
+                    kapal.addCard(c);
                 }
             }
             finish(kapal);
