@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class Sell extends JPanel {
 
@@ -12,28 +13,25 @@ public class Sell extends JPanel {
     private Kapal kapal;
 
     //SIZE
-    private final int width = 290;
-    private final int height = 162;
-    private final int space = 25;
+    final int width = 200;
+    final int height = 220;
+    final int space = 25;
 
     //IMAGE
     private final Image hangingsign = new ImageIcon("resources/hangingsign.png").getImage();
     private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
     private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
-    private final Image black = new ImageIcon("resources/black.png").getImage();
+    private final Image coinimg = new ImageIcon("resources/coin.png").getImage();
 
     //PROPERTIES
     private JLabel bg;
     private JLabel title;
     private JLabel cardtitle;
-    private JPanel cardplace;
     private JLabel relictitle;
+    private JScrollPane scroll;
+    private JPanel cardplace;
     private JPanel relicplace;
-
-    private JPanel scrollpane;
-
     private JLabel coinsymbol;
-    private JLabel coin;
     private JLabel coinplayer;
     private JLabel back;
 
@@ -42,6 +40,93 @@ public class Sell extends JPanel {
         this.shop = shop;
         this.kapal = kapal;
         init();
+        showCard();
+        showRelic();
+    }
+
+    private void showCard() {
+        cardplace.removeAll();
+        int cardheight = 155 * (1 + (kapal.card.size()/5));
+        cardplace.setPreferredSize(new Dimension(this.getWidth() - 20, cardheight));
+        ArrayList<JLabel> cards = new ArrayList<>();
+        for (int i = 0; i < kapal.card.size(); i++) {
+            Card mycard = kapal.getCard(i);
+            cards.add(new JLabel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    switch (mycard.type) {
+                        case "Self" -> g.setColor(Color.BLUE);
+                        case "Enemy" -> g.setColor(Color.GREEN);
+                        case "Battle" -> g.setColor(Color.MAGENTA);
+                    }
+                    g.fillRect(0,0, this.getWidth(), this.getHeight());
+                    g.setColor(Color.BLACK);
+                    g.setFont(new Font("Monospace", Font.BOLD, 15));
+                    g.drawString(mycard.nama,10, this.getHeight()/4);
+                    g.drawImage(Assets.energy,0,0,20,20,null);
+                    g.drawString(String.valueOf(mycard.cost),22,15);
+
+                    String[] descSplit = mycard.desc.split("\n");
+                    for (int i = 0; i < descSplit.length; i++) {
+                        g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
+                    }
+                    super.paintComponent(g);
+                }
+            });
+            mycard.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    if (n == JOptionPane.YES_OPTION) {
+                        kapal.card.remove(mycard);
+                        kapal.setCoin(kapal.getCoin() + 50);
+                        JOptionPane.showMessageDialog(null,"You got 50C");
+                    }
+                }
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    mycard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    mycard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+            cards.get(i).setPreferredSize(new Dimension(width, height));
+            cardplace.add(cards.get(i));
+        }
+        cardplace.repaint();
+        cardplace.revalidate();
+    }
+
+    private void showRelic() {
+        relicplace.removeAll();
+        int relicheight = 155 * (1 + (kapal.relic.size()/5));
+        relicplace.setPreferredSize(new Dimension(this.getWidth() - 2, relicheight));
+        ArrayList<JLabel> relics = new ArrayList<>();
+        for (int i = 0; i < kapal.relic.size(); i++) {
+            Relic myrelic = kapal.getRelic(i);
+            relics.add(new JLabel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    g.setColor(Color.blue);
+                    g.fillRect(0,0, this.getWidth(), this.getHeight());
+                    g.setColor(Color.BLACK);
+                    g.setFont(new Font("Monospace", Font.BOLD, 15));
+                    g.drawString(myrelic.nama,10, this.getHeight()/4);
+
+                    String[] descSplit = myrelic.desc.split("\n");
+                    for (int i = 0; i < descSplit.length; i++) {
+                        g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
+                    }
+                    super.paintComponent(g);
+                }
+            });
+            relics.get(i).setPreferredSize(new Dimension(width, height));
+            relicplace.add(relics.get(i));
+        }
+        relicplace.repaint();
+        relicplace.revalidate();
     }
 
     private void init() {
@@ -50,6 +135,16 @@ public class Sell extends JPanel {
         setVisible(true);
 
         //INIT
+        title = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(hangingsign,0,0, this.getWidth(), this.getHeight(),null);
+                g.setColor(Color.red);
+                g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 75));
+                g.drawString("SELL",110,138);
+                super.paintComponent(g);
+            }
+        };
         bg = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
@@ -57,22 +152,7 @@ public class Sell extends JPanel {
                 super.paintComponent(g);
             }
         };
-        title = new JLabel(){
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(hangingsign,0,0, this.getWidth(), this.getHeight(), null);
-                g.drawString("SELL", 60, 135);
-                super.paintComponent(g);
-            }
-        };
         cardtitle = new JLabel("CARD") {
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
-                super.paintComponent(g);
-            }
-        };
-        cardplace = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
@@ -86,6 +166,13 @@ public class Sell extends JPanel {
                 super.paintComponent(g);
             }
         };
+        cardplace = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                super.paintComponent(g);
+            }
+        };
         relicplace = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -93,27 +180,15 @@ public class Sell extends JPanel {
                 super.paintComponent(g);
             }
         };
-        coinsymbol = new JLabel("C") {
+        scroll = new JScrollPane(cardplace, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        coinsymbol = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(black,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(coinimg,0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
-        coin = new JLabel("COIN : "){
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
-                super.paintComponent(g);
-            }
-        };
-        coinplayer = new JLabel("0"){
-            @Override
-            protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
-                super.paintComponent(g);
-            }
-        };
+        coinplayer = new JLabel(String.valueOf(kapal.getCoin()));
         back = new JLabel("<< BACK"){
             @Override
             protected void paintComponent(Graphics g) {
@@ -125,32 +200,21 @@ public class Sell extends JPanel {
         //---------------------------------------------------------------------------------------//
 
         //TITLE
-        title.setBounds(this.getWidth()/2 - width/2,0, width, height);
-        title.setFont(new Font("Monospace", Font.ITALIC + Font.BOLD, 65));
-        title.setForeground(Color.red);
+        title.setBounds(this.getWidth()/2 - width,0, width*2, height - 60);
         add(title);
 
         //COIN SYMBOL
-        coinsymbol.setBounds(830,80,50,50);
-        coinsymbol.setForeground(Color.white);
-        coinsymbol.setHorizontalAlignment(SwingConstants.CENTER);
-        coinsymbol.setVerticalAlignment(SwingConstants.CENTER);
+        coinsymbol.setBounds(870,60,50,50);
         add(coinsymbol);
 
-        //COIN
-        coin.setBounds(880, 80, 105,50);
-        coin.setFont(new Font("Monospace", Font.BOLD,30));
-        coin.setForeground(Color.white);
-        add(coin);
-
         //PLAYER COIN
-        coinplayer.setBounds(983,80,100,50);
+        coinplayer.setBounds(930,60,150,50);
         coinplayer.setFont(new Font("Monospace",Font.BOLD,30));
         coinplayer.setForeground(Color.white);
         add(coinplayer);
 
         //BACK
-        back.setBounds(height-20,70,180,90);
+        back.setBounds(120,60,160,60);
         back.setForeground(Color.white);
         back.setFont(new Font("Monospace", Font.BOLD,30));
         back.setHorizontalAlignment(SwingConstants.CENTER);
@@ -181,7 +245,7 @@ public class Sell extends JPanel {
         add(back);
 
         //CARD TITLE
-        cardtitle.setBounds(0, 200, this.getWidth()/2, 50);
+        cardtitle.setBounds(0, 165, this.getWidth()/2, 50);
         cardtitle.setBorder(BorderFactory.createLineBorder(Color.red,2));
         cardtitle.setHorizontalAlignment(SwingConstants.CENTER);
         cardtitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
@@ -194,8 +258,7 @@ public class Sell extends JPanel {
                 relictitle.setBorder(BorderFactory.createEmptyBorder());
                 relictitle.setFont(new Font("Monospace", Font.PLAIN, 25));
 
-                cardplace.setVisible(true);
-                relicplace.setVisible(false);
+                scroll.setViewportView(cardplace);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -210,15 +273,8 @@ public class Sell extends JPanel {
         });
         add(cardtitle);
 
-        //CARD PLACE
-        cardplace.setBounds(0, 250, this.getWidth(), this.getHeight()/2);
-        cardplace.setLayout(null);
-        cardplace.setBackground(Color.yellow);
-        cardplace.setOpaque(true);
-        add(cardplace);
-
         //RELIC TITLE
-        relictitle.setBounds(this.getWidth()/2, 200, this.getWidth()/2, 50);
+        relictitle.setBounds(this.getWidth()/2, 165, this.getWidth()/2, 50);
         relictitle.setHorizontalAlignment(SwingConstants.CENTER);
         relictitle.setFont(new Font("Monospace", Font.PLAIN, 25));
         relictitle.setForeground(Color.white);
@@ -230,8 +286,7 @@ public class Sell extends JPanel {
                 relictitle.setBorder(BorderFactory.createLineBorder(Color.red,2));
                 relictitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
 
-                cardplace.setVisible(false);
-                relicplace.setVisible(true);
+                scroll.setViewportView(relicplace);
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -245,12 +300,22 @@ public class Sell extends JPanel {
         });
         add(relictitle);
 
+        //SCROLL
+        scroll.setBounds(0, 215, this.getWidth(), 430);
+        scroll.setViewportView(cardplace);
+        add(scroll);
+
+        //CARD PLACE
+        cardplace.setBounds(0, 0, this.getWidth() - 20, 350);
+        cardplace.setLayout(new FlowLayout(FlowLayout.CENTER));
+        cardplace.setBackground(Color.yellow);
+        cardplace.setOpaque(true);
+
         //RELIC PLACE
-        relicplace.setBounds(0, 250, this.getWidth(), this.getHeight()/2);
-        relicplace.setLayout(null);
+        relicplace.setBounds(0, 0, this.getWidth() - 20, 350);
+        relicplace.setLayout(new FlowLayout(FlowLayout.CENTER));
         relicplace.setBackground(Color.red);
         relicplace.setOpaque(true);
-        add(relicplace);
 
         //BACKGROUND
         bg.setBounds(0, 0,1162,648);
