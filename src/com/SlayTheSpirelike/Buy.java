@@ -11,18 +11,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
-public class Buy extends JPanel {
+public class Buy extends JPanel implements Serializable {
 
     private Body body;
     private Shop shop;
     private Kapal kapal;
 
     //IMAGE
-    private final Image hangingsign = new ImageIcon("resources/hangingsign.png").getImage();
-    private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
-    private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
-    private final Image coinimg = new ImageIcon("resources/coin.png").getImage();
+    private final String hangingsign ="resources/hangingsign.png";
+    private final String wood = "resources/woodtextures.jpg";
+    private final String woodbg = "resources/woodbg.jpg";
+    private final String coinimg = "resources/coin.png";
 
     //PROPERTIES
     private JLabel bg;
@@ -99,19 +100,23 @@ public class Buy extends JPanel {
         this.shop = shop;
         this.kapal = kapal;
 
+        randomizeBuy();
         init();
         initCheats();
+    }
+
+    public void reConstruct(Body body, Shop shop, Kapal kapal){
+        this.body = body;
+        this.shop = shop;
+        this.kapal = kapal;
+        init();
     }
 
     public void refreshCoin() {
         coinplayer.setText(String.valueOf(kapal.getCoin()));
     }
 
-    private void init() {
-        setLayout(null);
-        setSize(1162,648);
-        setVisible(true);
-
+    private void randomizeBuy(){
         if (kapal instanceof Tanker) {
             int random1 = (int) (Math.random() * 12);
             int random2 = (int) (Math.random() * 12);
@@ -166,12 +171,18 @@ public class Buy extends JPanel {
         }
 //        relic7 = Statics.shopRelic.get(0);
         relic7 = new MembershipCardRelic();
+    }
+
+    private void init() {
+        setLayout(null);
+        setSize(1162,648);
+        setVisible(true);
 
         //INIT
         title = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(hangingsign,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(hangingsign),0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.green);
                 g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 75));
                 g.drawString("BUY",120,138);
@@ -181,14 +192,14 @@ public class Buy extends JPanel {
         bg = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(woodbg,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(woodbg),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
         coinsymbol = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(coinimg,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(coinimg),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };
@@ -196,7 +207,7 @@ public class Buy extends JPanel {
         back = new JLabel("<< BACK"){
             @Override
             protected void paintComponent(Graphics g) {
-                g.drawImage(wood,0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(wood),0,0, this.getWidth(), this.getHeight(),null);
                 super.paintComponent(g);
             }
         };

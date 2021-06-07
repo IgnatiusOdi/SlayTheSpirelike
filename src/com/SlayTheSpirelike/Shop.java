@@ -35,10 +35,21 @@ public class Shop extends JPanel {
     private transient JLabel mergeButton;
     private transient JLabel exitShop;
 
+    //DIVISION
+    private Buy b;
+
     public Shop(Body body, JPanel returnPanel, Kapal player) {
         this.body = body;
         this.returnPanel = returnPanel;
         this.kapal = player;
+        setLayout(null);
+        setSize(1162,648);
+        setBackground(new Color(135, 206, 235));
+        setOpaque(true);
+        setVisible(true);
+
+        b = new Buy(this.body, this, this.kapal);
+
         init();
         initCheats();
     }
@@ -47,18 +58,12 @@ public class Shop extends JPanel {
         this.body = body;
         this.returnPanel = returnPanel;
         this.kapal = player;
+        b.reConstruct(this.body, this, this.kapal);
         removeAll();
         init();
     }
 
     private void init() {
-        setLayout(null);
-        setSize(1162,648);
-        setBackground(new Color(135, 206, 235));
-        setOpaque(true);
-        setVisible(true);
-
-        Buy b = new Buy(this.body, this, this.kapal);
         Sell s = new Sell(this.body, this, this.kapal);
         Draw d = new Draw(this.body, this, this.kapal);
         Upgrade u = new Upgrade(this.body, this, this.kapal);
