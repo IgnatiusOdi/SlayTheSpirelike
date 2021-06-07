@@ -218,9 +218,28 @@ public class Treasure extends JPanel {
                         }
                     } else if (random < 9) {
                         //10% CARD
-                        random = (int) (Math.random() * Statics.cards.size());
-                        kapal.addCard(Statics.cards.get(random));
-                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        random = (int) (Math.random() * 4);
+                        if (random == 0) {
+                            //COMMON
+                            random = (int) (Math.random() * Statics.commonCards.size());
+                            kapal.addCard(Statics.commonCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random == 1) {
+                            //TANKER
+                            random = (int) (Math.random() * Statics.tankerCards.size());
+                            kapal.addCard(Statics.tankerCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.tankerCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random == 2) {
+                            //WARSHIP
+                            random = (int) (Math.random() * Statics.warshipCards.size());
+                            kapal.addCard(Statics.warshipCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.warshipCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else {
+                            //AIRCRAFT
+                            random = (int) (Math.random() * Statics.aircraftCards.size());
+                            kapal.addCard(Statics.aircraftCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.aircraftCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        }
                     } else {
                         //10% RELIC
                         random = (int) (Math.random() * 10);
@@ -346,9 +365,28 @@ public class Treasure extends JPanel {
                         }
                     } else if (random < 9) {
                         //10% CARD
-                        random = (int) (Math.random() * Statics.cards.size());
-                        kapal.addCard(Statics.cards.get(random));
-                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        random = (int) (Math.random() * 4);
+                        if (random == 0) {
+                            //COMMON
+                            random = (int) (Math.random() * Statics.commonCards.size());
+                            kapal.addCard(Statics.commonCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random == 1) {
+                            //TANKER
+                            random = (int) (Math.random() * Statics.tankerCards.size());
+                            kapal.addCard(Statics.tankerCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.tankerCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random == 2) {
+                            //WARSHIP
+                            random = (int) (Math.random() * Statics.warshipCards.size());
+                            kapal.addCard(Statics.warshipCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.warshipCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else {
+                            //AIRCRAFT
+                            random = (int) (Math.random() * Statics.aircraftCards.size());
+                            kapal.addCard(Statics.aircraftCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.aircraftCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        }
                     } else {
                         //10% RELIC
                         random = (int) (Math.random() * 10);
@@ -474,9 +512,28 @@ public class Treasure extends JPanel {
                         }
                     } else if (random < 9) {
                         //10% CARD
-                        random = (int) (Math.random() * Statics.cards.size());
-                        kapal.addCard(Statics.cards.get(random));
-                        JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.cards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        random = (int) (Math.random() * 4);
+                        if (random == 0) {
+                            //COMMON
+                            random = (int) (Math.random() * Statics.commonCards.size());
+                            kapal.addCard(Statics.commonCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.commonCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random == 1) {
+                            //TANKER
+                            random = (int) (Math.random() * Statics.tankerCards.size());
+                            kapal.addCard(Statics.tankerCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.tankerCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else if (random == 2) {
+                            //WARSHIP
+                            random = (int) (Math.random() * Statics.warshipCards.size());
+                            kapal.addCard(Statics.warshipCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.warshipCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        } else {
+                            //AIRCRAFT
+                            random = (int) (Math.random() * Statics.aircraftCards.size());
+                            kapal.addCard(Statics.aircraftCards.get(random));
+                            JOptionPane.showMessageDialog(null, "Congratulations, you get " + Statics.aircraftCards.get(random).nama, "Card", JOptionPane.PLAIN_MESSAGE);
+                        }
                     } else {
                         //10% RELIC
                         random = (int) (Math.random() * 10);
