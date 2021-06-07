@@ -131,7 +131,6 @@ public class Shop extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                System.out.println("AAAAA");
                 buyButton.setBorder(BorderFactory.createBevelBorder(0, Color.orange, Color.green, Color.green, Color.orange));
                 buyButton.setLocation(buyButton.getX() + 3, buyButton.getY() - 3);
                 buyButton.setForeground(Color.green);
