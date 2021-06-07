@@ -130,7 +130,7 @@ public class Shop extends JPanel {
         buyButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                b.refreshCoin();
+                b.refresh();
                 body.setPanel(b);
                 mouseExited(e);
             }
@@ -163,6 +163,7 @@ public class Shop extends JPanel {
         sellButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                s.refresh();
                 body.setPanel(s);
                 mouseExited(e);
             }

@@ -15,6 +15,10 @@ public class Sell extends JPanel{
     private Shop shop;
     private Kapal kapal;
 
+    //COUNTER
+    int sellcardcounter = 1;
+    int sellreliccounter = 1;
+
     //SIZE
     final int width = 200;
     final int height = 220;
@@ -48,9 +52,15 @@ public class Sell extends JPanel{
         initCheats();
     }
 
+    public void refresh() {
+        showCard();
+        showRelic();
+        coinplayer.setText(String.valueOf(kapal.getCoin()));
+    }
+
     private void showCard() {
         cardplace.removeAll();
-        int cardheight = 155 * (1 + (kapal.card.size()/5));
+        int cardheight = 220 * (1 + (kapal.card.size()/5));
         cardplace.setPreferredSize(new Dimension(this.getWidth() - 20, cardheight));
         ArrayList<JLabel> cards = new ArrayList<>();
         for (int i = 0; i < kapal.card.size(); i++) {
@@ -82,9 +92,11 @@ public class Sell extends JPanel{
                 public void mouseClicked(MouseEvent e) {
                     int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                     if (n == JOptionPane.YES_OPTION) {
-                        kapal.card.remove(mycard);
                         kapal.setCoin(kapal.getCoin() + 50);
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        kapal.card.remove(mycard);
                         JOptionPane.showMessageDialog(null,"You got 50C");
+                        showCard();
                     }
                 }
                 @Override
@@ -106,7 +118,7 @@ public class Sell extends JPanel{
     private void showRelic() {
         relicplace.removeAll();
         int relicheight = 155 * (1 + (kapal.relic.size()/5));
-        relicplace.setPreferredSize(new Dimension(this.getWidth() - 2, relicheight));
+        relicplace.setPreferredSize(new Dimension(this.getWidth() - 20, relicheight));
         ArrayList<JLabel> relics = new ArrayList<>();
         for (int i = 0; i < kapal.relic.size(); i++) {
             Relic myrelic = kapal.getRelic(i);
@@ -124,6 +136,52 @@ public class Sell extends JPanel{
                         g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
                     }
                     super.paintComponent(g);
+                }
+            });
+            myrelic.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    int n;
+                    if (myrelic.getRarity().equals("Common")) {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 75C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    } else if (myrelic.getRarity().equals("Uncommon")) {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    } else if (myrelic.getRarity().equals("Rare")) {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 300C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    } else if (myrelic.getRarity().equals("Shop")) {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    } else {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 1000C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    }
+                    if (n == JOptionPane.YES_OPTION) {
+                        if (myrelic.getRarity().equals("Common")) {
+                            kapal.setCoin(kapal.getCoin() + 75);
+                            JOptionPane.showMessageDialog(null,"You got 75C");
+                        } else if (myrelic.getRarity().equals("Uncommon")) {
+                            kapal.setCoin(kapal.getCoin() + 150);
+                            JOptionPane.showMessageDialog(null,"You got 150C");
+                        } else if (myrelic.getRarity().equals("Rare")) {
+                            kapal.setCoin(kapal.getCoin() + 300);
+                            JOptionPane.showMessageDialog(null,"You got 300C");
+                        } else if (myrelic.getRarity().equals("Shop")) {
+                            kapal.setCoin(kapal.getCoin() + 150);
+                            JOptionPane.showMessageDialog(null,"You got 150C");
+                        } else {
+                            kapal.setCoin(kapal.getCoin() + 300);
+                            JOptionPane.showMessageDialog(null,"You got 1000C");
+                        }
+                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        kapal.relic.remove(myrelic);
+                        showRelic();
+                    }
+                }
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    myrelic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                }
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    myrelic.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 }
             });
             relics.get(i).setPreferredSize(new Dimension(width, height));

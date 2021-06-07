@@ -112,7 +112,7 @@ public class Buy extends JPanel implements Serializable {
         init();
     }
 
-    public void refreshCoin() {
+    public void refresh() {
         coinplayer.setText(String.valueOf(kapal.getCoin()));
     }
 
@@ -998,7 +998,7 @@ public class Buy extends JPanel implements Serializable {
                     //CHECK MONEY
                     if (kapal.getCoin() >= slot9price) {
                         //SUCCESS
-                        JOptionPane.showMessageDialog(null,"POTIONBOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null,"POTION BOUGHT", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
                         slot9.setEnabled(false);
                         slot9bought = true;
                         slot9layer.setVisible(true);
