@@ -1,6 +1,6 @@
 package com.SlayTheSpirelike.Relics;
 
-import com.SlayTheSpirelike.Buy;
+import com.SlayTheSpirelike.ShopDivisions.Buy;
 import com.SlayTheSpirelike.Relic;
 
 public class MembershipCardRelic extends Relic {
@@ -40,7 +40,7 @@ public class MembershipCardRelic extends Relic {
     }
 
     @Override
-    protected Relic copy() {
+    public Relic copy() {
         return new MembershipCardRelic();
     }
 }

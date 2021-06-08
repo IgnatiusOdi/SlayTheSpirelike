@@ -19,7 +19,7 @@ public class TechnicianRelic extends Relic {
     }
 
     @Override
-    protected Relic copy() {
+    public Relic copy() {
         return new TechnicianRelic();
     }
 }

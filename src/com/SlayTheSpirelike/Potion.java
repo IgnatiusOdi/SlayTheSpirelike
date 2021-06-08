@@ -167,6 +167,14 @@ public abstract class Potion extends Sprite implements Serializable {
         this.nama = nama;
     }
 
+    public String getRarity() {
+        return rarity;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
     public String getType() {
         return type;
     }

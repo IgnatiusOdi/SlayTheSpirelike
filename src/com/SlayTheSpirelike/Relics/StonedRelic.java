@@ -23,7 +23,7 @@ public class StonedRelic extends Relic {
     }
 
     @Override
-    protected Relic copy() {
+    public Relic copy() {
         return new StonedRelic();
     }
 }
