@@ -26,6 +26,7 @@ public class Statics {
     public static ArrayList<Card> aircraftCards = new ArrayList<>();
 
     public static ArrayList<Enemy> commonEnemy = new ArrayList<>();
+    public static ArrayList<Enemy> eliteEnemy = new ArrayList<>();
 
     static {
 //        commonPotion.clear();
@@ -133,5 +134,8 @@ public class Statics {
         commonEnemy.add(new CungEnemy());
         commonEnemy.add(new AlsCommonEnemy());
         commonEnemy.add(new AK170Enemy());
+
+        eliteEnemy.add(new IotEnemy());
+        eliteEnemy.add(new AlsEliteEnemy());
     }
 }
