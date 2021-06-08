@@ -10,7 +10,7 @@ public class PhilosophersStoneRelic extends Relic {
         super("Philosopher's Stone Relic", "Boss Drop", "Start Turn", "resources/PhilosophersStone.png","Gain 1 energy at the \n" +
                 "start of each turn. \n" +
                 "Enemy start \n" +
-                "with 1 attack.");
+                "with 10 weak.");
         used = true;
     }
 
@@ -24,8 +24,7 @@ public class PhilosophersStoneRelic extends Relic {
     @Override
     public void activate(Enemy enemy) {
         if (active&&used){
-            enemy.setAtkhigh(1);
-            enemy.setAtklow(1);
+            enemy.setWeak(enemy.getWeak()+10);
             used=false;
         }
     }

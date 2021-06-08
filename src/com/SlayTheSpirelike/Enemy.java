@@ -1,21 +1,70 @@
 package com.SlayTheSpirelike;
 
 import javax.swing.*;
+import java.util.Random;
 
 public abstract class Enemy extends Sprite {
+    protected Random rnd = new Random();
     protected String nama;
-    protected int health,maxhealth,block, skill, skillchance, atklow, atkhigh;
+    protected int health,maxhealth, block, skill1, skill2, skill3, weak, attack;
+    protected String snama1, snama2, snama3;
 
-    public Enemy(String nama, int health,int block, int skill, int skillchance, int atklow, int atkhigh, String image) {
+    public Enemy(String nama, int health, String image) {
         super(image);
         this.nama = nama;
         this.health = health;
         this.maxhealth = health;
-        this.block = block;
-        this.skill = skill;
-        this.skillchance = skillchance;
-        this.atklow = atklow;
-        this.atkhigh = atkhigh;
+        this.block = 0;
+        this.weak = 0;
+        this.attack = 0;
+        this.skill1 = 0;
+        this.skill2 = 0;
+        this.skill3 = 0;
+        this.snama1 = "";
+        this.snama2 = "";
+        this.snama3 = "";
+    }
+
+    public void attack(Kapal k, Enemy e, int damage){
+        int attack = damage + e.getAttack() - e.getWeak();
+        if (attack>k.getBlock()){
+            attack -= k.getBlock();
+            k.setBlock(0);
+        }
+        else{
+            k.setBlock(k.getBlock()-attack);
+            attack=0;
+        }
+        k.setHealth(k.getHealth()-attack);
+    }
+
+    public void applyWeak(Kapal kapal, int weak){
+        kapal.setWeak(kapal.getWeak()+weak);
+    }
+
+    public void useSkill(Kapal kapal, Enemy enemy, Battle battle){
+        int chance = rnd.nextInt(100)+1;
+        if(chance<=skill1){
+            useSkill1(kapal, enemy, battle);
+        }
+        else if(chance<=skill1+skill2){
+            useSkill2(kapal, enemy, battle);
+        }
+        else if(chance<=skill1+skill2+skill3){
+            useSkill3(kapal, enemy, battle);
+        }
+    }
+
+    public void useSkill1(Kapal kapal, Enemy enemy, Battle battle){
+
+    }
+
+    public void useSkill2(Kapal kapal, Enemy enemy, Battle battle){
+
+    }
+
+    public void useSkill3(Kapal kapal, Enemy enemy, Battle battle){
+
     }
 
 /*    @Override
@@ -70,35 +119,67 @@ public abstract class Enemy extends Sprite {
         this.health = health;
     }
 
-    public int getSkill() {
-        return skill;
+    public int getSkill1() {
+        return skill1;
     }
 
-    public void setSkill(int skill) {
-        this.skill = skill;
+    public void setSkill1(int skill1) {
+        this.skill1 = skill1;
     }
 
-    public int getSkillchance() {
-        return skillchance;
+    public int getSkill2() {
+        return skill2;
     }
 
-    public void setSkillchance(int skillchance) {
-        this.skillchance = skillchance;
+    public void setSkill2(int skill2) {
+        this.skill2 = skill2;
     }
 
-    public int getAtklow() {
-        return atklow;
+    public int getSkill3() {
+        return skill3;
     }
 
-    public void setAtklow(int atklow) {
-        this.atklow = atklow;
+    public void setSkill3(int skill3) {
+        this.skill3 = skill3;
     }
 
-    public int getAtkhigh() {
-        return atkhigh;
+    public int getWeak() {
+        return weak;
     }
 
-    public void setAtkhigh(int atkhigh) {
-        this.atkhigh = atkhigh;
+    public void setWeak(int weak) {
+        this.weak = weak;
+    }
+
+    public String getSnama1() {
+        return snama1;
+    }
+
+    public void setSnama1(String snama1) {
+        this.snama1 = snama1;
+    }
+
+    public String getSnama2() {
+        return snama2;
+    }
+
+    public void setSnama2(String snama2) {
+        this.snama2 = snama2;
+    }
+
+    public String getSnama3() {
+        return snama3;
+    }
+
+    public void setSnama3(String snama3) {
+        this.snama3 = snama3;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 }

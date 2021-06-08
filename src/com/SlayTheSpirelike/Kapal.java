@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public abstract class Kapal extends Sprite implements Serializable {
-    protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin, mapPosX, mapPosY;
+    protected int health, maxhealth,block,attack, fuel, maxfuel, energy, maxenergy, coin, mapPosX, mapPosY, weak;
     protected String nama;
     protected ArrayList<Card> card;
     protected int potionLimit;
@@ -37,6 +37,7 @@ public abstract class Kapal extends Sprite implements Serializable {
         this.coin = 0;
         this.mapPosX = 0;
         this.mapPosY = 0;
+        this.weak = 0;
     }
 
     public void reConstruct(){
@@ -324,6 +325,14 @@ public abstract class Kapal extends Sprite implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public int getWeak() {
+        return weak;
+    }
+
+    public void setWeak(int weak) {
+        this.weak = weak;
     }
 
     @Override

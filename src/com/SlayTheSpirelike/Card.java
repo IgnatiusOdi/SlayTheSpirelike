@@ -154,7 +154,7 @@ public abstract class Card extends JLabel implements Serializable {
         if (k.getAttack()<0){
             k.setAttack(0);
         }
-        int attack = damage + k.getAttack();
+        int attack = damage + k.getAttack() - k.getWeak();
         if (attack>e.getBlock()){
             attack -= e.getBlock();
             e.setBlock(0);
@@ -174,14 +174,7 @@ public abstract class Card extends JLabel implements Serializable {
     }
 
     public void applyWeak(Enemy enemy){
-        enemy.setAtkhigh(enemy.getAtkhigh()-weak);
-        enemy.setAtklow(enemy.getAtklow()-weak);
-        if (enemy.getAtkhigh()<0){
-            enemy.setAtkhigh(0);
-        }
-        if (enemy.getAtklow()<0){
-            enemy.setAtklow(0);
-        }
+        enemy.setWeak(enemy.getWeak()+weak);
     }
 
     public void summon(Kapal kapal){
