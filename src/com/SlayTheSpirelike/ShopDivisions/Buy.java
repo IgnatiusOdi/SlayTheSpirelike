@@ -1,5 +1,6 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.ShopDivisions;
 
+import com.SlayTheSpirelike.*;
 import com.SlayTheSpirelike.Cards.*;
 import com.SlayTheSpirelike.Relics.CauldronRelic;
 import com.SlayTheSpirelike.Relics.CookieRelic;
@@ -216,7 +217,7 @@ public class Buy extends JPanel implements Serializable {
         slot1 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                switch (card1.type) {
+                switch (card1.getType()) {
                     case "Self" -> g.setColor(Color.BLUE);
                     case "Enemy" -> g.setColor(Color.GREEN);
                     case "Battle" -> g.setColor(Color.MAGENTA);
@@ -224,11 +225,11 @@ public class Buy extends JPanel implements Serializable {
                 g.fillRect(0,0, this.getWidth(), this.getHeight());
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(card1.nama,10, this.getHeight()/4);
+                g.drawString(card1.getNama(),10, this.getHeight()/4);
                 g.drawImage(Assets.energy,0,0,20,20,null);
-                g.drawString(String.valueOf(card1.cost),22,15);
+                g.drawString(String.valueOf(card1.getCost()),22,15);
 
-                String[] descSplit = card1.desc.split("\n");
+                String[] descSplit = card1.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
                 }
@@ -244,7 +245,7 @@ public class Buy extends JPanel implements Serializable {
         slot2 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                switch (card2.type) {
+                switch (card2.getType()) {
                     case "Self" -> g.setColor(Color.BLUE);
                     case "Enemy" -> g.setColor(Color.GREEN);
                     case "Battle" -> g.setColor(Color.MAGENTA);
@@ -252,11 +253,11 @@ public class Buy extends JPanel implements Serializable {
                 g.fillRect(0,0, this.getWidth(), this.getHeight());
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(card2.nama,10,this.getHeight()/4);
+                g.drawString(card2.getNama(),10,this.getHeight()/4);
                 g.drawImage(Assets.energy,0,0,20,20,null);
-                g.drawString(String.valueOf(card2.cost),22,15);
+                g.drawString(String.valueOf(card2.getCost()),22,15);
 
-                String[] descSplit = card2.desc.split("\n");
+                String[] descSplit = card2.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
                 }
@@ -272,7 +273,7 @@ public class Buy extends JPanel implements Serializable {
         slot3 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                switch (card3.type) {
+                switch (card3.getType()) {
                     case "Self" -> g.setColor(Color.BLUE);
                     case "Enemy" -> g.setColor(Color.GREEN);
                     case "Battle" -> g.setColor(Color.MAGENTA);
@@ -280,11 +281,11 @@ public class Buy extends JPanel implements Serializable {
                 g.fillRect(0,0, this.getWidth(), this.getHeight());
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(card3.nama,10,this.getHeight()/4);
+                g.drawString(card3.getNama(),10,this.getHeight()/4);
                 g.drawImage(Assets.energy,0,0,20,20,null);
-                g.drawString(String.valueOf(card3.cost),22,15);
+                g.drawString(String.valueOf(card3.getCost()),22,15);
 
-                String[] descSplit = card3.desc.split("\n");
+                String[] descSplit = card3.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
                 }
@@ -300,7 +301,7 @@ public class Buy extends JPanel implements Serializable {
         slot4 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                switch (card4.type) {
+                switch (card4.getType()) {
                     case "Self" -> g.setColor(Color.BLUE);
                     case "Enemy" -> g.setColor(Color.GREEN);
                     case "Battle" -> g.setColor(Color.MAGENTA);
@@ -308,11 +309,11 @@ public class Buy extends JPanel implements Serializable {
                 g.fillRect(0,0, this.getWidth(), this.getHeight());
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(card4.nama,10,this.getHeight()/4);
+                g.drawString(card4.getNama(),10,this.getHeight()/4);
                 g.drawImage(Assets.energy,0,0,20,20,null);
-                g.drawString(String.valueOf(card4.cost),22,15);
+                g.drawString(String.valueOf(card4.getCost()),22,15);
 
-                String[] descSplit = card4.desc.split("\n");
+                String[] descSplit = card4.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
                 }
@@ -328,7 +329,7 @@ public class Buy extends JPanel implements Serializable {
         slot5 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                switch (card5.type) {
+                switch (card5.getType()) {
                     case "Self" -> g.setColor(Color.BLUE);
                     case "Enemy" -> g.setColor(Color.GREEN);
                     case "Battle" -> g.setColor(Color.MAGENTA);
@@ -336,11 +337,11 @@ public class Buy extends JPanel implements Serializable {
                 g.fillRect(0,0, this.getWidth(), this.getHeight());
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(card5.nama,10,this.getHeight()/4);
+                g.drawString(card5.getNama(),10,this.getHeight()/4);
                 g.drawImage(Assets.energy,0,0,20,20,null);
-                g.drawString(String.valueOf(card5.cost),22,15);
+                g.drawString(String.valueOf(card5.getCost()),22,15);
 
-                String[] descSplit = card5.desc.split("\n");
+                String[] descSplit = card5.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
                 }
@@ -356,7 +357,7 @@ public class Buy extends JPanel implements Serializable {
         slot6 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                switch (card6.type) {
+                switch (card6.getType()) {
                     case "Self" -> g.setColor(Color.BLUE);
                     case "Enemy" -> g.setColor(Color.GREEN);
                     case "Battle" -> g.setColor(Color.MAGENTA);
@@ -364,11 +365,11 @@ public class Buy extends JPanel implements Serializable {
                 g.fillRect(0,0, this.getWidth(), this.getHeight());
                 g.setColor(Color.BLACK);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(card6.nama,10,this.getHeight()/4);
+                g.drawString(card6.getNama(),10,this.getHeight()/4);
                 g.drawImage(Assets.energy,0,0,20,20,null);
-                g.drawString(String.valueOf(card6.cost),22,15);
+                g.drawString(String.valueOf(card6.getCost()),22,15);
 
-                String[] descSplit = card6.desc.split("\n");
+                String[] descSplit = card6.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
                 }
@@ -384,19 +385,19 @@ public class Buy extends JPanel implements Serializable {
         slot8 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                switch (relic8.rarity) {
+                switch (relic8.getRarity()) {
                     case "Common" -> g.setColor(Color.gray);
                     case "Uncommon" -> g.setColor(Color.green);
                     case "Rare" -> g.setColor(Color.orange);
                     case "Shop" -> g.setColor(Color.blue);
                 }
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
-                g.drawImage(ImageLoader.LoadImage(relic8.image),0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(relic8.getImage()),0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.black);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(relic8.nama, 10,this.getHeight()/4);
+                g.drawString(relic8.getNama(), 10,this.getHeight()/4);
 
-                String[] descSplit = relic8.desc.split("\n");
+                String[] descSplit = relic8.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
                 }
@@ -404,21 +405,21 @@ public class Buy extends JPanel implements Serializable {
             }
         };
         slot8bought = false;
-        for (int i = 0; i < kapal.relic.size(); i++) {
-            if (kapal.relic.get(i).nama.equals(relic8.nama)) {
+        for (int i = 0; i < kapal.getRelic().size(); i++) {
+            if (kapal.getRelic().get(i).getNama().equals(relic8.getNama())) {
                 slot8bought = true;
                 slot8layer.setVisible(true);
                 break;
             }
         }
         slot8layer = new JLabel("ALREADY HAD");
-        if (relic8.rarity.equals("Shop")) {
+        if (relic8.getRarity().equals("Shop")) {
             slot8price = 300;
-        } else if (relic8.rarity.equals("Common")) {
+        } else if (relic8.getRarity().equals("Common")) {
             slot8price = 150;
-        } else if (relic8.rarity.equals("Uncommon")) {
+        } else if (relic8.getRarity().equals("Uncommon")) {
             slot8price = 300;
-        } else if (relic8.rarity.equals("Rare")) {
+        } else if (relic8.getRarity().equals("Rare")) {
             slot8price = 600;
         }
         slot8button = new JButton(String.valueOf(slot8price));
@@ -427,18 +428,18 @@ public class Buy extends JPanel implements Serializable {
         slot9 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
-                switch (potion9.rarity) {
+                switch (potion9.getRarity()) {
                     case "Common" -> g.setColor(Color.gray);
                     case "Uncommon" -> g.setColor(Color.green);
                     case "Rare" -> g.setColor(Color.orange);
                 }
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
-                g.drawImage(ImageLoader.LoadImage(potion9.image),0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(potion9.getImage()),0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.black);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(potion9.nama, 10,this.getHeight()/4);
+                g.drawString(potion9.getNama(), 10,this.getHeight()/4);
 
-                String[] descSplit = potion9.desc.split("\n");
+                String[] descSplit = potion9.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
                 }
@@ -447,11 +448,11 @@ public class Buy extends JPanel implements Serializable {
         };
         slot9bought = false;
         slot9layer = new JLabel("ALREADY BOUGHT");
-        if (potion9.rarity.equals("Common")) {
+        if (potion9.getRarity().equals("Common")) {
             slot9price = 100;
-        } else if (potion9.rarity.equals("Uncommon")) {
+        } else if (potion9.getRarity().equals("Uncommon")) {
             slot9price = 200;
-        } else if (potion9.rarity.equals("Rare")) {
+        } else if (potion9.getRarity().equals("Rare")) {
             slot9price = 300;
         }
         slot9button = new JButton(String.valueOf(slot9price));
@@ -462,12 +463,12 @@ public class Buy extends JPanel implements Serializable {
             protected void paintComponent(Graphics g) {
                 g.setColor(Color.blue);
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
-                g.drawImage(ImageLoader.LoadImage(relic7.image),0,0, this.getWidth(), this.getHeight(),null);
+                g.drawImage(ImageLoader.LoadImage(relic7.getImage()),0,0, this.getWidth(), this.getHeight(),null);
                 g.setColor(Color.black);
                 g.setFont(new Font("Monospace", Font.BOLD, 15));
-                g.drawString(relic7.nama, 10,this.getHeight()/4);
+                g.drawString(relic7.getNama(), 10,this.getHeight()/4);
 
-                String[] descSplit = relic7.desc.split("\n");
+                String[] descSplit = relic7.getDesc().split("\n");
                 for (int i = 0; i < descSplit.length; i++) {
                     g.drawString(descSplit[i],10,this.getHeight()/2 + (i*30));
                 }
@@ -475,8 +476,8 @@ public class Buy extends JPanel implements Serializable {
             }
         };
         slot7bought = false;
-        for (int i = 0; i < kapal.relic.size(); i++) {
-            if (kapal.relic.get(i).nama.equals(relic7.nama)) {
+        for (int i = 0; i < kapal.getRelic().size(); i++) {
+            if (kapal.getRelic().get(i).getNama().equals(relic7.getNama())) {
                 slot7bought = true;
                 slot7layer.setVisible(true);
 

@@ -25,7 +25,7 @@ public class StrawberryRelic extends Relic {
     }
 
     @Override
-    protected Relic copy() {
+    public Relic copy() {
         return new StrawberryRelic();
     }
 }

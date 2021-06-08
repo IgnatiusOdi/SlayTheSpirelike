@@ -25,4 +25,8 @@ public abstract class Sprite extends JLabel implements Serializable {
         this.width = width;
         this.height = height;
     }
+
+    public String getImage() {
+        return image;
+    }
 }

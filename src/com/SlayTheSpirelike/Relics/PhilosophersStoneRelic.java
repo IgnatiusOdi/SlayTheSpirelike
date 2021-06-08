@@ -36,7 +36,7 @@ public class PhilosophersStoneRelic extends Relic {
     }
 
     @Override
-    protected Relic copy() {
+    public Relic copy() {
         return new PhilosophersStoneRelic();
     }
 }

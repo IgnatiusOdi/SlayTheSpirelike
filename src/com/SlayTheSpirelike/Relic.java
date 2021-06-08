@@ -1,7 +1,8 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.ShopDivisions.Buy;
+
 import javax.swing.*;
-import java.awt.*;
 import java.io.Serializable;
 
 public abstract class Relic extends Sprite implements Serializable {
@@ -108,7 +109,7 @@ public abstract class Relic extends Sprite implements Serializable {
     }*/
 
     //untuk cheat, return new copy of the Relic
-    abstract protected Relic copy();
+    public abstract Relic copy();
 
     public String getCondition() {
         return condition;

@@ -1,4 +1,6 @@
-package com.SlayTheSpirelike;
+package com.SlayTheSpirelike.ShopDivisions;
+
+import com.SlayTheSpirelike.*;
 
 import javax.swing.*;
 import java.awt.*;

@@ -24,7 +24,7 @@ public class MangoRelic extends Relic {
     }
 
     @Override
-    protected Relic copy() {
+    public Relic copy() {
         return new MangoRelic();
     }
 }

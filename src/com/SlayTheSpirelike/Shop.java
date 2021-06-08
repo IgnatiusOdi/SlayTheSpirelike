@@ -1,5 +1,7 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.ShopDivisions.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

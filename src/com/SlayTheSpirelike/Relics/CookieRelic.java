@@ -26,7 +26,7 @@ public class CookieRelic extends Relic {
     }
 
     @Override
-    protected Relic copy() {
+    public Relic copy() {
         return new CookieRelic();
     }
 }

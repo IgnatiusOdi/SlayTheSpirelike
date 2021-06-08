@@ -18,7 +18,7 @@ public class BagOfPreparationRelic extends Relic {
     }
 
     @Override
-    protected Relic copy() {
+    public Relic copy() {
         return new BagOfPreparationRelic();
     }
 }
