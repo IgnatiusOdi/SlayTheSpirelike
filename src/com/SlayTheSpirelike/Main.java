@@ -4,6 +4,7 @@ import com.SlayTheSpirelike.Potions.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Slay the Spirelike <br>
@@ -16,13 +17,29 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
-        Body body = new Body(1162,648);
+//        Body body = new Body(1162,648);
 
 //        new SummonPotion();
 //        new InvinciblePotion();
 //        new RevivePotion();
 
-
+//        ArrayList<Potion> p = new ArrayList();
+//        p.add(new NukePotion());
+//        p.add(new NukePotion());
+//        p.add(new NukePotion());
+//        p.add(new NukePotion());
+//        p.add(new NukePotion());
+//        p.get(0).setActive(false);
+//        p.get(2).setActive(false);
+//        p.get(4).setActive(false);
+//        for (int i = p.size()-1; i >= 0 ; i--) {
+//            if(!p.get(i).isActive()){
+//                p.remove(i);
+//            }
+//        }
+//        for (Potion pp:p) {
+//            System.out.println(pp.getNama());
+//        }
 //        Card c = new OneforAllCard();
 //        c.upgrade();
 //        c.upgrade();

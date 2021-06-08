@@ -315,10 +315,10 @@ public class Battle extends JPanel {
     }
 
     public void disposePotions(){
-        for(Potion p: usedpotions){
-            if(!p.isActive()){
-                p.deactivate(player,enemy,this);
-                usedpotions.remove(p);
+        for (int i = usedpotions.size()-1; i >= 0 ; i--) {
+            if(!usedpotions.get(i).isActive()){
+                usedpotions.get(i).deactivate(player,enemy,this);
+                usedpotions.remove(i);
             }
         }
     }
