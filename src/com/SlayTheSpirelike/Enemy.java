@@ -7,7 +7,7 @@ public abstract class Enemy extends Sprite {
     protected Random rnd = new Random();
     protected String nama;
     protected int health,maxhealth, block, skill1, skill2, skill3, weak, attack;
-    protected String snama1, snama2, snama3;
+    protected String snama1, snama2, snama3, desc1, desc2, desc3;
 
     public Enemy(String nama, int health, String image) {
         super(image);
@@ -23,23 +23,30 @@ public abstract class Enemy extends Sprite {
         this.snama1 = "";
         this.snama2 = "";
         this.snama3 = "";
+        this.desc1 = "";
+        this.desc2 = "";
+        this.desc3 = "";
     }
 
-    public void attack(Kapal k, Enemy e, int damage){
-        int attack = damage + e.getAttack() - e.getWeak();
-        if (attack>k.getBlock()){
-            attack -= k.getBlock();
-            k.setBlock(0);
+    public void attack(Kapal k, Enemy e, Battle b, int damage){
+        if(!b.isInvincible()){
+            int attack = damage + e.getAttack() - e.getWeak();
+            if(attack<0){
+                attack=0;
+            }
+            if (attack>k.getBlock()){
+                attack -= k.getBlock();
+                k.setBlock(0);
+            }
+            else{
+                k.setBlock(k.getBlock()-attack);
+                attack=0;
+            }
+            k.setHealth(k.getHealth()-attack);
         }
         else{
-            k.setBlock(k.getBlock()-attack);
-            attack=0;
+            b.setInvincible(false);
         }
-        k.setHealth(k.getHealth()-attack);
-    }
-
-    public void applyWeak(Kapal kapal, int weak){
-        kapal.setWeak(kapal.getWeak()+weak);
     }
 
     public void useSkill(Kapal kapal, Enemy enemy, Battle battle){
@@ -181,5 +188,29 @@ public abstract class Enemy extends Sprite {
 
     public void setAttack(int attack) {
         this.attack = attack;
+    }
+
+    public String getDesc1() {
+        return desc1;
+    }
+
+    public void setDesc1(String desc1) {
+        this.desc1 = desc1;
+    }
+
+    public String getDesc2() {
+        return desc2;
+    }
+
+    public void setDesc2(String desc2) {
+        this.desc2 = desc2;
+    }
+
+    public String getDesc3() {
+        return desc3;
+    }
+
+    public void setDesc3(String desc3) {
+        this.desc3 = desc3;
     }
 }

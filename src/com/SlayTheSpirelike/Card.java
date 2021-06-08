@@ -155,6 +155,9 @@ public abstract class Card extends JLabel implements Serializable {
             k.setAttack(0);
         }
         int attack = damage + k.getAttack() - k.getWeak();
+        if(attack<0){
+            attack=0;
+        }
         if (attack>e.getBlock()){
             attack -= e.getBlock();
             e.setBlock(0);

@@ -1,6 +1,7 @@
 package com.SlayTheSpirelike;
 
 import com.SlayTheSpirelike.Cards.*;
+import com.SlayTheSpirelike.Enemies.*;
 import com.SlayTheSpirelike.Potions.*;
 import com.SlayTheSpirelike.Relics.*;
 
@@ -23,6 +24,8 @@ public class Statics {
     public static ArrayList<Card> tankerCards = new ArrayList<>();
     public static ArrayList<Card> warshipCards = new ArrayList<>();
     public static ArrayList<Card> aircraftCards = new ArrayList<>();
+
+    public static ArrayList<Enemy> commonEnemy = new ArrayList<>();
 
     static {
 //        commonPotion.clear();
@@ -123,5 +126,12 @@ public class Statics {
         aircraftCards.add(new BufferCard());
         aircraftCards.add(new CombustCard());
         aircraftCards.add(new KamikazeCard());
+
+        commonEnemy.add(new EzleEnemy());
+        commonEnemy.add(new KosmasEnemy());
+        commonEnemy.add(new WaoWaoEnemy());
+        commonEnemy.add(new CungEnemy());
+        commonEnemy.add(new AlsCommonEnemy());
+        commonEnemy.add(new AK170Enemy());
     }
 }

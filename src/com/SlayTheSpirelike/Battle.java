@@ -473,4 +473,6 @@ public class Battle extends JPanel {
     public void setBleeddmg(int bleeddmg) {
         this.bleeddmg = bleeddmg;
     }
+
+
 }
