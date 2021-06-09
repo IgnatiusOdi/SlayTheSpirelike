@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class CungEnemy extends Enemy {
     public CungEnemy() {
-        super("Cung", 15, "resources/Cung.png");
+        super("Cung","Common", 15, "resources/Cung.png");
         skill1=60;
         skill2=40;
         snama1="Weak Attack";

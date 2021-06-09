@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class AlsCommonEnemy extends Enemy {
     public AlsCommonEnemy() {
-        super("Als (Common)", 20, "resources/ALS_Common.png");
+        super("Als (Common)","Common", 20, "resources/ALS_Common.png");
         skill1=50;
         skill2=50;
         snama1="Weak Attack";

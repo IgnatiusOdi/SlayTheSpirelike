@@ -8,7 +8,7 @@ public class EarthshakerEnemy extends Enemy {
     private boolean first;
     private int sk1, sk3;
     public EarthshakerEnemy() {
-        super("Earthshaker", 40, "resources/earthshaker.png");
+        super("Earthshaker","Boss", 40, "resources/earthshaker.png");
         skill1=50;
         skill2=20;
         skill3=30;

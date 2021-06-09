@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class IotEnemy extends Enemy {
     public IotEnemy() {
-        super("Iot", 20, "resources/IOT.png");
+        super("Iot","Elite", 30, "resources/IOT.png");
         skill1=30;
         skill2=60;
         skill3=10;

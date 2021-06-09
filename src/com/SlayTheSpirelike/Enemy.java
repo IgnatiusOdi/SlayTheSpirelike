@@ -5,15 +5,17 @@ import java.util.Random;
 
 public abstract class Enemy extends Sprite {
     protected Random rnd = new Random();
-    protected String nama;
-    protected int health,maxhealth, block, skill1, skill2, skill3, weak, attack;
+    protected String nama,rarity;
+    protected int health,maxhealth, block, skill1, skill2, skill3, weak, attack, steel;
     protected String snama1, snama2, snama3, desc1, desc2, desc3;
 
-    public Enemy(String nama, int health, String image) {
+    public Enemy(String nama,String rarity, int health, String image) {
         super(image);
         this.nama = nama;
+        this.rarity = rarity;
         this.health = health;
         this.maxhealth = health;
+        this.steel = 0;
         this.block = 0;
         this.weak = 0;
         this.attack = 0;
@@ -29,6 +31,10 @@ public abstract class Enemy extends Sprite {
     }
 
     public abstract Enemy copy();
+
+    public void steelUp(){
+        block+=steel;
+    }
 
     public void attack(Kapal k, Enemy e, Battle b, int damage){
         if(!b.isInvincible()){
@@ -214,5 +220,21 @@ public abstract class Enemy extends Sprite {
 
     public void setDesc3(String desc3) {
         this.desc3 = desc3;
+    }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
+
+    public int getSteel() {
+        return steel;
+    }
+
+    public void setSteel(int steel) {
+        this.steel = steel;
     }
 }

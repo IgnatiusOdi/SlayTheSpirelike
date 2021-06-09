@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class KosmasEnemy extends Enemy {
     public KosmasEnemy() {
-        super("Kosmas", 6, "resources/Kosmas.png");
+        super("Kosmas","Common", 6, "resources/Kosmas.png");
         skill1=50;
         skill2=50;
         snama1="Defend";
