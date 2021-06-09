@@ -324,4 +324,8 @@ public abstract class Card extends JLabel implements Serializable {
     public void setHeal(int heal) {
         this.heal = heal;
     }
+
+    public Battle getBattle() {
+        return battle;
+    }
 }

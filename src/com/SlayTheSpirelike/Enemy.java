@@ -28,6 +28,8 @@ public abstract class Enemy extends Sprite {
         this.desc3 = "";
     }
 
+    public abstract Enemy copy();
+
     public void attack(Kapal k, Enemy e, Battle b, int damage){
         if(!b.isInvincible()){
             int attack = damage + e.getAttack() - e.getWeak();

@@ -78,4 +78,8 @@ public class EarthshakerEnemy extends Enemy {
         }
     }
 
+    @Override
+    public Enemy copy() {
+        return new EarthshakerEnemy();
+    }
 }

@@ -19,7 +19,9 @@ public abstract class Sprite extends JLabel implements Serializable {
         this.image = image;
     }
 
-    public void setDimension(int x, int y, int width, int height){
+    @Override
+    public void setBounds(int x, int y, int width, int height) {
+        super.setBounds(x, y, width, height);
         this.x = x;
         this.y = y;
         this.width = width;

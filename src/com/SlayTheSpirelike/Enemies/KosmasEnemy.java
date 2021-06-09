@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class KosmasEnemy extends Enemy {
     public KosmasEnemy() {
-        super("Kosmas", 6, "");
+        super("Kosmas", 6, "resources/Kosmas.png");
         skill1=50;
         skill2=50;
         snama1="Defend";
@@ -23,5 +23,10 @@ public class KosmasEnemy extends Enemy {
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
         attack(kapal,enemy,battle,2);
+    }
+
+    @Override
+    public Enemy copy() {
+        return new KosmasEnemy();
     }
 }

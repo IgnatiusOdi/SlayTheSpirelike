@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class CungEnemy extends Enemy {
     public CungEnemy() {
-        super("Cung", 15, "");
+        super("Cung", 15, "resources/Cung.png");
         skill1=60;
         skill2=40;
         snama1="Weak Attack";
@@ -23,5 +23,10 @@ public class CungEnemy extends Enemy {
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
         enemy.setAttack(enemy.getAttack()+3);
+    }
+
+    @Override
+    public Enemy copy() {
+        return new CungEnemy();
     }
 }

@@ -45,10 +45,6 @@ public class Assets {
         plank1 = ImageLoader.crop(boardSet, 111, 11, 214, 44);
         plank2 = ImageLoader.crop(boardSet, 111, 55, 214, 40);
         plank3 = ImageLoader.crop(boardSet, 111, 95, 214, 40);
-//        logPress = ImageLoader.crop(btnSheet, 40, 185, 170, 70);
-//        board = ImageLoader.crop(btnSheet, 45, (185 + 80), 170, 75);
-//        btn1norm = ImageLoader.crop(btnSheet, 400, 270, 145, 350-270);
-//        btn1press = ImageLoader.crop(btnSheet, 400, 350, 145, 420-350);
     }
     
 }

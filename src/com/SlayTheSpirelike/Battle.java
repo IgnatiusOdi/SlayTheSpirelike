@@ -22,7 +22,7 @@ public class Battle extends JPanel {
     private final JPanel returnPanel;
     private Kapal player;
 
-    private JLabel  playerSprite,
+    private JLabel  playerSprite, enemySprite,
                     energy,
                     endTurn;
     private ArrayList<Potion> potions;
@@ -70,7 +70,9 @@ public class Battle extends JPanel {
     public Battle(Body body, JPanel returnPanel, Kapal player) {
         this.body = body;
         this.returnPanel = returnPanel;
+        this.rnd = new Random();
         this.player = player;
+        this.enemy = randEnemy();
         this.strengthtemp=0;
         this.strength=0;
         this.potionchance = 100;
@@ -79,7 +81,6 @@ public class Battle extends JPanel {
         this.bleed = 0;
         this.bleeddmg = 1;
         this.energyplus = 0;
-        this.rnd = new Random();
         hand = new ArrayList<>(5);
         singleuse = new ArrayList<>();
         usedpotions = new ArrayList<>();
@@ -103,7 +104,6 @@ public class Battle extends JPanel {
         // TODO: 01/06/2021 testing battle
         potions = player.getPotion();
         for (int i = 0; i < potions.size(); i++) {
-            potions.get(i).setDimension(400 + (i*30),15,25,25);
             potions.get(i).setBounds(400 + (i*30),15,25,25);
             potions.get(i).initForBattle(player,enemy,this);
             add(potions.get(i));
@@ -111,7 +111,6 @@ public class Battle extends JPanel {
 
         relics = player.getRelic();
         for (int i = 0; i < relics.size(); i++) {
-            relics.get(i).setDimension(10 + (i*55),50,50,50);
             relics.get(i).setBounds(10 + (i*55),50,50,50);
             add(relics.get(i));
         }
@@ -132,6 +131,9 @@ public class Battle extends JPanel {
         };
         playerSprite.setBounds(30,400,PLAYER_WIDTH,PLAYER_HEIGHT);
         add(playerSprite);
+
+        enemy.setBounds(700,400,300,100);
+        add(enemy);
 
         energy = new JLabel(){
             @Override
@@ -213,6 +215,16 @@ public class Battle extends JPanel {
                 }
             }
         });
+    }
+
+    private Enemy randEnemy(){
+        int eType = rnd.nextInt(10);
+        if (eType < 7){
+            return Statics.commonEnemy.get(rnd.nextInt(Statics.commonEnemy.size())).copy();
+        } else {
+            return Statics.eliteEnemy.get(rnd.nextInt(Statics.eliteEnemy.size())).copy();
+        }
+
     }
 
     //escape, no reward

@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class EzleEnemy extends Enemy {
     public EzleEnemy() {
-        super("Ezle", 13, "");
+        super("Ezle", 13, "resources/Ezle.png");
         skill1 = 100;
         snama1 = "Flail";
         desc1 = "Deal 3 damage,\n" +
@@ -17,5 +17,10 @@ public class EzleEnemy extends Enemy {
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
         attack(kapal,enemy,battle,3);
         enemy.setBlock(enemy.getBlock()+3);
+    }
+
+    @Override
+    public Enemy copy() {
+        return new EzleEnemy();
     }
 }

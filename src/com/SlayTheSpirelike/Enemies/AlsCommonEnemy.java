@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class AlsCommonEnemy extends Enemy {
     public AlsCommonEnemy() {
-        super("Als (Common)", 20, "");
+        super("Als (Common)", 20, "resources/ALS_Common.png");
         skill1=50;
         skill2=50;
         snama1="Weak Attack";
@@ -23,5 +23,10 @@ public class AlsCommonEnemy extends Enemy {
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
         enemy.setBlock(enemy.getBlock()+5);
+    }
+
+    @Override
+    public Enemy copy() {
+        return new AlsCommonEnemy();
     }
 }

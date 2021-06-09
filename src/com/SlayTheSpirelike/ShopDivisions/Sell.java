@@ -62,15 +62,15 @@ public class Sell extends JPanel{
 
     private void showCard() {
         cardplace.removeAll();
-        int cardheight = 220 * (1 + (kapal.card.size()/5));
+        int cardheight = 220 * (1 + (kapal.getCard().size()/5));
         cardplace.setPreferredSize(new Dimension(this.getWidth() - 20, cardheight));
         ArrayList<JLabel> cards = new ArrayList<>();
-        for (int i = 0; i < kapal.card.size(); i++) {
+        for (int i = 0; i < kapal.getCard().size(); i++) {
             Card mycard = kapal.getCard(i);
             cards.add(new JLabel() {
                 @Override
                 protected void paintComponent(Graphics g) {
-                    switch (mycard.type) {
+                    switch (mycard.getType()) {
                         case "Self" -> g.setColor(Color.BLUE);
                         case "Enemy" -> g.setColor(Color.GREEN);
                         case "Battle" -> g.setColor(Color.MAGENTA);
@@ -78,27 +78,30 @@ public class Sell extends JPanel{
                     g.fillRect(0,0, this.getWidth(), this.getHeight());
                     g.setColor(Color.BLACK);
                     g.setFont(new Font("Monospace", Font.BOLD, 15));
-                    g.drawString(mycard.nama,10, this.getHeight()/4);
+                    g.drawString(mycard.getNama(),10, this.getHeight()/4);
                     g.drawImage(Assets.energy,0,0,20,20,null);
-                    g.drawString(String.valueOf(mycard.cost),22,15);
+                    g.drawString(String.valueOf(mycard.getCost()),22,15);
 
-                    String[] descSplit = mycard.desc.split("\n");
+                    String[] descSplit = mycard.getDesc().split("\n");
                     for (int i = 0; i < descSplit.length; i++) {
                         g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
                     }
                     super.paintComponent(g);
                 }
             });
+            // TODO: 09/06/2021 Mouse Listener Overlap 
             mycard.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                    if (n == JOptionPane.YES_OPTION) {
-                        kapal.setCoin(kapal.getCoin() + 50);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
-                        kapal.card.remove(mycard);
-                        JOptionPane.showMessageDialog(null,"You got 50C");
-                        showCard();
+                    if (((Card)e.getSource()).getBattle()==null){
+                        int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                        if (n == JOptionPane.YES_OPTION) {
+                            kapal.setCoin(kapal.getCoin() + 50);
+                            coinplayer.setText(String.valueOf(kapal.getCoin()));
+                            kapal.getCard().remove(mycard);
+                            JOptionPane.showMessageDialog(null,"You got 50C");
+                            showCard();
+                        }
                     }
                 }
                 @Override
@@ -119,10 +122,10 @@ public class Sell extends JPanel{
 
     private void showRelic() {
         relicplace.removeAll();
-        int relicheight = 155 * (1 + (kapal.relic.size()/5));
+        int relicheight = 155 * (1 + (kapal.getRelic().size()/5));
         relicplace.setPreferredSize(new Dimension(this.getWidth() - 20, relicheight));
         ArrayList<JLabel> relics = new ArrayList<>();
-        for (int i = 0; i < kapal.relic.size(); i++) {
+        for (int i = 0; i < kapal.getRelic().size(); i++) {
             Relic myrelic = kapal.getRelic(i);
             relics.add(new JLabel() {
                 @Override
@@ -131,9 +134,9 @@ public class Sell extends JPanel{
                     g.fillRect(0,0, this.getWidth(), this.getHeight());
                     g.setColor(Color.BLACK);
                     g.setFont(new Font("Monospace", Font.BOLD, 15));
-                    g.drawString(myrelic.nama,10, this.getHeight()/4);
+                    g.drawString(myrelic.getNama(),10, this.getHeight()/4);
 
-                    String[] descSplit = myrelic.desc.split("\n");
+                    String[] descSplit = myrelic.getDesc().split("\n");
                     for (int i = 0; i < descSplit.length; i++) {
                         g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
                     }
@@ -173,7 +176,7 @@ public class Sell extends JPanel{
                             JOptionPane.showMessageDialog(null,"You got 1000C");
                         }
                         coinplayer.setText(String.valueOf(kapal.getCoin()));
-                        kapal.relic.remove(myrelic);
+                        kapal.getRelic().remove(myrelic);
                         showRelic();
                     }
                 }

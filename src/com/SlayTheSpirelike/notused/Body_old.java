@@ -38,7 +38,6 @@ public class Body_old implements Runnable{
         display.getFrame().addMouseWheelListener(mouse);
         
 //        Assets.init();
-        // TODO: 07/05/2021 state
         mainMenu = new MainMenu_old(this);
 
         State.setCurrent(mainMenu);

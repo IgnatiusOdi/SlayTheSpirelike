@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class AlsEliteEnemy extends Enemy {
     public AlsEliteEnemy() {
-        super("Als (Elite)", 20, "");
+        super("Als (Elite)", 20, "resources/ALS_Elite.png");
         skill1=30;
         skill2=30;
         skill3=40;
@@ -33,5 +33,10 @@ public class AlsEliteEnemy extends Enemy {
     @Override
     public void useSkill3(Kapal kapal, Enemy enemy, Battle battle) {
         attack(kapal,enemy,battle,9);
+    }
+
+    @Override
+    public Enemy copy() {
+        return new AlsEliteEnemy();
     }
 }

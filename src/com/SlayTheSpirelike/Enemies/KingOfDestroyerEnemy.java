@@ -46,4 +46,9 @@ public class KingOfDestroyerEnemy extends Enemy {
     public void useSkill3(Kapal kapal, Enemy enemy, Battle battle) {
         attack(kapal,enemy,battle,30);
     }
+
+    @Override
+    public Enemy copy() {
+        return new KingOfDestroyerEnemy();
+    }
 }

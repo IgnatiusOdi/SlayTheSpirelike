@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class WaoWaoEnemy extends Enemy {
     public WaoWaoEnemy() {
-        super("Wao Wao", 10, "");
+        super("Wao Wao", 10, "resources/WaoWao.png");
         skill1=60;
         skill2=20;
         skill3=20;
@@ -35,5 +35,10 @@ public class WaoWaoEnemy extends Enemy {
     public void useSkill3(Kapal kapal, Enemy enemy, Battle battle) {
         enemy.setAttack(enemy.getAttack()+1);
         enemy.setBlock(enemy.getBlock()+4);
+    }
+
+    @Override
+    public Enemy copy() {
+        return new WaoWaoEnemy();
     }
 }
