@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class AK170Enemy extends Enemy {
     public AK170Enemy() {
-        super("AK170", 15, "");
+        super("AK170","Common", 15, "");
         skill1=60;
         skill2=40;
         snama1="Weak Attack";

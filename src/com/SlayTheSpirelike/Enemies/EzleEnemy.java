@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class EzleEnemy extends Enemy {
     public EzleEnemy() {
-        super("Ezle", 13, "");
+        super("Ezle","Common", 13, "");
         skill1 = 100;
         snama1 = "Flail";
         desc1 = "Deal 3 damage,\n" +

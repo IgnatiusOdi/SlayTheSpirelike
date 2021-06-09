@@ -7,7 +7,7 @@ import com.SlayTheSpirelike.Kapal;
 public class KingOfDestroyerEnemy extends Enemy {
     private int ctr;
     public KingOfDestroyerEnemy() {
-        super("King of Destroyer", 50, "resources/Kingdestroyer.png");
+        super("King of Destroyer","Boss", 50, "resources/Kingdestroyer.png");
         skill1=70;
         skill2=30;
         snama1="Count";

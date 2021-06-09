@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class WaoWaoEnemy extends Enemy {
     public WaoWaoEnemy() {
-        super("Wao Wao", 10, "");
+        super("Wao Wao","Common", 10, "");
         skill1=60;
         skill2=20;
         skill3=20;
