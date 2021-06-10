@@ -89,11 +89,11 @@ public class Sell extends JPanel{
                     super.paintComponent(g);
                 }
             });
-            // TODO: 09/06/2021 Mouse Listener Overlap 
+
             mycard.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (((Card)e.getSource()).getBattle()==null){
+                    if (((Card)e.getSource()).getBattle()==null && !e.isConsumed()){
                         int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         if (n == JOptionPane.YES_OPTION) {
                             kapal.setCoin(kapal.getCoin() + 50);
@@ -103,6 +103,7 @@ public class Sell extends JPanel{
                             showCard();
                         }
                     }
+                    e.consume();
                 }
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -146,38 +147,40 @@ public class Sell extends JPanel{
             myrelic.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    int n;
-                    if (myrelic.getRarity().equals("Common")) {
-                        n = JOptionPane.showConfirmDialog(null, "You will get 75C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                    } else if (myrelic.getRarity().equals("Uncommon")) {
-                        n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                    } else if (myrelic.getRarity().equals("Rare")) {
-                        n = JOptionPane.showConfirmDialog(null, "You will get 300C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                    } else if (myrelic.getRarity().equals("Shop")) {
-                        n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                    } else {
-                        n = JOptionPane.showConfirmDialog(null, "You will get 1000C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                    }
-                    if (n == JOptionPane.YES_OPTION) {
+                    if (!myrelic.isActive()) {
+                        int n;
                         if (myrelic.getRarity().equals("Common")) {
-                            kapal.setCoin(kapal.getCoin() + 75);
-                            JOptionPane.showMessageDialog(null,"You got 75C");
+                            n = JOptionPane.showConfirmDialog(null, "You will get 75C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         } else if (myrelic.getRarity().equals("Uncommon")) {
-                            kapal.setCoin(kapal.getCoin() + 150);
-                            JOptionPane.showMessageDialog(null,"You got 150C");
+                            n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         } else if (myrelic.getRarity().equals("Rare")) {
-                            kapal.setCoin(kapal.getCoin() + 300);
-                            JOptionPane.showMessageDialog(null,"You got 300C");
+                            n = JOptionPane.showConfirmDialog(null, "You will get 300C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         } else if (myrelic.getRarity().equals("Shop")) {
-                            kapal.setCoin(kapal.getCoin() + 150);
-                            JOptionPane.showMessageDialog(null,"You got 150C");
+                            n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         } else {
-                            kapal.setCoin(kapal.getCoin() + 300);
-                            JOptionPane.showMessageDialog(null,"You got 1000C");
+                            n = JOptionPane.showConfirmDialog(null, "You will get 1000C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         }
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
-                        kapal.getRelic().remove(myrelic);
-                        showRelic();
+                        if (n == JOptionPane.YES_OPTION) {
+                            if (myrelic.getRarity().equals("Common")) {
+                                kapal.setCoin(kapal.getCoin() + 75);
+                                JOptionPane.showMessageDialog(null,"You got 75C");
+                            } else if (myrelic.getRarity().equals("Uncommon")) {
+                                kapal.setCoin(kapal.getCoin() + 150);
+                                JOptionPane.showMessageDialog(null,"You got 150C");
+                            } else if (myrelic.getRarity().equals("Rare")) {
+                                kapal.setCoin(kapal.getCoin() + 300);
+                                JOptionPane.showMessageDialog(null,"You got 300C");
+                            } else if (myrelic.getRarity().equals("Shop")) {
+                                kapal.setCoin(kapal.getCoin() + 150);
+                                JOptionPane.showMessageDialog(null,"You got 150C");
+                            } else {
+                                kapal.setCoin(kapal.getCoin() + 300);
+                                JOptionPane.showMessageDialog(null,"You got 1000C");
+                            }
+                            coinplayer.setText(String.valueOf(kapal.getCoin()));
+                            kapal.getRelic().remove(myrelic);
+                            showRelic();
+                        }
                     }
                 }
                 @Override

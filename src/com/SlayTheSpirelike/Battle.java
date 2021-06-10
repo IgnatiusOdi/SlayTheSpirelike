@@ -41,10 +41,12 @@ public class Battle extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Color bgGray = new Color(101, 101, 101, 191);
+
         g.drawImage(Assets.battle1BG,0,0,body.getWidth(),body.getHeight(),null);
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
 
-        g.setColor(new Color(101, 101, 101, 191));
+        g.setColor(bgGray);
         g.fillRect(0,0,body.getWidth(),50);
 
         g.setColor(Color.BLACK);
@@ -56,8 +58,26 @@ public class Battle extends JPanel {
         g.drawImage(Assets.coin,350,15,25,25,null);
         g.drawString(String.valueOf(player.getCoin()),380,35);
 
+        g.setColor(bgGray);
+        g.fillRect(70,320,100,50);
+        g.drawImage(Assets.energy,70,320,50,50,null);
+        g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",30));
+        g.setColor(Color.yellow);
+        g.drawString(String.valueOf(player.getEnergy()),130,360);
+
         g.drawImage(Assets.shield,350,420,50,50,null);
+        g.setColor(Color.black);
+        g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
         g.drawString(String.valueOf(player.getBlock()),368,453);
+
+        g.setColor(bgGray);
+        g.fillRect(700,350,100,25);
+        g.drawImage(Assets.heart,700,350,25,25,null);
+        g.setColor(Color.black);
+        g.drawString(enemy.getHealth() + "/" + enemy.getMaxhealth(),730,370);
+
+        g.drawImage(Assets.shield,650,420,50,50,null);
+        g.drawString(String.valueOf(enemy.getBlock()),668,453);
 
         g.drawImage(Assets.deck, 10,580,40,55,null);
         g.setColor(Color.red);
@@ -90,7 +110,7 @@ public class Battle extends JPanel {
         initComponents();
 
 
-        //battle Begins
+        // Battle Begins ////////////////////////////////////////////////////////
 
         initPlayer();
         draw(5);
@@ -101,7 +121,6 @@ public class Battle extends JPanel {
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
 
-        // TODO: 01/06/2021 testing battle
         potions = player.getPotion();
         for (int i = 0; i < potions.size(); i++) {
             potions.get(i).setBounds(400 + (i*30),15,25,25);
@@ -135,21 +154,21 @@ public class Battle extends JPanel {
         enemy.setBounds(700,400,300,100);
         add(enemy);
 
-        energy = new JLabel(){
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.setColor(new Color(101, 101, 101, 191));
-                g.fillRect(0,0,100,50);
-                g.drawImage(Assets.energy,0,0,50,50,null);
-
-                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",30));
-                g.setColor(Color.yellow);
-                g.drawString(String.valueOf(player.getEnergy()),60,40);
-            }
-        };
-        energy.setBounds(70,320,100,50);
-        add(energy);
+//        energy = new JLabel(){
+//            @Override
+//            protected void paintComponent(Graphics g) {
+//                super.paintComponent(g);
+//                g.setColor(new Color(101, 101, 101, 191));
+//                g.fillRect(0,0,100,50);
+//                g.drawImage(Assets.energy,0,0,50,50,null);
+//
+//                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",30));
+//                g.setColor(Color.yellow);
+//                g.drawString(String.valueOf(player.getEnergy()),60,40);
+//            }
+//        };
+//        energy.setBounds(70,320,100,50);
+//        add(energy);
 
         endTurn = new JLabel(){
             @Override
@@ -161,11 +180,14 @@ public class Battle extends JPanel {
             }
         };
         endTurn.setBounds(1020,590,130,40);
+
+        final Battle b = this;
         endTurn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 returnHand();
+                enemy.useSkill(player,enemy,b);
                 draw(5);
                 repaint();revalidate();invalidate();
             }
@@ -232,7 +254,53 @@ public class Battle extends JPanel {
         body.setPanel(returnPanel);
     }
 
-    // TODO: 31/05/2021 Enemy not redy
+    public void endBattle(String winner){
+        returnHand();
+        forceDisposePotions();
+        deInitPlayer();
+
+        removeAll();
+        JLabel grayOut = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(new Color(101, 101, 101, 191));
+                g.fillRect(0,0, body.getWidth(), body.getHeight());
+
+                g.setColor(Color.yellow);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",50));
+                if (winner.equals("p")){
+                    g.drawString("You Win",body.getWidth()/2 - 100,body.getHeight()/2 - 25);
+                } else if (winner.equals("e")) {
+                    g.drawString("You Lose",body.getWidth()/2 - 100,body.getHeight()/2 - 25);
+                }
+            }
+        };
+        grayOut.setBounds(0,0, body.getWidth(), body.getHeight());
+
+        //if player wins, send to map. if enemy wins, send to main menu
+        if (winner.equals("p")) {
+            grayOut.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    body.setPanel(returnPanel);
+                }
+            });
+        } else if (winner.equals("e")){
+            grayOut.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    body.setPanel(new MainMenu(body));
+                }
+            });
+        }
+        add(grayOut);
+
+        repaint();
+    }
+
     private void initPlayer(){
         System.out.println(player.getCard().size());
         for (Card card : player.getCard()) {
@@ -280,7 +348,7 @@ public class Battle extends JPanel {
     //return all cards on hand to deck
     private void returnHand(){
         //for torpedo card
-//        hand.removeIf(Card::isDispose);
+//        hand.removeIf(Card::isDispose); conflicted, don't uncomment
         player.getCard().addAll(hand);
         for (Card card : hand) {
             remove(card);

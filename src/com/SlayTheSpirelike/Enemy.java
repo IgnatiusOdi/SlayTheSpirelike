@@ -51,6 +51,11 @@ public abstract class Enemy extends Sprite {
                 attack=0;
             }
             k.setHealth(k.getHealth()-attack);
+
+            //Player lose detection
+            if (!k.isAlive()) {
+                b.endBattle("e");
+            }
         }
         else{
             b.setInvincible(false);
