@@ -30,6 +30,7 @@ public abstract class Card extends JLabel implements Serializable {
                     e.consume();
                 }
             } else {
+                // TODO: 10/06/2021 debug message 
                 System.out.println(((Card)e.getSource()).battle);
             }
         }
