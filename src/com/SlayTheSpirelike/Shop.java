@@ -231,6 +231,7 @@ public class Shop extends JPanel {
         upgradeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                u.refresh();
                 body.setPanel(u);
                 mouseExited(e);
             }

@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Sell extends JPanel{
@@ -89,19 +88,23 @@ public class Sell extends JPanel{
                     super.paintComponent(g);
                 }
             });
-            // TODO: 09/06/2021 Mouse Listener Overlap 
+            // TODO: 09/06/2021 Mouse Listener Overlap
             cards.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (((Card)e.getSource()).getBattle()==null){
                         int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         if (n == JOptionPane.YES_OPTION) {
-                            kapal.setCoin(kapal.getCoin() + 50);
-                            coinplayer.setText(String.valueOf(kapal.getCoin()));
-                            kapal.getCard().remove(mycard);
-                            sellcardcounter++;
-                            JOptionPane.showMessageDialog(null,"You got 50C");
-                            showCard();
+                            if (sellcardcounter == 0) {
+                                kapal.setCoin(kapal.getCoin() + 50);
+                                coinplayer.setText(String.valueOf(kapal.getCoin()));
+                                kapal.getCard().remove(mycard);
+                                sellcardcounter++;
+                                JOptionPane.showMessageDialog(null,"You got 50C");
+                                showCard();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "You already sold card once", "Access Denied", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     }
                 }
@@ -182,7 +185,7 @@ public class Sell extends JPanel{
                             sellreliccounter++;
                             showRelic();
                         } else {
-                            JOptionPane.showMessageDialog(null, "You already sold relic 1x", "Access Denied", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "You already sold relic once", "Access Denied", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
