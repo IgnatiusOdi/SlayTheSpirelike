@@ -5,7 +5,7 @@ import com.SlayTheSpirelike.Potion;
 
 public class HealthPotion extends Potion {
     public HealthPotion() {
-        super("Health Potion", "Self","Common","resources/HealthPotion.png","Heal for 20% of your max hp");
+        super("Health Potion", "Self","Common","resources/HealthPotion.png","Heal for 20% of\n" + "your max hp");
     }
 
     @Override

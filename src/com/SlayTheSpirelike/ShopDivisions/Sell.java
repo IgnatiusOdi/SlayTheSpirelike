@@ -22,14 +22,14 @@ public class Sell extends JPanel{
     int sellreliccounter = 1;
 
     //SIZE
-    final int width = 200;
-    final int height = 220;
-    final int space = 25;
+    private final int width = 200;
+    private final int height = 220;
+    private final int space = 25;
 
     //IMAGE
     private final Image hangingsign = new ImageIcon("resources/hangingsign.png").getImage();
-    private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
     private final Image wood = new ImageIcon("resources/woodtextures.jpg").getImage();
+    private final Image woodbg = new ImageIcon("resources/woodbg.jpg").getImage();
     private final Image coinimg = new ImageIcon("resources/coin.png").getImage();
 
     //PROPERTIES
@@ -89,18 +89,23 @@ public class Sell extends JPanel{
                     super.paintComponent(g);
                 }
             });
-
-            mycard.addMouseListener(new MouseAdapter() {
+            // TODO: 09/06/2021 Mouse Listener Overlap
+            cards.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (((Card)e.getSource()).getBattle()==null && !e.isConsumed()){
                         int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         if (n == JOptionPane.YES_OPTION) {
-                            kapal.setCoin(kapal.getCoin() + 50);
-                            coinplayer.setText(String.valueOf(kapal.getCoin()));
-                            kapal.getCard().remove(mycard);
-                            JOptionPane.showMessageDialog(null,"You got 50C");
-                            showCard();
+                            if (sellcardcounter == 0) {
+                                kapal.setCoin(kapal.getCoin() + 50);
+                                coinplayer.setText(String.valueOf(kapal.getCoin()));
+                                kapal.getCard().remove(mycard);
+                                sellcardcounter++;
+                                JOptionPane.showMessageDialog(null,"You got 50C");
+                                showCard();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "You already sold card once", "Access Denied", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     }
                     e.consume();
@@ -147,20 +152,20 @@ public class Sell extends JPanel{
             myrelic.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (!myrelic.isActive()) {
-                        int n;
-                        if (myrelic.getRarity().equals("Common")) {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 75C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        } else if (myrelic.getRarity().equals("Uncommon")) {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        } else if (myrelic.getRarity().equals("Rare")) {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 300C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        } else if (myrelic.getRarity().equals("Shop")) {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        } else {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 1000C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        }
-                        if (n == JOptionPane.YES_OPTION) {
+                    int n;
+                    if (myrelic.getRarity().equals("Common")) {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 75C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    } else if (myrelic.getRarity().equals("Uncommon")) {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    } else if (myrelic.getRarity().equals("Rare")) {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 300C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    } else if (myrelic.getRarity().equals("Shop")) {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    } else {
+                        n = JOptionPane.showConfirmDialog(null, "You will get 1000C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                    }
+                    if (n == JOptionPane.YES_OPTION) {
+                        if (sellreliccounter == 0) {
                             if (myrelic.getRarity().equals("Common")) {
                                 kapal.setCoin(kapal.getCoin() + 75);
                                 JOptionPane.showMessageDialog(null,"You got 75C");
@@ -179,7 +184,10 @@ public class Sell extends JPanel{
                             }
                             coinplayer.setText(String.valueOf(kapal.getCoin()));
                             kapal.getRelic().remove(myrelic);
+                            sellreliccounter++;
                             showRelic();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "You already sold relic once", "Access Denied", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
@@ -277,7 +285,7 @@ public class Sell extends JPanel{
         coinsymbol.setBounds(870,60,50,50);
         add(coinsymbol);
 
-        //PLAYER COIN
+        //COIN PLAYER
         coinplayer.setBounds(930,60,150,50);
         coinplayer.setFont(new Font("Monospace",Font.BOLD,30));
         coinplayer.setForeground(Color.white);
