@@ -90,7 +90,7 @@ public class Sell extends JPanel{
                 }
             });
             // TODO: 09/06/2021 Mouse Listener Overlap 
-            mycard.addMouseListener(new MouseAdapter() {
+            cards.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (((Card)e.getSource()).getBattle()==null){

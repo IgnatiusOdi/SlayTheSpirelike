@@ -223,7 +223,8 @@ public class Draw extends JPanel {
                                             super.paintComponent(g);
                                         }
                                     };
-                                    card.setVerticalAlignment(card.TOP);
+                                    repaint();
+                                    revalidate();
                                     JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.tankerCards.get(random).getNama());
                                 } else if (kapal instanceof Warship) {
                                     random = (int) (Math.random() * Statics.warshipCards.size());
