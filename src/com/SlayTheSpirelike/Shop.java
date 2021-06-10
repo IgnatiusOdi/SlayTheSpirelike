@@ -198,6 +198,7 @@ public class Shop extends JPanel {
         drawButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                d.refresh();
                 body.setPanel(d);
                 mouseExited(e);
             }

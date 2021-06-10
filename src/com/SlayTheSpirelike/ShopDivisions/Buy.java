@@ -1380,8 +1380,6 @@ public class Buy extends JPanel implements Serializable {
         return potion;
     }
 
-
-
     public int getSlot1price() {
         return slot1price;
     }
