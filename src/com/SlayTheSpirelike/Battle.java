@@ -154,22 +154,6 @@ public class Battle extends JPanel {
         enemy.setBounds(700,400,300,100);
         add(enemy);
 
-//        energy = new JLabel(){
-//            @Override
-//            protected void paintComponent(Graphics g) {
-//                super.paintComponent(g);
-//                g.setColor(new Color(101, 101, 101, 191));
-//                g.fillRect(0,0,100,50);
-//                g.drawImage(Assets.energy,0,0,50,50,null);
-//
-//                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",30));
-//                g.setColor(Color.yellow);
-//                g.drawString(String.valueOf(player.getEnergy()),60,40);
-//            }
-//        };
-//        energy.setBounds(70,320,100,50);
-//        add(energy);
-
         endTurn = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
@@ -209,16 +193,63 @@ public class Battle extends JPanel {
             }
         });
 
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_I,0),"fillHealth");
+        getActionMap().put("fillHealth",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Fill health");
+                player.setHealth(100);
+                repaint();
+            }
+        });
+
         getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_K,0),"addCard");
         getActionMap().put("addCard",new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Scanner s = new Scanner(System.in);
+                System.out.print("Card type:");
+                int type = s.nextInt();
                 System.out.print("Card Num:");
-                Card c = Statics.commonCards.get(s.nextInt()).copy();
+                Card c;
+                if (type==0){
+                    c = Statics.commonCards.get(s.nextInt()).copy();
+                } else if (type==1){
+                    c = Statics.tankerCards.get(s.nextInt()).copy();
+                } else if (type==2){
+                    c = Statics.warshipCards.get(s.nextInt()).copy();
+                } else {
+                    c = Statics.aircraftCards.get(s.nextInt()).copy();
+                }
                 c.initForBattle(player,enemy,b);
                 hand.add(c);
                 displayCard();
+                repaint();
+            }
+        });
+
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_R,0),"addRelic");
+        getActionMap().put("addRelic",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Scanner s = new Scanner(System.in);
+                System.out.print("Relic type");
+                int type = s.nextInt();
+                System.out.print("Relic Num:");
+                Relic r;
+                if (type==1){
+                    r = Statics.commonRelic.get(s.nextInt()).copy();
+                } else if (type==2){
+                    r = Statics.uncommonRelic.get(s.nextInt()).copy();
+                } else if (type==3){
+                    r = Statics.rareRelic.get(s.nextInt()).copy();
+                } else if (type==4){
+                    r = Statics.shopRelic.get(s.nextInt()).copy();
+                } else {
+                    r = Statics.bossRelic.get(s.nextInt()).copy();
+                }
+                r.activate(player,enemy,b);
+                player.addRelic(r);
                 repaint();
             }
         });
