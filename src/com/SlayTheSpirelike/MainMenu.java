@@ -72,7 +72,7 @@ public class MainMenu extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Map m = new Map(body,new Kapal("TEMP","TEMP") {});
+                Map m = new Map(body,new Kapal("TEMP","TEMP") {}, 0);
                 new LoadGame(m);
                 body.setPanel(m);
             }

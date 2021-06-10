@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
-    public static BufferedImage     mainMenuBackground_old, battle1BG,
+    public static BufferedImage     mainMenuBackground_old, battle1BG, battle2BG,
                                     tanker,warship,carrier,
                                     board, plank1,plank2,plank3,
                                     map, enemyTile, treasureTile, fuelTile, shopTile,
                                     arrowRight, arrowDown, arrowLeft, arrowUp,
-                                    fuelTank,coin,heart,energy,deck,shield;
+                                    fuelTank,coin,heart,energy,deck,shield,
+                                    boss1, boss2;
 
     public static ImageIcon mainMenuBG;
     
@@ -17,6 +18,7 @@ public class Assets {
         mainMenuBG = new ImageIcon("resources/mainMenu.png");
         mainMenuBackground_old = ImageLoader.LoadImage("resources/mainMenu.png");
         battle1BG = ImageLoader.LoadImage("resources/battle1.png");
+        battle2BG = ImageLoader.LoadImage("resources/battle2.png");
         tanker = ImageLoader.LoadImage("resources/tanker.png");
         warship = ImageLoader.LoadImage("resources/warship.png");
         carrier = ImageLoader.LoadImage("resources/aircraft.png");
@@ -32,6 +34,8 @@ public class Assets {
         treasureTile = ImageLoader.LoadImage("resources/event.png");
         fuelTile = ImageLoader.LoadImage("resources/fuel.png");
         shopTile = ImageLoader.LoadImage("resources/desainshop.png");
+        boss1 = ImageLoader.LoadImage("resources/Kingdestroyer.png");
+        boss2 = ImageLoader.LoadImage("resources/earthshaker.png");
 
 //        board2 = ImageLoader.crop("/screen.jpg", 105, 70 ,  394-105,99 );
 

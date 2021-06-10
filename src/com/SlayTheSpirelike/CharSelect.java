@@ -310,7 +310,7 @@ public class CharSelect extends JPanel {
                     } else {
                         player = new Aircraft(nameField.getText());
                     }
-                    body.setPanel(new Map(body,player));
+                    body.setPanel(new Map(body,player,1));
                 }
             }
         });

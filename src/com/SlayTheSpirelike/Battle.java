@@ -1,6 +1,8 @@
 package com.SlayTheSpirelike;
 
 import com.SlayTheSpirelike.Cards.TorpedoCard;
+import com.SlayTheSpirelike.Enemies.EarthshakerEnemy;
+import com.SlayTheSpirelike.Enemies.KingOfDestroyerEnemy;
 import com.SlayTheSpirelike.Potions.InvinciblePotion;
 import com.SlayTheSpirelike.Potions.RevivePotion;
 import com.SlayTheSpirelike.Potions.SummonPotion;
@@ -20,11 +22,8 @@ public class Battle extends JPanel {
     private Random rnd;
     private final Body body;
     private final JPanel returnPanel;
+    private JLabel playerSprite, endTurn;
     private Kapal player;
-
-    private JLabel  playerSprite, enemySprite,
-                    energy,
-                    endTurn;
     private ArrayList<Potion> potions;
     private ArrayList<Potion> usedpotions;
     private ArrayList<Relic> relics;
@@ -36,6 +35,8 @@ public class Battle extends JPanel {
     private int heal, energyplus; //untuk self repair //untuk Denium Shielding
     private boolean invincible, nopotion;
     private int bleed, bleeddmg;
+    private int stage;
+    private boolean boss;
 
     //override to draw image
     @Override
@@ -43,7 +44,11 @@ public class Battle extends JPanel {
         super.paintComponent(g);
         Color bgGray = new Color(101, 101, 101, 191);
 
-        g.drawImage(Assets.battle1BG,0,0,body.getWidth(),body.getHeight(),null);
+        if (stage==1) {
+            g.drawImage(Assets.battle1BG,0,0,body.getWidth(),body.getHeight(),null);
+        } else {
+            g.drawImage(Assets.battle2BG,0,0,body.getWidth(),body.getHeight(),null);
+        }
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
 
         g.setColor(bgGray);
@@ -87,12 +92,8 @@ public class Battle extends JPanel {
         g.drawString(String.valueOf(player.getCard().size()),48,638);
     }
 
-    public Battle(Body body, JPanel returnPanel, Kapal player) {
-        this.body = body;
-        this.returnPanel = returnPanel;
-        this.rnd = new Random();
-        this.player = player;
-        this.enemy = randEnemy();
+    //INIT BLOCK
+    {
         this.strengthtemp=0;
         this.strength=0;
         this.potionchance = 100;
@@ -101,9 +102,19 @@ public class Battle extends JPanel {
         this.bleed = 0;
         this.bleeddmg = 1;
         this.energyplus = 0;
+        this.rnd = new Random();
         hand = new ArrayList<>(5);
         singleuse = new ArrayList<>();
         usedpotions = new ArrayList<>();
+    }
+
+    public Battle(Body body, JPanel returnPanel, Kapal player,int stage) {
+        this.boss = false;
+        this.body = body;
+        this.returnPanel = returnPanel;
+        this.player = player;
+        this.enemy = randEnemy();
+        this.stage = stage;
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
 
@@ -115,6 +126,29 @@ public class Battle extends JPanel {
         initPlayer();
         draw(5);
 
+    }
+
+    //for boss, bossflag b1 = KD, b2 = EI
+    public Battle(Body body, JPanel returnPanel, Kapal player,String bossFlag) {
+        this.boss = true;
+        this.body = body;
+        this.returnPanel = returnPanel;
+        this.player = player;
+        if (bossFlag.equals("b1")) {
+            this.stage = 1;
+            this.enemy = new KingOfDestroyerEnemy();
+        } else {
+            this.enemy = new EarthshakerEnemy();
+        }
+        setSize(body.getWidth(), body.getHeight());
+        setLayout(null);
+
+        initComponents();
+
+        // Battle Begins ////////////////////////////////////////////////////////
+
+        initPlayer();
+        draw(5);
     }
 
     private void initComponents(){
@@ -313,12 +347,17 @@ public class Battle extends JPanel {
         grayOut.setBounds(0,0, body.getWidth(), body.getHeight());
 
         //if player wins, send to map. if enemy wins, send to main menu
+        //if boss, send to next map
         if (winner.equals("p")) {
             grayOut.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
-                    body.setPanel(returnPanel);
+                    if (boss) {
+                        body.setPanel(new Map(body,player,stage++));
+                    } else {
+                        body.setPanel(returnPanel);
+                    }
                 }
             });
         } else if (winner.equals("e")){

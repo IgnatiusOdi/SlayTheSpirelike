@@ -20,6 +20,7 @@ public class Map extends JPanel implements Serializable {
     private JLabel down;
     private JLabel left;
     private JLabel right;
+    private int stage;
     private final int   COL_NUM=8, ROW_NUM=5,
                         MAP_PADDING_X=80, MAP_PADDING_Y=80,
                         MAP_WIDTH=1000, MAP_HEIGHT=500;
@@ -29,6 +30,7 @@ public class Map extends JPanel implements Serializable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(Assets.map,0,0,body.getWidth(),body.getHeight(),null);
+
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",30));
 
         g.drawImage(Assets.heart,200,20,50,50,null);
@@ -76,16 +78,22 @@ public class Map extends JPanel implements Serializable {
 //                    g.fillRect(START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20);
                     g.drawImage(Assets.treasureTile,START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20,null);
                 } else if (mapTiles[i][j] instanceof BossTile){
-                    g.setColor(Color.GREEN);
-                    g.fillRect(START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20);
+//                    g.setColor(Color.GREEN);
+//                    g.fillRect(START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20);
+                    if (stage==1) {
+                        g.drawImage(Assets.boss1,START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20,null);
+                    } else if (stage==2){
+                        g.drawImage(Assets.boss2,START_X, START_Y,(MAP_WIDTH/COL_NUM)-20,(MAP_HEIGHT/ROW_NUM)-20,null);
+                    }
                 }
             }
         }
     }
 
-    public Map(Body body, Kapal kapal) {
+    public Map(Body body, Kapal kapal, int stage) {
         this.body = body;
         this.player = kapal;
+        this.stage = stage;
         this.setLayout(null);
         setSize(body.getWidth(), body.getHeight());
 
@@ -403,7 +411,7 @@ public class Map extends JPanel implements Serializable {
             x = r.nextInt(8);
             y = r.nextInt(5);
         } while (mapTiles[y][x]!=null || (x==0 && y==0));
-        mapTiles[y][x] = new BossTile();
+        mapTiles[y][x] = new BossTile(body,this,player,stage);
         for (int i = 0; i < 2; i++) {
             do {
                 x = r.nextInt(8);
@@ -430,7 +438,7 @@ public class Map extends JPanel implements Serializable {
                 x = r.nextInt(8);
                 y = r.nextInt(5);
             } while (mapTiles[y][x]!=null || (x==0 && y==0));
-            mapTiles[y][x] = new EnemyTile(body,this,player);
+            mapTiles[y][x] = new EnemyTile(body,this,player,stage);
         }
     }
 
