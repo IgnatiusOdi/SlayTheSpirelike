@@ -51,10 +51,14 @@ public abstract class Enemy extends Sprite {
                 attack=0;
             }
             k.setHealth(k.getHealth()-attack);
+            k.activateRelic("Damaged",e,b);
 
-            //Player lose detection
+            //Player lose detection, activate death relic. if player is still dead (no death relic), end battle
             if (!k.isAlive()) {
-                b.endBattle("e");
+                k.activateRelic("Death",e,b);
+                if (!k.isAlive()) {
+                    b.endBattle("e");
+                }
             }
         }
         else{

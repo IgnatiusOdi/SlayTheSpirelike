@@ -92,7 +92,7 @@ public class Sell extends JPanel{
             cards.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (((Card)e.getSource()).getBattle()==null && !e.isConsumed()){
+                    if (!e.isConsumed()){
                         int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         if (n == JOptionPane.YES_OPTION) {
                             if (sellcardcounter == 0) {
@@ -151,6 +151,7 @@ public class Sell extends JPanel{
             myrelic.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    //relic not active = outside battle
                     if (!myrelic.isActive()) {
                         int n;
                         if (myrelic.getRarity().equals("Common")) {

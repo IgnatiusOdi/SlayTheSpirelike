@@ -47,6 +47,9 @@ public abstract class Kapal extends Sprite implements Serializable {
         for (Potion p : potion) {
             p.reConstruct();
         }
+        for (Relic r : relic) {
+            r.reConstruct();
+        }
     }
 
     public void setTwice(int t){

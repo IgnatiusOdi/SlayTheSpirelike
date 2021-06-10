@@ -131,6 +131,7 @@ public class Battle extends JPanel {
         relics = player.getRelic();
         for (int i = 0; i < relics.size(); i++) {
             relics.get(i).setBounds(10 + (i*55),50,50,50);
+            relics.get(i).setPanel(this);
             add(relics.get(i));
         }
 
@@ -171,8 +172,10 @@ public class Battle extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 returnHand();
+                player.activateRelic("End Turn",enemy,b);
                 enemy.useSkill(player,enemy,b);
                 draw(5);
+                player.activateRelic("Start Turn",enemy,b);
                 repaint();revalidate();invalidate();
             }
         });
@@ -338,6 +341,7 @@ public class Battle extends JPanel {
             card.initForBattle(player,enemy,this);
         }
         player.activateRelic("Start Battle",enemy,this);
+        player.activateRelic("Start Turn",enemy,this);
     }
 
     private void deInitPlayer(){

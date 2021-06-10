@@ -3,6 +3,9 @@ package com.SlayTheSpirelike;
 import com.SlayTheSpirelike.ShopDivisions.Buy;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
 public abstract class Relic extends Sprite implements Serializable {
@@ -19,8 +22,39 @@ public abstract class Relic extends Sprite implements Serializable {
     // - One Time
     protected String nama,rarity,condition,desc;
     protected boolean active;
+    protected JPanel panel;
 
     JFrame frame;
+
+    private class RelicMouseAdapter extends MouseAdapter {
+        //extend JLabel to override paintComponent
+        JLabel descLabel = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(new Color(255, 255,255, 127));
+                g.fillRect(0,0,desc.length()*13,40);
+                g.setColor(Color.black);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
+                g.drawString(desc,10,25);
+            }
+        };
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            super.mouseEntered(e);
+            descLabel.setBounds(x,y+height,desc.length()*13,40);
+            ((Relic)e.getSource()).getPanel().add(descLabel);
+            ((Relic)e.getSource()).getPanel().repaint();
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            super.mouseExited(e);
+            ((Relic)e.getSource()).getPanel().remove(descLabel);
+            ((Relic)e.getSource()).getPanel().repaint();
+        }
+    }
 
     public Relic(String nama, String rarity, String condition, String image, String desc) {
         super(image);
@@ -32,12 +66,17 @@ public abstract class Relic extends Sprite implements Serializable {
         this.active = true;
         this.condition = condition;
         this.desc = desc;
+        addMouseListener(new RelicMouseAdapter());
         //uncomment to look
 //        frame = new JFrame();
 //        frame.setBackground(Color.BLUE);
 //        frame.add(panel);
 //        frame.pack();
 //        frame.setVisible(true);
+    }
+
+    public void reConstruct(){
+        addMouseListener(new RelicMouseAdapter());
     }
 
     //relic yang tidak memiliki override cara kerjanya adalah, ketika kondisi tercapai, kalau ada relic ini, activate kode yang tempat itu
@@ -149,5 +188,13 @@ public abstract class Relic extends Sprite implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public JPanel getPanel() {
+        return panel;
     }
 }
