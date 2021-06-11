@@ -134,8 +134,8 @@ public class Battle extends JPanel {
         this.body = body;
         this.returnPanel = returnPanel;
         this.player = player;
+        this.stage = Integer.parseInt(bossFlag.substring(1));
         if (bossFlag.equals("b1")) {
-            this.stage = 1;
             this.enemy = new KingOfDestroyerEnemy();
         } else {
             this.enemy = new EarthshakerEnemy();
@@ -157,7 +157,7 @@ public class Battle extends JPanel {
 
         potions = player.getPotion();
         for (int i = 0; i < potions.size(); i++) {
-            potions.get(i).setBounds(400 + (i*30),15,25,25);
+            potions.get(i).setBounds(440 + (i*30),15,25,25);
             potions.get(i).initForBattle(player,enemy,this);
             add(potions.get(i));
         }
@@ -305,6 +305,15 @@ public class Battle extends JPanel {
                 }
             }
         });
+
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_P,0),"instaWin");
+        getActionMap().put("instaWin",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Insta win");
+                endBattle("p");
+            }
+        });
     }
 
     private Enemy randEnemy(){
@@ -346,15 +355,18 @@ public class Battle extends JPanel {
         };
         grayOut.setBounds(0,0, body.getWidth(), body.getHeight());
 
-        //if player wins, send to map. if enemy wins, send to main menu
+        //if player wins, give reward, send to map. if enemy wins, send to main menu
         //if boss, send to next map
         if (winner.equals("p")) {
             grayOut.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
+                    potionReward();
+                    player.setCoin(player.getCoin() + rnd.nextInt(300)+50);
+                    player.setFuel(player.getFuel() + rnd.nextInt(3));
                     if (boss) {
-                        body.setPanel(new Map(body,player,stage++));
+                        body.setPanel(new Map(body,player,++stage));
                     } else {
                         body.setPanel(returnPanel);
                     }

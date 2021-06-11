@@ -115,10 +115,10 @@ public class CharSelect extends JPanel {
                 g.fillRect(0,0, 300,100);
                 g.setColor(Color.black);
                 g.setFont(new Font("SansSerif",Font.BOLD,20));
-                // TODO: 15/05/2021 Tanker Stats
                 g.drawString("TANKER SHIP",X,Y);
-                g.drawString("Health :",X,Y+SPACE_Y);
-                g.drawString("Energy :",X,Y+2*SPACE_Y);
+                g.drawString("Health : 28",X,Y+SPACE_Y);
+                g.drawString("Highest health",X,Y+2*SPACE_Y);
+                g.drawString("Defensive playstyle",X,Y+3*SPACE_Y);
                 super.paintComponent(g);
             }
         };
@@ -184,10 +184,9 @@ public class CharSelect extends JPanel {
                 g.fillRect(0,0, 300,100);
                 g.setColor(Color.black);
                 g.setFont(new Font("SansSerif",Font.BOLD,20));
-                // TODO: 15/05/2021 Warship stats
                 g.drawString("WARSHIP",X,Y);
-                g.drawString("Health :",X,Y+SPACE_Y);
-                g.drawString("Energy :",X,Y+2*SPACE_Y);
+                g.drawString("Health : 15",X,Y+SPACE_Y);
+                g.drawString("Geared towards offensive playstyle",X,Y+2*SPACE_Y);
                 super.paintComponent(g);
             }
         };
@@ -253,10 +252,9 @@ public class CharSelect extends JPanel {
                 g.fillRect(0,0, 300,100);
                 g.setColor(Color.black);
                 g.setFont(new Font("SansSerif",Font.BOLD,20));
-                // TODO: 15/05/2021 Airship stats
                 g.drawString("AIRSHIP CARRIER",X,Y);
-                g.drawString("Health :",X,Y+SPACE_Y);
-                g.drawString("Energy :",X,Y+2*SPACE_Y);
+                g.drawString("Health : 20 ",X,Y+SPACE_Y);
+                g.drawString("Summons Attack Helicopter",X,Y+2*SPACE_Y);
                 super.paintComponent(g);
             }
         };

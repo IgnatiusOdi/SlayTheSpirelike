@@ -96,6 +96,31 @@ public class Map extends JPanel implements Serializable {
         this.stage = stage;
         this.setLayout(null);
         setSize(body.getWidth(), body.getHeight());
+        player.setMapPos(0,0);
+
+        if (stage==3) {
+            JLabel grayOut = new JLabel(){
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.setColor(new Color(101, 101, 101, 191));
+                    g.fillRect(0,0, body.getWidth(), body.getHeight());
+
+                    g.setColor(Color.yellow);
+                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",50));
+                    g.drawString("You win the game",body.getWidth()/2-200,body.getHeight()/2-25);
+                }
+            };
+            grayOut.setBounds(0,0, body.getWidth(), body.getHeight());
+            grayOut.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    body.setPanel(new MainMenu(body));
+                }
+            });
+            add(grayOut);
+        }
 
         randomizeTile();
 
@@ -368,7 +393,48 @@ public class Map extends JPanel implements Serializable {
     }
 
     private void zeroFuel(){
-        // TODO: 19/05/2021 zerofuel
+        Random r = new Random();
+        int zeroFuelFate = r.nextInt(2);
+
+        removeAll();
+        JLabel grayOut = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(new Color(101, 101, 101, 191));
+                g.fillRect(0,0, body.getWidth(), body.getHeight());
+
+                g.setColor(Color.yellow);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",50));
+                g.drawString("You ran out of fuel",body.getWidth()/2-200,body.getHeight()/2-25);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+                if (zeroFuelFate == 0) {
+                    g.drawString("An Enemy Ship found you", body.getWidth() / 2 - 100, body.getHeight() / 2 + 50);
+                } else {
+                    g.drawString("A friendly Ship found you and give you fuel", body.getWidth() / 2 - 300, body.getHeight() / 2 + 50);
+                }
+            }
+        };
+        grayOut.setBounds(0,0, body.getWidth(), body.getHeight());
+        final Map m = this;
+        grayOut.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                System.out.println(zeroFuelFate);
+                if (zeroFuelFate == 0) {
+                    body.setPanel(new Battle(body, m, player, stage));
+                } else {
+                    player.setFuel(player.getFuel()+r.nextInt(5)+3);
+                }
+                remove(grayOut);
+
+                initArrow();
+                paintMoveButton();
+                repaint();
+            }
+        });
+        add(grayOut);
     }
 
     private void checkTile(){
@@ -463,5 +529,13 @@ public class Map extends JPanel implements Serializable {
 
     public void setPlayer(Kapal player) {
         this.player = player;
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
     }
 }

@@ -26,6 +26,7 @@ public class LoadGame {
         save.getPlayer().reConstruct();
         map.setPlayer(save.getPlayer());
         map.setMapTiles(save.getMapTiles());
+        map.setStage(save.getStage());
         map.reConstruct();
     }
 }
