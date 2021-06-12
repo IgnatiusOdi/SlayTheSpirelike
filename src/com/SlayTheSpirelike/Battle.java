@@ -357,6 +357,7 @@ public class Battle extends JPanel {
 
         //if player wins, give reward, send to map. if enemy wins, send to main menu
         //if boss, send to next map
+        // TODO: 12/06/2021 card reward 
         if (winner.equals("p")) {
             grayOut.addMouseListener(new MouseAdapter() {
                 @Override
@@ -365,6 +366,12 @@ public class Battle extends JPanel {
                     potionReward();
                     player.setCoin(player.getCoin() + rnd.nextInt(300)+50);
                     player.setFuel(player.getFuel() + rnd.nextInt(3));
+                    if (stage==1){
+                        Unlockables.unlock("ship2Unlock");
+                    } else if (stage==2){
+                        Unlockables.unlock("ship3Unlock");
+                    }
+                    Unlockables.save();
                     if (boss) {
                         body.setPanel(new Map(body,player,++stage));
                     } else {

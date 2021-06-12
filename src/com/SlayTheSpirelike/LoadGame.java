@@ -9,7 +9,7 @@ public class LoadGame {
     public LoadGame(Map map){
         Save save;
         try {
-            FileInputStream fileIn = new FileInputStream("saves/save1.dat");
+            FileInputStream fileIn = new FileInputStream("saves/save1.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             save = (Save) in.readObject();
             in.close();

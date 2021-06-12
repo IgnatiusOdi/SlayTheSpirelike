@@ -16,7 +16,7 @@ public class CharSelect extends JPanel {
                         ICON_Y=100,
                         width=300,
                         height=100;
-    private boolean ship2unlocked, ship3unlocked;
+    private boolean ship2Unlocked, ship3Unlocked;
     private int selected = -1;
     private final Body body;
 
@@ -31,8 +31,8 @@ public class CharSelect extends JPanel {
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
                                                                                                                         //unlock Ship Here
-        this.ship2unlocked = true;
-        this.ship3unlocked = true;
+        this.ship2Unlocked = Unlockables.get("ship2Unlock");
+        this.ship3Unlocked = Unlockables.get("ship3Unlock");
 
         Color whiteBG = new Color(255, 255,255, 127);
         Color redSelected = new Color(255, 150,150, 127);
@@ -138,7 +138,7 @@ public class CharSelect extends JPanel {
                 }
                 g.fillRect(0,0, ICON_WIDTH,ICON_HEIGHT);
                 g.drawImage(Assets.warship, 0,0, ICON_WIDTH,ICON_HEIGHT,null);
-                if (!ship2unlocked){
+                if (!ship2Unlocked){
                     g.setColor(grayDisabled);
                     g.fillRect(0,0, ICON_WIDTH,ICON_HEIGHT);
                 }
@@ -150,21 +150,21 @@ public class CharSelect extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                if (ship2unlocked)
+                if (ship2Unlocked)
                     warship_desc.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                if (ship2unlocked)
+                if (ship2Unlocked)
                     warship_desc.setVisible(false);
             }
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if (ship2unlocked){
+                if (ship2Unlocked){
                     selected = 1;
                     tanker_icon.repaint();
                     warship_icon.repaint();
@@ -206,7 +206,7 @@ public class CharSelect extends JPanel {
                 }
                 g.fillRect(0,0, ICON_WIDTH,ICON_HEIGHT);
                 g.drawImage(Assets.carrier, 0,0, ICON_WIDTH,ICON_HEIGHT,null);
-                if (!ship3unlocked) {
+                if (!ship3Unlocked) {
                     g.setColor(grayDisabled);
                     g.fillRect(0,0, ICON_WIDTH,ICON_HEIGHT);
                 }
@@ -218,21 +218,21 @@ public class CharSelect extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                if (ship3unlocked)
+                if (ship3Unlocked)
                     airship_desc.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                if (ship3unlocked)
+                if (ship3Unlocked)
                     airship_desc.setVisible(false);
             }
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if (ship3unlocked){
+                if (ship3Unlocked){
                     selected=2;
                     tanker_icon.repaint();
                     warship_icon.repaint();

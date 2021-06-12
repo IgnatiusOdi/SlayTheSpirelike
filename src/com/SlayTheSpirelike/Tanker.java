@@ -3,7 +3,6 @@ package com.SlayTheSpirelike;
 import com.SlayTheSpirelike.Cards.AttackCard;
 import com.SlayTheSpirelike.Cards.DefendCard;
 import com.SlayTheSpirelike.Cards.HeavyArtileryCard;
-import com.SlayTheSpirelike.Relics.LizardTailRelic;
 
 public class Tanker extends Kapal {
     public Tanker(String nama) {
@@ -20,6 +19,5 @@ public class Tanker extends Kapal {
         card.add(new DefendCard());
         card.add(new DefendCard());
         card.add(new HeavyArtileryCard());
-        relic.add(new LizardTailRelic());
     }
 }
