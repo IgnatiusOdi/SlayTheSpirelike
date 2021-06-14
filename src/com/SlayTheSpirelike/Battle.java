@@ -335,50 +335,134 @@ public class Battle extends JPanel {
         returnHand();
         forceDisposePotions();
         deInitPlayer();
+        int coinReward = rnd.nextInt(300)+50;
+        int fuelReward = rnd.nextInt(3);
 
         removeAll();
-        JLabel grayOut = new JLabel(){
+        JPanel grayOut = new JPanel(){
             @Override
             protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
                 g.setColor(new Color(101, 101, 101, 191));
                 g.fillRect(0,0, body.getWidth(), body.getHeight());
 
                 g.setColor(Color.yellow);
                 g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",50));
                 if (winner.equals("p")){
-                    g.drawString("You Win",body.getWidth()/2 - 100,body.getHeight()/2 - 25);
+                    g.drawString("You Win",body.getWidth()/2 - 100, 100);
+                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",50));
                 } else if (winner.equals("e")) {
                     g.drawString("You Lose",body.getWidth()/2 - 100,body.getHeight()/2 - 25);
                 }
+                super.paintComponent(g);
             }
         };
+        grayOut.setOpaque(false);
+        grayOut.setLayout(null);
+        grayOut.setSize(body.getWidth(), body.getHeight());
         grayOut.setBounds(0,0, body.getWidth(), body.getHeight());
 
         //if player wins, give reward, send to map. if enemy wins, send to main menu
         //if boss, send to next map
-        // TODO: 12/06/2021 card reward 
         if (winner.equals("p")) {
-            grayOut.addMouseListener(new MouseAdapter() {
+            potionReward();
+            player.setCoin(player.getCoin() + coinReward);
+            player.setFuel(player.getFuel() + fuelReward);
+
+            JLabel rewardLabel = new JLabel(){
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.setColor(Color.yellow);
+                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+                    g.drawString("You get : " + coinReward + " coins and " + fuelReward + " fuel", 0,140);
+                }
+            };
+            rewardLabel.setBounds(400,30,body.getWidth()/2 - 100,160);
+            grayOut.add(rewardLabel);
+
+            MouseAdapter playerWin = new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
-                    potionReward();
-                    player.setCoin(player.getCoin() + rnd.nextInt(300)+50);
-                    player.setFuel(player.getFuel() + rnd.nextInt(3));
-                    if (stage==1){
-                        Unlockables.unlock("ship2Unlock");
-                    } else if (stage==2){
-                        Unlockables.unlock("ship3Unlock");
-                    }
-                    Unlockables.save();
                     if (boss) {
+                        if (stage==1){
+                            Unlockables.unlock("ship2Unlock");
+                        } else if (stage==2){
+                            Unlockables.unlock("ship3Unlock");
+                        }
+                        Unlockables.save();
                         body.setPanel(new Map(body,player,++stage));
                     } else {
                         body.setPanel(returnPanel);
                     }
                 }
-            });
+            };
+
+            Card cardLeft, cardRight;
+
+            if (player instanceof Tanker){
+                cardLeft = Statics.tankerCards.get(rnd.nextInt(Statics.tankerCards.size()));
+                do {
+                    cardRight = Statics.tankerCards.get(rnd.nextInt(Statics.tankerCards.size()));
+                } while (cardRight == cardLeft);
+            } else if (player instanceof Warship){
+                cardLeft = Statics.warshipCards.get(rnd.nextInt(Statics.warshipCards.size()));
+                do {
+                    cardRight = Statics.warshipCards.get(rnd.nextInt(Statics.warshipCards.size()));
+                } while (cardRight == cardLeft);
+            } else if (player instanceof Aircraft){
+                cardLeft = Statics.aircraftCards.get(rnd.nextInt(Statics.aircraftCards.size()));
+                do {
+                    cardRight = Statics.aircraftCards.get(rnd.nextInt(Statics.aircraftCards.size()));
+                } while (cardRight == cardLeft);
+            } else {
+                cardLeft = Statics.aircraftCards.get(0);
+                cardRight = Statics.aircraftCards.get(0);
+            }
+            cardLeft.setBounds(350,250,180, 200);
+            cardRight.setBounds(650,250,180, 200);
+
+            MouseAdapter rewardCardMA = new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    player.addCard(((Card)(e.getSource())).copy());
+
+                    if (boss) {
+                        if (stage==1){
+                            Unlockables.unlock("ship2Unlock");
+                        } else if (stage==2){
+                            Unlockables.unlock("ship3Unlock");
+                        }
+                        Unlockables.save();
+                        body.setPanel(new Map(body,player,++stage));
+                    } else {
+                        body.setPanel(returnPanel);
+                    }
+                }
+            };
+            cardLeft.addMouseListener(rewardCardMA);
+            cardRight.addMouseListener(rewardCardMA);
+
+            cardLeft.addMouseListener(playerWin);
+            cardRight.addMouseListener(playerWin);
+
+            grayOut.add(cardLeft);
+            grayOut.add(cardRight);
+
+            JLabel skip = new JLabel(){
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.drawImage(Assets.plank2,0,0,100,50,null);
+                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+                    g.drawString("Skip",10,30);
+                }
+            };
+            skip.setBounds(body.getWidth()/2 - 50,500,100,50);
+            skip.addMouseListener(playerWin);
+            grayOut.add(skip);
+
         } else if (winner.equals("e")){
             grayOut.addMouseListener(new MouseAdapter() {
                 @Override
@@ -433,7 +517,7 @@ public class Battle extends JPanel {
     public void displayCard(){
         for (int i = 0; i < hand.size(); i++) {
             remove(hand.get(i));
-            hand.get(i).setBounds(80 + (i * 185), 500, 180, 320);
+            hand.get(i).setBounds(80 + (i * 185), 500, 180, 200);
             add(hand.get(i));
         }
     }

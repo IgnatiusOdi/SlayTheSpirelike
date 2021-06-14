@@ -30,8 +30,7 @@ public abstract class Card extends JLabel implements Serializable {
                     e.consume();
                 }
             } else {
-                // TODO: 10/06/2021 debug message 
-                System.out.println(((Card)e.getSource()).battle);
+                System.out.println("no battle or no energy left");
             }
         }
     }
@@ -68,7 +67,7 @@ public abstract class Card extends JLabel implements Serializable {
             case "Enemy" -> g.setColor(Color.GREEN);
             case "Battle" -> g.setColor(Color.MAGENTA);
         }
-        g.fillRect(0,0,180,320);
+        g.fillRect(0,0,180,200);
         g.setColor(Color.BLACK);
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
         g.drawString(nama,10,20);
