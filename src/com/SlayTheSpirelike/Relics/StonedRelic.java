@@ -18,7 +18,6 @@ public class StonedRelic extends Relic {
 
     @Override
     public void deactivate(Kapal kapal) {
-        kapal.setBlock(0);
         super.deactivate(kapal);
     }
 
