@@ -405,6 +405,7 @@ public class Buy extends JPanel implements Serializable {
             }
         };
         slot8bought = false;
+        slot8layer = new JLabel("ALREADY HAD");
         for (int i = 0; i < kapal.getRelic().size(); i++) {
             if (kapal.getRelic().get(i).getNama().equals(relic8.getNama())) {
                 slot8bought = true;
@@ -412,7 +413,6 @@ public class Buy extends JPanel implements Serializable {
                 break;
             }
         }
-        slot8layer = new JLabel("ALREADY HAD");
         if (relic8.getRarity().equals("Shop")) {
             slot8price = 300;
         } else if (relic8.getRarity().equals("Common")) {
@@ -476,6 +476,9 @@ public class Buy extends JPanel implements Serializable {
             }
         };
         slot7bought = false;
+        slot7layer = new JLabel("ALREADY HAD");
+        slot7price = 300;
+        slot7button = new JButton(String.valueOf(slot7price));
         for (int i = 0; i < kapal.getRelic().size(); i++) {
             if (kapal.getRelic().get(i).getNama().equals(relic7.getNama())) {
                 slot7bought = true;
@@ -500,9 +503,6 @@ public class Buy extends JPanel implements Serializable {
                 break;
             }
         }
-        slot7layer = new JLabel("ALREADY HAD");
-        slot7price = 300;
-        slot7button = new JButton(String.valueOf(slot7price));
 
         //---------------------------------------------------------------------------------------------//
 

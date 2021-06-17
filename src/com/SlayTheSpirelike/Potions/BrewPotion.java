@@ -44,6 +44,7 @@ public class BrewPotion extends Potion {
                     }
                 }
             }
+            battle.initPotions();
             active = false;
         }
     }

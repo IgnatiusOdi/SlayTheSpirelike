@@ -83,7 +83,7 @@ public class Upgrade extends JPanel {
             cards.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (((Card)e.getSource()).getBattle()==null){
+                    if (!e.isConsumed()){
                         int n = JOptionPane.showConfirmDialog(null, "You upgrade this card to " + mycard.getLevel()+1 + " for " + mycard.getLevel()*100, "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         if (n == JOptionPane.YES_OPTION) {
                             kapal.setCoin(kapal.getCoin() - mycard.getLevel()*100);

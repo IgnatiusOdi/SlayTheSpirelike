@@ -155,12 +155,7 @@ public class Battle extends JPanel {
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
 
-        potions = player.getPotion();
-        for (int i = 0; i < potions.size(); i++) {
-            potions.get(i).setBounds(440 + (i*30),15,25,25);
-            potions.get(i).initForBattle(player,enemy,this);
-            add(potions.get(i));
-        }
+        initPotions();
 
         relics = player.getRelic();
         for (int i = 0; i < relics.size(); i++) {
@@ -230,7 +225,7 @@ public class Battle extends JPanel {
             }
         });
 
-        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_I,0),"fillHealth");
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_H,0),"fillHealth");
         getActionMap().put("fillHealth",new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -384,17 +379,21 @@ public class Battle extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
-                    if (boss) {
-                        if (stage==1){
-                            Unlockables.unlock("ship2Unlock");
-                        } else if (stage==2){
-                            Unlockables.unlock("ship3Unlock");
+                    if (!e.isConsumed()) {
+                        System.out.println("rewardTrigger");
+                        if (boss) {
+                            if (stage==1){
+                                Unlockables.unlock("ship2Unlock");
+                            } else if (stage==2){
+                                Unlockables.unlock("ship3Unlock");
+                            }
+                            Unlockables.save();
+                            body.setPanel(new Map(body,player,++stage));
+                        } else {
+                            body.setPanel(returnPanel);
                         }
-                        Unlockables.save();
-                        body.setPanel(new Map(body,player,++stage));
-                    } else {
-                        body.setPanel(returnPanel);
                     }
+                    e.consume();
                 }
             };
 
@@ -428,17 +427,18 @@ public class Battle extends JPanel {
                     super.mouseClicked(e);
                     player.addCard(((Card)(e.getSource())).copy());
 
-                    if (boss) {
-                        if (stage==1){
-                            Unlockables.unlock("ship2Unlock");
-                        } else if (stage==2){
-                            Unlockables.unlock("ship3Unlock");
-                        }
-                        Unlockables.save();
-                        body.setPanel(new Map(body,player,++stage));
-                    } else {
-                        body.setPanel(returnPanel);
-                    }
+//
+//                    if (boss) {
+//                        if (stage==1){
+//                            Unlockables.unlock("ship2Unlock");
+//                        } else if (stage==2){
+//                            Unlockables.unlock("ship3Unlock");
+//                        }
+//                        Unlockables.save();
+//                        body.setPanel(new Map(body,player,++stage));
+//                    } else {
+//                        body.setPanel(returnPanel);
+//                    }
                 }
             };
             cardLeft.addMouseListener(rewardCardMA);
@@ -492,6 +492,18 @@ public class Battle extends JPanel {
         }
         player.activateRelic("End Battle",enemy,this);
         player.deactivateRelic();
+        player.setBlock(0);
+        player.setAttack(0);
+        player.setWeak(0);
+    }
+
+    public void initPotions(){
+        potions = player.getPotion();
+        for (int i = 0; i < potions.size(); i++) {
+            potions.get(i).setBounds(440 + (i*30),15,25,25);
+            potions.get(i).initForBattle(player,enemy,this);
+            add(potions.get(i));
+        }
     }
 
     //draw x amount of cards

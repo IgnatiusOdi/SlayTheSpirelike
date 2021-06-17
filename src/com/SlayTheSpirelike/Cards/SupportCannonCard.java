@@ -17,7 +17,7 @@ public class SupportCannonCard extends Card {
         if (active&& kapal.isAlive()){
             twicetime = tt;
             twice = t;
-            drainEnergy(kapal);
+            finish(kapal);
             active=false;
         }
     }

@@ -24,6 +24,7 @@ public abstract class Card extends JLabel implements Serializable {
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
             if (((Card)e.getSource()).battle!=null && ((Card)e.getSource()).kapal.getEnergy()>=cost) {
+                System.out.println("A");
                 activate(((Card)e.getSource()).kapal, ((Card)e.getSource()).enemy, ((Card)e.getSource()).battle);
                 if (enemy.getHealth()<=0) {
                     ((Card)e.getSource()).battle.endBattle("p");
