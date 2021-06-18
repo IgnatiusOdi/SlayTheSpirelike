@@ -20,6 +20,26 @@ public class KingOfDestroyerEnemy extends Enemy {
     }
 
     @Override
+    public String setSkill() {
+        if (ctr>=2){
+            return snama3;
+        }
+        else {
+            return super.setSkill();
+        }
+    }
+
+    @Override
+    public String setDesc() {
+        if (ctr>=2){
+            return snama3;
+        }
+        else {
+            return super.setDesc();
+        }
+    }
+
+    @Override
     public void useSkill(Kapal kapal, Enemy enemy, Battle battle) {
         if (ctr>=2){
             useSkill3(kapal, enemy, battle);

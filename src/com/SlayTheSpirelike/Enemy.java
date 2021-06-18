@@ -6,7 +6,7 @@ import java.util.Random;
 public abstract class Enemy extends Sprite {
     protected Random rnd = new Random();
     protected String nama,rarity;
-    protected int health,maxhealth, block, skill1, skill2, skill3, weak, attack, steel;
+    protected int health,maxhealth, block, skill1, skill2, skill3, weak, attack, steel,chance;
     protected String snama1, snama2, snama3, desc1, desc2, desc3;
 
     public Enemy(String nama,String rarity, int health, String image) {
@@ -28,6 +28,7 @@ public abstract class Enemy extends Sprite {
         this.desc1 = "";
         this.desc2 = "";
         this.desc3 = "";
+        this.chance = -1;
     }
 
     public abstract Enemy copy();
@@ -56,6 +57,7 @@ public abstract class Enemy extends Sprite {
             //Player lose detection, activate death relic. if player is still dead (no death relic), end battle
             if (!k.isAlive()) {
                 k.activateRelic("Death",e,b);
+                b.activatePotions();
                 if (!k.isAlive()) {
                     b.endBattle("e");
                 }
@@ -66,8 +68,34 @@ public abstract class Enemy extends Sprite {
         }
     }
 
+    public String setSkill(){
+        chance = rnd.nextInt(100)+1;
+        if(chance<=skill1){
+            return snama1;
+        }
+        else if(chance<=skill1+skill2){
+            return snama2;
+        }
+        else if(chance<=skill1+skill2+skill3){
+            return snama3;
+        }
+        return "";
+    }
+
+    public String setDesc(){
+        if(chance<=skill1){
+            return desc1;
+        }
+        else if(chance<=skill1+skill2){
+            return desc2;
+        }
+        else if(chance<=skill1+skill2+skill3){
+            return desc3;
+        }
+        return "";
+    }
+
     public void useSkill(Kapal kapal, Enemy enemy, Battle battle){
-        int chance = rnd.nextInt(100)+1;
         if(chance<=skill1){
             useSkill1(kapal, enemy, battle);
         }

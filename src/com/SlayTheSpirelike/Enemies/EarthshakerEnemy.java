@@ -25,36 +25,58 @@ public class EarthshakerEnemy extends Enemy {
     }
 
     @Override
-    public void useSkill(Kapal kapal, Enemy enemy, Battle battle) {
+    public String setSkill() {
+        String skill="";
         if (first){
-            useSkill3(kapal, enemy, battle);
-            first=false;
+            skill = snama3;
             sk1 = 0;
             sk3++;
         }
         else {
             boolean skilled=true;
             do{
-                int chance = rnd.nextInt(100)+1;
+                chance = rnd.nextInt(100)+1;
                 if(chance<=skill1&&sk1<2){
-                    useSkill1(kapal, enemy, battle);
+                    skill = snama1;
                     sk1++;
                     sk3 = 0;
                     skilled=false;
                 }
                 else if(chance<=skill1+skill2){
-                    useSkill2(kapal, enemy, battle);
+                    skill = snama2;
                     sk1 = 0;
                     sk3 = 0;
                     skilled=false;
                 }
                 else if(chance<=skill1+skill2+skill3&&sk3<1){
-                    useSkill3(kapal, enemy, battle);
+                    skill = snama3;
                     sk1 = 0;
                     sk3++;
                     skilled=false;
                 }
             }while (skilled);
+        }
+        return skill;
+    }
+
+    @Override
+    public String setDesc() {
+        if (first){
+            return desc3;
+        }
+        else{
+            return super.setDesc();
+        }
+    }
+
+    @Override
+    public void useSkill(Kapal kapal, Enemy enemy, Battle battle) {
+        if (first){
+            useSkill3(kapal, enemy, battle);
+            first=false;
+        }
+        else {
+            super.useSkill(kapal,enemy,battle);
         }
     }
 
