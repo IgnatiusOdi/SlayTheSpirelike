@@ -19,24 +19,25 @@ import java.util.Scanner;
 
 
 public class Battle extends JPanel {
-    private Random rnd;
+    private final Random rnd;
     private final Body body;
     private final JPanel returnPanel;
     private JLabel playerSprite, enemyIntent, endTurn;
-    private Kapal player;
+    private final Kapal player;
     private ArrayList<Potion> potions;
     private ArrayList<Potion> usedpotions;
     private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
     private ArrayList<Card> singleuse;
-    private Enemy enemy;
+    private final Enemy enemy;
+    private String enemyNextSkill;
     private int strengthtemp, strength;
     private int potionchance;
     private int heal, energyplus; //untuk self repair //untuk Denium Shielding
     private boolean invincible, nopotion;
     private int bleed, bleeddmg;
     private int stage;
-    private boolean boss;
+    private final boolean boss;
 
     //override to draw image
     @Override
@@ -127,6 +128,7 @@ public class Battle extends JPanel {
 
         initPlayer();
         draw(5);
+        enemyNextSkill = enemy.setSkill();
 
     }
 
@@ -151,6 +153,7 @@ public class Battle extends JPanel {
 
         initPlayer();
         draw(5);
+        enemyNextSkill = enemy.setSkill();
     }
 
     private void initComponents(){
@@ -192,28 +195,35 @@ public class Battle extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
-                g.drawString(enemy.setSkill(),10,28);
+                g.drawString(enemyNextSkill,10,28);
             }
         };
-        enemyIntent.setBounds(700,380,100,30);
+        enemyIntent.setBounds(700,380,200,30);
         enemyIntent.addMouseListener(new MouseAdapter() {
-            JLabel descLabel = new JLabel(){
+            String[] descSplit;
+            final JLabel descLabel = new JLabel(){
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
                     g.setColor(new Color(255, 255,255, 127));
-                    g.fillRect(0,0,enemy.getNextSkillDesc().length()*13,40);
+                    g.fillRect(0,0,(enemy.getNextSkillDesc().length()/descSplit.length)*13,40*descSplit.length);
                     g.setColor(Color.black);
                     g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
-                    g.drawString(enemy.getNextSkillDesc(),10,25);
+                    for (int i = 0; i < descSplit.length; i++) {
+                        g.drawString(descSplit[i],10,25+(i*30));
+                    }
                 }
             };
+
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                descLabel.setBounds(730,400,enemy.getNextSkillDesc().length()*13,40);
-                b.add(descLabel);
+                // TODO: 19/06/2021 height
+                descSplit = enemy.getNextSkillDesc().split("\n");
+                descLabel.setBounds(730,400,enemy.getNextSkillDesc().length()*13,40*descSplit.length);
+                b.add(descLabel,0);
+//                b.setComponentZOrder(descLabel,0);
                 b.repaint();
             }
 
@@ -244,6 +254,7 @@ public class Battle extends JPanel {
                 returnHand();
                 player.activateRelic("End Turn",enemy,b);
                 enemy.useSkill(player,enemy,b);
+                enemyNextSkill = enemy.setSkill();
                 draw(5);
                 player.activateRelic("Start Turn",enemy,b);
                 repaint();revalidate();invalidate();
