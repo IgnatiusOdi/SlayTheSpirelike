@@ -22,7 +22,7 @@ public class Battle extends JPanel {
     private Random rnd;
     private final Body body;
     private final JPanel returnPanel;
-    private JLabel playerSprite, endTurn;
+    private JLabel playerSprite, enemyIntent, endTurn;
     private Kapal player;
     private ArrayList<Potion> potions;
     private ArrayList<Potion> usedpotions;
@@ -74,6 +74,8 @@ public class Battle extends JPanel {
         g.setColor(Color.black);
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
         g.drawString(String.valueOf(player.getBlock()),368,453);
+
+        g.drawString(enemy.getNama(),700,330);
 
         g.setColor(bgGray);
         g.fillRect(700,350,100,25);
@@ -154,6 +156,7 @@ public class Battle extends JPanel {
     private void initComponents(){
         final int   PLAYER_WIDTH = 300,
                     PLAYER_HEIGHT = 100;
+        final Battle b = this;
 
         initPotions();
 
@@ -184,6 +187,45 @@ public class Battle extends JPanel {
         enemy.setBounds(700,400,300,100);
         add(enemy);
 
+        enemyIntent = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
+                g.drawString(enemy.setSkill(),10,28);
+            }
+        };
+        enemyIntent.setBounds(700,380,100,30);
+        enemyIntent.addMouseListener(new MouseAdapter() {
+            JLabel descLabel = new JLabel(){
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.setColor(new Color(255, 255,255, 127));
+                    g.fillRect(0,0,enemy.getNextSkillDesc().length()*13,40);
+                    g.setColor(Color.black);
+                    g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
+                    g.drawString(enemy.getNextSkillDesc(),10,25);
+                }
+            };
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                descLabel.setBounds(730,400,enemy.getNextSkillDesc().length()*13,40);
+                b.add(descLabel);
+                b.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                b.remove(descLabel);
+                b.repaint();
+            }
+        });
+        add(enemyIntent);
+
         endTurn = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
@@ -195,7 +237,6 @@ public class Battle extends JPanel {
         };
         endTurn.setBounds(1020,590,130,40);
 
-        final Battle b = this;
         endTurn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

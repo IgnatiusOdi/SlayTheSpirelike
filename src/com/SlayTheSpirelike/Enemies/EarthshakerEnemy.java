@@ -60,12 +60,12 @@ public class EarthshakerEnemy extends Enemy {
     }
 
     @Override
-    public String setDesc() {
+    public String getNextSkillDesc() {
         if (first){
             return desc3;
         }
         else{
-            return super.setDesc();
+            return super.getNextSkillDesc();
         }
     }
 
