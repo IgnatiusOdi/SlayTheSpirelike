@@ -170,7 +170,6 @@ public class Buy extends JPanel implements Serializable {
             relic8 = relicRandomizer(random8);
             potion9 = potionRandomizer(random9);
         }
-//        relic7 = Statics.shopRelic.get(0);
         relic7 = new MembershipCardRelic();
     }
 
@@ -668,7 +667,7 @@ public class Buy extends JPanel implements Serializable {
                         slot1layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot1price);
                         kapal.addCard(card1);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -708,7 +707,7 @@ public class Buy extends JPanel implements Serializable {
                         slot2layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot2price);
                         kapal.addCard(card2);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -748,7 +747,7 @@ public class Buy extends JPanel implements Serializable {
                         slot3layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot3price);
                         kapal.addCard(card3);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -788,7 +787,7 @@ public class Buy extends JPanel implements Serializable {
                         slot4layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot4price);
                         kapal.addCard(card4);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -828,7 +827,7 @@ public class Buy extends JPanel implements Serializable {
                         slot5layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot5price);
                         kapal.addCard(card5);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -868,7 +867,7 @@ public class Buy extends JPanel implements Serializable {
                         slot6layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot6price);
                         kapal.addCard(card6);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -908,7 +907,7 @@ public class Buy extends JPanel implements Serializable {
                         slot7layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot7price);
                         kapal.addRelic(relic7);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
 
                         slot1price /= 2;
                         slot2price /= 2;
@@ -965,7 +964,7 @@ public class Buy extends JPanel implements Serializable {
                         slot8layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot8price);
                         kapal.addRelic(relic8);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -1005,7 +1004,7 @@ public class Buy extends JPanel implements Serializable {
                         slot9layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot9price);
                         kapal.addPotion(potion9);
-                        coinplayer.setText(String.valueOf(kapal.getCoin()));
+                        refresh();
                     } else {
                         //FAILED
                         JOptionPane.showMessageDialog(null,"You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
