@@ -23,6 +23,18 @@ public class SupportCannonCard extends Card {
     }
 
     @Override
+    public void finish(Kapal kapal) {
+        drainEnergy(kapal);
+        active=false;
+
+        this.kapal.getCard().add(this);
+        battle.getHand().remove(this);
+        battle.remove(this);
+        battle.displayCard();
+        battle.repaint();
+    }
+
+    @Override
     public void status() {
         if (level==1){
             tt=2;

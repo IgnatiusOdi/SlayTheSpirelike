@@ -26,13 +26,16 @@ public class HeavyArtileryCard extends Card {
         if (level==1){
             damage=4;
             weak=1;
+            desc = "Deal 4 damage \n" +
+                    "and apply 1 weak";
         }
         else if(level>=2){
             damage=6;
             weak=2;
+            desc = "Deal 6 damage \n" +
+                    "and apply 2 weak";
         }
-        desc = "Deal "+damage+" damage \n" +
-                "and apply "+weak+" weak";
+
     }
 
     @Override
