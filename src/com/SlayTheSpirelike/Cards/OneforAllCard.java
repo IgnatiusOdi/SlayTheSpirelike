@@ -30,7 +30,7 @@ public class OneforAllCard extends Card {
         }
         desc = "Deal "+damage+" damage \n" +
                 "to enemy. Can be \n" +
-                "upgraded infinitely";
+                "upgraded until lv 99";
     }
 
     @Override
