@@ -8,6 +8,7 @@ import com.SlayTheSpirelike.Kapal;
 public class SalvationCard extends Card {
     public SalvationCard() {
         super("Salvation", "Self", 0);
+        this.maxlevel = 1;
         status();
     }
 
@@ -29,10 +30,6 @@ public class SalvationCard extends Card {
         }
     }
 
-    @Override
-    public void upgrade() {
-
-    }
 
     @Override
     public Card copy() {

@@ -10,7 +10,7 @@ public abstract class Card extends JLabel implements Serializable {
     protected static int twice=1;
     protected static int twicetime=1;
     protected String nama, type, desc;
-    protected int level, cost;
+    protected int level, maxlevel, cost;
     protected int damage, block, draw, energy, weak, strength, heal, summon, bleed;
     protected boolean active, dispose, singleuse;
     //dispose untuk torpedo, singleuse untuk heal card
@@ -39,6 +39,7 @@ public abstract class Card extends JLabel implements Serializable {
         this.nama = nama;
         this.type = type;
         this.level = 1;
+        this.maxlevel = 2;
         this.cost = cost;
         this.damage = 0;
         this.block = 0;
@@ -125,7 +126,7 @@ public abstract class Card extends JLabel implements Serializable {
     }
 
     public void upgrade(){
-        if(level<2){
+        if(level<maxlevel){
             level++;
             status();
         }
@@ -263,6 +264,10 @@ public abstract class Card extends JLabel implements Serializable {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int getMaxlevel() {
+        return maxlevel;
     }
 
     public int getCost() {

@@ -5,6 +5,7 @@ import com.SlayTheSpirelike.*;
 public class CommandersWisdom extends Card {
     public CommandersWisdom() {
         super("Commander's Wisdom", "Battle", 1);
+        this.maxlevel = 1;
         status();
     }
 
@@ -26,10 +27,6 @@ public class CommandersWisdom extends Card {
         desc = "Draw "+draw+" cards";
     }
 
-    @Override
-    public void upgrade() {
-
-    }
 
     @Override
     public Card copy() {

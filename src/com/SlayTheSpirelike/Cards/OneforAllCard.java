@@ -8,6 +8,7 @@ import com.SlayTheSpirelike.Kapal;
 public class OneforAllCard extends Card {
     public OneforAllCard() {
         super("One for All", "Enemy", 2);
+        this.maxlevel = 99;
         status();
     }
 
@@ -30,12 +31,6 @@ public class OneforAllCard extends Card {
         desc = "Deal "+damage+" damage \n" +
                 "to enemy. Can be \n" +
                 "upgraded infinitely";
-    }
-
-    @Override
-    public void upgrade() {
-        level++;
-        status();
     }
 
     @Override

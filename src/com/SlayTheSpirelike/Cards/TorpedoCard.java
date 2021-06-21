@@ -5,6 +5,7 @@ import com.SlayTheSpirelike.*;
 public class TorpedoCard extends Card {
     public TorpedoCard() {
         super("Torpedo", "Enemy", 0);
+        this.maxlevel = 1;
         status();
         dispose=true;
     }
@@ -26,11 +27,6 @@ public class TorpedoCard extends Card {
             desc = "Deal "+damage+" damage \n" +
                     "to enemy. (Remove after use)";
         }
-    }
-
-    @Override
-    public void upgrade() {
-
     }
 
     @Override
