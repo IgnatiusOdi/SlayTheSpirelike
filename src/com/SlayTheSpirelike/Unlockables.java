@@ -22,8 +22,17 @@ public class Unlockables {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("cannot find file.");
-            e.printStackTrace();
+            try {
+                File myObj = new File("saves/unlockables.dat");
+                if (myObj.createNewFile()) {
+                    System.out.println("File created: " + myObj.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+            } catch (IOException IOe) {
+                System.out.println("An error occurred.");
+                IOe.printStackTrace();
+            }
         }
 
         unlockables.putIfAbsent("ship2Unlock",false);

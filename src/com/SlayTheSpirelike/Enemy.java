@@ -68,8 +68,6 @@ public abstract class Enemy extends Sprite {
         }
     }
 
-    // TODO: 19/06/2021 to abraham arthur : buat setSkill void sama buat method getNextSkillName?
-    //  soalnya setskill cuma butuh sekali, get skill name butuh berkali kali, kalo battle rusak nanti aku fix
     public String setSkill(){
         chance = rnd.nextInt(100)+1;
         if(chance<=skill1){
@@ -81,10 +79,6 @@ public abstract class Enemy extends Sprite {
         else if(chance<=skill1+skill2+skill3){
             return snama3;
         }
-        return "";
-    }
-
-    public String getNextSkillName(){
         return "";
     }
 

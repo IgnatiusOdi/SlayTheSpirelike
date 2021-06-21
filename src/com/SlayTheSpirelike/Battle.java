@@ -195,7 +195,7 @@ public class Battle extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
-                g.drawString(enemyNextSkill,10,28);
+                g.drawString(enemyNextSkill,0,28);
             }
         };
         enemyIntent.setBounds(700,380,200,30);
@@ -215,15 +215,12 @@ public class Battle extends JPanel {
                 }
             };
 
-
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                // TODO: 19/06/2021 height
                 descSplit = enemy.getNextSkillDesc().split("\n");
                 descLabel.setBounds(730,400,enemy.getNextSkillDesc().length()*13,40*descSplit.length);
                 b.add(descLabel,0);
-//                b.setComponentZOrder(descLabel,0);
                 b.repaint();
             }
 
