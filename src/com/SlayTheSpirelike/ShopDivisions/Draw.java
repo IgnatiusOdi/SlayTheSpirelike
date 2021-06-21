@@ -32,6 +32,7 @@ public class Draw extends JPanel {
     private JLabel title;
     private JLabel draw;
     private JLabel card;
+    private JLabel newcard;
     private JLabel drawbutton;
     private JLabel percentagelist;
     private JLabel coinsymbol;
@@ -195,102 +196,136 @@ public class Draw extends JPanel {
                             drawcounter++;
                             //DRAW
                             int random = (int) (Math.random() * 10);
-                            if (random <= 9) {
+                            if (random < 7) {
+                                //70% ZONK
+                                newcard = new JLabel("X");
+                                newcard.setBounds(space*3, height, 1162/2 - space*5, (int) (height * 1.6));
+                                newcard.setForeground(Color.red);
+                                newcard.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 50));
+                                newcard.setHorizontalAlignment(SwingConstants.CENTER);
+                                newcard.setBackground(Color.black);
+                                newcard.setOpaque(true);
+                                add(newcard,0);
+                                JOptionPane.showMessageDialog(null, "Sadly, you get nothing", "", JOptionPane.PLAIN_MESSAGE);
+                            } else if (random < 8) {
                                 //10% CARD
+                                Card randomcard;
                                 if (kapal instanceof Tanker) {
                                     random = (int) (Math.random() * Statics.tankerCards.size());
-                                    Card randomcard = Statics.tankerCards.get(random).copy();
-                                    kapal.addCard(randomcard);
-                                    card = new JLabel() {
-                                        @Override
-                                        protected void paintComponent(Graphics g) {
-                                            switch (randomcard.getType()) {
-                                                case "Self" -> g.setColor(Color.BLUE);
-                                                case "Enemy" -> g.setColor(Color.GREEN);
-                                                case "Battle" -> g.setColor(Color.MAGENTA);
-                                            }
-                                            g.fillRect(0,0, this.getWidth(), this.getHeight());
-                                            g.setColor(Color.BLACK);
-                                            g.setFont(new Font("Monospace", Font.BOLD, 15));
-                                            g.drawString(randomcard.getNama(),10, this.getHeight()/4);
-                                            g.drawImage(Assets.energy,0,0,20,20,null);
-                                            g.drawString(String.valueOf(randomcard.getCost()),22,15);
-
-                                            String[] descSplit = randomcard.getDesc().split("\n");
-                                            for (int i = 0; i < descSplit.length; i++) {
-                                                g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
-                                            }
-                                            super.paintComponent(g);
-                                        }
-                                    };
-                                    repaint();
-                                    revalidate();
-                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.tankerCards.get(random).getNama());
+                                    randomcard = Statics.tankerCards.get(random).copy();
                                 } else if (kapal instanceof Warship) {
                                     random = (int) (Math.random() * Statics.warshipCards.size());
-                                    kapal.addCard(Statics.warshipCards.get(random).copy());
-                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.warshipCards.get(random).getNama());
+                                    randomcard = Statics.warshipCards.get(random).copy();
                                 } else {
                                     random = (int) (Math.random() * Statics.aircraftCards.size());
-                                    kapal.addCard(Statics.aircraftCards.get(random).copy());
-                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.aircraftCards.get(random).getNama());
+                                    randomcard = Statics.aircraftCards.get(random).copy();
                                 }
+                                kapal.addCard(randomcard);
+                                newcard = new JLabel() {
+                                    @Override
+                                    protected void paintComponent(Graphics g) {
+                                        switch (randomcard.getType()) {
+                                            case "Self" -> g.setColor(Color.BLUE);
+                                            case "Enemy" -> g.setColor(Color.GREEN);
+                                            case "Battle" -> g.setColor(Color.MAGENTA);
+                                        }
+                                        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+                                        g.setColor(Color.BLACK);
+                                        g.setFont(new Font("Monospace", Font.BOLD, 25));
+                                        g.drawString(randomcard.getNama(), 10, this.getHeight() / 4);
+                                        g.drawImage(Assets.energy, 0, 0, 30, 30, null);
+                                        g.drawString(String.valueOf(randomcard.getCost()), 35, 25);
+
+                                        String[] descSplit = randomcard.getDesc().split("\n");
+                                        for (int i = 0; i < descSplit.length; i++) {
+                                            g.drawString(descSplit[i], 10, this.getHeight() / 2 + (i * 30));
+                                        }
+                                        super.paintComponent(g);
+                                    }
+                                };
+                                newcard.setBounds(space*3, height, 1162/2 - space*5, (int) (height * 1.6));
+                                add(newcard,0);
+                                JOptionPane.showMessageDialog(null, "Wow, you get " + randomcard.getNama());
+                            } else if (random < 9) {
+                                //10% POTION
+                                random = (int) (Math.random() * 10);
+                                Potion randompotion;
+                                if (random < 9) {
+                                    //90% Uncommon
+                                    random = (int) (Math.random() * Statics.uncommonPotion.size());
+                                    randompotion = Statics.uncommonPotion.get(random).copy();
+                                } else {
+                                    //10% Rare
+                                    random = (int) (Math.random() * Statics.rarePotion.size());
+                                    randompotion = Statics.rarePotion.get(random).copy();
+                                }
+                                kapal.addPotion(randompotion);
+                                newcard = new JLabel() {
+                                    @Override
+                                    protected void paintComponent(Graphics g) {
+                                        switch (randompotion.getRarity()) {
+                                            case "Uncommon" -> g.setColor(Color.green);
+                                            case "Rare" -> g.setColor(Color.orange);
+                                        }
+                                        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+                                        g.setColor(Color.BLACK);
+                                        g.setFont(new Font("Monospace", Font.BOLD, 25));
+                                        g.drawString(randompotion.getNama(), 10, this.getHeight() / 4);
+
+                                        String[] descSplit = randompotion.getDesc().split("\n");
+                                        for (int i = 0; i < descSplit.length; i++) {
+                                            g.drawString(descSplit[i], 10, this.getHeight() / 2 + (i * 30));
+                                        }
+                                        super.paintComponent(g);
+                                    }
+                                };
+                                newcard.setBounds(space*3, height, 1162/2 - space*5, (int) (height * 1.6));
+                                add(newcard,0);
+                                JOptionPane.showMessageDialog(null, "Wow, you get " + randompotion.getNama());
+                            } else {
+                                //10% RELIC
+                                random = (int) (Math.random() * 10);
+                                Relic randomrelic;
+                                if (random < 9) {
+                                    //90% Uncommon
+                                    random = (int) (Math.random() * Statics.uncommonRelic.size());
+                                    randomrelic = Statics.uncommonRelic.get(random).copy();
+                                } else {
+                                    //10% Rare
+                                    random = (int) (Math.random() * Statics.rareRelic.size());
+                                    randomrelic = Statics.rareRelic.get(random).copy();
+                                }
+                                kapal.addRelic(randomrelic);
+                                newcard = new JLabel() {
+                                    @Override
+                                    protected void paintComponent(Graphics g) {
+                                        switch (randomrelic.getRarity()) {
+                                            case "Uncommon" -> g.setColor(Color.green);
+                                            case "Rare" -> g.setColor(Color.orange);
+                                        }
+                                        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+                                        g.setColor(Color.BLACK);
+                                        g.setFont(new Font("Monospace", Font.BOLD, 25));
+                                        g.drawString(randomrelic.getNama(), 10, this.getHeight() / 4);
+
+                                        String[] descSplit = randomrelic.getDesc().split("\n");
+                                        for (int i = 0; i < descSplit.length; i++) {
+                                            g.drawString(descSplit[i], 10, this.getHeight() / 2 + (i * 30));
+                                        }
+                                        super.paintComponent(g);
+                                    }
+                                };
+                                newcard.setBounds(space*3, height, 1162/2 - space*5, (int) (height * 1.6));
+                                add(newcard,0);
+                                JOptionPane.showMessageDialog(null, "Wow, you get " + randomrelic.getNama());
                             }
-//                            if (random < 7) {
-//                                //70% ZONK
-//                                card.setText("X");
-//                                card.setForeground(Color.red);
-//                                card.setOpaque(false);
-//                                JOptionPane.showMessageDialog(null, "Sadly, you get nothing");
-//                            } else if (random < 8) {
-//                                //10% CARD
-//                                if (kapal instanceof Tanker) {
-//                                    random = (int) (Math.random() * Statics.tankerCards.size());
-//                                    kapal.addCard(Statics.tankerCards.get(random).copy());
-//                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.tankerCards.get(random).getNama());
-//                                } else if (kapal instanceof Warship) {
-//                                    random = (int) (Math.random() * Statics.warshipCards.size());
-//                                    kapal.addCard(Statics.warshipCards.get(random).copy());
-//                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.warshipCards.get(random).getNama());
-//                                } else {
-//                                    random = (int) (Math.random() * Statics.aircraftCards.size());
-//                                    kapal.addCard(Statics.aircraftCards.get(random).copy());
-//                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.aircraftCards.get(random).getNama());
-//                                }
-//                            } else if (random < 9) {
-//                                //10% POTION
-//                                random = (int) (Math.random() * 10);
-//                                if (random < 9) {
-//                                    //90% Uncommon
-//                                    random = (int) (Math.random() * Statics.uncommonPotion.size());
-//                                    kapal.addPotion(Statics.uncommonPotion.get(random).copy());
-//                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.uncommonPotion.get(random).getNama());
-//                                } else {
-//                                    //10% Rare
-//                                    random = (int) (Math.random() * Statics.rarePotion.size());
-//                                    kapal.addPotion(Statics.rarePotion.get(random).copy());
-//                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.rarePotion.get(random).getNama());
-//                                }
-//                            } else {
-//                                //10% RELIC
-//                                random = (int) (Math.random() * 10);
-//                                if (random < 9) {
-//                                    //90% Uncommon
-//                                    random = (int) (Math.random() * Statics.uncommonRelic.size());
-//                                    kapal.addRelic(Statics.uncommonRelic.get(random).copy());
-//                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.uncommonRelic.get(random).getNama());
-//                                } else {
-//                                    //10% Rare
-//                                    random = (int) (Math.random() * Statics.rareRelic.size());
-//                                    kapal.addRelic(Statics.rareRelic.get(random).copy());
-//                                    JOptionPane.showMessageDialog(null, "Wow, you get " + Statics.rareRelic.get(random).getNama());
-//                                }
-//                            }
+                            card.setVisible(false);
+                            drawbutton.setVisible(false);
                         } else {
-                            JOptionPane.showMessageDialog(null, "You don't have enough coin", "Access Denied", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "You already used this menu once", "Access Denied", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "You already used this menu once", "FAILED", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
