@@ -34,12 +34,6 @@ public class OneforAllCard extends Card {
     }
 
     @Override
-    public void upgrade() {
-        level++;
-        status();
-    }
-
-    @Override
     public Card copy() {
         return new OneforAllCard();
     }

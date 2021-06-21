@@ -30,10 +30,6 @@ public class SalvationCard extends Card {
         }
     }
 
-    @Override
-    public void upgrade() {
-
-    }
 
     @Override
     public Card copy() {

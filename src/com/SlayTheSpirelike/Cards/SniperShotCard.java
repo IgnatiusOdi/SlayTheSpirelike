@@ -33,10 +33,6 @@ public class SniperShotCard extends Card {
         }
     }
 
-    @Override
-    public void upgrade() {
-
-    }
 
     @Override
     public Card copy() {

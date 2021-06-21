@@ -30,11 +30,6 @@ public class TorpedoCard extends Card {
     }
 
     @Override
-    public void upgrade() {
-
-    }
-
-    @Override
     public Card copy() {
         return new TorpedoCard();
     }

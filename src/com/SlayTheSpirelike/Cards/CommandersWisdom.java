@@ -27,10 +27,6 @@ public class CommandersWisdom extends Card {
         desc = "Draw "+draw+" cards";
     }
 
-    @Override
-    public void upgrade() {
-
-    }
 
     @Override
     public Card copy() {

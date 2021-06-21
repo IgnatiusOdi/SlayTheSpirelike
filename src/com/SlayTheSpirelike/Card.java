@@ -126,7 +126,7 @@ public abstract class Card extends JLabel implements Serializable {
     }
 
     public void upgrade(){
-        if(level<2){
+        if(level<maxlevel){
             level++;
             status();
         }
