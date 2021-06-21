@@ -32,7 +32,7 @@ public class KingOfDestroyerEnemy extends Enemy {
     @Override
     public String getNextSkillDesc() {
         if (ctr>=2){
-            return snama3;
+            return desc3;
         }
         else {
             return super.getNextSkillDesc();
