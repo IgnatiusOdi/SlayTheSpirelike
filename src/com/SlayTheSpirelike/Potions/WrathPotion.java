@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Potion;
 public class WrathPotion extends Potion {
     private boolean used;
     public WrathPotion() {
-        super("Wrath Potion", "Self","Uncommon","resources/StrengthPotion.png","Gain 3 attack \n" +
+        super("Wrath Potion", "Self","Uncommon","resources/StrengthPotion.png","Gain 2 attack \n" +
                 "(remove when battle end)");
         used = true;
     }
@@ -14,14 +14,14 @@ public class WrathPotion extends Potion {
     @Override
     public void activate(Kapal kapal) {
         if (kapal.isAlive()&&active&&used){
-            kapal.setAttack(kapal.getAttack()+3);
+            kapal.setAttack(kapal.getAttack()+2);
             used = false;
         }
     }
 
     @Override
     public void deactivate(Kapal kapal) {
-        kapal.setAttack(kapal.getAttack()-3);
+        kapal.setAttack(kapal.getAttack()-2);
         if (kapal.getAttack()<0){
             kapal.setAttack(0);
         }

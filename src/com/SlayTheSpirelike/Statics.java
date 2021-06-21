@@ -44,12 +44,13 @@ public class Statics {
         uncommonPotion.add(new WrathPotion());
         uncommonPotion.add(new SteelPotion());
         uncommonPotion.add(new EnergyPotion());
-        uncommonPotion.add(new RegenerationPotion());
+
         uncommonPotion.add(new SwiftPotion());
         uncommonPotion.add(new SmokePotion());
 
         rarePotion.add(new AppleJuicePotion());
         rarePotion.add(new BrewPotion());
+        rarePotion.add(new RegenerationPotion());
 
 //        commonRelic.clear();
 //        uncommonRelic.clear();
