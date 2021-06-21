@@ -13,15 +13,15 @@ public class KingOfDestroyerEnemy extends Enemy {
         snama1="Count";
         snama2="Glare";
         snama3="It Is Time";
-        desc1="Deal 5 Damage";
+        desc1="Deal 2 Damage";
         desc2="Apply 1 weak";
-        desc3="Deal 30 Damage";
+        desc3="Deal 15 Damage";
         ctr=0;
     }
 
     @Override
     public String setSkill() {
-        if (ctr>=2){
+        if (ctr>=3){
             return snama3;
         }
         else {
@@ -31,7 +31,7 @@ public class KingOfDestroyerEnemy extends Enemy {
 
     @Override
     public String getNextSkillDesc() {
-        if (ctr>=2){
+        if (ctr>=3){
             return desc3;
         }
         else {
@@ -41,7 +41,7 @@ public class KingOfDestroyerEnemy extends Enemy {
 
     @Override
     public void useSkill(Kapal kapal, Enemy enemy, Battle battle) {
-        if (ctr>=2){
+        if (ctr>=3){
             useSkill3(kapal, enemy, battle);
             ctr=0;
         }
@@ -54,7 +54,7 @@ public class KingOfDestroyerEnemy extends Enemy {
 
     @Override
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,5);
+        attack(kapal,enemy,battle,2);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class KingOfDestroyerEnemy extends Enemy {
 
     @Override
     public void useSkill3(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,30);
+        attack(kapal,enemy,battle,15);
     }
 
     @Override

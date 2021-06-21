@@ -14,7 +14,7 @@ public class WaoWaoEnemy extends Enemy {
         snama2="Thrash";
         snama3="Bellow";
         desc1="Deal 4 damage";
-        desc2="Deal 6 damage,\n" +
+        desc2="Deal 3 damage,\n" +
                 "gain 3 block";
         desc3="Gain 1 strength,\n" +
                 "gain 4 block";
@@ -27,7 +27,7 @@ public class WaoWaoEnemy extends Enemy {
 
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,6);
+        attack(kapal,enemy,battle,3);
         enemy.setBlock(enemy.getBlock()+3);
     }
 

@@ -12,7 +12,7 @@ public class CungEnemy extends Enemy {
         snama1="Weak Attack";
         snama2="Grow";
         desc1="Deal 2 damage";
-        desc2="Gain 3 strength";
+        desc2="Gain 2 strength";
     }
 
     @Override
@@ -22,7 +22,7 @@ public class CungEnemy extends Enemy {
 
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
-        enemy.setAttack(enemy.getAttack()+3);
+        enemy.setAttack(enemy.getAttack()+2);
     }
 
     @Override
