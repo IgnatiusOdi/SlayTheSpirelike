@@ -18,8 +18,8 @@ public class Sell extends JPanel{
     private Kapal kapal;
 
     //COUNTER
-    int sellcardcounter = 1;
-    int sellreliccounter = 1;
+    int sellcardcounter = 0;
+    int sellreliccounter = 0;
 
     //SIZE
     private final int width = 200;
@@ -50,13 +50,11 @@ public class Sell extends JPanel{
         this.kapal = kapal;
         init();
         showCard();
-        showRelic();
         initCheats();
     }
 
     public void refresh() {
         showCard();
-        showRelic();
         coinplayer.setText(String.valueOf(kapal.getCoin()));
     }
 
@@ -81,6 +79,7 @@ public class Sell extends JPanel{
                     g.drawString(mycard.getNama(),10, this.getHeight()/4);
                     g.drawImage(Assets.energy,0,0,20,20,null);
                     g.drawString(String.valueOf(mycard.getCost()),22,15);
+                    g.drawString("Level : " + mycard.getLevel(), this.getWidth()/2, 15);
 
                     String[] descSplit = mycard.getDesc().split("\n");
                     for (int i = 0; i < descSplit.length; i++) {
@@ -89,11 +88,12 @@ public class Sell extends JPanel{
                     super.paintComponent(g);
                 }
             });
+            int finalI = i;
             cards.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (!e.isConsumed()){
-                        int n = JOptionPane.showConfirmDialog(null, "You will get 50C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                        int n = JOptionPane.showConfirmDialog(null, "You will get 50C. Confirm?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
                         if (n == JOptionPane.YES_OPTION) {
                             if (sellcardcounter == 0) {
                                 kapal.setCoin(kapal.getCoin() + 50);
@@ -111,11 +111,11 @@ public class Sell extends JPanel{
                 }
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    mycard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    cards.get(finalI).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    mycard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    cards.get(finalI).setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 }
             });
             cards.get(i).setPreferredSize(new Dimension(width, height));
@@ -123,90 +123,6 @@ public class Sell extends JPanel{
         }
         cardplace.repaint();
         cardplace.revalidate();
-    }
-
-    private void showRelic() {
-        relicplace.removeAll();
-        int relicheight = 155 * (1 + (kapal.getRelic().size()/5));
-        relicplace.setPreferredSize(new Dimension(this.getWidth() - 20, relicheight));
-        ArrayList<JLabel> relics = new ArrayList<>();
-        for (int i = 0; i < kapal.getRelic().size(); i++) {
-            Relic myrelic = kapal.getRelic(i);
-            relics.add(new JLabel() {
-                @Override
-                protected void paintComponent(Graphics g) {
-                    g.setColor(Color.blue);
-                    g.fillRect(0,0, this.getWidth(), this.getHeight());
-                    g.setColor(Color.BLACK);
-                    g.setFont(new Font("Monospace", Font.BOLD, 15));
-                    g.drawString(myrelic.getNama(),10, this.getHeight()/4);
-
-                    String[] descSplit = myrelic.getDesc().split("\n");
-                    for (int i = 0; i < descSplit.length; i++) {
-                        g.drawString(descSplit[i],10,this.getHeight()/2 + ( i*30));
-                    }
-                    super.paintComponent(g);
-                }
-            });
-            myrelic.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    //relic not active = outside battle
-                    if (!myrelic.isActive()) {
-                        int n;
-                        if (myrelic.getRarity().equals("Common")) {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 75C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        } else if (myrelic.getRarity().equals("Uncommon")) {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this relic! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        } else if (myrelic.getRarity().equals("Rare")) {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 300C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        } else if (myrelic.getRarity().equals("Shop")) {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 150C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        } else {
-                            n = JOptionPane.showConfirmDialog(null, "You will get 1000C for selling this card! Are you sure?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        }
-                        if (n == JOptionPane.YES_OPTION) {
-                            if (sellreliccounter == 0) {
-                                if (myrelic.getRarity().equals("Common")) {
-                                    kapal.setCoin(kapal.getCoin() + 75);
-                                    JOptionPane.showMessageDialog(null,"You got 75C");
-                                } else if (myrelic.getRarity().equals("Uncommon")) {
-                                    kapal.setCoin(kapal.getCoin() + 150);
-                                    JOptionPane.showMessageDialog(null,"You got 150C");
-                                } else if (myrelic.getRarity().equals("Rare")) {
-                                    kapal.setCoin(kapal.getCoin() + 300);
-                                    JOptionPane.showMessageDialog(null,"You got 300C");
-                                } else if (myrelic.getRarity().equals("Shop")) {
-                                    kapal.setCoin(kapal.getCoin() + 150);
-                                    JOptionPane.showMessageDialog(null,"You got 150C");
-                                } else {
-                                    kapal.setCoin(kapal.getCoin() + 300);
-                                    JOptionPane.showMessageDialog(null,"You got 1000C");
-                                }
-                                coinplayer.setText(String.valueOf(kapal.getCoin()));
-                                kapal.getRelic().remove(myrelic);
-                                sellreliccounter++;
-                                showRelic();
-                            } else {
-                                JOptionPane.showMessageDialog(null, "You already sold relic once", "Access Denied", JOptionPane.ERROR_MESSAGE);
-                            }
-                        }
-                    }
-                }
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    myrelic.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                }
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    myrelic.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                }
-            });
-            relics.get(i).setPreferredSize(new Dimension(width, height));
-            relicplace.add(relics.get(i));
-        }
-        relicplace.repaint();
-        relicplace.revalidate();
     }
 
     private void init() {
@@ -325,60 +241,12 @@ public class Sell extends JPanel{
         add(back);
 
         //CARD TITLE
-        cardtitle.setBounds(0, 165, this.getWidth()/2, 50);
+        cardtitle.setBounds(0, 165, this.getWidth(), 50);
         cardtitle.setBorder(BorderFactory.createLineBorder(Color.red,2));
         cardtitle.setHorizontalAlignment(SwingConstants.CENTER);
         cardtitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
         cardtitle.setForeground(Color.white);
-        cardtitle.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                cardtitle.setBorder(BorderFactory.createLineBorder(Color.red,2));
-                cardtitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
-                relictitle.setBorder(BorderFactory.createEmptyBorder());
-                relictitle.setFont(new Font("Monospace", Font.PLAIN, 25));
-
-                scroll.setViewportView(cardplace);
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                cardtitle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                cardtitle.setForeground(Color.red);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                cardtitle.setForeground(Color.white);
-            }
-        });
         add(cardtitle);
-
-        //RELIC TITLE
-        relictitle.setBounds(this.getWidth()/2, 165, this.getWidth()/2, 50);
-        relictitle.setHorizontalAlignment(SwingConstants.CENTER);
-        relictitle.setFont(new Font("Monospace", Font.PLAIN, 25));
-        relictitle.setForeground(Color.white);
-        relictitle.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                cardtitle.setBorder(BorderFactory.createEmptyBorder());
-                cardtitle.setFont(new Font("Monospace", Font.PLAIN, 25));
-                relictitle.setBorder(BorderFactory.createLineBorder(Color.red,2));
-                relictitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
-
-                scroll.setViewportView(relicplace);
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                relictitle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                relictitle.setForeground(Color.red);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                relictitle.setForeground(Color.white);
-            }
-        });
-        add(relictitle);
 
         //SCROLL
         scroll.setBounds(0, 215, this.getWidth(), 430);
@@ -390,12 +258,6 @@ public class Sell extends JPanel{
         cardplace.setLayout(new FlowLayout(FlowLayout.CENTER));
         cardplace.setBackground(Color.yellow);
         cardplace.setOpaque(true);
-
-        //RELIC PLACE
-        relicplace.setBounds(0, 0, this.getWidth() - 20, 350);
-        relicplace.setLayout(new FlowLayout(FlowLayout.CENTER));
-        relicplace.setBackground(Color.red);
-        relicplace.setOpaque(true);
 
         //BACKGROUND
         bg.setBounds(0, 0,1162,648);

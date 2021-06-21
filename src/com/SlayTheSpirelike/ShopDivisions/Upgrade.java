@@ -72,6 +72,7 @@ public class Upgrade extends JPanel {
                     g.drawString(mycard.getNama(),10, this.getHeight()/4);
                     g.drawImage(Assets.energy,0,0,20,20,null);
                     g.drawString(String.valueOf(mycard.getCost()),22,15);
+                    g.drawString("Level : " + mycard.getLevel(), this.getWidth()/2, 15);
 
                     String[] descSplit = mycard.getDesc().split("\n");
                     for (int i = 0; i < descSplit.length; i++) {
@@ -80,27 +81,36 @@ public class Upgrade extends JPanel {
                     super.paintComponent(g);
                 }
             });
+            int finalI = i;
             cards.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (!e.isConsumed()){
-                        int n = JOptionPane.showConfirmDialog(null, "You upgrade this card to " + mycard.getLevel()+1 + " for " + mycard.getLevel()*100, "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        if (n == JOptionPane.YES_OPTION) {
-                            kapal.setCoin(kapal.getCoin() - mycard.getLevel()*100);
-                            coinplayer.setText(String.valueOf(kapal.getCoin()));
-                            mycard.upgrade();
-                            JOptionPane.showMessageDialog(null,"Card upgraded");
-                            showCard();
+                    if (mycard.getLevel() < mycard.getMaxlevel()) {
+                        if (!e.isConsumed()){
+                            int n = JOptionPane.showConfirmDialog(null, "You will upgrade this card to level " + (mycard.getLevel()+1) + " for " + mycard.getLevel()*100 + ". Confirm?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                            if (n == JOptionPane.YES_OPTION) {
+                                if (kapal.getCoin() >= mycard.getLevel()*100) {
+                                    kapal.setCoin(kapal.getCoin() - mycard.getLevel()*100);
+                                    mycard.upgrade();
+                                    JOptionPane.showMessageDialog(null,"Card upgraded", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                                    refresh();
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "You don't have enough coin", "FAILED", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
                         }
+                        e.consume();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Card is already at max level", "MAX LEVEL", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    mycard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    cards.get(finalI).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    mycard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    cards.get(finalI).setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 }
             });
             cards.get(i).setPreferredSize(new Dimension(width, height));
@@ -120,9 +130,9 @@ public class Upgrade extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(hangingsign,0,0, this.getWidth(), this.getHeight(),null);
-                g.setColor(Color.red);
-                g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 75));
-                g.drawString("UPGRADE",110,138);
+                g.setColor(Color.magenta);
+                g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 50));
+                g.drawString("UPGRADE",75,130);
                 super.paintComponent(g);
             }
         };
@@ -210,7 +220,7 @@ public class Upgrade extends JPanel {
 
         //CARD TITLE
         cardtitle.setBounds(0, 165, this.getWidth(), 50);
-        cardtitle.setBorder(BorderFactory.createLineBorder(Color.red,2));
+        cardtitle.setBorder(BorderFactory.createLineBorder(Color.magenta,2));
         cardtitle.setHorizontalAlignment(SwingConstants.CENTER);
         cardtitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
         cardtitle.setForeground(Color.white);

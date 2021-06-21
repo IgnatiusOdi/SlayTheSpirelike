@@ -5,8 +5,10 @@ import com.SlayTheSpirelike.Potion;
 
 public class SmokePotion extends Potion {
     public SmokePotion() {
-        super("Smoke Potion", "Battle", "Uncommon", "resources/SmokeBomb.png","Escape from a non-boss battle. \n" +
-                "Receive no reward");
+        super("Smoke Potion", "Battle", "Uncommon", "resources/SmokeBomb.png", """
+                Escape from a non-boss
+                battle
+                Receive no reward""");
     }
 
     @Override

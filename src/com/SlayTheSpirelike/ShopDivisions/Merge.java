@@ -72,6 +72,7 @@ public class Merge extends JPanel {
                     g.drawString(mycard.getNama(),10, this.getHeight()/4);
                     g.drawImage(Assets.energy,0,0,20,20,null);
                     g.drawString(String.valueOf(mycard.getCost()),22,15);
+                    g.drawString("Level : " + mycard.getLevel(), this.getWidth()/2, 15);
 
                     String[] descSplit = mycard.getDesc().split("\n");
                     for (int i = 0; i < descSplit.length; i++) {
@@ -80,27 +81,46 @@ public class Merge extends JPanel {
                     super.paintComponent(g);
                 }
             });
+            int finalI = i;
             cards.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (((Card)e.getSource()).getBattle()==null){
-                        int n = JOptionPane.showConfirmDialog(null, "You upgrade this card to " + mycard.getLevel()+1 + " for " + mycard.getLevel()*100, "CONFIRMATION", JOptionPane.YES_NO_OPTION);
-                        if (n == JOptionPane.YES_OPTION) {
-                            kapal.setCoin(kapal.getCoin() - mycard.getLevel()*100);
-                            coinplayer.setText(String.valueOf(kapal.getCoin()));
-                            mycard.upgrade();
-                            JOptionPane.showMessageDialog(null,"Card upgraded");
-                            showCard();
+                    if (mycard.getLevel() < mycard.getMaxlevel()) {
+                        //ADA KARTU LEVEL SAMA JENIS SAMA?
+                        Card mycard2 = null;
+                        boolean ada = false;
+                        for (int j = 0; j < kapal.getCard().size(); j++) {
+                            mycard2 = kapal.getCard(j);
+                            if (finalI != j && mycard.getLevel() == mycard2.getLevel() && mycard.getNama().equals(mycard2.getNama())) {
+                                ada = true;
+                                break;
+                            }
                         }
+                        if (ada) {
+                            if (!e.isConsumed()){
+                                int n = JOptionPane.showConfirmDialog(null, "You will merge this card to level " + (mycard.getLevel()+1) + ". Confirm?", "CONFIRMATION", JOptionPane.YES_NO_OPTION);
+                                if (n == JOptionPane.YES_OPTION) {
+                                    mycard.upgrade();
+                                    kapal.getCard().remove(mycard2);
+                                    JOptionPane.showMessageDialog(null,"Card merged", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+                                    refresh();
+                                }
+                            }
+                            e.consume();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Same card not found", "FAILED", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Card is already at max level", "MAX LEVEL", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    mycard.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    cards.get(finalI).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 }
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    mycard.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    cards.get(finalI).setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 }
             });
             cards.get(i).setPreferredSize(new Dimension(width, height));
@@ -120,9 +140,9 @@ public class Merge extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(hangingsign,0,0, this.getWidth(), this.getHeight(),null);
-                g.setColor(Color.red);
-                g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 75));
-                g.drawString("MERGE",110,138);
+                g.setColor(Color.lightGray);
+                g.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 65));
+                g.drawString("MERGE",80,135);
                 super.paintComponent(g);
             }
         };
@@ -210,7 +230,7 @@ public class Merge extends JPanel {
 
         //CARD TITLE
         cardtitle.setBounds(0, 165, this.getWidth(), 50);
-        cardtitle.setBorder(BorderFactory.createLineBorder(Color.red,2));
+        cardtitle.setBorder(BorderFactory.createLineBorder(Color.lightGray,2));
         cardtitle.setHorizontalAlignment(SwingConstants.CENTER);
         cardtitle.setFont(new Font("Monospace", Font.BOLD + Font.ITALIC, 30));
         cardtitle.setForeground(Color.white);
