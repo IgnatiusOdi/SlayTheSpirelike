@@ -11,13 +11,13 @@ public class AlsCommonEnemy extends Enemy {
         skill2=50;
         snama1="Weak Attack";
         snama2="Harden";
-        desc1="Deal 3 damage";
+        desc1="Deal 4 damage";
         desc2="Gain 5 block";
     }
 
     @Override
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,3);
+        attack(kapal,enemy,battle,4);
     }
 
     @Override

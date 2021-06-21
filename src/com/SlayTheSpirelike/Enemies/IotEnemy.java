@@ -14,8 +14,8 @@ public class IotEnemy extends Enemy {
         snama2="Weak Attack";
         snama3="Strong Attack";
         desc1="Gain 1 strength";
-        desc2="Deal 3 Damage";
-        desc3="Deal 8 Damage";
+        desc2="Deal 4 Damage";
+        desc3="Deal 9 Damage";
     }
 
     @Override
@@ -25,12 +25,12 @@ public class IotEnemy extends Enemy {
 
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,3);
+        attack(kapal,enemy,battle,4);
     }
 
     @Override
     public void useSkill3(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,8);
+        attack(kapal,enemy,battle,9);
     }
 
     @Override

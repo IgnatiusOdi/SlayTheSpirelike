@@ -11,13 +11,13 @@ public class CungEnemy extends Enemy {
         skill2=40;
         snama1="Weak Attack";
         snama2="Grow";
-        desc1="Deal 2 damage";
+        desc1="Deal 3 damage";
         desc2="Gain 2 strength";
     }
 
     @Override
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,2);
+        attack(kapal,enemy,battle,3);
     }
 
     @Override

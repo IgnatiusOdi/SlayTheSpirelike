@@ -14,15 +14,15 @@ public class AlsEliteEnemy extends Enemy {
         snama2="Defensive Stance";
         snama3="Strong Attack";
         desc1="Apply 1 weak,\n" +
-                "deal 3 damage";
+                "deal 4 damage";
         desc2="Gain 4 block\n" +
                 "and 1 steel";
-        desc3="Deal 9 Damage";
+        desc3="Deal 10 Damage";
     }
     @Override
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
         kapal.setWeak(kapal.getWeak()+1);
-        attack(kapal,enemy,battle,3);
+        attack(kapal,enemy,battle,4);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class AlsEliteEnemy extends Enemy {
 
     @Override
     public void useSkill3(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,9);
+        attack(kapal,enemy,battle,10);
     }
 
     @Override

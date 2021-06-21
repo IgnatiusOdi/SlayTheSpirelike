@@ -11,13 +11,13 @@ public class AK170Enemy extends Enemy {
         skill2=40;
         snama1="Weak Attack";
         snama2="Corrosive";
-        desc1="Deal 3 damage";
+        desc1="Deal 4 damage";
         desc2="Inflict 2 weak";
     }
 
     @Override
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,3);
+        attack(kapal,enemy,battle,4);
     }
 
     @Override

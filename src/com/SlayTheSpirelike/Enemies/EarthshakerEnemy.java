@@ -15,8 +15,8 @@ public class EarthshakerEnemy extends Enemy {
         snama1="Weak Attack";
         snama2="Strong Attack";
         snama3="Siphon Soul";
-        desc1="Deal 5 Damage";
-        desc2="Deal 10 Damage";
+        desc1="Deal 6 Damage";
+        desc2="Deal 11 Damage";
         desc3="Inflict 1 weak\n" +
                 "and reduce 1 block";
         first=true;
@@ -83,12 +83,12 @@ public class EarthshakerEnemy extends Enemy {
 
     @Override
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,5);
+        attack(kapal,enemy,battle,6);
     }
 
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,10);
+        attack(kapal,enemy,battle,11);
     }
 
     @Override

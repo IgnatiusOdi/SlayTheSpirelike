@@ -13,9 +13,9 @@ public class KingOfDestroyerEnemy extends Enemy {
         snama1="Count";
         snama2="Glare";
         snama3="It Is Time";
-        desc1="Deal 3 Damage";
+        desc1="Deal 4 Damage";
         desc2="Apply 1 weak";
-        desc3="Deal 15 Damage";
+        desc3="Deal 16 Damage";
         ctr=0;
     }
 
@@ -54,7 +54,7 @@ public class KingOfDestroyerEnemy extends Enemy {
 
     @Override
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,3);
+        attack(kapal,enemy,battle,4);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class KingOfDestroyerEnemy extends Enemy {
 
     @Override
     public void useSkill3(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,15);
+        attack(kapal,enemy,battle,16);
     }
 
     @Override

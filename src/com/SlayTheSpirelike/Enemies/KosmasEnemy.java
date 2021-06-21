@@ -12,7 +12,7 @@ public class KosmasEnemy extends Enemy {
         snama1="Defend";
         snama2="Weak Attack";
         desc1="Gain 3 block";
-        desc2="Deal 2 damage";
+        desc2="Deal 3 damage";
     }
 
     @Override
@@ -22,7 +22,7 @@ public class KosmasEnemy extends Enemy {
 
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,2);
+        attack(kapal,enemy,battle,3);
     }
 
     @Override
