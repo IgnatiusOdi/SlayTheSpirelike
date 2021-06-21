@@ -248,12 +248,20 @@ public class Battle extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
                 returnHand();
+
+                removeStrength();
+                bleed();
+                player.setWeak(0);
                 player.activateRelic("End Turn",enemy,b);
+
                 enemy.useSkill(player,enemy,b);
                 enemyNextSkill = enemy.setSkill();
-                draw(5);
+
                 player.activateRelic("Start Turn",enemy,b);
+                draw(5);
+
                 repaint();revalidate();invalidate();
             }
         });
@@ -475,19 +483,6 @@ public class Battle extends JPanel {
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
                     player.addCard(((Card)(e.getSource())).copy());
-
-//
-//                    if (boss) {
-//                        if (stage==1){
-//                            Unlockables.unlock("ship2Unlock");
-//                        } else if (stage==2){
-//                            Unlockables.unlock("ship3Unlock");
-//                        }
-//                        Unlockables.save();
-//                        body.setPanel(new Map(body,player,++stage));
-//                    } else {
-//                        body.setPanel(returnPanel);
-//                    }
                 }
             };
             cardLeft.addMouseListener(rewardCardMA);
@@ -544,6 +539,7 @@ public class Battle extends JPanel {
         player.setBlock(0);
         player.setAttack(0);
         player.setWeak(0);
+        removeStrength();
     }
 
     public void initPotions(){
@@ -727,6 +723,8 @@ public class Battle extends JPanel {
         }
     }
 
+
+    //setiap turn
     public void bleed(){
         if (bleed>0){
             enemy.setHealth(enemy.getHealth()-bleeddmg);
