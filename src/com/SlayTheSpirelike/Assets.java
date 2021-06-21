@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
     public static BufferedImage     mainMenuBackground_old, battle1BG, battle2BG,
-                                    tanker,warship,carrier,
+                                    tanker,warship,carrier, helicopter,
                                     board, plank1,plank2,plank3,
                                     map, enemyTile, treasureTile, fuelTile, shopTile,
                                     arrowRight, arrowDown, arrowLeft, arrowUp,
@@ -22,6 +22,8 @@ public class Assets {
         tanker = ImageLoader.LoadImage("resources/tanker.png");
         warship = ImageLoader.LoadImage("resources/warship.png");
         carrier = ImageLoader.LoadImage("resources/aircraft.png");
+        helicopter = ImageLoader.LoadImage("resources/summonPotion.png");
+
         fuelTank = ImageLoader.LoadImage("resources/tank.png");
         coin = ImageLoader.LoadImage("resources/coin.png");
         heart = ImageLoader.LoadImage("resources/health.png");

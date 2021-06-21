@@ -71,6 +71,10 @@ public class Battle extends JPanel {
         g.setColor(Color.yellow);
         g.drawString(String.valueOf(player.getEnergy()),130,360);
 
+        for (int i = 0; i < player.summonSize(); i++) {
+            g.drawImage(Assets.helicopter,70+30*i,200,25,25,null);
+        }
+
         g.drawImage(Assets.shield,350,420,50,50,null);
         g.setColor(Color.black);
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
@@ -93,6 +97,9 @@ public class Battle extends JPanel {
         g.setColor(Color.BLACK);
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",15));
         g.drawString(String.valueOf(player.getCard().size()),48,638);
+
+
+
     }
 
     //INIT BLOCK
@@ -128,6 +135,7 @@ public class Battle extends JPanel {
 
         initPlayer();
         draw(5);
+        activatePotions();
         enemyNextSkill = enemy.setSkill();
 
     }
@@ -153,6 +161,7 @@ public class Battle extends JPanel {
 
         initPlayer();
         draw(5);
+        activatePotions();
         enemyNextSkill = enemy.setSkill();
     }
 
@@ -249,18 +258,21 @@ public class Battle extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
+                disposePotions();
                 returnHand();
 
-                removeStrength();
+                removeStrengthtemp();
                 bleed();
                 player.setWeak(0);
                 player.activateRelic("End Turn",enemy,b);
 
                 enemy.useSkill(player,enemy,b);
                 enemyNextSkill = enemy.setSkill();
+                enemy.setWeak(0);
 
                 player.activateRelic("Start Turn",enemy,b);
                 draw(5);
+                activatePotions();
 
                 repaint();revalidate();invalidate();
             }
@@ -522,7 +534,6 @@ public class Battle extends JPanel {
     }
 
     private void initPlayer(){
-        System.out.println(player.getCard().size());
         for (Card card : player.getCard()) {
             card.initForBattle(player,enemy,this);
         }
@@ -613,6 +624,7 @@ public class Battle extends JPanel {
             h.upgrade();
         }
     }
+
     public void downgradeHand(){
         for (Card h:hand) {
             h.downgrade();
@@ -628,6 +640,7 @@ public class Battle extends JPanel {
         }
     }
 
+    //end turn
     public void disposePotions(){
         for (int i = usedpotions.size()-1; i >= 0 ; i--) {
             if(!usedpotions.get(i).isActive()){
@@ -790,5 +803,7 @@ public class Battle extends JPanel {
         this.bleeddmg = bleeddmg;
     }
 
-
+    public ArrayList<Potion> getUsedpotions() {
+        return usedpotions;
+    }
 }

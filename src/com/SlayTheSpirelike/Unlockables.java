@@ -12,8 +12,8 @@ public class Unlockables {
 
     static {
         try {
-            File myObj = new File("saves/unlockables.dat");
-            Scanner myReader = new Scanner(myObj);
+            File f = new File("saves/unlockables.dat");
+            Scanner myReader = new Scanner(f);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] content = data.split("=");
@@ -23,11 +23,15 @@ public class Unlockables {
             myReader.close();
         } catch (FileNotFoundException e) {
             try {
-                File myObj = new File("saves/unlockables.dat");
-                if (myObj.createNewFile()) {
-                    System.out.println("File created: " + myObj.getName());
+                File f = new File("saves/unlockables.dat");
+                if (f.getParentFile().mkdirs()) {
+                    if (f.createNewFile()) {
+                        System.out.println("File created: " + f.getName());
+                    } else {
+                        System.out.println("File already exists.");
+                    }
                 } else {
-                    System.out.println("File already exists.");
+                    System.out.println("Cannot make directory");
                 }
             } catch (IOException IOe) {
                 System.out.println("An error occurred.");

@@ -373,6 +373,26 @@ public class Map extends JPanel implements Serializable {
             }
         });
 
+        getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_E,0),"viewInven");
+        getActionMap().put("viewInven",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Inventory:");
+                System.out.println("Cards:");
+                for (Card card : player.getCard()) {
+                    System.out.println(card.getNama());
+                }
+                System.out.println("Potions:");
+                for (Potion potion : player.getPotion()) {
+                    System.out.println(potion.getNama());
+                }
+                System.out.println("Relics:");
+                for (Relic relic : player.getRelic()) {
+                    System.out.println(relic.getNama());
+                }
+            }
+        });
+
         Map mapSave = this;
         getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_V,0),"save");
         getActionMap().put("save", new AbstractAction() {

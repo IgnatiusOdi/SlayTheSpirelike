@@ -57,6 +57,7 @@ public abstract class Potion extends Sprite implements Serializable {
             super.mouseClicked(e);
             ((Potion)e.getSource()).activate(kapal,enemy,battle);
             kapal.getPotion().remove((Potion) e.getSource());
+            ((Potion)e.getSource()).getBattle().getUsedpotions().add((Potion) e.getSource());
             ((Potion)e.getSource()).getPanel().remove((Potion)e.getSource());
             ((Potion)e.getSource()).getPanel().remove(descLabel);
             ((Potion)e.getSource()).getPanel().repaint();
@@ -193,5 +194,9 @@ public abstract class Potion extends Sprite implements Serializable {
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    public Battle getBattle() {
+        return battle;
     }
 }
