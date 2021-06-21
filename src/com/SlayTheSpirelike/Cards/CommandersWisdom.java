@@ -5,6 +5,7 @@ import com.SlayTheSpirelike.*;
 public class CommandersWisdom extends Card {
     public CommandersWisdom() {
         super("Commander's Wisdom", "Battle", 1);
+        this.maxlevel = 1;
         status();
     }
 

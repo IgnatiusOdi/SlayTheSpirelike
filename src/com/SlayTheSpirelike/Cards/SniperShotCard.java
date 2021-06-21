@@ -8,6 +8,7 @@ import com.SlayTheSpirelike.Kapal;
 public class SniperShotCard extends Card {
     public SniperShotCard() {
         super("Sniper Shot", "Enemy", 2);
+        this.maxlevel = 1;
         status();
     }
 

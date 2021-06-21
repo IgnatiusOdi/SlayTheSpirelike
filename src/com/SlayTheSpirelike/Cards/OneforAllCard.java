@@ -8,6 +8,7 @@ import com.SlayTheSpirelike.Kapal;
 public class OneforAllCard extends Card {
     public OneforAllCard() {
         super("One for All", "Enemy", 2);
+        this.maxlevel = 99;
         status();
     }
 

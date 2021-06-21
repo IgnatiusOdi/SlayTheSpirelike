@@ -5,6 +5,7 @@ import com.SlayTheSpirelike.*;
 public class TorpedoCard extends Card {
     public TorpedoCard() {
         super("Torpedo", "Enemy", 0);
+        this.maxlevel = 1;
         status();
         dispose=true;
     }
