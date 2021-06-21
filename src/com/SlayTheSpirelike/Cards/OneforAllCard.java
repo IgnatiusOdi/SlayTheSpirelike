@@ -24,7 +24,7 @@ public class OneforAllCard extends Card {
 
     @Override
     public void status() {
-        damage=7;
+        damage=6;
         for (int i = 0; i < level-1; i++) {
             damage+=2+i;
         }

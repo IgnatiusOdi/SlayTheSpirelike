@@ -25,11 +25,11 @@ public class HeavyArtileryCard extends Card {
     public void status() {
         if (level==1){
             damage=4;
-            weak=2;
+            weak=1;
         }
         else if(level>=2){
             damage=6;
-            weak=3;
+            weak=2;
         }
         desc = "Deal "+damage+" damage \n" +
                 "and apply "+weak+" weak";
