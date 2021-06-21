@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class IotEnemy extends Enemy {
     public IotEnemy() {
-        super("Iot","Elite", 25, "resources/IOT.png");
+        super("Iot","Elite", 30, "resources/IOT.png");
         skill1=30;
         skill2=60;
         skill3=10;
@@ -15,7 +15,7 @@ public class IotEnemy extends Enemy {
         snama3="Strong Attack";
         desc1="Gain 1 strength";
         desc2="Deal 3 Damage";
-        desc3="Deal 7 Damage";
+        desc3="Deal 8 Damage";
     }
 
     @Override
@@ -30,7 +30,7 @@ public class IotEnemy extends Enemy {
 
     @Override
     public void useSkill3(Kapal kapal, Enemy enemy, Battle battle) {
-        attack(kapal,enemy,battle,7);
+        attack(kapal,enemy,battle,8);
     }
 
     @Override

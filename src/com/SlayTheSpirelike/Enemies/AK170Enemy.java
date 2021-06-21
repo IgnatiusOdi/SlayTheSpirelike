@@ -12,7 +12,7 @@ public class AK170Enemy extends Enemy {
         snama1="Weak Attack";
         snama2="Corrosive";
         desc1="Deal 3 damage";
-        desc2="Inflict 1 weak";
+        desc2="Inflict 2 weak";
     }
 
     @Override
@@ -22,7 +22,7 @@ public class AK170Enemy extends Enemy {
 
     @Override
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
-        kapal.setWeak(kapal.getWeak()+1);
+        kapal.setWeak(kapal.getWeak()+2);
     }
 
     @Override

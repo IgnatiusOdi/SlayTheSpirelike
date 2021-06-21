@@ -6,7 +6,7 @@ import com.SlayTheSpirelike.Kapal;
 
 public class AlsEliteEnemy extends Enemy {
     public AlsEliteEnemy() {
-        super("Als (Elite)","Elite", 20, "resources/ALS_Elite.png");
+        super("Als","Elite", 25, "resources/ALS_Elite.png");
         skill1=30;
         skill2=30;
         skill3=40;
@@ -14,7 +14,7 @@ public class AlsEliteEnemy extends Enemy {
         snama2="Defensive Stance";
         snama3="Strong Attack";
         desc1="Apply 1 weak,\n" +
-                "deal 2 damage";
+                "deal 3 damage";
         desc2="Gain 4 block\n" +
                 "and 1 steel";
         desc3="Deal 9 Damage";
@@ -22,7 +22,7 @@ public class AlsEliteEnemy extends Enemy {
     @Override
     public void useSkill1(Kapal kapal, Enemy enemy, Battle battle) {
         kapal.setWeak(kapal.getWeak()+1);
-        attack(kapal,enemy,battle,2);
+        attack(kapal,enemy,battle,3);
     }
 
     @Override
