@@ -16,10 +16,7 @@ public class Map extends JPanel implements Serializable {
     private final Body body;
     private MapTile[][] mapTiles;
     private Kapal player;
-    private JLabel up;
-    private JLabel down;
-    private JLabel left;
-    private JLabel right;
+    private JLabel up, down, left, right, inventory;
     private int stage;
     private final int   COL_NUM=8, ROW_NUM=5,
                         MAP_PADDING_X=80, MAP_PADDING_Y=80,
@@ -119,12 +116,12 @@ public class Map extends JPanel implements Serializable {
                     body.setPanel(new MainMenu(body));
                 }
             });
-            add(grayOut);
+            add(grayOut,0);
         }
 
         randomizeTile();
 
-        initArrow();
+        initComponents();
 
         paintMoveButton();
 
@@ -133,11 +130,11 @@ public class Map extends JPanel implements Serializable {
 
     public void reConstruct(){
         removeAll();
-        initArrow();
+        initComponents();
         paintMoveButton();
     }
 
-    private void initArrow(){
+    private void initComponents(){
         final Boolean[] moveActionHovered = {false,false,false,false};
         down = new JLabel(){
             @Override
@@ -311,6 +308,23 @@ public class Map extends JPanel implements Serializable {
         });
         add(left);
 
+        final Map m = this;
+        inventory = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(Assets.deck,0,0,40,55,null);
+            }
+        };
+        inventory.setBounds(1100,10,40,55);
+        inventory.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                body.setPanel(new Inventory(body,player,m));
+            }
+        });
+        add(inventory);
     }
 
     private void initCheat(){
@@ -449,7 +463,7 @@ public class Map extends JPanel implements Serializable {
                 }
                 remove(grayOut);
 
-                initArrow();
+                initComponents();
                 paintMoveButton();
                 repaint();
             }

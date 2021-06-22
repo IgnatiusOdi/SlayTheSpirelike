@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 public class Assets {
-    public static BufferedImage     mainMenuBackground_old, battle1BG, battle2BG,
+    public static BufferedImage     mainMenuBackground_old, battle1BG, battle2BG, woodenBG,
                                     tanker,warship,carrier, helicopter,
                                     board, plank1,plank2,plank3,
                                     map, enemyTile, treasureTile, fuelTile, shopTile,
@@ -19,6 +19,8 @@ public class Assets {
         mainMenuBackground_old = ImageLoader.LoadImage("resources/mainMenu.png");
         battle1BG = ImageLoader.LoadImage("resources/battle1.png");
         battle2BG = ImageLoader.LoadImage("resources/battle2.png");
+        woodenBG = ImageLoader.LoadImage("resources/woodbg.jpg");
+
         tanker = ImageLoader.LoadImage("resources/tanker.png");
         warship = ImageLoader.LoadImage("resources/warship.png");
         carrier = ImageLoader.LoadImage("resources/aircraft.png");
