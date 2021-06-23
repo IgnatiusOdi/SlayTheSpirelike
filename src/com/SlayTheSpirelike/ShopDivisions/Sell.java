@@ -292,6 +292,7 @@ public class Sell extends JPanel{
                 kapal.setCoin(9999999);
                 coinplayer.setText(String.valueOf(kapal.getCoin()));
                 repaint();revalidate();
+                Unlockables.unlock("Cheater");
             }
         });
     }

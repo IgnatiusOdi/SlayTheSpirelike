@@ -1232,6 +1232,7 @@ public class Buy extends JPanel implements Serializable {
                 kapal.setCoin(9999999);
                 coinplayer.setText(String.valueOf(kapal.getCoin()));
                 repaint();revalidate();
+                Unlockables.unlock("Cheater");
             }
         });
     }

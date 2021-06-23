@@ -347,6 +347,7 @@ public class Map extends JPanel implements Serializable {
                 repaint();
                 revalidate();
                 invalidate();
+                Unlockables.unlock("Cheater");
             }
         });
 
@@ -363,6 +364,7 @@ public class Map extends JPanel implements Serializable {
                     }
                 }
                 repaint();
+                Unlockables.unlock("Cheater");
             }
         });
 
@@ -373,6 +375,7 @@ public class Map extends JPanel implements Serializable {
                 System.out.println("Max Fuel");
                 player.setFuel(player.getMaxfuel());
                 repaint();
+                Unlockables.unlock("Cheater");
             }
         });
 
@@ -383,6 +386,7 @@ public class Map extends JPanel implements Serializable {
                 System.out.println("Infinite Coin");
                 player.setCoin(999999);
                 repaint();
+                Unlockables.unlock("Cheater");
             }
         });
 
@@ -394,6 +398,7 @@ public class Map extends JPanel implements Serializable {
                 System.out.print("addPot :");
                 player.addPotion(Statics.commonPotion.get(s.nextInt()));
                 repaint();
+                Unlockables.unlock("Cheater");
             }
         });
 

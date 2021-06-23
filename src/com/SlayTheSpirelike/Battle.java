@@ -291,6 +291,7 @@ public class Battle extends JPanel {
                 System.out.println("Fill energy");
                 player.setEnergy(9);
                 repaint();
+                Unlockables.unlock("Cheater");
             }
         });
 
@@ -301,6 +302,7 @@ public class Battle extends JPanel {
                 System.out.println("Fill health");
                 player.setHealth(100);
                 repaint();
+                Unlockables.unlock("Cheater");
             }
         });
 
@@ -326,6 +328,7 @@ public class Battle extends JPanel {
                 hand.add(c);
                 displayCard();
                 repaint();
+                Unlockables.unlock("Cheater");
             }
         });
 
@@ -352,6 +355,7 @@ public class Battle extends JPanel {
                 r.activate(player,enemy,b);
                 player.addRelic(r);
                 repaint();
+                Unlockables.unlock("Cheater");
             }
         });
 
@@ -376,6 +380,7 @@ public class Battle extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Insta win");
                 endBattle("p");
+                Unlockables.unlock("Cheater");
             }
         });
     }
@@ -528,7 +533,7 @@ public class Battle extends JPanel {
                     body.setPanel(new MainMenu(body));
                 }
             });
-                    Unlockables.unlock("First time?");
+            Unlockables.unlock("First time?");
         }
         add(grayOut);
 
