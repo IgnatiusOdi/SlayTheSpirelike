@@ -518,6 +518,7 @@ public class Battle extends JPanel {
             skip.setBounds(body.getWidth()/2 - 50,500,100,50);
             skip.addMouseListener(playerWin);
             grayOut.add(skip);
+            Unlockables.killed(enemy.getNama());
 
         } else if (winner.equals("e")){
             grayOut.addMouseListener(new MouseAdapter() {
@@ -527,6 +528,7 @@ public class Battle extends JPanel {
                     body.setPanel(new MainMenu(body));
                 }
             });
+                    Unlockables.unlock("First time?");
         }
         add(grayOut);
 

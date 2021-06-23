@@ -1,5 +1,6 @@
 package com.SlayTheSpirelike;
 
+import com.SlayTheSpirelike.Achivement.EndOfGame;
 import com.SlayTheSpirelike.MapItems.*;
 
 import javax.swing.*;
@@ -94,7 +95,9 @@ public class Map extends JPanel implements Serializable {
         this.setLayout(null);
         setSize(body.getWidth(), body.getHeight());
         player.setMapPos(0,0);
-
+        if (stage==2){
+            Unlockables.unlock("Beat KoD");
+        }
         if (stage==3) {
             JLabel grayOut = new JLabel(){
                 @Override
@@ -117,6 +120,13 @@ public class Map extends JPanel implements Serializable {
                 }
             });
             add(grayOut,0);
+            Unlockables.unlock("End Of Game");
+            if(player instanceof Warship){
+                Unlockables.unlock("WarShaker");
+            }
+            else if(player instanceof Aircraft){
+                Unlockables.unlock("Cannot Shake The Air");
+            }
         }
 
         randomizeTile();
