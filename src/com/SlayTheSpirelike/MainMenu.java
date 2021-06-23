@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MainMenu extends JPanel {
-    private JLabel newGame, loadGame, exit;
+    private JLabel newGame, loadGame, Achivement, exit;
     private Body body;
 
     @Override
@@ -91,6 +91,40 @@ public class MainMenu extends JPanel {
         });
         add(loadGame);
 
+        this.Achivement = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.drawImage(Assets.plank1,0,0,200,50,null);
+                g.setColor(Color.red);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
+                g.drawString("Achivement",20,35);
+                super.paintComponent(g);
+            }
+        };
+        Achivement.setBounds(body.getWidth()/2 -100, 320,200,50);
+        Achivement.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                super.mouseClicked(e);
+//                Map m = new Map(body,new Kapal("TEMP","TEMP") {}, 0);
+//                new LoadGame(m);
+//                body.setPanel(m);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                Achivement.setLocation(Achivement.getX()+10, Achivement.getY());
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                Achivement.setLocation(Achivement.getX()-10, Achivement.getY());
+            }
+        });
+        add(Achivement);
+
         this.exit = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
@@ -101,7 +135,7 @@ public class MainMenu extends JPanel {
                 super.paintComponent(g);
             }
         };
-        exit.setBounds(body.getWidth()/2 -100, 320,200,50);
+        exit.setBounds(body.getWidth()/2 -100, 380,200,50);
         exit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

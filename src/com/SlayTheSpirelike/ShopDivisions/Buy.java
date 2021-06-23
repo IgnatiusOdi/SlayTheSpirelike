@@ -20,6 +20,9 @@ public class Buy extends JPanel implements Serializable {
     private Shop shop;
     private Kapal kapal;
 
+    //CTR BuyCards
+    private int ctr;
+
     //IMAGE
     private final String hangingsign ="resources/hangingsign.png";
     private final String wood = "resources/woodtextures.jpg";
@@ -115,6 +118,9 @@ public class Buy extends JPanel implements Serializable {
 
     public void refresh() {
         coinplayer.setText(String.valueOf(kapal.getCoin()));
+        if (ctr>=9){
+            Unlockables.unlock("Shopaholic");
+        }
     }
 
     private void randomizeBuy(){
@@ -667,6 +673,8 @@ public class Buy extends JPanel implements Serializable {
                         slot1layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot1price);
                         kapal.addCard(card1);
+                        //ctr
+                        ctr++;
                         refresh();
                     } else {
                         //FAILED
@@ -707,6 +715,8 @@ public class Buy extends JPanel implements Serializable {
                         slot2layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot2price);
                         kapal.addCard(card2);
+                        //ctr
+                        ctr++;
                         refresh();
                     } else {
                         //FAILED
@@ -747,6 +757,8 @@ public class Buy extends JPanel implements Serializable {
                         slot3layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot3price);
                         kapal.addCard(card3);
+                        //ctr
+                        ctr++;
                         refresh();
                     } else {
                         //FAILED
@@ -787,6 +799,8 @@ public class Buy extends JPanel implements Serializable {
                         slot4layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot4price);
                         kapal.addCard(card4);
+                        //ctr
+                        ctr++;
                         refresh();
                     } else {
                         //FAILED
@@ -827,6 +841,8 @@ public class Buy extends JPanel implements Serializable {
                         slot5layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot5price);
                         kapal.addCard(card5);
+                        //ctr
+                        ctr++;
                         refresh();
                     } else {
                         //FAILED
@@ -867,6 +883,8 @@ public class Buy extends JPanel implements Serializable {
                         slot6layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot6price);
                         kapal.addCard(card6);
+                        //ctr
+                        ctr++;
                         refresh();
                     } else {
                         //FAILED
@@ -907,6 +925,8 @@ public class Buy extends JPanel implements Serializable {
                         slot7layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot7price);
                         kapal.addRelic(relic7);
+                        //ctr
+                        ctr++;
                         refresh();
 
                         slot1price /= 2;
@@ -964,6 +984,8 @@ public class Buy extends JPanel implements Serializable {
                         slot8layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot8price);
                         kapal.addRelic(relic8);
+                        //ctr
+                        ctr++;
                         refresh();
                     } else {
                         //FAILED
@@ -1004,6 +1026,8 @@ public class Buy extends JPanel implements Serializable {
                         slot9layer.setVisible(true);
                         kapal.setCoin(kapal.getCoin() - slot9price);
                         kapal.addPotion(potion9);
+                        //ctr
+                        ctr++;
                         refresh();
                     } else {
                         //FAILED

@@ -3,12 +3,12 @@ package com.SlayTheSpirelike.Achivement;
 public class Achivement {
     private String name;
     private String desc;
-    private boolean achive ;
+
 
     public Achivement(String name, String desc) {
         this.name = name;
         this.desc = desc;
-        this.achive = false;
+
     }
 
     public String getName() {
@@ -27,11 +27,4 @@ public class Achivement {
         this.desc = desc;
     }
 
-    public boolean isAchive() {
-        return achive;
-    }
-
-    public void setAchive(boolean achive) {
-        this.achive = achive;
-    }
 }
