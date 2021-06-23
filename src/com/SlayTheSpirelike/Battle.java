@@ -451,12 +451,12 @@ public class Battle extends JPanel {
                     if (!e.isConsumed()) {
                         System.out.println("rewardTrigger");
                         if (boss) {
-                            if (stage==1){
-                                Unlockables.unlock("ship2Unlock");
-                            } else if (stage==2){
-                                Unlockables.unlock("ship3Unlock");
-                            }
-                            Unlockables.save();
+//                            if (stage==1){
+//                                Unlockables.unlock("ship2Unlock");
+//                            } else if (stage==2){
+//                                Unlockables.unlock("End Of Game");
+//                            }
+//                            Unlockables.save();
                             body.setPanel(new Map(body,player,++stage));
                         } else {
                             body.setPanel(returnPanel);

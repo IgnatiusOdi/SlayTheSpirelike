@@ -31,8 +31,8 @@ public class CharSelect extends JPanel {
         setSize(body.getWidth(), body.getHeight());
         setLayout(null);
                                                                                                                         //unlock Ship Here
-        this.ship2Unlocked = Unlockables.get("ship2Unlock");
-        this.ship3Unlocked = Unlockables.get("ship3Unlock");
+        this.ship2Unlocked = Unlockables.get("Beat KoD");
+        this.ship3Unlocked = Unlockables.get("End Of Game");
 
         Color whiteBG = new Color(255, 255,255, 127);
         Color redSelected = new Color(255, 150,150, 127);
