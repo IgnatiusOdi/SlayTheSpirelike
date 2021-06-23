@@ -14,9 +14,10 @@ public class MainMenu extends JPanel {
         super.paintComponent(g);
         g.drawImage(Assets.mainMenuBackground_old,0,0,body.getWidth(),body.getHeight(),null);
 
-        g.setColor(Color.red);
+        g.drawImage(Assets.board,body.getWidth() / 2 - 200, 0,400,150,null);
+        g.setColor(Color.white);
         g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",30));
-        g.drawString("Slay D Ships", body.getWidth() / 2 - 100, 45);
+        g.drawString("Slay D Ships", body.getWidth() / 2 - 100, 115);
     }
 
     public MainMenu(Body body) {
@@ -28,7 +29,7 @@ public class MainMenu extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(Assets.plank1,0,0,200,50,null);
-                g.setColor(Color.red);
+                g.setColor(Color.white);
                 g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
 //                g.setFont(new Font("Monospace", Font.BOLD, 30));
                 g.drawString("New Game",20,35);
@@ -61,7 +62,7 @@ public class MainMenu extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(Assets.plank1,0,0,200,50,null);
-                g.setColor(Color.red);
+                g.setColor(Color.white);
                 g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
                 g.drawString("Load Game",20,35);
                 super.paintComponent(g);
@@ -95,7 +96,7 @@ public class MainMenu extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(Assets.plank1,0,0,200,50,null);
-                g.setColor(Color.red);
+                g.setColor(Color.white);
                 g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
                 g.drawString("Exit",20,35);
                 super.paintComponent(g);
