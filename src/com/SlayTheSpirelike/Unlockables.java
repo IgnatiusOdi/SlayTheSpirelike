@@ -15,7 +15,7 @@ public class Unlockables {
     private static HashMap<String, Boolean> unlockables = new HashMap<>();
     private static HashSet<String> defeated = new HashSet<>();
 
-    private static ArrayList<Achivement> achivementList = new ArrayList<>(8);
+    protected static ArrayList<Achivement> achivementList = new ArrayList<>(8);
 
 
     static {
@@ -25,6 +25,7 @@ public class Unlockables {
         achivementList.add(new Shopaholic());
         achivementList.add(new IHaveSeenEnough());
         achivementList.add(new BeatKoD());
+        achivementList.add(new WarShaker());
         achivementList.add(new CantShakeTheAir());
 
         for (Achivement achivement : achivementList) {

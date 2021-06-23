@@ -96,7 +96,7 @@ public class MainMenu extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 g.drawImage(Assets.plank1,0,0,200,50,null);
-                g.setColor(Color.red);
+                g.setColor(Color.white);
                 g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
                 g.drawString("Achivement",20,35);
                 super.paintComponent(g);
@@ -106,10 +106,7 @@ public class MainMenu extends JPanel {
         Achivement.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                super.mouseClicked(e);
-//                Map m = new Map(body,new Kapal("TEMP","TEMP") {}, 0);
-//                new LoadGame(m);
-//                body.setPanel(m);
+                body.setPanel(new Achivement_Panel(body));
             }
 
             @Override
