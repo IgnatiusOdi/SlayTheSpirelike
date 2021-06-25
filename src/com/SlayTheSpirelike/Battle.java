@@ -22,11 +22,15 @@ public class Battle extends JPanel {
     private final Random rnd;
     private final Body body;
     private final JPanel returnPanel;
-    private JLabel playerSprite, enemyIntent, endTurn;
+
+    private JLabel weakPlayer;
+    private JLabel strengthPlayer;
+    private JLabel enemySteel;
+    private JLabel enemyStrength;
+
     private final Kapal player;
     private ArrayList<Potion> potions;
     private ArrayList<Potion> usedpotions;
-    private ArrayList<Relic> relics;
     private ArrayList<Card> hand;
     private ArrayList<Card> singleuse;
     private final Enemy enemy;
@@ -172,39 +176,66 @@ public class Battle extends JPanel {
 
         initPotions();
 
-        relics = player.getRelic();
+        ArrayList<Relic> relics = player.getRelic();
         for (int i = 0; i < relics.size(); i++) {
             relics.get(i).setBounds(10 + (i*55),50,50,50);
             relics.get(i).setPanel(this);
             add(relics.get(i));
         }
 
-        //extend class jlabel untuk override paintComponent
-        playerSprite = new JLabel(){
+        weakPlayer = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                if (player instanceof Tanker){
-                    g.drawImage(Assets.tanker, 0, 0,PLAYER_WIDTH,PLAYER_HEIGHT,null);
-                } else if (player instanceof Warship){
-                    g.drawImage(Assets.warship, 0, 0,PLAYER_WIDTH,PLAYER_HEIGHT,null);
-                } else if (player instanceof Aircraft){
-                    g.drawImage(Assets.carrier, 0, 0,PLAYER_WIDTH,PLAYER_HEIGHT,null);
+                g.drawImage(Assets.weak,0,0,50,50,null);
+            }
+        };
+        weakPlayer.setBounds(40,350,50,50);
+
+        //extend class jlabel untuk override paintComponent
+        JLabel playerSprite = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (player instanceof Tanker) {
+                    g.drawImage(Assets.tanker, 0, 0, PLAYER_WIDTH, PLAYER_HEIGHT, null);
+                } else if (player instanceof Warship) {
+                    g.drawImage(Assets.warship, 0, 0, PLAYER_WIDTH, PLAYER_HEIGHT, null);
+                } else if (player instanceof Aircraft) {
+                    g.drawImage(Assets.carrier, 0, 0, PLAYER_WIDTH, PLAYER_HEIGHT, null);
                 }
             }
         };
         playerSprite.setBounds(30,400,PLAYER_WIDTH,PLAYER_HEIGHT);
         add(playerSprite);
 
-        enemy.setBounds(700,400,300,100);
-        add(enemy);
-
-        enemyIntent = new JLabel(){
+        enemySteel = new JLabel(){
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
-                g.drawString(enemyNextSkill,0,28);
+                g.drawImage(Assets.steel,0,0,50,50,null);
+            }
+        };
+        enemySteel.setBounds(700,300,50,50);
+
+        enemyStrength = new JLabel(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(Assets.strength,0,0,50,50,null);
+            }
+        };
+        enemyStrength.setBounds(760,300,50,50);
+
+        enemy.setBounds(700,400,300,100);
+        add(enemy);
+
+        JLabel enemyIntent = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf", 20));
+                g.drawString(enemyNextSkill, 0, 28);
             }
         };
         enemyIntent.setBounds(700,380,200,30);
@@ -242,13 +273,13 @@ public class Battle extends JPanel {
         });
         add(enemyIntent);
 
-        endTurn = new JLabel(){
+        JLabel endTurn = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(Assets.plank1,0,0,130,40,null);
-                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",20));
-                g.drawString("End Turn",10,28);
+                g.drawImage(Assets.plank1, 0, 0, 130, 40, null);
+                g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf", 20));
+                g.drawString("End Turn", 10, 28);
             }
         };
         endTurn.setBounds(1020,590,130,40);
@@ -268,7 +299,29 @@ public class Battle extends JPanel {
 
                 enemy.useSkill(player,enemy,b);
                 enemyNextSkill = enemy.setSkill();
+                enemy.steelUp();
                 enemy.setWeak(0);
+
+/*                if (player.getWeak()>0) {
+                    add(weakPlayer);
+                } else {
+                    add(weakPlayer);
+                    remove(weakPlayer);
+                }
+
+                if (enemy.getSteel()>0) {
+                    add(enemySteel);
+                } else {
+                    add(enemySteel);
+                    remove(enemySteel);
+                }
+
+                if (strength+strengthtemp>0) {
+                    add(enemyStrength,0);
+                } else {
+                    add(enemyStrength);
+                    remove(enemyStrength);
+                }*/
 
                 player.activateRelic("Start Turn",enemy,b);
                 draw(5);

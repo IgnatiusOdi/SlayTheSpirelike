@@ -46,6 +46,7 @@ public class LaunchSplash extends JFrame {
             }
         }
         dispose();
+        Body body = new Body(1162,648);
     }
 
     private void initComponents() {

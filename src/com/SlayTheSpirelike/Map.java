@@ -1,6 +1,5 @@
 package com.SlayTheSpirelike;
 
-import com.SlayTheSpirelike.Achivement.EndOfGame;
 import com.SlayTheSpirelike.MapItems.*;
 
 import javax.swing.*;
@@ -120,6 +119,7 @@ public class Map extends JPanel implements Serializable {
                 }
             });
             add(grayOut,0);
+
             Unlockables.unlock("End Of Game");
             if(player instanceof Warship){
                 Unlockables.unlock("WarShaker");
@@ -422,7 +422,7 @@ public class Map extends JPanel implements Serializable {
             }
         });
 
-        Map mapSave = this;
+        final Map mapSave = this;
         getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_V,0),"save");
         getActionMap().put("save", new AbstractAction() {
             @Override

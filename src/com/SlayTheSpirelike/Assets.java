@@ -9,7 +9,7 @@ public class Assets {
                                     plank1,plank2,plank3,
                                     map, enemyTile, treasureTile, fuelTile, shopTile,
                                     arrowRight, arrowDown, arrowLeft, arrowUp,
-                                    fuelTank,coin,heart,energy,deck,shield,
+                                    fuelTank,coin,heart,energy,deck,shield, weak, steel, strength,
                                     boss1, boss2;
 
     public static ImageIcon mainMenuBG;
@@ -33,6 +33,9 @@ public class Assets {
         energy = ImageLoader.LoadImage("resources/energy.png");
         deck = ImageLoader.LoadImage("resources/cardBack.png");
         shield = ImageLoader.LoadImage("resources/shield.png");
+        weak = ImageLoader.LoadImage("resources/Icon_Weak.png");
+        steel = ImageLoader.LoadImage("resources/Icon_steel.png");
+        strength = ImageLoader.LoadImage("resources/Icon_Strength.png");
 
         map = ImageLoader.LoadImage("resources/map.png");
         enemyTile = ImageLoader.LoadImage("resources/enemy.png");
