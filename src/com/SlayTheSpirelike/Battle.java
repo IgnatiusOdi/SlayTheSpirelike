@@ -486,7 +486,7 @@ public class Battle extends JPanel {
         //if player wins, give reward, send to map. if enemy wins, send to main menu
         //if boss, send to next map
         if (winner.equals("p")) {
-            potionReward();
+            String potionReward = potionReward();
             player.setCoin(player.getCoin() + coinReward);
             player.setFuel(player.getFuel() + fuelReward);
 
@@ -497,9 +497,12 @@ public class Battle extends JPanel {
                     g.setColor(Color.yellow);
                     g.setFont(FontLoader.loadFont("resources/ReggaeOne-Regular.ttf",25));
                     g.drawString("You get : " + coinReward + " coins and " + fuelReward + " fuel", 0,140);
+                    if (!potionReward.equals("")) {
+                        g.drawString("and " + potionReward, 0,170);
+                    }
                 }
             };
-            rewardLabel.setBounds(400,30,body.getWidth()/2 - 100,160);
+            rewardLabel.setBounds(400,30,body.getWidth()/2 - 100,180);
             grayOut.add(rewardLabel);
 
             MouseAdapter playerWin = new MouseAdapter() {
@@ -767,33 +770,40 @@ public class Battle extends JPanel {
         this.potionchance = potionchance;
     }
 
-    public void potionReward(){
+    public String potionReward(){
         if (!nopotion){
             int p = rnd.nextInt(potionchance)+1;
             if (p<=20){
                 int potion = rnd.nextInt(Statics.commonPotion.size());
                 player.addPotion(Statics.commonPotion.get(potion).copy());
+                return Statics.commonPotion.get(potion).getNama();
             }
             else if(p<=30){
                 int potion = rnd.nextInt(Statics.uncommonPotion.size());
                 player.addPotion(Statics.uncommonPotion.get(potion).copy());
+                return Statics.uncommonPotion.get(potion).getNama();
             }
             else if(p<=35){
                 int potion = rnd.nextInt(Statics.rarePotion.size());
                 player.addPotion(Statics.rarePotion.get(potion).copy());
+                return Statics.rarePotion.get(potion).getNama();
             }
             else if(p<=40){
                 if (player instanceof Aircraft){
                     player.addPotion(new SummonPotion());
+                    return "Summon Potion";
                 }
                 else if (player instanceof Tanker){
                     player.addPotion(new InvinciblePotion());
+                    return "Invincible Potion";
                 }
                 if (player instanceof Warship){
                     player.addPotion(new RevivePotion());
+                    return "Revive Potion";
                 }
             }
         }
+        return "";
     }
 
 
