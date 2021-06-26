@@ -29,6 +29,9 @@ public class AlsEliteEnemy extends Enemy {
     public void useSkill2(Kapal kapal, Enemy enemy, Battle battle) {
         enemy.setBlock(enemy.getBlock()+4);
         enemy.setSteel(enemy.getSteel()+1);
+        if(enemy.getSteel()>5){
+            enemy.setSteel(5);
+        }
     }
 
     @Override
