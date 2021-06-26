@@ -5,7 +5,7 @@ import com.SlayTheSpirelike.Relic;
 
 public class CannontizerRelic extends Relic {
     public CannontizerRelic() {
-        super("Cannontizer Relic", "Common", "Damage", "resources/cannon.png","Increase your attack \n" +
+        super("Cannontizer Relic", "Common", "Start Battle", "resources/cannon.png","Increase your attack \n" +
                 "by 1 (Passive");
     }
 
@@ -17,10 +17,6 @@ public class CannontizerRelic extends Relic {
         }
     }
 
-    @Override
-    public void deactivate(Kapal kapal) {
-
-    }
 
     @Override
     public Relic copy() {
