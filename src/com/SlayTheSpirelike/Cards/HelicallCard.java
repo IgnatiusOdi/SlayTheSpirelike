@@ -22,9 +22,11 @@ public class HelicallCard extends Card {
     public void status() {
         if (level==1){
             cost = 1;
+            summon = 1;
         }
         else if (level>=2){
             cost = 2;
+            summon = 1;
         }
         desc = "Summon "+summon+" heli";
     }
