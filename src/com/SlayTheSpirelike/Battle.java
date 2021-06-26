@@ -614,6 +614,7 @@ public class Battle extends JPanel {
         player.setAttack(0);
         player.setWeak(0);
         removeStrength();
+        restoreHealth();
     }
 
     public void initPotions(){
@@ -771,7 +772,7 @@ public class Battle extends JPanel {
     }
 
     public String potionReward(){
-        if (!nopotion){
+        if (!nopotion && player.getPotionsize()<player.getPotionLimit()){
             int p = rnd.nextInt(potionchance)+1;
             if (p<=20){
                 int potion = rnd.nextInt(Statics.commonPotion.size());
