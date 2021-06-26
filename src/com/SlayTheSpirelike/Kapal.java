@@ -124,6 +124,19 @@ public abstract class Kapal extends Sprite implements Serializable {
         }
     }
 
+    public void destroySummon(int attack){
+        while(summon.size()>0&&attack>0){
+            if(summon.get(summon.size()-1).getHealth()<attack){
+                attack -= summon.get(summonSize()-1).getHealth();
+                summon.remove(summon.size()-1);
+            }
+            else{
+                summon.get(summonSize()-1).setHealth(summon.get(summonSize()-1).getHealth()-attack);
+                attack=0;
+            }
+        }
+    }
+
     //cek eksistensi potion
     public boolean isPotion(String nama){
         boolean exist = false;

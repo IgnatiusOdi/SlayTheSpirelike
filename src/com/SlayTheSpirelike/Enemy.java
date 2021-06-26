@@ -43,6 +43,7 @@ public abstract class Enemy extends Sprite {
             if(attack<0){
                 attack=0;
             }
+            k.destroySummon(attack);
             if (attack>k.getBlock()){
                 attack -= k.getBlock();
                 k.setBlock(0);
