@@ -289,6 +289,8 @@ public class Battle extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
+                player.summonAttack(enemy);
+
                 disposePotions();
                 returnHand();
 
@@ -613,6 +615,7 @@ public class Battle extends JPanel {
         player.setBlock(0);
         player.setAttack(0);
         player.setWeak(0);
+        player.desummon();
         removeStrength();
         restoreHealth();
     }
